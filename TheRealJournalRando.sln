@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheRealJournalRando", "TheRealJournalRando\TheRealJournalRando.csproj", "{6E90FF09-F963-4610-BFD2-2CFE3078F006}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{692FAE20-45A4-462A-91A3-F351FE6F6DDC}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E90FF09-F963-4610-BFD2-2CFE3078F006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E90FF09-F963-4610-BFD2-2CFE3078F006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E90FF09-F963-4610-BFD2-2CFE3078F006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E90FF09-F963-4610-BFD2-2CFE3078F006}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E38E811C-D874-4ACC-B634-652F54C725B6}
+	EndGlobalSection
+EndGlobal
