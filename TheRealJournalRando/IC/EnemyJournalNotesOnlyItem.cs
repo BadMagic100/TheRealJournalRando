@@ -9,7 +9,7 @@ namespace TheRealJournalRando.IC
         protected override void OnLoad()
         {
             EnemyJournalInterceptModule journal = ItemChangerMod.Modules.GetOrAdd<EnemyJournalInterceptModule>();
-            journal.RegisterEnemy(playerDataName);
+            journal.RegisterEnemyNotes(playerDataName);
         }
 
         public override void GiveImmediate(GiveInfo info)

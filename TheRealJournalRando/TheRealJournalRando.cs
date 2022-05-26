@@ -34,12 +34,23 @@ namespace TheRealJournalRando
             _instance = this;
         }
 
-        (string, string)[] mappings =
-            {
-                ("Squit", "Mosquito"),
-                ("Tiktik", "Climber"),
-                ("Lifeseed", "HealthScuttler")
-            };
+        (string, string)[] bothMappings =
+        {
+            ("Squit", "Mosquito"),
+            ("Tiktik", "Climber"),
+            ("Lifeseed", "HealthScuttler"),
+            ("Crawlid", "Crawler")
+        };
+        (string, string)[] entryOnlyMappings =
+        {
+            ("Pure Vessel", "HollowKnightPrime"),
+            ("Husk Hive", "ZombieHive")
+        };
+        (string, string)[] noteOnlyMappings =
+        {
+            ("Vengefly", "Buzzer"),
+            ("Gruzzer", "Bouncer"),
+        };
         private LayoutRoot? layout;
 
         // if you need preloads, you will need to implement GetPreloadNames and use the other signature of Initialize.
@@ -55,33 +66,36 @@ namespace TheRealJournalRando
             AbstractItem.ModifyRedundantItemGlobal += AbstractItem_ModifyRedundantItemGlobal;
 
 
-            foreach ((string name, string pdName) in mappings)
+            foreach ((string, string)[] mappings in new[] { bothMappings, entryOnlyMappings, noteOnlyMappings })
             {
-                string icName = name.Replace(' ', '_');
-                AbstractItem entry = new EnemyJournalEntryOnlyItem
+                foreach ((string name, string pdName) in mappings)
                 {
-                    playerDataName = pdName,
-                    name = $"Journal_Entry_Only-{icName}",
-                    UIDef = new MsgUIDef
+                    string icName = name.Replace(' ', '_');
+                    AbstractItem entry = new EnemyJournalEntryOnlyItem
                     {
-                        name = new BoxedString($"{name} Journal Entry"),
-                        shopDesc = new BoxedString("something something monty python pet shop"),
-                        sprite = new JournalBadgeSprite(pdName)
-                    }
-                };
-                AbstractItem notes = new EnemyJournalNotesOnlyItem
-                {
-                    playerDataName = pdName,
-                    name = $"Hunter's_Notes-{icName}",
-                    UIDef = new MsgUIDef
+                        playerDataName = pdName,
+                        name = $"Journal_Entry_Only-{icName}",
+                        UIDef = new MsgUIDef
+                        {
+                            name = new BoxedString($"{name} Journal Entry"),
+                            shopDesc = new BoxedString("something something monty python pet shop"),
+                            sprite = new JournalBadgeSprite(pdName)
+                        }
+                    };
+                    AbstractItem notes = new EnemyJournalNotesOnlyItem
                     {
-                        name = new BoxedString($"{name} Hunter's Notes"),
-                        shopDesc = new BoxedString("something something monty python pet shop 2"),
-                        sprite = new JournalBadgeSprite(pdName)
-                    }
-                };
-                Finder.DefineCustomItem(entry);
-                Finder.DefineCustomItem(notes);
+                        playerDataName = pdName,
+                        name = $"Hunter's_Notes-{icName}",
+                        UIDef = new MsgUIDef
+                        {
+                            name = new BoxedString($"{name} Hunter's Notes"),
+                            shopDesc = new BoxedString("something something monty python pet shop 2"),
+                            sprite = new JournalBadgeSprite(pdName)
+                        }
+                    };
+                    Finder.DefineCustomItem(entry);
+                    Finder.DefineCustomItem(notes);
+                }
             }
 
             Log("Initialized");
@@ -99,10 +113,20 @@ namespace TheRealJournalRando
 
             AbstractPlacement iseldaShop = Finder.GetLocation(LocationNames.Iselda).Wrap();
             iseldaShop.Items.Add(Finder.GetItem(ItemNames.Hunters_Journal));
-            foreach ((string name, _) in mappings)
+            foreach ((string name, _) in bothMappings)
             {
                 string icName = name.Replace(' ', '_');
                 iseldaShop.Items.Add(Finder.GetItem($"Journal_Entry_Only-{icName}"));
+                iseldaShop.Items.Add(Finder.GetItem($"Hunter's_Notes-{icName}"));
+            }
+            foreach ((string name, _) in entryOnlyMappings)
+            {
+                string icName = name.Replace(' ', '_');
+                iseldaShop.Items.Add(Finder.GetItem($"Journal_Entry_Only-{icName}"));
+            }
+            foreach ((string name, _) in noteOnlyMappings)
+            {
+                string icName = name.Replace(' ', '_');
                 iseldaShop.Items.Add(Finder.GetItem($"Hunter's_Notes-{icName}"));
             }
             ItemChangerMod.AddPlacements(iseldaShop.Yield());

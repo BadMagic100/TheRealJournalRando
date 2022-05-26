@@ -17,10 +17,9 @@ namespace TheRealJournalRando.JournalManip
             string pdKillsName = Fsm.GetFsmString("pdKillsName").Value;
             int pdKills = Fsm.GetFsmInt("PD Kills").Value;
 
-            string enemyName = pdKillsName.Remove(0, 5);
-            if (module.EnemyIsRegistered(enemyName))
+            string enemyName = pdKillsName.Substring(5);
+            if (module.EnemyNotesIsRegistered(enemyName))
             {
-                TheRealJournalRando.Instance.LogDebug($"Intercepting comparison for {enemyName}");
                 if (PlayerData.instance.GetBool(nameof(EnemyJournalInterceptModule.hasNotes) + enemyName))
                 {
                     Fsm.Event("NOTES");
