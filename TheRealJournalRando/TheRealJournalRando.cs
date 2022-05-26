@@ -1,6 +1,5 @@
 ﻿using ItemChanger;
 using ItemChanger.Extensions;
-using ItemChanger.Items;
 using ItemChanger.Modules;
 using ItemChanger.UIDefs;
 using MagicUI.Core;
@@ -59,9 +58,9 @@ namespace TheRealJournalRando
             foreach ((string name, string pdName) in mappings)
             {
                 string icName = name.Replace(' ', '_');
-                AbstractItem entry = new JournalEntryOnlyItem
+                AbstractItem entry = new EnemyJournalEntryOnlyItem
                 {
-                    PlayerDataName = pdName,
+                    playerDataName = pdName,
                     name = $"Journal_Entry_Only-{icName}",
                     UIDef = new MsgUIDef
                     {
@@ -70,9 +69,9 @@ namespace TheRealJournalRando
                         sprite = new JournalBadgeSprite(pdName)
                     }
                 };
-                AbstractItem notes = new JournalNotesOnlyItem
+                AbstractItem notes = new EnemyJournalNotesOnlyItem
                 {
-                    PlayerDataName = pdName,
+                    playerDataName = pdName,
                     name = $"Hunter's_Notes-{icName}",
                     UIDef = new MsgUIDef
                     {
@@ -81,20 +80,8 @@ namespace TheRealJournalRando
                         sprite = new JournalBadgeSprite(pdName)
                     }
                 };
-                AbstractItem fullEntry = new JournalEntryItem
-                {
-                    playerDataName = pdName,
-                    name = $"Journal_Entry-{icName}",
-                    UIDef = new MsgUIDef
-                    {
-                        name = new BoxedString($"{name} Journal Entry"),
-                        shopDesc = new BoxedString("This is a real bargain, you're getting a whole journal entry!"),
-                        sprite = new JournalBadgeSprite(pdName)
-                    }
-                };
                 Finder.DefineCustomItem(entry);
                 Finder.DefineCustomItem(notes);
-                Finder.DefineCustomItem(fullEntry);
             }
 
             Log("Initialized");
@@ -111,12 +98,12 @@ namespace TheRealJournalRando
             ItemChangerMod.Modules.GetOrAdd<AutoUnlockIselda>();
 
             AbstractPlacement iseldaShop = Finder.GetLocation(LocationNames.Iselda).Wrap();
+            iseldaShop.Items.Add(Finder.GetItem(ItemNames.Hunters_Journal));
             foreach ((string name, _) in mappings)
             {
                 string icName = name.Replace(' ', '_');
                 iseldaShop.Items.Add(Finder.GetItem($"Journal_Entry_Only-{icName}"));
                 iseldaShop.Items.Add(Finder.GetItem($"Hunter's_Notes-{icName}"));
-                iseldaShop.Items.Add(Finder.GetItem($"Journal_Entry-{icName}"));
             }
             ItemChangerMod.AddPlacements(iseldaShop.Yield());
 
