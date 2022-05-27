@@ -10,7 +10,9 @@ using TheRealJournalRando.JournalManip;
 
 namespace TheRealJournalRando.IC
 {
-    public class EnemyJournalInterceptModule : Module
+    public delegate void EnemyKillCounterChangedHandler(string pdName);
+
+    public class JournalControlModule : Module
     {
         public bool hasResetCrawlidPd = false;
 
@@ -27,6 +29,7 @@ namespace TheRealJournalRando.IC
             ["Shade"] = 0,
         };
 
+        public event EnemyKillCounterChangedHandler? OnKillCountChanged;
 
         public override void Initialize()
         {
@@ -36,6 +39,7 @@ namespace TheRealJournalRando.IC
             On.JournalEntryStats.Awake += RerouteShadeEntryPd;
             ModHooks.SetPlayerBoolHook += JournalDataSetOverride;
             ModHooks.GetPlayerBoolHook += JournalDataGetOverride;
+            ModHooks.RecordKillForJournalHook += OnJournalRecord;
 
             if (!hasResetCrawlidPd)
             {
@@ -53,6 +57,7 @@ namespace TheRealJournalRando.IC
             On.JournalEntryStats.Awake -= RerouteShadeEntryPd;
             ModHooks.SetPlayerBoolHook -= JournalDataSetOverride;
             ModHooks.GetPlayerBoolHook -= JournalDataGetOverride;
+            ModHooks.RecordKillForJournalHook -= OnJournalRecord;
         }
 
         private void EnsureKillCounter(string pdName)
@@ -79,6 +84,15 @@ namespace TheRealJournalRando.IC
                 EnsureKillCounter(pdName);
                 hasNotes[pdName] = false;
             }
+        }
+
+        public int GetKillCount(string pdName)
+        {
+            if (enemyKillCounts.TryGetValue(pdName, out int value))
+            {
+                return value;
+            }
+            return 0;
         }
 
         public bool EnemyEntryIsRegistered(string pdName)
@@ -200,6 +214,15 @@ namespace TheRealJournalRando.IC
                 FsmState notesCheck = self.GetState("Notes?");
                 notesCheck.RemoveAction(3);
                 notesCheck.AddLastAction(new NotesInterceptProxyCompare(this));
+            }
+        }
+        private void OnJournalRecord(EnemyDeathEffects enemyDeathEffects, string playerDataName, string killedBoolPlayerDataLookupKey,
+            string killCountIntPlayerDataLookupKey, string newDataBoolPlayerDataLookupKey)
+        {
+            if (enemyKillCounts.ContainsKey(playerDataName))
+            {
+                enemyKillCounts[playerDataName]++;
+                OnKillCountChanged?.Invoke(playerDataName);
             }
         }
     }

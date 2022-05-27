@@ -6,15 +6,20 @@ namespace TheRealJournalRando.IC
     {
         public string playerDataName = "";
 
+        public EnemyJournalEntryOnlyItem(string playerDataName)
+        {
+            this.playerDataName = playerDataName;
+        }
+
         protected override void OnLoad()
         {
-            EnemyJournalInterceptModule journal = ItemChangerMod.Modules.GetOrAdd<EnemyJournalInterceptModule>();
+            JournalControlModule journal = ItemChangerMod.Modules.GetOrAdd<JournalControlModule>();
             journal.RegisterEnemyEntry(playerDataName);
         }
 
         public override void GiveImmediate(GiveInfo info)
         {
-            string hasEntryBool = nameof(EnemyJournalInterceptModule.hasEntry) + playerDataName;
+            string hasEntryBool = nameof(JournalControlModule.hasEntry) + playerDataName;
             string firstKilledBool = "newData" + playerDataName;
             if (!PlayerData.instance.GetBool(hasEntryBool))
             {
@@ -25,7 +30,7 @@ namespace TheRealJournalRando.IC
 
         public override bool Redundant()
         {
-            string hasEntryBool = nameof(EnemyJournalInterceptModule.hasEntry) + playerDataName;
+            string hasEntryBool = nameof(JournalControlModule.hasEntry) + playerDataName;
             return PlayerData.instance.GetBool(hasEntryBool);
         }
     }

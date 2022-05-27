@@ -5,9 +5,9 @@ namespace TheRealJournalRando.JournalManip
 {
     internal class NotesInterceptProxyCompare : FsmStateAction
     {
-        private readonly EnemyJournalInterceptModule module;
+        private readonly JournalControlModule module;
 
-        public NotesInterceptProxyCompare(EnemyJournalInterceptModule module)
+        public NotesInterceptProxyCompare(JournalControlModule module)
         {
             this.module = module;
         }
@@ -20,7 +20,7 @@ namespace TheRealJournalRando.JournalManip
             string enemyName = pdKillsName.Substring(5);
             if (module.EnemyNotesIsRegistered(enemyName))
             {
-                if (PlayerData.instance.GetBool(nameof(EnemyJournalInterceptModule.hasNotes) + enemyName))
+                if (PlayerData.instance.GetBool(nameof(JournalControlModule.hasNotes) + enemyName))
                 {
                     Fsm.Event("NOTES");
                 }

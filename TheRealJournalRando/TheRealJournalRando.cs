@@ -1,6 +1,6 @@
 ﻿using ItemChanger;
-using ItemChanger.Extensions;
 using ItemChanger.Modules;
+using ItemChanger.Placements;
 using ItemChanger.UIDefs;
 using MagicUI.Core;
 using MagicUI.Elements;
@@ -58,7 +58,6 @@ namespace TheRealJournalRando
         {
             Log("Initializing");
 
-            ModHooks.RecordKillForJournalHook += OnJournalRecord;
             On.HeroController.Awake += GameStarted;
             On.QuitToMenu.Start += GameExited;
 
@@ -71,9 +70,8 @@ namespace TheRealJournalRando
                 foreach ((string name, string pdName) in mappings)
                 {
                     string icName = name.Replace(' ', '_');
-                    AbstractItem entry = new EnemyJournalEntryOnlyItem
+                    AbstractItem entry = new EnemyJournalEntryOnlyItem(pdName)
                     {
-                        playerDataName = pdName,
                         name = $"Journal_Entry_Only-{icName}",
                         UIDef = new MsgUIDef
                         {
@@ -82,9 +80,8 @@ namespace TheRealJournalRando
                             sprite = new JournalBadgeSprite(pdName)
                         }
                     };
-                    AbstractItem notes = new EnemyJournalNotesOnlyItem
+                    AbstractItem notes = new EnemyJournalNotesOnlyItem(pdName)
                     {
-                        playerDataName = pdName,
                         name = $"Hunter's_Notes-{icName}",
                         UIDef = new MsgUIDef
                         {
@@ -97,6 +94,15 @@ namespace TheRealJournalRando
                     Finder.DefineCustomItem(notes);
                 }
             }
+            Finder.DefineCustomLocation(new EnemyJournalLocation("Pigeon", EnemyJournalLocationType.Notes)
+            {
+                name = $"Hunter's_Notes-Maskfly"
+            });
+            Finder.DefineCustomLocation(new EnemyJournalLocation("Climber", EnemyJournalLocationType.Entry)
+            {
+                name = "Journal_Entry_Only-Tiktik"
+            });
+
 
             Log("Initialized");
         }
@@ -129,7 +135,17 @@ namespace TheRealJournalRando
                 string icName = name.Replace(' ', '_');
                 iseldaShop.Items.Add(Finder.GetItem($"Hunter's_Notes-{icName}"));
             }
-            ItemChangerMod.AddPlacements(iseldaShop.Yield());
+
+            AbstractPlacement tiktikEntry = Finder.GetLocation("Journal_Entry_Only-Tiktik").Wrap();
+            ((ISingleCostPlacement)tiktikEntry).Cost = new EnemyKillCost("Climber", 1);
+            tiktikEntry.Items.Add(Finder.GetItem("Soul_Totem-Path_of_Pain"));
+            tiktikEntry.Items.Add(Finder.GetItem("Vengeful_Spirit"));
+
+            AbstractPlacement maskflyNotes = Finder.GetLocation("Hunter's_Notes-Maskfly").Wrap();
+            ((ISingleCostPlacement)maskflyNotes).Cost = new EnemyKillCost("Pigeon", 15);
+            maskflyNotes.Items.Add(Finder.GetItem("Mantis_Claw"));
+
+            ItemChangerMod.AddPlacements(new[] {iseldaShop, tiktikEntry, maskflyNotes});
 
             orig(self, permaDeath, bossRush);
         }
@@ -165,19 +181,6 @@ namespace TheRealJournalRando
             layout?.Destroy();
             return orig(self);
         }
-
-        private void OnJournalRecord(EnemyDeathEffects enemyDeathEffects, string playerDataName,
-            string killedBoolPlayerDataLookupKey, string killCountIntPlayerDataLookupKey, string newDataBoolPlayerDataLookupKey)
-        {
-            JournalEntryStats stats = GameCameras.instance.hudCamera.GetComponentsInChildren<JournalEntryStats>(true)
-                .Where(j => j.playerDataName == playerDataName)
-                .FirstOrDefault();
-
-            string realName = Language.Language.Get(stats.nameConvo, "Journal");
-
-            Log($"Killed {realName} ({playerDataName})");
-        }
-
 
     }
 }
