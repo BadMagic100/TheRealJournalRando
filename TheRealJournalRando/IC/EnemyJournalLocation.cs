@@ -22,7 +22,6 @@ namespace TheRealJournalRando.IC
         {
             this.playerDataName = pdName;
             this.locationType = locationType;
-            this.flingType = FlingType.DirectDeposit;
         }
 
         protected override void OnLoad()

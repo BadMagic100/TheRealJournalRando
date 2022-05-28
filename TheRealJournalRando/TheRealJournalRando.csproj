@@ -43,6 +43,10 @@
   <ItemGroup>
     <None Remove="build.yml" />
     <None Remove="README.md" />
+    <None Remove="Resources\journalData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\journalData.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
@@ -335,4 +339,5 @@
     <None Include=".gitignore" />
     <None Include="LocalOverrides.targets" />
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties resources_4journaldata_1json__JsonSchema="journalDataSchema.json" resources_4journaldataschema_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 </Project>

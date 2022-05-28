@@ -59,3 +59,6 @@ is provided below, grouped by category.
   be randomized.
 * **Randomize Weathered Mask** - whether the Weathered Mask entry will be randomized.
 * **Randomize Menderbug** - whether the Menderbug entry will be randomized.
+* **Randomize Hunter's Mark** - whether the Hunter's Mark will be randomized.
+* (tentative) **Grind Godhome Bosses** - whether godhome enemies can be used to allow bosses to have
+  higher costs than default.
