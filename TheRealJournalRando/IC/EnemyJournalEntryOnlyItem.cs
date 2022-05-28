@@ -5,7 +5,6 @@ namespace TheRealJournalRando.IC
     public class EnemyJournalEntryOnlyItem : AbstractItem
     {
         public string playerDataName = "";
-        private ProgressiveJournalPairModule? pjp;
 
         public EnemyJournalEntryOnlyItem(string playerDataName)
         {
@@ -14,18 +13,8 @@ namespace TheRealJournalRando.IC
 
         protected override void OnLoad()
         {
-            JournalControlModule journal = ItemChangerMod.Modules.GetOrAdd<JournalControlModule>();
-            journal.RegisterEnemyEntry(playerDataName);
-
-            pjp = ItemChangerMod.Modules.GetOrAdd<ProgressiveJournalPairModule>();
-            pjp.Register(this);
-
-            ModifyItem += OnModifyItem;
-        }
-
-        protected override void OnUnload()
-        {
-            ModifyItem -= OnModifyItem;
+            ItemChangerMod.Modules.GetOrAdd<JournalControlModule>().RegisterEnemyEntry(playerDataName);
+            ItemChangerMod.Modules.GetOrAdd<ProgressiveJournalPairModule>().Register(this);
         }
 
         public override void GiveImmediate(GiveInfo info)
@@ -36,15 +25,6 @@ namespace TheRealJournalRando.IC
             {
                 PlayerData.instance.SetBool(hasEntryBool, true);
                 PlayerData.instance.SetBool(firstKilledBool, true);
-            }
-        }
-
-        private void OnModifyItem(GiveEventArgs args)
-        {
-            JournalItemPair? pair = pjp?.journalPairs[playerDataName];
-            if (args.Item.Redundant() && pair?.IsPair == true)
-            {
-                args.Item = pair.notesItem!.Clone();
             }
         }
 

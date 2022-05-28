@@ -3,7 +3,6 @@ using ItemChanger.Modules;
 using ItemChanger.Placements;
 using ItemChanger.Tags;
 using ItemChanger.UIDefs;
-using MagicUI.Core;
 using Modding;
 using System;
 using TheRealJournalRando.Data;
@@ -53,7 +52,6 @@ namespace TheRealJournalRando
             ("Vengefly", "Buzzer"),
             ("Gruzzer", "Bouncer"),
         };
-        private LayoutRoot? layout;
 
         // if you need preloads, you will need to implement GetPreloadNames and use the other signature of Initialize.
         public override void Initialize()
@@ -96,6 +94,7 @@ namespace TheRealJournalRando
                 string icName = name.Replace(' ', '_');
                 iseldaShop.Items.Add(Finder.GetItem($"Hunter's_Notes-{icName}"));
             }
+            iseldaShop.Items[0].AddTag<CostTag>().Cost = new EnemyKillCost("Crawler", 2);
 
             AbstractPlacement tiktikEntry = Finder.GetLocation("Journal_Entry_Only-Tiktik").Wrap();
             ((ISingleCostPlacement)tiktikEntry).Cost = new EnemyKillCost("Climber", 1);
@@ -106,7 +105,11 @@ namespace TheRealJournalRando
             ((ISingleCostPlacement)maskflyNotes).Cost = new EnemyKillCost("Pigeon", 15);
             maskflyNotes.Items.Add(Finder.GetItem("Mantis_Claw"));
 
-            ItemChangerMod.AddPlacements(new[] {iseldaShop, tiktikEntry, maskflyNotes});
+            AbstractPlacement vengeflyScamEntry = Finder.GetLocation("Journal_Entry_Only-Vengefly").Wrap();
+            ((ISingleCostPlacement)vengeflyScamEntry).Cost = new MultiCost(new EnemyKillCost("Buzzer", 1), new GeoCost(50));
+            vengeflyScamEntry.Items.Add(Finder.GetItem("Rancid_Egg"));
+
+            ItemChangerMod.AddPlacements(new[] {iseldaShop, tiktikEntry, maskflyNotes, vengeflyScamEntry});
 
             orig(self, permaDeath, bossRush);
         }
@@ -139,7 +142,7 @@ namespace TheRealJournalRando
                     UIDef = new MsgUIDef
                     {
                         name = new BoxedString($"{enemyDef.name} Hunter's Notes"),
-                        shopDesc = new BoxedString($"Upon further investigation, this {enemyDef.name} has been nailed to its cage."),
+                        shopDesc = new BoxedString($"Upon further investigation, this dead {enemyDef.name} has been nailed to its cage to remain upright."),
                         sprite = new JournalBadgeSprite(enemyDef.pdName),
                     },
                     tags = new()

@@ -4,11 +4,11 @@ namespace TheRealJournalRando.IC
 {
     public record EnemyKillCost(string EnemyType, int Total) : Cost
     {
-        private JournalControlModule? module;
+        private JournalKillCounterModule? module;
 
         public override void Load()
         {
-            module = ItemChangerMod.Modules.GetOrAdd<JournalControlModule>();
+            module = ItemChangerMod.Modules.GetOrAdd<JournalKillCounterModule>();
         }
 
         public override bool HasPayEffects() => false;

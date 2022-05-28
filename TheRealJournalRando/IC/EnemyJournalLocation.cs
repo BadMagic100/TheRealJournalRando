@@ -16,7 +16,8 @@ namespace TheRealJournalRando.IC
         public string playerDataName = "";
         public EnemyJournalLocationType locationType;
 
-        private JournalControlModule? module;
+        private JournalControlModule? controlModule;
+        private JournalKillCounterModule? killCounterModule;
 
         public EnemyJournalLocation(string pdName, EnemyJournalLocationType locationType)
         {
@@ -26,20 +27,22 @@ namespace TheRealJournalRando.IC
 
         protected override void OnLoad()
         {
-            module = ItemChangerMod.Modules.GetOrAdd<JournalControlModule>();
+            controlModule = ItemChangerMod.Modules.GetOrAdd<JournalControlModule>();
             if (locationType == EnemyJournalLocationType.Entry)
             {
-                module.RegisterEnemyEntry(playerDataName);
+                controlModule.RegisterEnemyEntry(playerDataName);
             }
             else if (locationType == EnemyJournalLocationType.Notes)
             {
-                module.RegisterEnemyNotes(playerDataName);
+                controlModule.RegisterEnemyNotes(playerDataName);
             }
             else
             {
                 throw new NotImplementedException("BadMagic added a new journal location type and forgot to handle it properly :zote:");
             }
-            module.OnKillCountChanged += KillCountChanged;
+
+            killCounterModule = ItemChangerMod.Modules.GetOrAdd<JournalKillCounterModule>();
+            killCounterModule.OnKillCountChanged += KillCountChanged;
         }
 
         private void KillCountChanged(string pdName)
@@ -60,7 +63,7 @@ namespace TheRealJournalRando.IC
 
         protected override void OnUnload()
         {
-            module!.OnKillCountChanged -= KillCountChanged;
+            killCounterModule!.OnKillCountChanged -= KillCountChanged;
         }
     }
 }

@@ -714,6 +714,7 @@
     "pdName": "GhostMarkoth",
     "notesCost": 1
   },
+  // note - grimmkin costs are suspicious, may require investigation (i.e. may not use recordkillforjournal?)
   {
     "name": "Grimmkin Novice",
     "pdName": "FlameBearerSmall",
