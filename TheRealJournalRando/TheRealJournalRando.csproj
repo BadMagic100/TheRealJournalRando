@@ -339,5 +339,4 @@
     <None Include=".gitignore" />
     <None Include="LocalOverrides.targets" />
   </ItemGroup>
-  <ProjectExtensions><VisualStudio><UserProperties resources_4journaldata_1json__JsonSchema="journalDataSchema.json" resources_4journaldataschema_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 </Project>

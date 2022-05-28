@@ -414,11 +414,11 @@
     "pdName": "ZombieMiner",
     "notesCost": 20
   },
-  //{
-  //  "name": "Crystallised Husk",
-  //  "pdName": "BeamMiner",
-  //  "notesCost": 15
-  //},
+  {
+    "name": "Crystallised Husk",
+    "pdName": "BeamMiner",
+    "notesCost": 15
+  },
   //{
   //  "name": "Crystal Guardian",
   //  "pdName": "MegaBeamMiner",
