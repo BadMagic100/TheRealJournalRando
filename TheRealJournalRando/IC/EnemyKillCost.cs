@@ -28,6 +28,9 @@ namespace TheRealJournalRando.IC
 
         public override string GetCostText()
         {
+            // todo - will need to get the enemy name convo and appropriate localized enemy name;
+            // will be easiest to do once special cases are handled and then
+            // can just dump it back into the struct and re-serialize
             int bal = GetBalanceDue();
             if (bal == 1)
             {

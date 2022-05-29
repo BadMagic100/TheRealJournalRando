@@ -1,4 +1,6 @@
-﻿using ItemChanger.Modules;
+﻿using ItemChanger.Extensions;
+using ItemChanger.FsmStateActions;
+using ItemChanger.Modules;
 using Modding;
 using System.Collections.Generic;
 
@@ -15,11 +17,13 @@ namespace TheRealJournalRando.IC
         public override void Initialize()
         {
             ModHooks.RecordKillForJournalHook += OnJournalRecord;
+            On.PlayMakerFSM.Awake += OnFsmAwake;
         }
 
         public override void Unload()
         {
             ModHooks.RecordKillForJournalHook -= OnJournalRecord;
+            On.PlayMakerFSM.Awake -= OnFsmAwake;
         }
 
         public int GetKillCount(string pdName)
@@ -31,8 +35,7 @@ namespace TheRealJournalRando.IC
             return 0;
         }
 
-        private void OnJournalRecord(EnemyDeathEffects enemyDeathEffects, string playerDataName, string killedBoolPlayerDataLookupKey,
-            string killCountIntPlayerDataLookupKey, string newDataBoolPlayerDataLookupKey)
+        private void Record(string playerDataName)
         {
             if (!enemyKillCounts.ContainsKey(playerDataName))
             {
@@ -40,6 +43,27 @@ namespace TheRealJournalRando.IC
             }
             enemyKillCounts[playerDataName]++;
             OnKillCountChanged?.Invoke(playerDataName);
+        }
+
+        private void OnJournalRecord(EnemyDeathEffects enemyDeathEffects, string playerDataName, string killedBoolPlayerDataLookupKey,
+            string killCountIntPlayerDataLookupKey, string newDataBoolPlayerDataLookupKey)
+        {
+            if (playerDataName == "Dummy")
+            {
+                return;
+            }
+
+            Record(playerDataName);
+        }
+
+        private void OnFsmAwake(On.PlayMakerFSM.orig_Awake orig, PlayMakerFSM self)
+        {
+            orig(self);
+            // Hook WK journal grant
+            if (self.gameObject.name == "Battle Control" && self.FsmName == "Battle Control" && self.gameObject.scene.name == "Ruins2_03_boss")
+            {
+                self.GetState("Journal").AddFirstAction(new Lambda(() => Record("BlackKnight")));
+            }
         }
     }
 }

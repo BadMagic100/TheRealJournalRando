@@ -93,7 +93,7 @@ namespace TheRealJournalRando
                 string icName = name.Replace(' ', '_');
                 iseldaShop.Items.Add(Finder.GetItem($"Hunter's_Notes-{icName}"));
             }
-            iseldaShop.Items[0].AddTag<CostTag>().Cost = new EnemyKillCost("Crawler", 2);
+            iseldaShop.Items[iseldaShop.Items.Count - 1].AddTag<CostTag>().Cost = new EnemyKillCost("Crawler", 2);
 
             AbstractPlacement tiktikEntry = Finder.GetLocation("Journal_Entry_Only-Tiktik").Wrap();
             ((ISingleCostPlacement)tiktikEntry).Cost = new EnemyKillCost("Climber", 1);

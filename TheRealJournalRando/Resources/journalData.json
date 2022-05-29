@@ -330,11 +330,11 @@
     "pdName": "GreatShieldZombie",
     "notesCost": 10
   },
-  //{
-  //  "name": "Watcher Knight",
-  //  "pdName": "BlackKnight",
-  //  "notesCost": 6
-  //},
+  {
+    "name": "Watcher Knight",
+    "pdName": "BlackKnight",
+    "notesCost": 1
+  },
   //{
   //  "name": "The Collector",
   //  "pdName": "JarCollector",
