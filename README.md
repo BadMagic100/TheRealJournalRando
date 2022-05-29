@@ -55,6 +55,8 @@ is provided below, grouped by category.
 
 ### Long Location Settings
 
+* **Randomize Pantheon Bosses** - whether the entries for the bosses at the end of the first 4 pantheons
+  (Oro & Mato, Sheo, Sly, and Pure Vessel) will be randomized.
 * **Randomize Void Idol** - a number between 0 and 3 representing how many levels of the Void Idol entry will
   be randomized.
 * **Randomize Weathered Mask** - whether the Weathered Mask entry will be randomized.

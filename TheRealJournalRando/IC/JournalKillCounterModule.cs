@@ -59,10 +59,16 @@ namespace TheRealJournalRando.IC
         private void OnFsmAwake(On.PlayMakerFSM.orig_Awake orig, PlayMakerFSM self)
         {
             orig(self);
-            // Hook WK journal grant
+            // WK journal grant
             if (self.gameObject.name == "Battle Control" && self.FsmName == "Battle Control" && self.gameObject.scene.name == "Ruins2_03_boss")
             {
                 self.GetState("Journal").AddFirstAction(new Lambda(() => Record("BlackKnight")));
+            }
+            // collector journal grant
+            if (self.gameObject.name == "Jar Collector" && self.FsmName == "Death" && self.gameObject.scene.name == "Ruins2_11_boss")
+            {
+                TheRealJournalRando.Instance.LogDebug($"Collector death FSM in {self.gameObject.scene.name}");
+                self.GetState("Set Data").AddFirstAction(new Lambda(() => Record("JarCollector")));
             }
         }
     }
