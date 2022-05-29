@@ -183,8 +183,7 @@ namespace TheRealJournalRando.IC
             if (self.gameObject.name == "Enemy List" && self.FsmName == "Item List Control")
             {
                 FsmState notesCheck = self.GetState("Notes?");
-                notesCheck.RemoveAction(3);
-                notesCheck.AddLastAction(new NotesInterceptProxyCompare(this));
+                notesCheck.Actions[3] = new NotesInterceptProxyCompare(this);
             }
         }
         

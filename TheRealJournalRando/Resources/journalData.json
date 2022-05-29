@@ -79,11 +79,11 @@
     "pdName": "Mummy",
     "notesCost": 10
   },
-  //{
-  //  "name": "False Knight",
-  //  "pdName": "FalseKnight",
-  //  "notesCost": 1
-  //},
+  {
+    "name": "False Knight",
+    "pdName": "FalseKnight",
+    "notesCost": 1
+  },
   {
     "name": "Maggot",
     "pdName": "PrayerSlug",
@@ -715,21 +715,21 @@
     "pdName": "GhostMarkoth",
     "notesCost": 1
   },
-  //{
-  //  "name": "Grimmkin Novice",
-  //  "pdName": "FlameBearerSmall",
-  //  "notesCost": 1
-  //},
-  //{
-  //  "name": "Grimmkin Master",
-  //  "pdName": "FlameBearerMed",
-  //  "notesCost": 1
-  //},
-  //{
-  //  "name": "Grimmkin Nightmare",
-  //  "pdName": "FlameBearerLarge",
-  //  "notesCost": 1
-  //},
+  {
+    "name": "Grimmkin Novice",
+    "pdName": "FlameBearerSmall",
+    "notesCost": 1
+  },
+  {
+    "name": "Grimmkin Master",
+    "pdName": "FlameBearerMed",
+    "notesCost": 1
+  },
+  {
+    "name": "Grimmkin Nightmare",
+    "pdName": "FlameBearerLarge",
+    "notesCost": 1
+  },
   //{
   //  "name": "Grimm",
   //  "pdName": "Grimm",
@@ -755,11 +755,11 @@
   //  "pdName": "Nailsage",
   //  "notesCost": 1
   //},
-  //{
-  //  "name": "Wingmould",
-  //  "pdName": "PalaceFly",
-  //  "notesCost": 10
-  //},
+  {
+    "name": "Wingmould",
+    "pdName": "PalaceFly",
+    "notesCost": 10
+  },
   {
     "name": "Royal Retainer",
     "pdName": "WhiteRoyal",
@@ -770,11 +770,11 @@
     "pdName": "RoyalGuard",
     "notesCost": 2
   },
-  //{
-  //  "name": "Sibling",
-  //  "pdName": "Sibling",
-  //  "notesCost": 25
-  //},
+  {
+    "name": "Sibling",
+    "pdName": "Sibling",
+    "notesCost": 25
+  },
   {
     "name": "Hornet",
     "pdName": "Hornet",
