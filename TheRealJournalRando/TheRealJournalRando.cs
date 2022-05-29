@@ -53,7 +53,6 @@ namespace TheRealJournalRando
             ("Gruzzer", "Bouncer"),
         };
 
-        // if you need preloads, you will need to implement GetPreloadNames and use the other signature of Initialize.
         public override void Initialize()
         {
             Log("Initializing");
@@ -116,7 +115,10 @@ namespace TheRealJournalRando
 
         public void HookIC()
         {
-            foreach (MinimalEnemyDef enemyDef in DataLoader.EnemyData)
+            Events.OnItemChangerHook += LanguageData.Hook;
+            Events.OnItemChangerUnhook += LanguageData.Unhook;
+
+            foreach (MinimalEnemyDef enemyDef in EnemyData.Data)
             {
                 string icName = enemyDef.name.Replace(' ', '_');
                 string entryName = $"Journal_Entry_Only-{icName}";
@@ -127,8 +129,8 @@ namespace TheRealJournalRando
                     name = entryName,
                     UIDef = new MsgUIDef
                     {
-                        name = new BoxedString($"{enemyDef.name} Journal Entry"),
-                        shopDesc = new BoxedString($"This Norwegian {enemyDef.name} is not moving, but only because it's pining for the fjords."),
+                        name = new FormatString(new LanguageString("Fmt", "ENTRY_ITEM_NAME"), enemyDef.name),
+                        shopDesc = new FormatString(new LanguageString("Fmt", "ENTRY_SHOP_DESC"), enemyDef.name),
                         sprite = new JournalBadgeSprite(enemyDef.pdName),
                     },
                     tags = new()
@@ -141,8 +143,8 @@ namespace TheRealJournalRando
                     name = notesName,
                     UIDef = new MsgUIDef
                     {
-                        name = new BoxedString($"{enemyDef.name} Hunter's Notes"),
-                        shopDesc = new BoxedString($"Upon further investigation, this dead {enemyDef.name} has been nailed to its cage to remain upright."),
+                        name = new FormatString(new LanguageString("Fmt", "NOTES_ITEM_NAME"), enemyDef.name),
+                        shopDesc = new FormatString(new LanguageString("Fmt", "NOTES_SHOP_DESC"), enemyDef.name),
                         sprite = new JournalBadgeSprite(enemyDef.pdName),
                     },
                     tags = new()

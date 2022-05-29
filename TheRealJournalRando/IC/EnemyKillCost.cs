@@ -28,7 +28,19 @@ namespace TheRealJournalRando.IC
 
         public override string GetCostText()
         {
-            return $"Defeat {GetBalanceDue()} more";
+            int bal = GetBalanceDue();
+            if (bal == 1)
+            {
+                return string.Format(Language.Language.Get("DEFEAT_ENEMY", "Fmt"), EnemyType);
+            }
+            else if (bal > 1)
+            {
+                return string.Format(Language.Language.Get("DEFEAT_ENEMIES", "Fmt"), bal, EnemyType);
+            }
+            else
+            {
+                return string.Format(Language.Language.Get("DEFEATED_ENEMIES", "Fmt"), EnemyType);
+            }
         }
     }
 }

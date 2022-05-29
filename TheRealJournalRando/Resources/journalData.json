@@ -79,11 +79,11 @@
     "pdName": "Mummy",
     "notesCost": 10
   },
-  {
-    "name": "False Knight",
-    "pdName": "FalseKnight",
-    "notesCost": 1
-  },
+  //{
+  //  "name": "False Knight",
+  //  "pdName": "FalseKnight",
+  //  "notesCost": 1
+  //},
   {
     "name": "Maggot",
     "pdName": "PrayerSlug",
@@ -169,6 +169,7 @@
     "pdName": "MossKnight",
     "notesCost": 8
   },
+  // the kill counter will work but needs special treatment because of infection
   //{
   //  "name": "Mossy Vagabond",
   //  "pdName": "MossKnightFat",
@@ -332,13 +333,13 @@
   //{
   //  "name": "Watcher Knight",
   //  "pdName": "BlackKnight",
-  //  "notesCost": 10
+  //  "notesCost": 6
   //},
-  {
-    "name": "The Collector",
-    "pdName": "JarCollector",
-    "notesCost": 1
-  },
+  //{
+  //  "name": "The Collector",
+  //  "pdName": "JarCollector",
+  //  "notesCost": 1
+  //},
   {
     "name": "Belfly",
     "pdName": "CeilingDropper",
@@ -419,11 +420,11 @@
     "pdName": "BeamMiner",
     "notesCost": 15
   },
-  //{
-  //  "name": "Crystal Guardian",
-  //  "pdName": "MegaBeamMiner",
-  //  "notesCost": 2
-  //},
+  {
+    "name": "Crystal Guardian",
+    "pdName": "MegaBeamMiner",
+    "notesCost": 2
+  },
   {
     "name": "Furious Vengefly",
     "pdName": "AngryBuzzer",
@@ -664,21 +665,21 @@
     "pdName": "GreyPrince",
     "notesCost": 1
   },
-  {
-    "name": "Winged Zoteling",
-    "pdName": "ZotelingBuzzer",
-    "notesCost": 1
-  },
-  {
-    "name": "Hopping Zoteling",
-    "pdName": "ZotelingHopper",
-    "notesCost": 1
-  },
-  {
-    "name": "Volatile Zoteling",
-    "pdName": "ZotelingBalloon",
-    "notesCost": 1
-  },
+  //{
+  //  "name": "Winged Zoteling",
+  //  "pdName": "ZotelingBuzzer",
+  //  "notesCost": 1
+  //},
+  //{
+  //  "name": "Hopping Zoteling",
+  //  "pdName": "ZotelingHopper",
+  //  "notesCost": 1
+  //},
+  //{
+  //  "name": "Volatile Zoteling",
+  //  "pdName": "ZotelingBalloon",
+  //  "notesCost": 1
+  //},
   {
     "name": "Xero",
     "pdName": "GhostXero",
@@ -714,52 +715,51 @@
     "pdName": "GhostMarkoth",
     "notesCost": 1
   },
-  // note - grimmkin costs are suspicious, may require investigation (i.e. may not use recordkillforjournal?)
-  {
-    "name": "Grimmkin Novice",
-    "pdName": "FlameBearerSmall",
-    "notesCost": 1
-  },
-  {
-    "name": "Grimmkin Master",
-    "pdName": "FlameBearerMed",
-    "notesCost": 1
-  },
-  {
-    "name": "Grimmkin Nightmare",
-    "pdName": "FlameBearerLarge",
-    "notesCost": 1
-  },
-  {
-    "name": "Grimm",
-    "pdName": "Grimm",
-    "notesCost": 1
-  },
-  {
-    "name": "Nightmare King",
-    "pdName": "NightmareGrimm",
-    "notesCost": 1
-  },
-  {
-    "name": "Nailmasters Oro & Mato",
-    "pdName": "NailBros",
-    "notesCost": 1
-  },
+  //{
+  //  "name": "Grimmkin Novice",
+  //  "pdName": "FlameBearerSmall",
+  //  "notesCost": 1
+  //},
+  //{
+  //  "name": "Grimmkin Master",
+  //  "pdName": "FlameBearerMed",
+  //  "notesCost": 1
+  //},
+  //{
+  //  "name": "Grimmkin Nightmare",
+  //  "pdName": "FlameBearerLarge",
+  //  "notesCost": 1
+  //},
+  //{
+  //  "name": "Grimm",
+  //  "pdName": "Grimm",
+  //  "notesCost": 1
+  //},
+  //{
+  //  "name": "Nightmare King",
+  //  "pdName": "NightmareGrimm",
+  //  "notesCost": 1
+  //},
+  //{
+  //  "name": "Nailmasters Oro & Mato",
+  //  "pdName": "NailBros",
+  //  "notesCost": 1
+  //},
   {
     "name": "Paintmaster Sheo",
     "pdName": "Paintmaster",
     "notesCost": 1
   },
-  {
-    "name": "Great Nailsage Sly",
-    "pdName": "Nailsage",
-    "notesCost": 1
-  },
-  {
-    "name": "Wingmould",
-    "pdName": "PalaceFly",
-    "notesCost": 10
-  },
+  //{
+  //  "name": "Great Nailsage Sly",
+  //  "pdName": "Nailsage",
+  //  "notesCost": 1
+  //},
+  //{
+  //  "name": "Wingmould",
+  //  "pdName": "PalaceFly",
+  //  "notesCost": 10
+  //},
   {
     "name": "Royal Retainer",
     "pdName": "WhiteRoyal",
@@ -770,31 +770,31 @@
     "pdName": "RoyalGuard",
     "notesCost": 2
   },
-  {
-    "name": "Sibling",
-    "pdName": "Sibling",
-    "notesCost": 25
-  },
+  //{
+  //  "name": "Sibling",
+  //  "pdName": "Sibling",
+  //  "notesCost": 25
+  //},
   {
     "name": "Hornet",
     "pdName": "Hornet",
     "notesCost": 2
   },
-  {
-    "name": "Hollow Knight",
-    "pdName": "HollowKnight",
-    "notesCost": 1
-  },
+  //{
+  //  "name": "Hollow Knight",
+  //  "pdName": "HollowKnight",
+  //  "notesCost": 1
+  //},
   {
     "name": "Pure Vessel",
     "pdName": "HollowKnightPrime",
     "notesCost": 1
   },
-  {
-    "name": "Radiance",
-    "pdName": "FinalBoss",
-    "notesCost": 1
-  }//,
+  //{
+  //  "name": "Radiance",
+  //  "pdName": "FinalBoss",
+  //  "notesCost": 1
+  //},
   //{
   //  "name": "Hunter's Mark",
   //  "pdName": "HunterMark",

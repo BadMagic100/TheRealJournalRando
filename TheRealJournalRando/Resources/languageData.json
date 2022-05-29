@@ -1,0 +1,37 @@
+﻿[
+  {
+    "key": "ENTRY_ITEM_NAME",
+    "sheet": "Fmt",
+    "text": "{0} Journal Entry"
+  },
+  {
+    "key": "NOTES_ITEM_NAME",
+    "sheet": "Fmt",
+    "text": "{0} Hunter's Notes"
+  },
+  {
+    "key": "ENTRY_SHOP_DESC",
+    "sheet": "Fmt",
+    "text": "This Norwegian {0} is not moving, but only because it's pining for the fjords."
+  },
+  {
+    "key": "NOTES_SHOP_DESC",
+    "sheet": "Fmt",
+    "text": "Upon further investigation, this dead {0} has been nailed to its cage to remain upright."
+  },
+  {
+    "key": "DEFEAT_ENEMIES",
+    "sheet": "Fmt",
+    "text": "Defeat {0} more {1}s"
+  },
+  {
+    "key": "DEFEAT_ENEMY",
+    "sheet": "Fmt",
+    "text": "Defeat 1 more {0}"
+  },
+  {
+    "key": "DEFEATED_ENEMIES",
+    "sheet": "Fmt",
+    "text": "You've defeated enough {0}s"
+  }
+]

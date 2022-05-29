@@ -44,9 +44,11 @@
     <None Remove="build.yml" />
     <None Remove="README.md" />
     <None Remove="Resources\journalData.json" />
+    <None Remove="Resources\languageData.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\journalData.json" />
+    <EmbeddedResource Include="Resources\languageData.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

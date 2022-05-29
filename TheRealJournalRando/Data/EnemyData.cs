@@ -1,17 +1,18 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 
 namespace TheRealJournalRando.Data
 {
-    public static class DataLoader
-    {
-        public static readonly ReadOnlyCollection<MinimalEnemyDef> EnemyData;
+    public record struct MinimalEnemyDef(string name, string pdName, int notesCost);
 
-        static DataLoader()
+    public static class EnemyData
+    {
+        public static readonly IReadOnlyCollection<MinimalEnemyDef> Data;
+
+        static EnemyData()
         {
-            using Stream s = typeof(DataLoader).Assembly.GetManifestResourceStream("TheRealJournalRando.Resources.journalData.json");
+            using Stream s = typeof(EnemyData).Assembly.GetManifestResourceStream("TheRealJournalRando.Resources.journalData.json");
             using StreamReader sr = new StreamReader(s);
             List<MinimalEnemyDef>? data = JsonConvert.DeserializeObject<List<MinimalEnemyDef>>(sr.ReadToEnd());
             if (data == null)
@@ -19,7 +20,7 @@ namespace TheRealJournalRando.Data
                 throw new IOException("Failed to load enemy definitions");
             }
 
-            EnemyData = data.AsReadOnly();
+            Data = data;
         }
     }
 }

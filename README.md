@@ -41,9 +41,9 @@ is provided below, grouped by category.
   for enemies with hard caps on the number of killable enemies, e.g. bosses)
 * **Cost randomization** - one of the following:
   * Off - costs will not be randomized.
-  * Random (fixed weight) - A single weight will be chosen and applied to all randomized entries. Hunter's
-    notes locations will always cost at least 1 kill.
-  * Random per entry - A unique weight will be chosen for each randomized entry. Hunter's notes locations
+  * Random (fixed weight) - A single random weight will be chosen and applied to all randomized entries. 
+    Hunter's notes locations will always cost at least 1 kill.
+  * Random per entry - A random weight will be chosen for each randomized entry. Hunter's notes locations
     will always cost at least 1 kill.
 
 ### Preview settings
@@ -60,5 +60,3 @@ is provided below, grouped by category.
 * **Randomize Weathered Mask** - whether the Weathered Mask entry will be randomized.
 * **Randomize Menderbug** - whether the Menderbug entry will be randomized.
 * **Randomize Hunter's Mark** - whether the Hunter's Mark will be randomized.
-* (tentative) **Grind Godhome Bosses** - whether godhome enemies can be used to allow bosses to have
-  higher costs than default.
