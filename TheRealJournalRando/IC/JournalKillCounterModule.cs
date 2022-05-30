@@ -1,4 +1,5 @@
 ﻿using HutongGames.PlayMaker;
+using HutongGames.PlayMaker.Actions;
 using ItemChanger.Extensions;
 using ItemChanger.FsmStateActions;
 using ItemChanger.Modules;
@@ -59,29 +60,42 @@ namespace TheRealJournalRando.IC
             Record(playerDataName);
         }
 
-        private void OnSetPlayerDataBoolAction(On.HutongGames.PlayMaker.Actions.SetPlayerDataBool.orig_OnEnter orig, HutongGames.PlayMaker.Actions.SetPlayerDataBool self)
+        private void OnSetPlayerDataBoolAction(On.HutongGames.PlayMaker.Actions.SetPlayerDataBool.orig_OnEnter orig, SetPlayerDataBool self)
         {
             orig(self);
             // this hook handles most special cases (i.e. bosses) that unconditionally set the killedX PD bool to grant the journal.
-            if (!self.boolName.Value.StartsWith("killed") && self.value.Value)
+            bool settingKilledTrue = self.boolName.Value.StartsWith("killed") && self.value.Value;
+            if (!settingKilledTrue)
             {
                 return;
             }
 
             // FK journal grant
-            if (self.Fsm.GameObjectName == "False Knight New" && self.Fsm.Name == "FalseyControl" && self.Fsm.GameObject.scene.name == "Crossroads_10_boss")
+            if (CheckIsFsm(self, "False Knight New", "FalseyControl") && self.Fsm.GameObject.scene.name == "Crossroads_10_boss")
             {
+                TheRealJournalRando.Instance.Log("Recording False Knight kill");
                 Record("FalseKnight");
             }
             // WK journal grant
-            if (self.Fsm.GameObjectName == "Battle Control" && self.Fsm.Name == "Battle Control" && self.Fsm.GameObject.scene.name == "Ruins2_03_boss")
+            if (CheckIsFsm(self, "Battle Control", "Battle Control") && self.Fsm.GameObject.scene.name == "Ruins2_03_boss")
             {
                 Record("BlackKnight");
             }
             // Collector journal grant
-            if (self.Fsm.GameObjectName == "Jar Collector" && self.Fsm.Name == "Death" && self.Fsm.GameObject.scene.name == "Ruins2_11_boss")
+            if (CheckIsFsm(self, "Jar Collector", "Death") && self.Fsm.GameObject.scene.name == "Ruins2_11_boss")
             {
                 Record("JarCollector");
+            }
+            // grimm journal grants
+            if (CheckIsFsm(self, "Defeated NPC", "Conversation Control") && self.Fsm.GameObject.scene.name == "Grimm_Main_Tent")
+            {
+                TheRealJournalRando.Instance.Log("Recording TMG kill");
+                Record("Grimm");
+            }
+            if (CheckIsFsm(self, "Grimm Control", "Control") && self.Fsm.GameObject.scene.name == "Grimm_Nightmare")
+            {
+                TheRealJournalRando.Instance.Log("Recording NKG kill");
+                Record("NightmareGrimm");
             }
         }
 
@@ -114,6 +128,11 @@ namespace TheRealJournalRando.IC
             {
                 InjectRecordState(self, "Fanfare 3", "FINISHED", "Flash Start", "FlameBearerLarge");
             }
+        }
+
+        private bool CheckIsFsm(FsmStateAction self, string goName, string fsmName)
+        {
+            return self.Fsm.GameObjectName == goName && self.Fsm.Name == fsmName;
         }
 
         private void InjectRecordState(PlayMakerFSM self, string fromState, string fromEvent, string toState, string pdName)

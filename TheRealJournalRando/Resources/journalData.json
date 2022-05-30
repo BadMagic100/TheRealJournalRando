@@ -730,16 +730,16 @@
     "pdName": "FlameBearerLarge",
     "notesCost": 1
   },
-  //{
-  //  "name": "Grimm",
-  //  "pdName": "Grimm",
-  //  "notesCost": 1
-  //},
-  //{
-  //  "name": "Nightmare King",
-  //  "pdName": "NightmareGrimm",
-  //  "notesCost": 1
-  //},
+  {
+    "name": "Grimm",
+    "pdName": "Grimm",
+    "notesCost": 1
+  },
+  {
+    "name": "Nightmare King",
+    "pdName": "NightmareGrimm",
+    "notesCost": 1
+  },
   //{
   //  "name": "Nailmasters Oro & Mato",
   //  "pdName": "NailBros",

@@ -77,6 +77,7 @@ namespace TheRealJournalRando
 
             AbstractPlacement iseldaShop = Finder.GetLocation(LocationNames.Iselda).Wrap();
             iseldaShop.Items.Add(Finder.GetItem(ItemNames.Hunters_Journal));
+            iseldaShop.Items.Add(Finder.GetItem(ItemNames.Grimmchild2));
             foreach ((string name, _) in bothMappings)
             {
                 string icName = name.Replace(' ', '_');
