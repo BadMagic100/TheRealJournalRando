@@ -1,7 +1,7 @@
 ﻿using HutongGames.PlayMaker;
 using TheRealJournalRando.IC;
 
-namespace TheRealJournalRando.JournalManip
+namespace TheRealJournalRando.Fsm
 {
     internal class NotesInterceptProxyCompare : FsmStateAction
     {

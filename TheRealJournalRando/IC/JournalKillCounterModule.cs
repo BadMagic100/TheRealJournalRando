@@ -1,10 +1,12 @@
 ﻿using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
+using ItemChanger;
 using ItemChanger.Extensions;
 using ItemChanger.FsmStateActions;
 using ItemChanger.Modules;
 using Modding;
 using System.Collections.Generic;
+using TheRealJournalRando.Fsm;
 
 namespace TheRealJournalRando.IC
 {
@@ -39,8 +41,15 @@ namespace TheRealJournalRando.IC
             return 0;
         }
 
-        private void Record(string playerDataName)
+        public void Record(string playerDataName)
         {
+            if (playerDataName == "Dummy")
+            {
+                TheRealJournalRando.Instance.LogDebug($"Rejecting dummy kill");
+                return;
+            }
+            TheRealJournalRando.Instance.LogDebug($"Recording kill for {playerDataName}");
+
             if (!enemyKillCounts.ContainsKey(playerDataName))
             {
                 enemyKillCounts[playerDataName] = 0;
@@ -52,11 +61,6 @@ namespace TheRealJournalRando.IC
         private void OnJournalRecord(EnemyDeathEffects enemyDeathEffects, string playerDataName, string killedBoolPlayerDataLookupKey,
             string killCountIntPlayerDataLookupKey, string newDataBoolPlayerDataLookupKey)
         {
-            if (playerDataName == "Dummy")
-            {
-                return;
-            }
-
             Record(playerDataName);
         }
 
@@ -71,30 +75,32 @@ namespace TheRealJournalRando.IC
             }
 
             // FK journal grant
-            if (CheckIsFsm(self, "False Knight New", "FalseyControl") && self.Fsm.GameObject.scene.name == "Crossroads_10_boss")
+            if (CheckIsFsm(self, "False Knight New", "FalseyControl") && self.Fsm.GameObject.scene.name == SceneNames.Crossroads_10_boss)
             {
-                TheRealJournalRando.Instance.Log("Recording False Knight kill");
                 Record("FalseKnight");
             }
+            // Mantis lords journal grant
+            if (CheckIsFsm(self, "Mantis Battle", "Battle Control") && self.Fsm.GameObject.scene.name == SceneNames.Fungus2_15_boss)
+            {
+                Record("MantisLord");
+            }
             // WK journal grant
-            if (CheckIsFsm(self, "Battle Control", "Battle Control") && self.Fsm.GameObject.scene.name == "Ruins2_03_boss")
+            if (CheckIsFsm(self, "Battle Control", "Battle Control") && self.Fsm.GameObject.scene.name == SceneNames.Ruins2_03_boss)
             {
                 Record("BlackKnight");
             }
             // Collector journal grant
-            if (CheckIsFsm(self, "Jar Collector", "Death") && self.Fsm.GameObject.scene.name == "Ruins2_11_boss")
+            if (CheckIsFsm(self, "Jar Collector", "Death") && self.Fsm.GameObject.scene.name == SceneNames.Ruins2_11_boss)
             {
                 Record("JarCollector");
             }
             // grimm journal grants
-            if (CheckIsFsm(self, "Defeated NPC", "Conversation Control") && self.Fsm.GameObject.scene.name == "Grimm_Main_Tent")
+            if (CheckIsFsm(self, "Defeated NPC", "Conversation Control") && self.Fsm.GameObject.scene.name == SceneNames.Grimm_Main_Tent)
             {
-                TheRealJournalRando.Instance.Log("Recording TMG kill");
                 Record("Grimm");
             }
-            if (CheckIsFsm(self, "Grimm Control", "Control") && self.Fsm.GameObject.scene.name == "Grimm_Nightmare")
+            if (CheckIsFsm(self, "Grimm Control", "Control") && self.Fsm.GameObject.scene.name == SceneNames.Grimm_Nightmare)
             {
-                TheRealJournalRando.Instance.Log("Recording NKG kill");
                 Record("NightmareGrimm");
             }
         }
@@ -128,6 +134,54 @@ namespace TheRealJournalRando.IC
             {
                 InjectRecordState(self, "Fanfare 3", "FINISHED", "Flash Start", "FlameBearerLarge");
             }
+            // hopping/winged zotelings
+            if (self.gameObject.name.StartsWith("Zoteling") && self.FsmName == "Control" && self.gameObject.scene.name == SceneNames.Dream_Mighty_Zote)
+            {
+                FsmBool livingVar = self.AddFsmBool("Alive", false);
+                FsmString pdVar = self.AddFsmString("Zoteling PD Name", "Dummy");
+
+                FsmState winged = self.GetState("Buzzer Start");
+                winged.AddLastAction(new SetBoolValue()
+                {
+                    boolVariable = livingVar,
+                    boolValue = true,
+                    everyFrame = false,
+                });
+                winged.AddLastAction(new SetStringValue()
+                {
+                    stringVariable = pdVar,
+                    stringValue = "ZotelingBuzzer",
+                    everyFrame = false,
+                });
+
+                FsmState hopping = self.GetState("Hopper Start");
+                hopping.AddLastAction(new SetBoolValue()
+                {
+                    boolVariable = livingVar,
+                    boolValue = true,
+                    everyFrame = false,
+                });
+                hopping.AddLastAction(new SetStringValue()
+                {
+                    stringVariable = pdVar,
+                    stringValue = "ZotelingHopper",
+                    everyFrame = false
+                });
+
+                self.InjectState("Die", "FINISHED", "Reset", new FsmState(self.Fsm)
+                {
+                    Name = "Record Kill Count",
+                    Actions = new[]
+                    {
+                        new ZotelingRecordKill(this, pdVar, livingVar)
+                    }
+                });
+            }
+            // volatile zotelings
+            if (self.gameObject.name.StartsWith("Zote Balloon") && self.FsmName == "Control" && self.gameObject.scene.name == SceneNames.Dream_Mighty_Zote)
+            {
+                InjectRecordState(self, "Die", "WAIT", "Reset", "ZotelingBalloon");
+            }
         }
 
         private bool CheckIsFsm(FsmStateAction self, string goName, string fsmName)
@@ -137,8 +191,6 @@ namespace TheRealJournalRando.IC
 
         private void InjectRecordState(PlayMakerFSM self, string fromState, string fromEvent, string toState, string pdName)
         {
-            FsmState from = self.GetState(fromState);
-            FsmState to = self.GetState(toState);
             FsmState newState = new(self.Fsm)
             {
                 Name = "Record Kill Count",
@@ -147,11 +199,7 @@ namespace TheRealJournalRando.IC
                     new Lambda(() => Record(pdName))
                 }
             };
-
-            self.AddState(newState);
-            from.RemoveTransitionsOn(fromEvent);
-            from.AddTransition(fromEvent, newState);
-            newState.AddTransition("FINISHED", to);
+            self.InjectState(fromState, fromEvent, toState, newState);
         }
     }
 }

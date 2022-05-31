@@ -6,7 +6,7 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
-using TheRealJournalRando.JournalManip;
+using TheRealJournalRando.Fsm;
 
 namespace TheRealJournalRando.IC
 {

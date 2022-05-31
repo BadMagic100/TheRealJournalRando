@@ -169,12 +169,12 @@
     "pdName": "MossKnight",
     "notesCost": 8
   },
-  // the kill counter will work but needs special treatment because of infection
-  //{
-  //  "name": "Mossy Vagabond",
-  //  "pdName": "MossKnightFat",
-  //  "notesCost": 10
-  //},
+  // the kill counter will work but location itself needs special treatment because of infection
+  {
+    "name": "Mossy Vagabond",
+    "pdName": "MossKnightFat",
+    "notesCost": 10
+  },
   {
     "name": "Durandoo",
     "pdName": "AcidWalker",
@@ -665,21 +665,21 @@
     "pdName": "GreyPrince",
     "notesCost": 1
   },
-  //{
-  //  "name": "Winged Zoteling",
-  //  "pdName": "ZotelingBuzzer",
-  //  "notesCost": 1
-  //},
-  //{
-  //  "name": "Hopping Zoteling",
-  //  "pdName": "ZotelingHopper",
-  //  "notesCost": 1
-  //},
-  //{
-  //  "name": "Volatile Zoteling",
-  //  "pdName": "ZotelingBalloon",
-  //  "notesCost": 1
-  //},
+  {
+    "name": "Winged Zoteling",
+    "pdName": "ZotelingBuzzer",
+    "notesCost": 1
+  },
+  {
+    "name": "Hopping Zoteling",
+    "pdName": "ZotelingHopper",
+    "notesCost": 1
+  },
+  {
+    "name": "Volatile Zoteling",
+    "pdName": "ZotelingBalloon",
+    "notesCost": 1
+  },
   {
     "name": "Xero",
     "pdName": "GhostXero",
