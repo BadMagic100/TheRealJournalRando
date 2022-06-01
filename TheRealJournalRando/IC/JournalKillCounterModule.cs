@@ -61,6 +61,13 @@ namespace TheRealJournalRando.IC
         private void OnJournalRecord(EnemyDeathEffects enemyDeathEffects, string playerDataName, string killedBoolPlayerDataLookupKey,
             string killCountIntPlayerDataLookupKey, string newDataBoolPlayerDataLookupKey)
         {
+            string goName = enemyDeathEffects.gameObject.name;
+            // ignore waterways split/baby flukes
+            if (goName.StartsWith("fluke_baby") || goName.StartsWith("Flukeman Top") || goName.StartsWith("Flukeman Bot"))
+            {
+                playerDataName = "Dummy";
+            }
+
             Record(playerDataName);
         }
 
@@ -103,6 +110,30 @@ namespace TheRealJournalRando.IC
             {
                 Record("NightmareGrimm");
             }
+            // THK journal grant
+            if (CheckIsFsm(self, "Hollow Knight Boss", "Phase Control") && self.Fsm.GameObject.scene.name == SceneNames.Room_Final_Boss_Core)
+            {
+                Record("HollowKnight");
+            }
+            // radiance journal grant
+            if (CheckIsFsm(self, "Radiance", "Control") && self.Fsm.GameObject.scene.name == SceneNames.Dream_Final_Boss)
+            {
+                Record("FinalBoss");
+            }
+            if (CheckIsFsm(self, "Absolute Radiance", "Control") && self.Fsm.GameObject.scene.name == SceneNames.GG_Radiance)
+            {
+                Record("FinalBoss");
+            }
+            // oro & mato journal grant
+            if (CheckIsFsm(self, "Brothers", "Combo Control") && self.Fsm.GameObject.scene.name == SceneNames.GG_Nailmasters)
+            {
+                Record("NailBros");
+            }
+            // sly journal grant
+            if (CheckIsFsm(self, "Sly Boss", "Control") && self.Fsm.GameObject.scene.name == SceneNames.GG_Sly)
+            {
+                Record("NailSage");
+            }
         }
 
         private void OnFsmAwake(On.PlayMakerFSM.orig_Awake orig, PlayMakerFSM self)
@@ -135,7 +166,7 @@ namespace TheRealJournalRando.IC
                 InjectRecordState(self, "Fanfare 3", "FINISHED", "Flash Start", "FlameBearerLarge");
             }
             // hopping/winged zotelings
-            if (self.gameObject.name.StartsWith("Zoteling") && self.FsmName == "Control" && self.gameObject.scene.name == SceneNames.Dream_Mighty_Zote)
+            if (self.gameObject.name.StartsWith("Zoteling") || self.gameObject.name.StartsWith("Ordeal Zoteling") && self.FsmName == "Control")
             {
                 FsmBool livingVar = self.AddFsmBool("Alive", false);
                 FsmString pdVar = self.AddFsmString("Zoteling PD Name", "Dummy");
@@ -178,7 +209,7 @@ namespace TheRealJournalRando.IC
                 });
             }
             // volatile zotelings
-            if (self.gameObject.name.StartsWith("Zote Balloon") && self.FsmName == "Control" && self.gameObject.scene.name == SceneNames.Dream_Mighty_Zote)
+            if (self.gameObject.name.StartsWith("Zote Balloon") && self.FsmName == "Control")
             {
                 InjectRecordState(self, "Die", "WAIT", "Reset", "ZotelingBalloon");
             }

@@ -740,21 +740,21 @@
     "pdName": "NightmareGrimm",
     "notesCost": 1
   },
-  //{
-  //  "name": "Nailmasters Oro & Mato",
-  //  "pdName": "NailBros",
-  //  "notesCost": 1
-  //},
+  {
+    "name": "Nailmasters Oro & Mato",
+    "pdName": "NailBros",
+    "notesCost": 1
+  },
   {
     "name": "Paintmaster Sheo",
     "pdName": "Paintmaster",
     "notesCost": 1
   },
-  //{
-  //  "name": "Great Nailsage Sly",
-  //  "pdName": "Nailsage",
-  //  "notesCost": 1
-  //},
+  {
+    "name": "Great Nailsage Sly",
+    "pdName": "Nailsage",
+    "notesCost": 1
+  },
   {
     "name": "Wingmould",
     "pdName": "PalaceFly",
@@ -780,21 +780,21 @@
     "pdName": "Hornet",
     "notesCost": 2
   },
-  //{
-  //  "name": "Hollow Knight",
-  //  "pdName": "HollowKnight",
-  //  "notesCost": 1
-  //},
+  {
+    "name": "Hollow Knight",
+    "pdName": "HollowKnight",
+    "notesCost": 1
+  },
   {
     "name": "Pure Vessel",
     "pdName": "HollowKnightPrime",
     "notesCost": 1
   },
-  //{
-  //  "name": "Radiance",
-  //  "pdName": "FinalBoss",
-  //  "notesCost": 1
-  //},
+  {
+    "name": "Radiance",
+    "pdName": "FinalBoss",
+    "notesCost": 1
+  },
   //{
   //  "name": "Hunter's Mark",
   //  "pdName": "HunterMark",
