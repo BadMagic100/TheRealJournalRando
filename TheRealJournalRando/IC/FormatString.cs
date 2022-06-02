@@ -15,7 +15,26 @@ namespace TheRealJournalRando.IC
         }
 
         [JsonIgnore]
-        public string Value => string.Format(str.Value, format);
+        public string Value
+        {
+            get
+            {
+                object[] formatCopy = new object[format.Length];
+                format.CopyTo(formatCopy, 0);
+                for (int i = 0; i < formatCopy.Length; i++)
+                {
+                    if (formatCopy[i] is IString s)
+                    {
+                        formatCopy[i] = s.Value;
+                    }
+                    else if (formatCopy[i] is IBool b)
+                    {
+                        formatCopy[i] = b.Value;
+                    }
+                }
+                return string.Format(str.Value, formatCopy);
+            }
+        }
 
         public IString Clone()
         {

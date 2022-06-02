@@ -21,14 +21,14 @@ namespace TheRealJournalRando.IC
         public override void Initialize()
         {
             ModHooks.RecordKillForJournalHook += OnJournalRecord;
-            On.PlayMakerFSM.Awake += OnFsmAwake;
+            On.PlayMakerFSM.OnEnable += OnFsmEnable;
             On.HutongGames.PlayMaker.Actions.SetPlayerDataBool.OnEnter += OnSetPlayerDataBoolAction;
         }
 
         public override void Unload()
         {
             ModHooks.RecordKillForJournalHook -= OnJournalRecord;
-            On.PlayMakerFSM.Awake -= OnFsmAwake;
+            On.PlayMakerFSM.OnEnable -= OnFsmEnable;
             On.HutongGames.PlayMaker.Actions.SetPlayerDataBool.OnEnter -= OnSetPlayerDataBoolAction;
         }
 
@@ -81,41 +81,44 @@ namespace TheRealJournalRando.IC
                 return;
             }
 
-            // FK journal grant
+            // FK journal grant - godhome has same FSM key (in GG_False_Knight) but is gated behind a GGCheckIfBossScene
             if (CheckIsFsm(self, "False Knight New", "FalseyControl") && self.Fsm.GameObject.scene.name == SceneNames.Crossroads_10_boss)
             {
                 Record("FalseKnight");
             }
-            // Mantis lords journal grant
+            // Mantis lords journal grant - reusable (in GG_Mantis_Lords) but gated behind GGCheckIfBossScene.
+            // Sisters of Battle (in GG_Mantis_Lords_V) uses a different FSM and does not grant journal entries normally; will not be handled
             if (CheckIsFsm(self, "Mantis Battle", "Battle Control") && self.Fsm.GameObject.scene.name == SceneNames.Fungus2_15_boss)
             {
                 Record("MantisLord");
             }
-            // WK journal grant
+            // WK journal grant - the journal state in Battle Control still exists but is disconnected - will need to re-draw the edge from
+            // Knight 6->NEXT to Journal state
             if (CheckIsFsm(self, "Battle Control", "Battle Control") && self.Fsm.GameObject.scene.name == SceneNames.Ruins2_03_boss)
             {
                 Record("BlackKnight");
             }
-            // Collector journal grant
+            // Collector journal grant - reusable (in GG_Collector and GG_Collector_V) but gated behind GGCheckIfBossScene
             if (CheckIsFsm(self, "Jar Collector", "Death") && self.Fsm.GameObject.scene.name == SceneNames.Ruins2_11_boss)
             {
                 Record("JarCollector");
             }
-            // grimm journal grants
+            // TMG journal grant - godhome TMG will need special handling. probably in Grimm Boss-Control between Death Explode and Send Death Event
             if (CheckIsFsm(self, "Defeated NPC", "Conversation Control") && self.Fsm.GameObject.scene.name == SceneNames.Grimm_Main_Tent)
             {
                 Record("Grimm");
             }
+            // NKG journal grant - in vanilla, godhome NKG can't grant you journal; in rando you can fight NKG even after banishment though
             if (CheckIsFsm(self, "Grimm Control", "Control") && self.Fsm.GameObject.scene.name == SceneNames.Grimm_Nightmare)
             {
                 Record("NightmareGrimm");
             }
-            // THK journal grant
+            // THK journal grant - verified reusable
             if (CheckIsFsm(self, "Hollow Knight Boss", "Phase Control") && self.Fsm.GameObject.scene.name == SceneNames.Room_Final_Boss_Core)
             {
                 Record("HollowKnight");
             }
-            // radiance journal grant
+            // radiance journal grant - verified reusable
             if (CheckIsFsm(self, "Radiance", "Control") && self.Fsm.GameObject.scene.name == SceneNames.Dream_Final_Boss)
             {
                 Record("FinalBoss");
@@ -124,19 +127,19 @@ namespace TheRealJournalRando.IC
             {
                 Record("FinalBoss");
             }
-            // oro & mato journal grant
+            // oro & mato journal grant - gated behind a PDBoolTest
             if (CheckIsFsm(self, "Brothers", "Combo Control") && self.Fsm.GameObject.scene.name == SceneNames.GG_Nailmasters)
             {
                 Record("NailBros");
             }
-            // sly journal grant
+            // sly journal grant - gated behind a PDBoolTest
             if (CheckIsFsm(self, "Sly Boss", "Control") && self.Fsm.GameObject.scene.name == SceneNames.GG_Sly)
             {
                 Record("NailSage");
             }
         }
 
-        private void OnFsmAwake(On.PlayMakerFSM.orig_Awake orig, PlayMakerFSM self)
+        private void OnFsmEnable(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
         {
             orig(self);
             // this hook handles any case where player data is set conditionally (and therefore the SetPlayerDataBool action is not hookable)
@@ -166,7 +169,8 @@ namespace TheRealJournalRando.IC
                 InjectRecordState(self, "Fanfare 3", "FINISHED", "Flash Start", "FlameBearerLarge");
             }
             // hopping/winged zotelings
-            if (self.gameObject.name.StartsWith("Zoteling") || self.gameObject.name.StartsWith("Ordeal Zoteling") && self.FsmName == "Control")
+            if ((self.gameObject.name.StartsWith("Zoteling") || self.gameObject.name.StartsWith("Ordeal Zoteling"))
+                && self.FsmName == "Control")
             {
                 FsmBool livingVar = self.AddFsmBool("Alive", false);
                 FsmString pdVar = self.AddFsmString("Zoteling PD Name", "Dummy");

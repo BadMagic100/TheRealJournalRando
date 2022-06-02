@@ -1,8 +1,9 @@
 ﻿using ItemChanger;
+using TheRealJournalRando.Data;
 
 namespace TheRealJournalRando.IC
 {
-    public record EnemyKillCost(string EnemyType, int Total) : Cost
+    public record EnemyKillCost(string EnemyPdName, string EnemyConvoName, int Total) : Cost
     {
         private JournalKillCounterModule? module;
 
@@ -19,7 +20,7 @@ namespace TheRealJournalRando.IC
             {
                 Load();
             }
-            return Total - module!.GetKillCount(EnemyType);
+            return Total - module!.GetKillCount(EnemyPdName);
         }
 
         public override bool CanPay() => GetBalanceDue() <= 0;
@@ -32,18 +33,37 @@ namespace TheRealJournalRando.IC
             // will be easiest to do once special cases are handled and then
             // can just dump it back into the struct and re-serialize
             int bal = GetBalanceDue();
+            string localizedEnemyName = Language.Language.Get($"NAME_{EnemyConvoName}", "Journal");
             if (bal == 1)
             {
-                return string.Format(Language.Language.Get("DEFEAT_ENEMY", "Fmt"), EnemyType);
+                return string.Format(Language.Language.Get("DEFEAT_ENEMY", "Fmt"), localizedEnemyName);
             }
             else if (bal > 1)
             {
-                return string.Format(Language.Language.Get("DEFEAT_ENEMIES", "Fmt"), bal, EnemyType);
+                return string.Format(Language.Language.Get("DEFEAT_ENEMIES", "Fmt"), bal, localizedEnemyName);
             }
             else
             {
-                return string.Format(Language.Language.Get("DEFEATED_ENEMIES", "Fmt"), EnemyType);
+                return string.Format(Language.Language.Get("DEFEATED_ENEMIES", "Fmt"), localizedEnemyName);
             }
+        }
+
+        public static EnemyKillCost ConstructEntryCost(string icKey)
+        {
+            MinimalEnemyDef def = EnemyData.Data[icKey];
+            return new EnemyKillCost(def.pdName, def.convoName, 1);
+        }
+
+        public static EnemyKillCost ConstructNotesCost(string icKey)
+        {
+            MinimalEnemyDef def = EnemyData.Data[icKey];
+            return new EnemyKillCost(def.pdName, def.convoName, def.notesCost);
+        }
+
+        public static EnemyKillCost ConstructCustomCost(string icKey, int amount)
+        {
+            MinimalEnemyDef def = EnemyData.Data[icKey];
+            return new EnemyKillCost(def.pdName, def.convoName, amount);
         }
     }
 }

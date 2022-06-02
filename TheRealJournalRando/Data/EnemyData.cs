@@ -1,14 +1,15 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace TheRealJournalRando.Data
 {
-    public record struct MinimalEnemyDef(string name, string pdName, int notesCost);
+    public record struct MinimalEnemyDef(string icName, string pdName, string convoName, int notesCost);
 
     public static class EnemyData
     {
-        public static readonly IReadOnlyCollection<MinimalEnemyDef> Data;
+        public static readonly IReadOnlyDictionary<string, MinimalEnemyDef> Data;
 
         static EnemyData()
         {
@@ -20,7 +21,7 @@ namespace TheRealJournalRando.Data
                 throw new IOException("Failed to load enemy definitions");
             }
 
-            Data = data;
+            Data = data.ToDictionary(e => e.icName);
         }
     }
 }

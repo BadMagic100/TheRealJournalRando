@@ -1,823 +1,986 @@
 ﻿[
   {
-    "name": "Crawlid",
+    "icName": "Crawlid",
     "pdName": "Crawler",
+    "convoName": "CRAWLER",
     "notesCost": 30
   },
   {
-    "name": "Vengefly",
+    "icName": "Vengefly",
     "pdName": "Buzzer",
+    "convoName": "BUZZER",
     "notesCost": 45
   },
   {
-    "name": "Vengefly King",
+    "icName": "Vengefly_King",
     "pdName": "BigBuzzer",
+    "convoName": "BIGBUZZER",
     "notesCost": 2
   },
   {
-    "name": "Gruzzer",
+    "icName": "Gruzzer",
     "pdName": "Bouncer",
+    "convoName": "BOUNCER",
     "notesCost": 25
   },
   {
-    "name": "Gruz Mother",
+    "icName": "Gruz_Mother",
     "pdName": "BigFly",
+    "convoName": "BIGFLY",
     "notesCost": 3
   },
   {
-    "name": "Tiktik",
+    "icName": "Tiktik",
     "pdName": "Climber",
+    "convoName": "CLIMBER",
     "notesCost": 30
   },
   {
-    "name": "Aspid Hunter",
+    "icName": "Aspid_Hunter",
     "pdName": "Spitter",
+    "convoName": "SPITTER",
     "notesCost": 20
   },
   {
-    "name": "Aspid Mother",
+    "icName": "Aspid_Mother",
     "pdName": "Hatcher",
+    "convoName": "HATCHER",
     "notesCost": 15
   },
   {
-    "name": "Aspid Hatchling",
+    "icName": "Aspid_Hatchling",
     "pdName": "Hatchling",
+    "convoName": "HATCHLING",
     "notesCost": 30
   },
   {
-    "name": "Wandering Husk",
+    "icName": "Wandering_Husk",
     "pdName": "ZombieRunner",
+    "convoName": "ZOM_RUNNER",
     "notesCost": 35
   },
   {
-    "name": "Husk Hornhead",
+    "icName": "Husk_Hornhead",
     "pdName": "ZombieHornhead",
+    "convoName": "ZOM_HORNHEAD",
     "notesCost": 35
   },
   {
-    "name": "Leaping Husk",
+    "icName": "Leaping_Husk",
     "pdName": "ZombieLeaper",
+    "convoName": "ZOM_LEAPER",
     "notesCost": 35
   },
   {
-    "name": "Husk Bully",
+    "icName": "Husk_Bully",
     "pdName": "ZombieBarger",
+    "convoName": "ZOM_BARGER",
     "notesCost": 35
   },
   {
-    "name": "Husk Warrior",
+    "icName": "Husk_Warrior",
     "pdName": "ZombieShield",
+    "convoName": "ZOM_SHIELD",
     "notesCost": 10
   },
   {
-    "name": "Husk Guard",
+    "icName": "Husk_Guard",
     "pdName": "ZombieGuard",
+    "convoName": "ZOM_GUARD",
     "notesCost": 6
   },
   {
-    "name": "Entombed Husk",
+    "icName": "Entombed_Husk",
     "pdName": "Mummy",
+    "convoName": "MUMMY",
     "notesCost": 10
   },
   {
-    "name": "False Knight",
+    "icName": "False_Knight",
     "pdName": "FalseKnight",
+    "convoName": "FALSEKNIGHT",
     "notesCost": 1
   },
   {
-    "name": "Maggot",
+    "icName": "Maggot",
     "pdName": "PrayerSlug",
+    "convoName": "PRAYER_SLUG",
     "notesCost": 2
   },
   {
-    "name": "Menderbug",
+    "icName": "Menderbug",
     "pdName": "MenderBug",
+    "convoName": "MENDERBUG",
     "notesCost": 1
   },
   {
-    "name": "Lifeseed",
+    "icName": "Lifeseed",
     "pdName": "HealthScuttler",
+    "convoName": "HEALTH_SCUTTLER",
     "notesCost": 10
   },
   {
-    "name": "Baldur",
+    "icName": "Baldur",
     "pdName": "Roller",
+    "convoName": "ROLLER",
     "notesCost": 20
   },
   {
-    "name": "Elder Baldur",
+    "icName": "Elder_Baldur",
     "pdName": "Blocker",
+    "convoName": "BLOCKER",
     "notesCost": 1
   },
   {
-    "name": "Mosscreep",
+    "icName": "Mosscreep",
     "pdName": "MossWalker",
+    "convoName": "MOSS_WALKER",
     "notesCost": 30
   },
   {
-    "name": "Mossfly",
+    "icName": "Mossfly",
     "pdName": "MossFlyer",
+    "convoName": "MOSS_FLYER",
     "notesCost": 25
   },
   {
-    "name": "Mosskin",
+    "icName": "Mosskin",
     "pdName": "MossmanRunner",
+    "convoName": "MOSSMAN_RUNNER",
     "notesCost": 25
   },
   {
-    "name": "Volatile Mosskin",
+    "icName": "Volatile_Mosskin",
     "pdName": "MossmanShaker",
+    "convoName": "MOSSMAN_SHAKER",
     "notesCost": 25
   },
   {
-    "name": "Fool Eater",
+    "icName": "Fool_Eater",
     "pdName": "SnapperTrap",
+    "convoName": "SNAPPER_TRAP",
     "notesCost": 15
   },
   {
-    "name": "Squit",
+    "icName": "Squit",
     "pdName": "Mosquito",
+    "convoName": "MOSQUITO",
     "notesCost": 25
   },
   {
-    "name": "Obble",
+    "icName": "Obble",
     "pdName": "BlobFlyer",
+    "convoName": "BLOB_FLYER",
     "notesCost": 20
   },
   {
-    "name": "Gulka",
+    "icName": "Gulka",
     "pdName": "PlantShooter",
+    "convoName": "PLANT_SHOOTER",
     "notesCost": 15
   },
   {
-    "name": "Maskfly",
+    "icName": "Maskfly",
     "pdName": "Pigeon",
+    "convoName": "PIGEON",
     "notesCost": 15
   },
   {
-    "name": "Moss Charger",
+    "icName": "Moss_Charger",
     "pdName": "MossCharger",
+    "convoName": "MOSS_CHARGER",
     "notesCost": 15
   },
   {
-    "name": "Massive Moss Charger",
+    "icName": "Massive_Moss_Charger",
     "pdName": "MegaMossCharger",
+    "convoName": "MEGA_MOSS_CHARGER",
     "notesCost": 1
   },
   {
-    "name": "Moss Knight",
+    "icName": "Moss_Knight",
     "pdName": "MossKnight",
+    "convoName": "MOSS_KNIGHT",
     "notesCost": 8
   },
-  // the kill counter will work but location itself needs special treatment because of infection
   {
-    "name": "Mossy Vagabond",
+    "icName": "Mossy_Vagabond",
     "pdName": "MossKnightFat",
+    "convoName": "MOSS_KNIGHT_FAT",
     "notesCost": 10
   },
   {
-    "name": "Durandoo",
+    "icName": "Durandoo",
     "pdName": "AcidWalker",
+    "convoName": "ACID_WALKER",
     "notesCost": 8
   },
   {
-    "name": "Duranda",
+    "icName": "Duranda",
     "pdName": "AcidFlyer",
+    "convoName": "ACID_FLYER",
     "notesCost": 8
   },
   {
-    "name": "Aluba",
+    "icName": "Aluba",
     "pdName": "LazyFlyer",
+    "convoName": "LAZY_FLYER",
     "notesCost": 1
   },
   {
-    "name": "Uoma",
+    "icName": "Uoma",
     "pdName": "JellyCrawler",
+    "convoName": "JELLY_CRAWLER",
     "notesCost": 20
   },
   {
-    "name": "Ooma",
+    "icName": "Ooma",
     "pdName": "Jellyfish",
+    "convoName": "JELLYFISH",
     "notesCost": 12
   },
   {
-    "name": "Uumuu",
+    "icName": "Uumuu",
     "pdName": "MegaJellyfish",
+    "convoName": "MEGA_JELLYFISH",
     "notesCost": 1
   },
   {
-    "name": "Ambloom",
+    "icName": "Ambloom",
     "pdName": "FungCrawler",
+    "convoName": "FUNG_CRAWLER",
     "notesCost": 15
   },
   {
-    "name": "Fungling",
+    "icName": "Fungling",
     "pdName": "FungoonBaby",
+    "convoName": "FUNGOON_BABY",
     "notesCost": 30
   },
   {
-    "name": "Fungoon",
+    "icName": "Fungoon",
     "pdName": "FungusFlyer",
+    "convoName": "FUNGOON",
     "notesCost": 20
   },
   {
-    "name": "Sporg",
+    "icName": "Sporg",
     "pdName": "MushroomTurret",
+    "convoName": "MUSH_TURRET",
     "notesCost": 20
   },
   {
-    "name": "Fungified Husk",
+    "icName": "Fungified_Husk",
     "pdName": "FungifiedZombie",
+    "convoName": "FUNG_ZOMBIE",
     "notesCost": 10
   },
   {
-    "name": "Shrumeling",
+    "icName": "Shrumeling",
     "pdName": "MushroomBaby",
+    "convoName": "MUSH_BABY",
     "notesCost": 20
   },
   {
-    "name": "Shrumal Warrior",
+    "icName": "Shrumal_Warrior",
     "pdName": "MushroomRoller",
+    "convoName": "MUSH_ROLLER",
     "notesCost": 20
   },
   {
-    "name": "Shrumal Ogre",
+    "icName": "Shrumal_Ogre",
     "pdName": "MushroomBrawler",
+    "convoName": "MUSH_BRAWLER",
     "notesCost": 8
   },
   {
-    "name": "Mantis Youth",
+    "icName": "Mantis_Youth",
     "pdName": "MantisFlyerChild",
+    "convoName": "MANTIS_FLYER_CHILD",
     "notesCost": 25
   },
   {
-    "name": "Mantis Warrior",
+    "icName": "Mantis_Warrior",
     "pdName": "Mantis",
+    "convoName": "MANTIS",
     "notesCost": 25
   },
   {
-    "name": "Mantis Lords",
+    "icName": "Mantis_Lords",
     "pdName": "MantisLord",
+    "convoName": "MANTIS_LORD",
     "notesCost": 1
   },
   {
-    "name": "Husk Sentry",
+    "icName": "Husk_Sentry",
     "pdName": "Sentry",
+    "convoName": "SENTRY_1",
     "notesCost": 25
   },
   {
-    "name": "Heavy Sentry",
+    "icName": "Heavy_Sentry",
     "pdName": "SentryFat",
+    "convoName": "SENTRY_FAT",
     "notesCost": 20
   },
   {
-    "name": "Winged Sentry",
+    "icName": "Winged_Sentry",
     "pdName": "FlyingSentrySword",
+    "convoName": "SENTRY_FLYING",
     "notesCost": 30
   },
   {
-    "name": "Lance Sentry",
+    "icName": "Lance_Sentry",
     "pdName": "FlyingSentryJavelin",
+    "convoName": "SENTRY_FLYING_JAVELIN",
     "notesCost": 25
   },
   {
-    "name": "Mistake",
+    "icName": "Mistake",
     "pdName": "MageBlob",
+    "convoName": "MAGEBLOB",
     "notesCost": 25
   },
   {
-    "name": "Folly",
+    "icName": "Folly",
     "pdName": "MageBalloon",
+    "convoName": "MAGE_BALLOON",
     "notesCost": 15
   },
   {
-    "name": "Soul Twister",
+    "icName": "Soul_Twister",
     "pdName": "Mage",
+    "convoName": "MAGE",
     "notesCost": 20
   },
   {
-    "name": "Soul Warrior",
+    "icName": "Soul_Warrior",
     "pdName": "MageKnight",
+    "convoName": "MAGE_KNIGHT",
     "notesCost": 2
   },
   {
-    "name": "Soul Master",
+    "icName": "Soul_Master",
     "pdName": "MageLord",
+    "convoName": "MAGE_LORD",
     "notesCost": 1
   },
   {
-    "name": "Husk Dandy",
+    "icName": "Husk_Dandy",
     "pdName": "RoyalDandy",
+    "convoName": "ZOM_ROYAL_1",
     "notesCost": 25
   },
   {
-    "name": "Cowardly Husk",
+    "icName": "Cowardly_Husk",
     "pdName": "RoyalCoward",
+    "convoName": "ZOM_ROYAL_2",
     "notesCost": 25
   },
   {
-    "name": "Gluttonous Husk",
+    "icName": "Gluttonous_Husk",
     "pdName": "RoyalPlumper",
+    "convoName": "ZOM_ROYAL_FAT",
     "notesCost": 25
   },
   {
-    "name": "Gorgeous Husk",
+    "icName": "Gorgeous_Husk",
     "pdName": "GorgeousHusk",
+    "convoName": "GORGEOUS_HUSK",
     "notesCost": 1
   },
   {
-    "name": "Great Husk Sentry",
+    "icName": "Great_Husk_Sentry",
     "pdName": "GreatShieldZombie",
+    "convoName": "GREAT_SHIELD_ZOMBIE",
     "notesCost": 10
   },
   {
-    "name": "Watcher Knight",
+    "icName": "Watcher_Knight",
     "pdName": "BlackKnight",
+    "convoName": "BLACK_KNIGHT",
     "notesCost": 1
   },
   {
-    "name": "The Collector",
+    "icName": "The_Collector",
     "pdName": "JarCollector",
+    "convoName": "JAR_COLLECTOR",
     "notesCost": 1
   },
   {
-    "name": "Belfly",
+    "icName": "Belfly",
     "pdName": "CeilingDropper",
+    "convoName": "CEILING_DROPPER",
     "notesCost": 15
   },
   {
-    "name": "Pilflip",
+    "icName": "Pilflip",
     "pdName": "FlipHopper",
+    "convoName": "FLIP_HOPPER",
     "notesCost": 20
   },
   {
-    "name": "Hwurmp",
+    "icName": "Hwurmp",
     "pdName": "Inflater",
+    "convoName": "INFLATOR",
     "notesCost": 20
   },
   {
-    "name": "Bluggsac",
+    "icName": "Bluggsac",
     "pdName": "EggSac",
+    "convoName": "EGG_SAC",
     "notesCost": 5
   },
   {
-    "name": "Dung Defender",
+    "icName": "Dung_Defender",
     "pdName": "DungDefender",
+    "convoName": "DUNG_DEFENDER",
     "notesCost": 1
   },
   {
-    "name": "White Defender",
+    "icName": "White_Defender",
     "pdName": "WhiteDefender",
+    "convoName": "WHITE_DEFENDER",
     "notesCost": 1
   },
   {
-    "name": "Flukefey",
+    "icName": "Flukefey",
     "pdName": "Flukefly",
+    "convoName": "FLUKEFLY",
     "notesCost": 15
   },
   {
-    "name": "Flukemon",
+    "icName": "Flukemon",
     "pdName": "Flukeman",
+    "convoName": "FLUKEMAN",
     "notesCost": 20
   },
   {
-    "name": "Flukemunga",
+    "icName": "Flukemunga",
     "pdName": "FatFluke",
+    "convoName": "FAT_FLUKE",
     "notesCost": 8
   },
   {
-    "name": "Flukemarm",
+    "icName": "Flukemarm",
     "pdName": "FlukeMother",
+    "convoName": "FLUKE_MOTHER",
     "notesCost": 1
   },
   {
-    "name": "Shardmite",
+    "icName": "Shardmite",
     "pdName": "MinesCrawler",
+    "convoName": "MINES_CRAWLER",
     "notesCost": 15
   },
   {
-    "name": "Glimback",
+    "icName": "Glimback",
     "pdName": "CrystalCrawler",
+    "convoName": "CRYS_CRAWLER",
     "notesCost": 15
   },
   {
-    "name": "Crystal Hunter",
+    "icName": "Crystal_Hunter",
     "pdName": "CrystalFlyer",
+    "convoName": "CRYS_FLYER",
     "notesCost": 20
   },
   {
-    "name": "Crystal Crawler",
+    "icName": "Crystal_Crawler",
     "pdName": "LaserBug",
+    "convoName": "CRYS_LAZER_BUG",
     "notesCost": 15
   },
   {
-    "name": "Husk Miner",
+    "icName": "Husk_Miner",
     "pdName": "ZombieMiner",
+    "convoName": "ZOM_MINER",
     "notesCost": 20
   },
   {
-    "name": "Crystallised Husk",
+    "icName": "Crystallised_Husk",
     "pdName": "BeamMiner",
+    "convoName": "ZOM_BEAM_MINER",
     "notesCost": 15
   },
   {
-    "name": "Crystal Guardian",
+    "icName": "Crystal_Guardian",
     "pdName": "MegaBeamMiner",
+    "convoName": "MEGA_BEAM_MINER",
     "notesCost": 2
   },
   {
-    "name": "Furious Vengefly",
+    "icName": "Furious_Vengefly",
     "pdName": "AngryBuzzer",
+    "convoName": "ANGRY_BUZZER",
     "notesCost": 15
   },
   {
-    "name": "Volatile Gruzzer",
+    "icName": "Volatile_Gruzzer",
     "pdName": "BurstingBouncer",
+    "convoName": "BURSTING_BOUNCER",
     "notesCost": 15
   },
   {
-    "name": "Violent Husk",
+    "icName": "Violent_Husk",
     "pdName": "BurstingZombie",
+    "convoName": "ZOM_BURSTING",
     "notesCost": 15
   },
   {
-    "name": "Slobbering Husk",
+    "icName": "Slobbering_Husk",
     "pdName": "SpittingZombie",
+    "convoName": "ZOM_SPITTING",
     "notesCost": 15
   },
   {
-    "name": "Dirtcarver",
+    "icName": "Dirtcarver",
     "pdName": "BabyCentipede",
+    "convoName": "BABY_CENTIPEDE",
     "notesCost": 35
   },
   {
-    "name": "Carver Hatcher",
+    "icName": "Carver_Hatcher",
     "pdName": "CentipedeHatcher",
+    "convoName": "CENTIPEDE_HATCHER",
     "notesCost": 15
   },
   {
-    "name": "Corpse Creeper",
+    "icName": "Corpse_Creeper",
     "pdName": "SpiderCorpse",
+    "convoName": "ZOM_SPIDER",
     "notesCost": 15
   },
   {
-    "name": "Deepling",
+    "icName": "Deepling",
     "pdName": "MiniSpider",
+    "convoName": "MINI_SPIDER",
     "notesCost": 25
   },
   {
-    "name": "Deephunter",
+    "icName": "Deephunter",
     "pdName": "ShootSpider",
+    "convoName": "SPITTING_SPIDER",
     "notesCost": 20
   },
   {
-    "name": "Little Weaver",
+    "icName": "Little_Weaver",
     "pdName": "SpiderFlyer",
+    "convoName": "SPIDER_FLYER",
     "notesCost": 20
   },
   {
-    "name": "Stalking Devout",
+    "icName": "Stalking_Devout",
     "pdName": "SlashSpider",
+    "convoName": "SLASH_SPIDER",
     "notesCost": 15
   },
   {
-    "name": "Nosk",
+    "icName": "Nosk",
     "pdName": "MimicSpider",
+    "convoName": "MIMIC_SPIDER",
     "notesCost": 1
   },
   {
-    "name": "Shadow Creeper",
+    "icName": "Shadow_Creeper",
     "pdName": "AbyssCrawler",
+    "convoName": "ABYSS_CRAWLER",
     "notesCost": 20
   },
   {
-    "name": "Lesser Mawlek",
+    "icName": "Lesser_Mawlek",
     "pdName": "LesserMawlek",
+    "convoName": "LESSER_MAWLEK",
     "notesCost": 10
   },
   {
-    "name": "Mawlurk",
+    "icName": "Mawlurk",
     "pdName": "MawlekTurret",
+    "convoName": "MAWLEK_TURRET",
     "notesCost": 10
   },
   {
-    "name": "Brooding Mawlek",
+    "icName": "Brooding_Mawlek",
     "pdName": "Mawlek",
+    "convoName": "MAWLEK",
     "notesCost": 1
   },
   {
-    "name": "Lightseed",
+    "icName": "Lightseed",
     "pdName": "OrangeScuttler",
+    "convoName": "PARASITE_BLOB",
     "notesCost": 20
   },
   {
-    "name": "Infected Balloon",
+    "icName": "Infected_Balloon",
     "pdName": "OrangeBalloon",
+    "convoName": "ORANGE_BALLOON",
     "notesCost": 10
   },
   {
-    "name": "Broken Vessel",
+    "icName": "Broken_Vessel",
     "pdName": "InfectedKnight",
+    "convoName": "INFECTED_KNIGHT",
     "notesCost": 1
   },
   {
-    "name": "Boofly",
+    "icName": "Boofly",
     "pdName": "BlowFly",
+    "convoName": "BIG_FAT_FLYER",
     "notesCost": 20
   },
   {
-    "name": "Primal Aspid",
+    "icName": "Primal_Aspid",
     "pdName": "SuperSpitter",
+    "convoName": "SUPER_SPITTER",
     "notesCost": 25
   },
   {
-    "name": "Hopper",
+    "icName": "Hopper",
     "pdName": "Hopper",
+    "convoName": "HOPPER",
     "notesCost": 25
   },
   {
-    "name": "Great Hopper",
+    "icName": "Great_Hopper",
     "pdName": "GiantHopper",
+    "convoName": "GIANT_HOPPER",
     "notesCost": 10
   },
   {
-    "name": "Grub Mimic",
+    "icName": "Grub_Mimic",
     "pdName": "GrubMimic",
+    "convoName": "GRUB_MIMIC",
     "notesCost": 5
   },
   {
-    "name": "Hiveling",
+    "icName": "Hiveling",
     "pdName": "BeeHatchling",
+    "convoName": "BEE_HATCHLING",
     "notesCost": 30
   },
   {
-    "name": "Hive Soldier",
+    "icName": "Hive_Soldier",
     "pdName": "BeeStinger",
+    "convoName": "BEE",
     "notesCost": 15
   },
   {
-    "name": "Hive Guardian",
+    "icName": "Hive_Guardian",
     "pdName": "BigBee",
+    "convoName": "BIG_BEE",
     "notesCost": 12
   },
   {
-    "name": "Husk Hive",
+    "icName": "Husk_Hive",
     "pdName": "ZombieHive",
+    "convoName": "ZOM_HIVE",
     "notesCost": 10
   },
   {
-    "name": "Hive Knight",
+    "icName": "Hive_Knight",
     "pdName": "HiveKnight",
+    "convoName": "HIVE_KNIGHT",
     "notesCost": 1
   },
   {
-    "name": "Spiny Husk",
+    "icName": "Spiny_Husk",
     "pdName": "GardenZombie",
+    "convoName": "ZOM_SPINE",
     "notesCost": 20
   },
   {
-    "name": "Loodle",
+    "icName": "Loodle",
     "pdName": "GrassHopper",
+    "convoName": "GRASS_HOPPER",
     "notesCost": 15
   },
   {
-    "name": "Mantis Petra",
+    "icName": "Mantis_Petra",
     "pdName": "MantisHeavyFlyer",
+    "convoName": "MANTIS_FLYER_ADULT",
     "notesCost": 16
   },
   {
-    "name": "Mantis Traitor",
+    "icName": "Mantis_Traitor",
     "pdName": "HeavyMantis",
+    "convoName": "MANTIS_HEAVY",
     "notesCost": 15
   },
   {
-    "name": "Traitor Lord",
+    "icName": "Traitor_Lord",
     "pdName": "TraitorLord",
+    "convoName": "TRAITOR_LORD",
     "notesCost": 1
   },
   {
-    "name": "Sharp Baldur",
+    "icName": "Sharp_Baldur",
     "pdName": "ColRoller",
+    "convoName": "COL_ROLLER",
     "notesCost": 20
   },
   {
-    "name": "Armoured Squit",
+    "icName": "Armoured_Squit",
     "pdName": "ColMosquito",
+    "convoName": "COL_MOSQUITO",
     "notesCost": 15
   },
   {
-    "name": "Battle Obble",
+    "icName": "Battle_Obble",
     "pdName": "Blobble",
+    "convoName": "BLOBBLE",
     "notesCost": 15
   },
   {
-    "name": "Oblobble",
+    "icName": "Oblobble",
     "pdName": "Oblobble",
+    "convoName": "OBLOBBLE",
     "notesCost": 3
   },
   {
-    "name": "Shielded Fool",
+    "icName": "Shielded_Fool",
     "pdName": "ColShield",
+    "convoName": "COL_SHIELD",
     "notesCost": 25
   },
   {
-    "name": "Sturdy Fool",
+    "icName": "Sturdy_Fool",
     "pdName": "ColMiner",
+    "convoName": "COL_MINER",
     "notesCost": 25
   },
   {
-    "name": "Winged Fool",
+    "icName": "Winged_Fool",
     "pdName": "ColFlyingSentry",
+    "convoName": "COL_FLYINGSENTRY",
     "notesCost": 25
   },
   {
-    "name": "Heavy Fool",
+    "icName": "Heavy_Fool",
     "pdName": "ColWorm",
+    "convoName": "COL_WORM",
     "notesCost": 20
   },
   {
-    "name": "Death Loodle",
+    "icName": "Death_Loodle",
     "pdName": "ColHopper",
+    "convoName": "COL_HOPPER",
     "notesCost": 15
   },
   {
-    "name": "Volt Twister",
+    "icName": "Volt_Twister",
     "pdName": "ElectricMage",
+    "convoName": "ELEC_MAGE",
     "notesCost": 6
   },
   {
-    "name": "God Tamer",
+    "icName": "God_Tamer",
     "pdName": "LobsterLancer",
+    "convoName": "LOBSTER_LANCER",
     "notesCost": 1
   },
   {
-    "name": "Pale Lurker",
+    "icName": "Pale_Lurker",
     "pdName": "PaleLurker",
+    "convoName": "PALE_LURKER",
     "notesCost": 1
   },
   {
-    "name": "Zote",
+    "icName": "Zote",
     "pdName": "Zote",
+    "convoName": "ZOTE",
     "notesCost": 1
   },
   {
-    "name": "Grey Prince Zote",
+    "icName": "Grey_Prince_Zote",
     "pdName": "GreyPrince",
+    "convoName": "GREY_PRINCE",
     "notesCost": 1
   },
   {
-    "name": "Winged Zoteling",
+    "icName": "Winged_Zoteling",
     "pdName": "ZotelingBuzzer",
+    "convoName": "ZOTE_FLYER",
     "notesCost": 1
   },
   {
-    "name": "Hopping Zoteling",
+    "icName": "Hopping_Zoteling",
     "pdName": "ZotelingHopper",
+    "convoName": "ZOTE_HOPPER",
     "notesCost": 1
   },
   {
-    "name": "Volatile Zoteling",
+    "icName": "Volatile_Zoteling",
     "pdName": "ZotelingBalloon",
+    "convoName": "ZOTE_BALLOON",
     "notesCost": 1
   },
   {
-    "name": "Xero",
+    "icName": "Xero",
     "pdName": "GhostXero",
+    "convoName": "GHOST_XERO",
     "notesCost": 1
   },
   {
-    "name": "Gorb",
+    "icName": "Gorb",
     "pdName": "GhostAladar",
+    "convoName": "GHOST_ALADAR",
     "notesCost": 1
   },
   {
-    "name": "Elder Hu",
+    "icName": "Elder_Hu",
     "pdName": "GhostHu",
+    "convoName": "GHOST_HU",
     "notesCost": 1
   },
   {
-    "name": "Marmu",
+    "icName": "Marmu",
     "pdName": "GhostMarmu",
+    "convoName": "GHOST_MARMU",
     "notesCost": 1
   },
   {
-    "name": "No Eyes",
+    "icName": "No_Eyes",
     "pdName": "GhostNoEyes",
+    "convoName": "GHOST_NOEYES",
     "notesCost": 1
   },
   {
-    "name": "Galien",
+    "icName": "Galien",
     "pdName": "GhostGalien",
+    "convoName": "GHOST_GALIEN",
     "notesCost": 1
   },
   {
-    "name": "Markoth",
+    "icName": "Markoth",
     "pdName": "GhostMarkoth",
+    "convoName": "GHOST_MARKOTH",
     "notesCost": 1
   },
   {
-    "name": "Grimmkin Novice",
+    "icName": "Grimmkin_Novice",
     "pdName": "FlameBearerSmall",
+    "convoName": "FLAMEBEARER_SMALL",
     "notesCost": 1
   },
   {
-    "name": "Grimmkin Master",
+    "icName": "Grimmkin_Master",
     "pdName": "FlameBearerMed",
+    "convoName": "FLAMEBEARER_MED",
     "notesCost": 1
   },
   {
-    "name": "Grimmkin Nightmare",
+    "icName": "Grimmkin_Nightmare",
     "pdName": "FlameBearerLarge",
+    "convoName": "FLAMEBEARER_LARGE",
     "notesCost": 1
   },
   {
-    "name": "Grimm",
+    "icName": "Grimm",
     "pdName": "Grimm",
+    "convoName": "GRIMM",
     "notesCost": 1
   },
   {
-    "name": "Nightmare King",
+    "icName": "Nightmare_King",
     "pdName": "NightmareGrimm",
+    "convoName": "NIGHTMARE_GRIMM",
     "notesCost": 1
   },
   {
-    "name": "Nailmasters Oro & Mato",
+    "icName": "Nailmasters_Oro_&_Mato",
     "pdName": "NailBros",
+    "convoName": "NAILMASTERS",
     "notesCost": 1
   },
   {
-    "name": "Paintmaster Sheo",
+    "icName": "Paintmaster_Sheo",
     "pdName": "Paintmaster",
+    "convoName": "PAINTMASTER",
     "notesCost": 1
   },
   {
-    "name": "Great Nailsage Sly",
+    "icName": "Great_Nailsage_Sly",
     "pdName": "Nailsage",
+    "convoName": "SAGE_SLY",
     "notesCost": 1
   },
   {
-    "name": "Wingmould",
+    "icName": "Wingmould",
     "pdName": "PalaceFly",
+    "convoName": "PALACE_FLY",
     "notesCost": 10
   },
   {
-    "name": "Royal Retainer",
+    "icName": "Royal_Retainer",
     "pdName": "WhiteRoyal",
+    "convoName": "WHITE_ROYAL",
     "notesCost": 10
   },
   {
-    "name": "Kingsmould",
+    "icName": "Kingsmould",
     "pdName": "RoyalGuard",
+    "convoName": "ROYAL_GUARD",
     "notesCost": 2
   },
   {
-    "name": "Sibling",
+    "icName": "Sibling",
     "pdName": "Sibling",
+    "convoName": "SIBLING",
     "notesCost": 25
   },
   {
-    "name": "Hornet",
+    "icName": "Hornet",
     "pdName": "Hornet",
+    "convoName": "HORNET",
     "notesCost": 2
   },
   {
-    "name": "Hollow Knight",
+    "icName": "Hollow_Knight",
     "pdName": "HollowKnight",
+    "convoName": "HOLLOW_KNIGHT",
     "notesCost": 1
   },
   {
-    "name": "Pure Vessel",
+    "icName": "Pure_Vessel",
     "pdName": "HollowKnightPrime",
+    "convoName": "PURE_VESSEL",
     "notesCost": 1
   },
   {
-    "name": "Radiance",
+    "icName": "Radiance",
     "pdName": "FinalBoss",
+    "convoName": "FINAL_BOSS",
     "notesCost": 1
-  },
+  }//,
   //{
-  //  "name": "Hunter's Mark",
+  //  "icName": "Hunter's_Mark",
   //  "pdName": "HunterMark",
+  //  "convoName": "HUNTERMARK",
   //  "notesCost": 1
   //},
   //{
-  //  "name": "Void Idol",
+  //  "icName": "Void_Idol_1",
   //  "pdName": "VoidIdol_1",
+  //  "convoName": "VOID_IDOL_1",
   //  "notesCost": 1
   //},
   //{
-  //  "name": "Void Idol",
+  //  "icName": "Void_Idol_2",
   //  "pdName": "VoidIdol_2",
+  //  "convoName": "VOID_IDOL_2",
   //  "notesCost": 1
   //},
   //{
-  //  "name": "Void Idol",
+  //  "icName": "Void_Idol_3",
   //  "pdName": "VoidIdol_3",
+  //  "convoName": "VOID_IDOL_3",
   //  "notesCost": 1
   //},
   //{
-  //  "name": "Weathered Mask",
+  //  "icName": "Weathered_Mask",
   //  "pdName": "GodseekerMask",
+  //  "convoName": "GODSEEKER_MASK",
   //  "notesCost": 1
   //}
 ]

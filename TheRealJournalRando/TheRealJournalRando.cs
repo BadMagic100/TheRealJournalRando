@@ -5,6 +5,7 @@ using ItemChanger.Tags;
 using ItemChanger.UIDefs;
 using Modding;
 using System;
+using System.Linq;
 using TheRealJournalRando.Data;
 using TheRealJournalRando.IC;
 
@@ -94,19 +95,19 @@ namespace TheRealJournalRando
                 string icName = name.Replace(' ', '_');
                 iseldaShop.Items.Add(Finder.GetItem($"Hunter's_Notes-{icName}"));
             }
-            iseldaShop.Items[iseldaShop.Items.Count - 1].AddTag<CostTag>().Cost = new EnemyKillCost("Crawler", 2);
+            iseldaShop.Items[iseldaShop.Items.Count - 1].AddTag<CostTag>().Cost = EnemyKillCost.ConstructCustomCost("Crawlid", 2);
 
             AbstractPlacement tiktikEntry = Finder.GetLocation("Journal_Entry_Only-Tiktik").Wrap();
-            ((ISingleCostPlacement)tiktikEntry).Cost = new EnemyKillCost("Climber", 1);
+            ((ISingleCostPlacement)tiktikEntry).Cost = tiktikEntry.GetPlacementAndLocationTags().OfType<ImplicitCostTag>().First().Cost;
             tiktikEntry.Items.Add(Finder.GetItem("Soul_Totem-Path_of_Pain"));
             tiktikEntry.Items.Add(Finder.GetItem("Vengeful_Spirit"));
 
             AbstractPlacement maskflyNotes = Finder.GetLocation("Hunter's_Notes-Maskfly").Wrap();
-            ((ISingleCostPlacement)maskflyNotes).Cost = new EnemyKillCost("Pigeon", 15);
+            ((ISingleCostPlacement)maskflyNotes).Cost = maskflyNotes.GetPlacementAndLocationTags().OfType<ImplicitCostTag>().First().Cost;
             maskflyNotes.Items.Add(Finder.GetItem("Mantis_Claw"));
 
             AbstractPlacement vengeflyScamEntry = Finder.GetLocation("Journal_Entry_Only-Vengefly").Wrap();
-            ((ISingleCostPlacement)vengeflyScamEntry).Cost = new MultiCost(new EnemyKillCost("Buzzer", 1), new GeoCost(50));
+            ((ISingleCostPlacement)vengeflyScamEntry).Cost = new MultiCost(EnemyKillCost.ConstructEntryCost("Vengefly"), new GeoCost(50));
             vengeflyScamEntry.Items.Add(Finder.GetItem("Rancid_Egg"));
 
             ItemChangerMod.AddPlacements(new[] {iseldaShop, tiktikEntry, maskflyNotes, vengeflyScamEntry});
@@ -119,19 +120,19 @@ namespace TheRealJournalRando
             Events.OnItemChangerHook += LanguageData.Hook;
             Events.OnItemChangerUnhook += LanguageData.Unhook;
 
-            foreach (MinimalEnemyDef enemyDef in EnemyData.Data)
+            foreach (MinimalEnemyDef enemyDef in EnemyData.Data.Values)
             {
-                string icName = enemyDef.name.Replace(' ', '_');
-                string entryName = $"Journal_Entry_Only-{icName}";
-                string notesName = $"Hunter's_Notes-{icName}";
+                string entryName = $"Journal_Entry_Only-{enemyDef.icName}";
+                string notesName = $"Hunter's_Notes-{enemyDef.icName}";
+                LanguageString localizedEnemyName = new("Journal", $"NAME_{enemyDef.convoName}");
 
                 Finder.DefineCustomItem(new EnemyJournalEntryOnlyItem(enemyDef.pdName)
                 {
                     name = entryName,
                     UIDef = new MsgUIDef
                     {
-                        name = new FormatString(new LanguageString("Fmt", "ENTRY_ITEM_NAME"), enemyDef.name),
-                        shopDesc = new FormatString(new LanguageString("Fmt", "ENTRY_SHOP_DESC"), enemyDef.name),
+                        name = new FormatString(new LanguageString("Fmt", "ENTRY_ITEM_NAME"), localizedEnemyName.Clone()),
+                        shopDesc = new FormatString(new LanguageString("Fmt", "ENTRY_SHOP_DESC"), localizedEnemyName.Clone()),
                         sprite = new JournalBadgeSprite(enemyDef.pdName),
                     },
                     tags = new()
@@ -144,8 +145,8 @@ namespace TheRealJournalRando
                     name = notesName,
                     UIDef = new MsgUIDef
                     {
-                        name = new FormatString(new LanguageString("Fmt", "NOTES_ITEM_NAME"), enemyDef.name),
-                        shopDesc = new FormatString(new LanguageString("Fmt", "NOTES_SHOP_DESC"), enemyDef.name),
+                        name = new FormatString(new LanguageString("Fmt", "NOTES_ITEM_NAME"), localizedEnemyName.Clone()),
+                        shopDesc = new FormatString(new LanguageString("Fmt", "NOTES_SHOP_DESC"), localizedEnemyName.Clone()),
                         sprite = new JournalBadgeSprite(enemyDef.pdName),
                     },
                     tags = new()
@@ -162,7 +163,7 @@ namespace TheRealJournalRando
                     {
                         new ImplicitCostTag()
                         {
-                            Cost = new EnemyKillCost(enemyDef.pdName, 1),
+                            Cost = EnemyKillCost.ConstructEntryCost(enemyDef.icName),
                             Inherent = false,
                         },
                         InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
@@ -177,7 +178,7 @@ namespace TheRealJournalRando
                     {
                         new ImplicitCostTag()
                         {
-                            Cost = new EnemyKillCost(enemyDef.pdName, enemyDef.notesCost),
+                            Cost = EnemyKillCost.ConstructNotesCost(enemyDef.icName),
                             Inherent = false,
                         },
                         InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
