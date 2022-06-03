@@ -9,19 +9,26 @@ namespace TheRealJournalRando.Data
 
     public static class EnemyData
     {
-        public static readonly IReadOnlyDictionary<string, MinimalEnemyDef> Data;
+        public static readonly IReadOnlyDictionary<string, MinimalEnemyDef> NormalData;
+        public static readonly IReadOnlyDictionary<string, MinimalEnemyDef> SpecialData;
 
         static EnemyData()
         {
-            using Stream s = typeof(EnemyData).Assembly.GetManifestResourceStream("TheRealJournalRando.Resources.journalData.json");
-            using StreamReader sr = new StreamReader(s);
+            NormalData = LoadJournalData("TheRealJournalRando.Resources.normalJournalData.json");
+            SpecialData = LoadJournalData("TheRealJournalRando.Resources.specialJournalData.json");
+        }
+
+        private static IReadOnlyDictionary<string, MinimalEnemyDef> LoadJournalData(string file)
+        {
+            using Stream s = typeof(EnemyData).Assembly.GetManifestResourceStream(file);
+            using StreamReader sr = new(s);
             List<MinimalEnemyDef>? data = JsonConvert.DeserializeObject<List<MinimalEnemyDef>>(sr.ReadToEnd());
             if (data == null)
             {
                 throw new IOException("Failed to load enemy definitions");
             }
 
-            Data = data.ToDictionary(e => e.icName);
+            return data.ToDictionary(e => e.icName);
         }
     }
 }

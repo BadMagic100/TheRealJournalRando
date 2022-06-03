@@ -204,12 +204,6 @@
     "notesCost": 8
   },
   {
-    "icName": "Mossy_Vagabond",
-    "pdName": "MossKnightFat",
-    "convoName": "MOSS_KNIGHT_FAT",
-    "notesCost": 10
-  },
-  {
     "icName": "Durandoo",
     "pdName": "AcidWalker",
     "convoName": "ACID_WALKER",
@@ -936,45 +930,9 @@
     "notesCost": 2
   },
   {
-    "icName": "Hollow_Knight",
-    "pdName": "HollowKnight",
-    "convoName": "HOLLOW_KNIGHT",
-    "notesCost": 1
-  },
-  {
     "icName": "Pure_Vessel",
     "pdName": "HollowKnightPrime",
     "convoName": "PURE_VESSEL",
     "notesCost": 1
-  },
-  {
-    "icName": "Radiance",
-    "pdName": "FinalBoss",
-    "convoName": "FINAL_BOSS",
-    "notesCost": 1
-  }//,
-  //{
-  //  "icName": "Void_Idol_1",
-  //  "pdName": "VoidIdol_1",
-  //  "convoName": "VOID_IDOL_1",
-  //  "notesCost": 1
-  //},
-  //{
-  //  "icName": "Void_Idol_2",
-  //  "pdName": "VoidIdol_2",
-  //  "convoName": "VOID_IDOL_2",
-  //  "notesCost": 1
-  //},
-  //{
-  //  "icName": "Void_Idol_3",
-  //  "pdName": "VoidIdol_3",
-  //  "convoName": "VOID_IDOL_3",
-  //  "notesCost": 1
-  //},
-  //{
-  //  "icName": "Weathered_Mask",
-  //  "pdName": "GodseekerMask",
-  //  "convoName": "GODSEEKER_MASK",
-  //  "notesCost": 1
-  //}
+  }
 ]

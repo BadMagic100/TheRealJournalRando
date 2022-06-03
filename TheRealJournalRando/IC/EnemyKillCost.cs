@@ -50,19 +50,19 @@ namespace TheRealJournalRando.IC
 
         public static EnemyKillCost ConstructEntryCost(string icKey)
         {
-            MinimalEnemyDef def = EnemyData.Data[icKey];
+            MinimalEnemyDef def = EnemyData.NormalData[icKey];
             return new EnemyKillCost(def.pdName, def.convoName, 1);
         }
 
         public static EnemyKillCost ConstructNotesCost(string icKey)
         {
-            MinimalEnemyDef def = EnemyData.Data[icKey];
+            MinimalEnemyDef def = EnemyData.NormalData[icKey];
             return new EnemyKillCost(def.pdName, def.convoName, def.notesCost);
         }
 
         public static EnemyKillCost ConstructCustomCost(string icKey, int amount)
         {
-            MinimalEnemyDef def = EnemyData.Data[icKey];
+            MinimalEnemyDef def = EnemyData.NormalData[icKey];
             return new EnemyKillCost(def.pdName, def.convoName, amount);
         }
     }
