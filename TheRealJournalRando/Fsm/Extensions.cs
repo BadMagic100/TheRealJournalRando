@@ -16,6 +16,15 @@ namespace TheRealJournalRando.Fsm
             newState.AddTransition(newEvent, to);
         }
 
+        public static void MoveTransition(this PlayMakerFSM self, string fromState, string fromEvent, string toState)
+        {
+            FsmState from = self.GetState(fromState);
+            FsmState to = self.GetState(toState);
+
+            from.RemoveTransitionsOn(fromEvent);
+            from.AddTransition(fromEvent, to);
+        }
+
         public static FsmString AddFsmString(this PlayMakerFSM fsm, string name, string value)
         {
             FsmString fsmString = new()

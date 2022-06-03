@@ -6,6 +6,7 @@ using ItemChanger.FsmStateActions;
 using ItemChanger.Modules;
 using Modding;
 using System.Collections.Generic;
+using System.Linq;
 using TheRealJournalRando.Fsm;
 
 namespace TheRealJournalRando.IC
@@ -67,6 +68,11 @@ namespace TheRealJournalRando.IC
             {
                 playerDataName = "Dummy";
             }
+            // ignore lost kin - other dream variants already do this
+            if (goName == "Lost Kin")
+            {
+                playerDataName = "Dummy";
+            }
 
             Record(playerDataName);
         }
@@ -81,29 +87,7 @@ namespace TheRealJournalRando.IC
                 return;
             }
 
-            // FK journal grant - godhome has same FSM key (in GG_False_Knight) but is gated behind a GGCheckIfBossScene
-            if (CheckIsFsm(self, "False Knight New", "FalseyControl") && self.Fsm.GameObject.scene.name == SceneNames.Crossroads_10_boss)
-            {
-                Record("FalseKnight");
-            }
-            // Mantis lords journal grant - reusable (in GG_Mantis_Lords) but gated behind GGCheckIfBossScene.
-            // Sisters of Battle (in GG_Mantis_Lords_V) uses a different FSM and does not grant journal entries normally; will not be handled
-            if (CheckIsFsm(self, "Mantis Battle", "Battle Control") && self.Fsm.GameObject.scene.name == SceneNames.Fungus2_15_boss)
-            {
-                Record("MantisLord");
-            }
-            // WK journal grant - the journal state in Battle Control still exists but is disconnected - will need to re-draw the edge from
-            // Knight 6->NEXT to Journal state
-            if (CheckIsFsm(self, "Battle Control", "Battle Control") && self.Fsm.GameObject.scene.name == SceneNames.Ruins2_03_boss)
-            {
-                Record("BlackKnight");
-            }
-            // Collector journal grant - reusable (in GG_Collector and GG_Collector_V) but gated behind GGCheckIfBossScene
-            if (CheckIsFsm(self, "Jar Collector", "Death") && self.Fsm.GameObject.scene.name == SceneNames.Ruins2_11_boss)
-            {
-                Record("JarCollector");
-            }
-            // TMG journal grant - godhome TMG will need special handling. probably in Grimm Boss-Control between Death Explode and Send Death Event
+            // overworld TMG journal grant - godhome TMG will need special handling. probably in Grimm Boss-Control between Death Explode and Send Death Event
             if (CheckIsFsm(self, "Defeated NPC", "Conversation Control") && self.Fsm.GameObject.scene.name == SceneNames.Grimm_Main_Tent)
             {
                 Record("Grimm");
@@ -113,12 +97,12 @@ namespace TheRealJournalRando.IC
             {
                 Record("NightmareGrimm");
             }
-            // THK journal grant - verified reusable
+            // THK journal grant
             if (CheckIsFsm(self, "Hollow Knight Boss", "Phase Control") && self.Fsm.GameObject.scene.name == SceneNames.Room_Final_Boss_Core)
             {
                 Record("HollowKnight");
             }
-            // radiance journal grant - verified reusable
+            // radiance journal grant
             if (CheckIsFsm(self, "Radiance", "Control") && self.Fsm.GameObject.scene.name == SceneNames.Dream_Final_Boss)
             {
                 Record("FinalBoss");
@@ -126,16 +110,6 @@ namespace TheRealJournalRando.IC
             if (CheckIsFsm(self, "Absolute Radiance", "Control") && self.Fsm.GameObject.scene.name == SceneNames.GG_Radiance)
             {
                 Record("FinalBoss");
-            }
-            // oro & mato journal grant - gated behind a PDBoolTest
-            if (CheckIsFsm(self, "Brothers", "Combo Control") && self.Fsm.GameObject.scene.name == SceneNames.GG_Nailmasters)
-            {
-                Record("NailBros");
-            }
-            // sly journal grant - gated behind a PDBoolTest
-            if (CheckIsFsm(self, "Sly Boss", "Control") && self.Fsm.GameObject.scene.name == SceneNames.GG_Sly)
-            {
-                Record("NailSage");
             }
         }
 
@@ -145,32 +119,73 @@ namespace TheRealJournalRando.IC
             // this hook handles any case where player data is set conditionally (and therefore the SetPlayerDataBool action is not hookable)
             // by injecting an additional state in the middle of an appropriate transition.
 
+            /***** Bosses *****/
+
+            // False knight
+            if (CheckFsmStrong(self, "False Knight New", "FalseyControl"))
+            {
+                InjectRecordState(self, "Open Map Shop and Journal", "FINISHED", "Steam", "FalseKnight");
+            }
+            // Mantis lords - Sisters of Battle (in GG_Mantis_Lords_V) uses a different FSM (same name)
+            // and does not grant journal entries normally; will not be handled
+            if (CheckFsmStrong(self, "Mantis Battle", "Battle Control", SceneNames.Fungus2_15_boss, SceneNames.GG_Mantis_Lords))
+            {
+                InjectRecordState(self, "Journal", "FINISHED", "Return 2", "MantisLord");
+            }
+            // watcher knights can otherwise be handled by hooking the PD setter, but unlike other reusable bosses you actually see a journal
+            // update message from the journal state. just injecting a state later to avoid this
+            if (CheckFsmStrong(self, "Battle Control", "Battle Control", SceneNames.Ruins2_03_boss, SceneNames.GG_Watcher_Knights))
+            {
+                InjectRecordState(self, "Pause 5", "FINISHED", "Music End", "BlackKnight");
+            }
+            // Collector
+            if (CheckFsmStrong(self, "Jar Collector", "Death"))
+            {
+                InjectRecordState(self, "Set Data", "FINISHED", "Fall", "JarCollector");
+            }
+            // godhome troupe master grimm
+            if (CheckFsmStrong(self, "Grimm Boss", "Control", SceneNames.GG_Grimm))
+            {
+                InjectRecordState(self, "Death Explode", "GG BOSS", "Send Death Event", "Grimm");
+            }
+            // oro & mato
+            if (CheckFsmStrong(self, "Brothers", "Combo Control", SceneNames.GG_Nailmasters))
+            {
+                InjectRecordState(self, "Journal", "FINISHED", "Defeated 2", "NailBros");
+            }
+            // nailsage sly
+            if (CheckFsmStrong(self, "Sly Boss", "Control"))
+            {
+                InjectRecordState(self, "Journal", "FINISHED", "Death Launch", "NailSage");
+            }
+
+            /***** "Special" Enemies *****/
+
             // wingsmoulds
-            if (self.gameObject.name.StartsWith("White Palace Fly") && self.FsmName == "Control")
+            if (CheckFsmWeak(self, "White Palace Fly", "Control"))
             {
                 InjectRecordState(self, "Journal Entry?", "FINISHED", "Journal Update?", "PalaceFly");
             }
             // siblings
-            if (self.gameObject.name.StartsWith("Shade Sibling") && self.FsmName == "Control")
+            if (CheckFsmWeak(self, "Shade Sibling", "Control"))
             {
                 InjectRecordState(self, "Journal Entry?", "FINISHED", "Journal Update?", "Sibling");
             }
             // grimmkin
-            if (self.gameObject.name.StartsWith("Flamebearer Small") && self.FsmName == "Control")
+            if (CheckFsmWeak(self, "Flamebearer Small", "Control"))
             {
                 InjectRecordState(self, "Fanfare 1", "FINISHED", "Flash Start", "FlameBearerSmall");
             }
-            if (self.gameObject.name.StartsWith("Flamebearer Med") && self.FsmName == "Control")
+            if (CheckFsmWeak(self, "Flamebearer Med", "Control"))
             {
                 InjectRecordState(self, "Fanfare 2", "FINISHED", "Flash Start", "FlameBearerMed");
             }
-            if (self.gameObject.name.StartsWith("Flamebearer Large") && self.FsmName == "Control")
+            if (CheckFsmWeak(self, "Flamebearer Large", "Control"))
             {
                 InjectRecordState(self, "Fanfare 3", "FINISHED", "Flash Start", "FlameBearerLarge");
             }
             // hopping/winged zotelings
-            if ((self.gameObject.name.StartsWith("Zoteling") || self.gameObject.name.StartsWith("Ordeal Zoteling"))
-                && self.FsmName == "Control")
+            if (CheckFsmWeak(self, "Zoteling", "Control") || CheckFsmWeak(self, "Ordeal Zoteling", "Control"))
             {
                 FsmBool livingVar = self.AddFsmBool("Alive", false);
                 FsmString pdVar = self.AddFsmString("Zoteling PD Name", "Dummy");
@@ -213,7 +228,7 @@ namespace TheRealJournalRando.IC
                 });
             }
             // volatile zotelings
-            if (self.gameObject.name.StartsWith("Zote Balloon") && self.FsmName == "Control")
+            if (CheckFsmWeak(self, "Zote Balloon", "Control"))
             {
                 InjectRecordState(self, "Die", "WAIT", "Reset", "ZotelingBalloon");
             }
@@ -222,6 +237,21 @@ namespace TheRealJournalRando.IC
         private bool CheckIsFsm(FsmStateAction self, string goName, string fsmName)
         {
             return self.Fsm.GameObjectName == goName && self.Fsm.Name == fsmName;
+        }
+
+        private bool CheckFsmStrong(PlayMakerFSM self, string goName, string fsmName, params string[] scenes)
+        {
+            if (self.gameObject.name != goName)
+            {
+                return false;
+            }
+            return CheckFsmWeak(self, goName, fsmName, scenes);
+        }
+
+        private bool CheckFsmWeak(PlayMakerFSM self, string goNamePrefix, string fsmName, params string[] scenes)
+        {
+            bool validScene = scenes.Length == 0 || scenes.Contains(self.gameObject.scene.name);
+            return validScene && self.gameObject.name.StartsWith(goNamePrefix) && self.FsmName == fsmName;
         }
 
         private void InjectRecordState(PlayMakerFSM self, string fromState, string fromEvent, string toState, string pdName)
