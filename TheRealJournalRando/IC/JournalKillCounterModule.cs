@@ -23,6 +23,7 @@ namespace TheRealJournalRando.IC
         {
             ModHooks.RecordKillForJournalHook += OnJournalRecord;
             On.PlayMakerFSM.OnEnable += OnFsmEnable;
+            On.ScuttlerControl.Hit += OnScuttlerKilled;
             On.HutongGames.PlayMaker.Actions.SetPlayerDataBool.OnEnter += OnSetPlayerDataBoolAction;
         }
 
@@ -30,6 +31,7 @@ namespace TheRealJournalRando.IC
         {
             ModHooks.RecordKillForJournalHook -= OnJournalRecord;
             On.PlayMakerFSM.OnEnable -= OnFsmEnable;
+            On.ScuttlerControl.Hit -= OnScuttlerKilled;
             On.HutongGames.PlayMaker.Actions.SetPlayerDataBool.OnEnter -= OnSetPlayerDataBoolAction;
         }
 
@@ -75,6 +77,20 @@ namespace TheRealJournalRando.IC
             }
 
             Record(playerDataName);
+        }
+
+        private void OnScuttlerKilled(On.ScuttlerControl.orig_Hit orig, ScuttlerControl self, HitInstance damageInstance)
+        {
+            bool wasAlive = ReflectionHelper.GetField<ScuttlerControl, bool>(self, "alive");
+
+            orig(self, damageInstance);
+
+            bool stillAlive = ReflectionHelper.GetField<ScuttlerControl, bool>(self, "alive");
+            if (wasAlive && !stillAlive)
+            {
+                string pdName = self.killsPDBool.Substring(5);
+                Record(pdName);
+            }
         }
 
         private void OnSetPlayerDataBoolAction(On.HutongGames.PlayMaker.Actions.SetPlayerDataBool.orig_OnEnter orig, SetPlayerDataBool self)

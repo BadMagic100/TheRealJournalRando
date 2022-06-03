@@ -33,5 +33,15 @@
     "key": "DEFEATED_ENEMIES",
     "sheet": "Fmt",
     "text": "You've defeated enough {0}s"
+  },
+  {
+    "key": "HUNTER_NOTES_HINT",
+    "sheet": "Fmt",
+    "text": "{0} to decipher the {1}."
+  },
+  {
+    "key": "HUNTER_NOTES_COMPLETE",
+    "sheet": "Fmt",
+    "text": "Deciphered the {0}."
   }
 ]

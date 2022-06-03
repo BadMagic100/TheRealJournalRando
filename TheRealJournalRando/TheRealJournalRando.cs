@@ -97,20 +97,36 @@ namespace TheRealJournalRando
             }
             iseldaShop.Items[iseldaShop.Items.Count - 1].AddTag<CostTag>().Cost = EnemyKillCost.ConstructCustomCost("Crawlid", 2);
 
+            AbstractPlacement crawlidNotes = Finder.GetLocation("Hunter's_Notes-Crawlid").Wrap();
+            ((ISingleCostPlacement)crawlidNotes).Cost = EnemyKillCost.ConstructCustomCost("Crawlid", 5);
+            crawlidNotes.AddTag<DisableItemPreviewTag>();
+            crawlidNotes.Items.Add(Finder.GetItem(ItemNames.Abyss_Shriek));
+
             AbstractPlacement tiktikEntry = Finder.GetLocation("Journal_Entry_Only-Tiktik").Wrap();
             ((ISingleCostPlacement)tiktikEntry).Cost = tiktikEntry.GetPlacementAndLocationTags().OfType<ImplicitCostTag>().First().Cost;
             tiktikEntry.Items.Add(Finder.GetItem("Soul_Totem-Path_of_Pain"));
             tiktikEntry.Items.Add(Finder.GetItem("Vengeful_Spirit"));
 
+            AbstractPlacement tiktikNotes = Finder.GetLocation("Hunter's_Notes-Tiktik").Wrap();
+            ((ISingleCostPlacement)tiktikNotes).Cost = EnemyKillCost.ConstructCustomCost("Tiktik", 5);
+            tiktikNotes.Items.Add(Finder.GetItem("Lifeblood_Cocoon_Small"));
+            tiktikNotes.Items.Add(Finder.GetItem("Descending_Dark"));
+
             AbstractPlacement maskflyNotes = Finder.GetLocation("Hunter's_Notes-Maskfly").Wrap();
             ((ISingleCostPlacement)maskflyNotes).Cost = maskflyNotes.GetPlacementAndLocationTags().OfType<ImplicitCostTag>().First().Cost;
+            maskflyNotes.AddTag<DisableCostPreviewTag>();
             maskflyNotes.Items.Add(Finder.GetItem("Mantis_Claw"));
 
             AbstractPlacement vengeflyScamEntry = Finder.GetLocation("Journal_Entry_Only-Vengefly").Wrap();
             ((ISingleCostPlacement)vengeflyScamEntry).Cost = new MultiCost(EnemyKillCost.ConstructEntryCost("Vengefly"), new GeoCost(50));
             vengeflyScamEntry.Items.Add(Finder.GetItem("Rancid_Egg"));
 
-            ItemChangerMod.AddPlacements(new[] {iseldaShop, tiktikEntry, maskflyNotes, vengeflyScamEntry});
+            AbstractPlacement lifeseedNotes = Finder.GetLocation("Hunter's_Notes-Lifeseed").Wrap();
+            ((ISingleCostPlacement)lifeseedNotes).Cost = lifeseedNotes.GetPlacementAndLocationTags().OfType<ImplicitCostTag>().First().Cost;
+            lifeseedNotes.Items.Add(Finder.GetItem("Grub"));
+            lifeseedNotes.Items.Add(Finder.GetItem("Mimic_Grub"));
+
+            ItemChangerMod.AddPlacements(new[] {iseldaShop, crawlidNotes, tiktikEntry, tiktikNotes, maskflyNotes, vengeflyScamEntry, lifeseedNotes});
 
             orig(self, permaDeath, bossRush);
         }

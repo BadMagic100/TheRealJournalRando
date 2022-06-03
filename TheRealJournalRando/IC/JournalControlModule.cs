@@ -23,6 +23,8 @@ namespace TheRealJournalRando.IC
             ["Shade"] = true,
         };
 
+        private Dictionary<string, Func<string>?> notesPreviews = new();
+
         public override void Initialize()
         {
             On.PlayMakerFSM.OnEnable += OnFsmEnable;
@@ -66,6 +68,18 @@ namespace TheRealJournalRando.IC
             }
         }
 
+        public void RegisterNotesPreviewHandler(string pdName, Func<string> handlePreview)
+        {
+            if (notesPreviews.ContainsKey(pdName))
+            {
+                notesPreviews[pdName] += handlePreview;
+            }
+            else
+            {
+                notesPreviews[pdName] = handlePreview;
+            }
+        }
+
         public bool EnemyEntryIsRegistered(string pdName)
         {
             return hasEntry.ContainsKey(pdName);
@@ -74,6 +88,23 @@ namespace TheRealJournalRando.IC
         public bool EnemyNotesIsRegistered(string pdName)
         {
             return hasNotes.ContainsKey(pdName);
+        }
+
+        public string? GetNotesPreview(string pdName)
+        {
+            if (notesPreviews.ContainsKey(pdName))
+            {
+                return notesPreviews[pdName]?.Invoke();
+            }
+            return null;
+        }
+
+        public void DeregisterNotesPreviewHandler(string pdName, Func<string> handlePreview)
+        {
+            if (notesPreviews.ContainsKey(pdName))
+            {
+                notesPreviews[pdName] -= handlePreview;
+            }
         }
 
         private bool CheckPdEntryRegistered(string pdName, ref string enemyName)
@@ -183,7 +214,13 @@ namespace TheRealJournalRando.IC
             if (self.gameObject.name == "Enemy List" && self.FsmName == "Item List Control")
             {
                 FsmState notesCheck = self.GetState("Notes?");
-                notesCheck.Actions[3] = new NotesInterceptProxyCompare(this);
+                notesCheck.Actions[3] = new HasNotesComparisonProxy(this);
+
+                FsmState displayKillsState = self.GetState("Display Kills");
+                displayKillsState.Actions[4] = new KillCounterDisplayProxy(this);
+
+                FsmState displayNotesState = self.GetState("Get Notes");
+                displayNotesState.Actions[4] = new NotesDisplayProxy(this);
             }
         }
         

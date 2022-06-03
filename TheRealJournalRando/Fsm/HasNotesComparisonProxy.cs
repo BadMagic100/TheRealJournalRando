@@ -3,11 +3,11 @@ using TheRealJournalRando.IC;
 
 namespace TheRealJournalRando.Fsm
 {
-    internal class NotesInterceptProxyCompare : FsmStateAction
+    internal class HasNotesComparisonProxy : FsmStateAction
     {
         private readonly JournalControlModule module;
 
-        public NotesInterceptProxyCompare(JournalControlModule module)
+        public HasNotesComparisonProxy(JournalControlModule module)
         {
             this.module = module;
         }
