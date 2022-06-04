@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace TheRealJournalRando.Data
 {
-    public record struct MinimalEnemyDef(string icName, string pdName, string convoName, int notesCost);
+    public record struct MinimalEnemyDef(string icName, string pdName, string convoName, bool ignoredForHunterMark, int notesCost);
 
     public static class EnemyData
     {

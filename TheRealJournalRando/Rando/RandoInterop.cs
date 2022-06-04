@@ -7,6 +7,7 @@
         public static void HookRandomizer()
         {
             ConnectionMenu.Hook();
+            LogicPatcher.Hook();
         }
     }
 }

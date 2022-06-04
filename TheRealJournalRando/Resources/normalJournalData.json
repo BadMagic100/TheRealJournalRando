@@ -111,7 +111,8 @@
     "icName": "Menderbug",
     "pdName": "MenderBug",
     "convoName": "MENDERBUG",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Lifeseed",
@@ -435,7 +436,8 @@
     "icName": "White_Defender",
     "pdName": "WhiteDefender",
     "convoName": "WHITE_DEFENDER",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Flukefey",
@@ -783,31 +785,36 @@
     "icName": "Zote",
     "pdName": "Zote",
     "convoName": "ZOTE",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Grey_Prince_Zote",
     "pdName": "GreyPrince",
     "convoName": "GREY_PRINCE",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Winged_Zoteling",
     "pdName": "ZotelingBuzzer",
     "convoName": "ZOTE_FLYER",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Hopping_Zoteling",
     "pdName": "ZotelingHopper",
     "convoName": "ZOTE_HOPPER",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Volatile_Zoteling",
     "pdName": "ZotelingBalloon",
     "convoName": "ZOTE_BALLOON",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Xero",
@@ -855,49 +862,57 @@
     "icName": "Grimmkin_Novice",
     "pdName": "FlameBearerSmall",
     "convoName": "FLAMEBEARER_SMALL",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Grimmkin_Master",
     "pdName": "FlameBearerMed",
     "convoName": "FLAMEBEARER_MED",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Grimmkin_Nightmare",
     "pdName": "FlameBearerLarge",
     "convoName": "FLAMEBEARER_LARGE",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Grimm",
     "pdName": "Grimm",
     "convoName": "GRIMM",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Nightmare_King",
     "pdName": "NightmareGrimm",
     "convoName": "NIGHTMARE_GRIMM",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Nailmasters_Oro_&_Mato",
     "pdName": "NailBros",
     "convoName": "NAILMASTERS",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Paintmaster_Sheo",
     "pdName": "Paintmaster",
     "convoName": "PAINTMASTER",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Great_Nailsage_Sly",
     "pdName": "Nailsage",
     "convoName": "SAGE_SLY",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Wingmould",
@@ -933,6 +948,7 @@
     "icName": "Pure_Vessel",
     "pdName": "HollowKnightPrime",
     "convoName": "PURE_VESSEL",
-    "notesCost": 1
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   }
 ]
