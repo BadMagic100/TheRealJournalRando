@@ -11,7 +11,8 @@ namespace TheRealJournalRando.Rando
 {
     public class ConnectionMenu
     {
-        private const int VSPACE_LARGE = 220;
+        private const int VSPACE_MED = 200;
+        private const int VSPACE_LARGE = 300;
         private const int VSPACE_SMALL = 50;
         private const int HSPACE_LARGE = 300;
         private const int HSPACE_XLARGE = 750;
@@ -51,11 +52,10 @@ namespace TheRealJournalRando.Rando
             toplevelSettingHolder.Insert(0, headingLabel);
             toplevelVip.Add(toplevelSettingHolder);
 
-            GridItemPanel categoryGrid1 = new(journalRandoPage, Vector2.zero, 2, VSPACE_LARGE, HSPACE_XLARGE, false);
-            toplevelVip.Add(categoryGrid1);
-
-            GridItemPanel categoryGrid2 = new(journalRandoPage, Vector2.zero, 1, VSPACE_LARGE, HSPACE_LARGE, false);
-            toplevelVip.Add(categoryGrid2);
+            GridItemPanel categoryGrid1 = new(journalRandoPage, Vector2.zero, 2, VSPACE_MED, HSPACE_XLARGE, false);
+            GridItemPanel categoryGrid2 = new(journalRandoPage, Vector2.zero, 1, VSPACE_MED, HSPACE_XLARGE, false);
+            VerticalItemPanel categoryVip = new(journalRandoPage, Vector2.zero, VSPACE_MED, false, categoryGrid1, categoryGrid2);
+            toplevelVip.Add(categoryVip);
 
             MenuElementFactory<JournalRandomizationSettings.PoolSettings> poolMef = new(journalRandoPage, RandoInterop.Settings.Pools);
             MenuLabel poolsLabel = new(journalRandoPage, "Pool Settings");
@@ -82,6 +82,9 @@ namespace TheRealJournalRando.Rando
             Localization.Localize(costsMef);
             Localization.Localize(llsLabel);
             Localization.Localize(llsMef);
+
+            toplevelVip.ResetNavigation();
+            toplevelVip.SymSetNeighbor(Neighbor.Down, journalRandoPage.backButton);
         }
     }
 }

@@ -35,7 +35,11 @@ namespace TheRealJournalRando.Rando
         [MenuLabel("Randomization Type")]
         public JournalRandomizationType JournalRandomizationType { get; set; } = JournalRandomizationType.All;
 
+        [MenuLabel("Hunter's Notes Previews")]
         public CostItemPreview JournalPreviews { get; set; } = CostItemPreview.CostAndName;
+
+        [MenuLabel("Dupe Hunter's Journal")]
+        public bool DupeJournal { get; set; } = false;
 
         public class PoolSettings
         {
