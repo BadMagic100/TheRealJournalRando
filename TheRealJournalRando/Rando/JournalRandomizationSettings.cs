@@ -4,6 +4,7 @@ namespace TheRealJournalRando.Rando
 {
     public enum JournalRandomizationType
     {
+        None,
         EntriesOnly,
         NotesOnly,
         [MenuLabel("Full Journal Rando")]
@@ -25,6 +26,19 @@ namespace TheRealJournalRando.Rando
         CostOnly,
         NameOnly,
         None
+    }
+
+    public enum VoidIdol
+    {
+        None = 0,
+        Attuned = 1,
+        Ascended = 2,
+        Radiant = 3,
+    }
+
+    public static class VoidIdolExtensions
+    {
+        public static int Level(this VoidIdol v) => (int)v;
     }
 
     public class JournalRandomizationSettings
@@ -67,12 +81,14 @@ namespace TheRealJournalRando.Rando
         {
             public bool RandomizeMenderbug { get; set; } = false;
 
+            [MenuLabel("Randomize Hunter's Mark")]
+            public bool RandomizeHuntersMark { get; set; } = false;
+
             public bool RandomizePantheonBosses { get; set; } = false;
 
             public bool RandomizeWeatheredMask { get; set; } = false;
 
-            [MenuRange(0, 3)]
-            public int RandomizeVoidIdol { get; set; } = 0;
+            public VoidIdol RandomizeVoidIdol { get; set; } = 0;
         }
 
         public LongLocationSettings LongLocations { get; set; } = new();

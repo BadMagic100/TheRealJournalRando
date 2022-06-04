@@ -12,9 +12,9 @@ is provided below, grouped by category.
 
 ### Basic Settings
 
-* **Define Refs** - if entries are not randomized, tells rando that entries are vanilla in logic (rather
-  than not being items). Useful for using custom pool/group injectors.
 * **Randomization type** - one of the following:
+  * None - enable the connection without randomization - this is useful for use with custom pools
+    or vanilla itemsync.
   * Entries only - For killable enemies, the "location" is killing a single enemy of a given type
     (when the enemy would normally become visible in the journal). The corresponding item will unlock the
     journal entry. Killing the default number of enemies will unlock the Hunter's notes as usual.
@@ -25,6 +25,12 @@ is provided below, grouped by category.
   * Full Journal Rando - Both of the location types described above will exist. There will be 2 corresponding
     item types, one which grants only visibility in the journal, and one which grants the Hunter's notes.
     The items are progressive, so you are guaranteed to receive them in order.
+* **Hunter's Notes Previews** - How previews will be handled at Hunter's notes locations. The options
+  are the same shop preview settings in base rando.
+* **Dupe Hunter's Journal** - For helping get access to the above previews.
+
+### Pool Settings
+
 * **Regular Entries** - a toggle to determine whether entries for normal enemies that are required for
   the Keen Hunter achievement will be randomized.
 * **Boss Entries** - a toggle to determine whether entries for bosses that are required for the Keen Hunter
@@ -45,18 +51,12 @@ is provided below, grouped by category.
   * Random per entry - A random weight will be chosen for each randomized entry. Hunter's notes locations
     will always cost at least 1 kill.
 
-### Preview settings
-
-* **Cost Previews** - determines whether you will be able to see the cost of the Hunter's notes locations
-  when placed.
-* **Item Previews** - determines whether you will be able to see the item(s) placed at the Hunter's notes
-  locations when placed.
-
 ### Long Location Settings
 
+* **Randomize Menderbug** - whether the Menderbug entry will be randomized.
+* **Randomize Hunter's Mark** - whether the Hunter's Mark should be randomized 
+  (tied to the items, not the locations)
 * **Randomize Pantheon Bosses** - whether the entries for the bosses at the end of the first 4 pantheons
   (Oro & Mato, Sheo, Sly, and Pure Vessel) will be randomized.
-* **Randomize Void Idol** - a number between 0 and 3 representing how many levels of the Void Idol entry will
-  be randomized.
 * **Randomize Weathered Mask** - whether the Weathered Mask entry will be randomized.
-* **Randomize Menderbug** - whether the Menderbug entry will be randomized.
+* **Randomize Void Idol** - the maximum level of the Void Idol entry to randomize.
