@@ -107,7 +107,7 @@ namespace TheRealJournalRando.Rando
                 {
                     info.onRandoLocationCreation += (factory, rl) =>
                     {
-                        rl.AddCost(new LogicEnemyKillCost(factory.lm, enemy.icName, isNotes ? enemy.notesCost : 1));
+                        rl.AddCost(new LogicEnemyKillCost(factory.lm, enemy.icName, enemy.respawns, isNotes ? enemy.notesCost : 1));
                     };
                 }
             });
