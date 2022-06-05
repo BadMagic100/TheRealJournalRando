@@ -1,6 +1,626 @@
 ﻿[
   {
+    "name": "Defeated_Any_Crawlid",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Vengefly",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Vengefly_King",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Gruzzer",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Gruz_Mother",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Tiktik",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Aspid_Hunter",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Aspid_Mother",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Aspid_Hatchling",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Wandering_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Husk_Hornhead",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Leaping_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Husk_Bully",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Husk_Warrior",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Husk_Guard",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Entombed_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_False_Knight",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Maggot",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Menderbug",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Lifeseed",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Baldur",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Elder_Baldur",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mosscreep",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mossfly",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mosskin",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Volatile_Mosskin",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Fool_Eater",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Squit",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Obble",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Gulka",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Maskfly",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Moss_Charger",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Massive_Moss_Charger",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Moss_Knight",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Durandoo",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Duranda",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Aluba",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Uoma",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Ooma",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Uumuu",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Ambloom",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Fungling",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Fungoon",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Sporg",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Fungified_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Shrumeling",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Shrumal_Warrior",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Shrumal_Ogre",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mantis_Youth",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mantis_Warrior",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mantis_Lords",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Husk_Sentry",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Heavy_Sentry",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Winged_Sentry",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Lance_Sentry",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mistake",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Folly",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Soul_Twister",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Soul_Warrior",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Soul_Master",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Husk_Dandy",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Cowardly_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Gluttonous_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Gorgeous_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Great_Husk_Sentry",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Watcher_Knight",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_The_Collector",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Belfly",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Pilflip",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Hwurmp",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Bluggsac",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Dung_Defender",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_White_Defender",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Flukefey",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Flukemon",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Flukemunga",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Flukemarm",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Shardmite",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Glimback",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Crystal_Hunter",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Crystal_Crawler",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Husk_Miner",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Crystallised_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Crystal_Guardian",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Furious_Vengefly",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Volatile_Gruzzer",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Violent_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Slobbering_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Dirtcarver",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Carver_Hatcher",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Corpse_Creeper",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Deepling",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Deephunter",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Little_Weaver",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Stalking_Devout",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Nosk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Shadow_Creeper",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Lesser_Mawlek",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mawlurk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Brooding_Mawlek",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Lightseed",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Infected_Balloon",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Broken_Vessel",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Boofly",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Primal_Aspid",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Hopper",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Great_Hopper",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Grub_Mimic",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Hiveling",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Hive_Soldier",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Hive_Guardian",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Husk_Hive",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Hive_Knight",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Spiny_Husk",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Loodle",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mantis_Petra",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Mantis_Traitor",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Traitor_Lord",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Sharp_Baldur",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Armoured_Squit",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Battle_Obble",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Oblobble",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Shielded_Fool",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Sturdy_Fool",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Winged_Fool",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Heavy_Fool",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Death_Loodle",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Volt_Twister",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_God_Tamer",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Pale_Lurker",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Zote",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Grey_Prince_Zote",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Winged_Zoteling",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Hopping_Zoteling",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Volatile_Zoteling",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Xero",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Gorb",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Elder_Hu",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Marmu",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_No_Eyes",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Galien",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Markoth",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Grimmkin_Novice",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Grimmkin_Master",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Grimmkin_Nightmare",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Grimm",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Nightmare_King",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Nailmasters_Oro_&_Mato",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Paintmaster_Sheo",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Great_Nailsage_Sly",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Wingmould",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Royal_Retainer",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Kingsmould",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Sibling",
+    "logic": "ANY"
+  },
+  {
     "name": "Defeated_Any_Hornet",
     "logic": "Defeated_Hornet_1 | Defeated_Hornet_2"
+  },
+  {
+    "name": "Defeated_Any_Pure_Vessel",
+    "logic": "ANY"
   }
 ]

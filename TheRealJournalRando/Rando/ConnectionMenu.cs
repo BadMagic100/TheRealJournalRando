@@ -66,8 +66,9 @@ namespace TheRealJournalRando.Rando
 
             MenuElementFactory<JournalRandomizationSettings.CostSettings> costsMef = new(journalRandoPage, RandoInterop.Settings.Costs);
             MenuLabel costsLabel = new(journalRandoPage, "Cost Randomization Settings");
-            GridItemPanel costsSettingsHolder = new(journalRandoPage, Vector2.zero, 2, VSPACE_SMALL, HSPACE_LARGE, false, costsMef.Elements);
-            categoryGrid1.Add(new VerticalItemPanel(journalRandoPage, Vector2.zero, VSPACE_SMALL + 35, false, costsLabel, costsSettingsHolder));
+            GridItemPanel costsSettingsHolder = new(journalRandoPage, Vector2.zero, 2, VSPACE_SMALL, HSPACE_LARGE, false, costsMef.Elements.Skip(1).ToArray());
+            VerticalItemPanel costsLabelsHolder = new(journalRandoPage, Vector2.zero, VSPACE_SMALL, false, costsLabel, costsMef.Elements[0]);
+            categoryGrid1.Add(new VerticalItemPanel(journalRandoPage, Vector2.zero, VSPACE_SMALL * 2 + 35, false, costsLabelsHolder, costsSettingsHolder));
 
             MenuElementFactory<JournalRandomizationSettings.LongLocationSettings> llsMef = new(journalRandoPage, RandoInterop.Settings.LongLocations);
             MenuLabel llsLabel = new(journalRandoPage, "Long Location Settings");

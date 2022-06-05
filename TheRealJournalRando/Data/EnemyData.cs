@@ -5,12 +5,14 @@ using System.Linq;
 
 namespace TheRealJournalRando.Data
 {
-    public record struct MinimalEnemyDef(string icName, string pdName, string convoName, bool ignoredForHunterMark, int notesCost);
+    public record struct MinimalEnemyDef(string icName, string pdName, string convoName, bool ignoredForHunterMark, bool unkillable, int notesCost);
 
     public static class EnemyData
     {
         public static readonly IReadOnlyDictionary<string, MinimalEnemyDef> NormalData;
         public static readonly IReadOnlyDictionary<string, MinimalEnemyDef> SpecialData;
+
+        public static IEnumerable<MinimalEnemyDef> AllDefs => NormalData.Values.Concat(SpecialData.Values);
 
         static EnemyData()
         {

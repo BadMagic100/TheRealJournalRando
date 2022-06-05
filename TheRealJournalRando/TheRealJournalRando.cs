@@ -1,8 +1,10 @@
 ﻿using ItemChanger;
-using ItemChanger.Tags;
 using ItemChanger.UIDefs;
 using Modding;
+using Newtonsoft.Json;
+using RandomizerCore.Logic;
 using System;
+using System.Collections.Generic;
 using TheRealJournalRando.Data;
 using TheRealJournalRando.IC;
 
@@ -43,6 +45,12 @@ namespace TheRealJournalRando
 
             if (ModHooks.GetMod("Randomizer 4") is Mod)
             {
+                List<RawLogicDef> logic = new();
+                foreach(MinimalEnemyDef def in EnemyData.NormalData.Values)
+                {
+                    logic.Add(new($"Defeated_Any_{def.icName}", "ANY"));
+                }
+                Log(JsonConvert.SerializeObject(logic));
                 Rando.RandoInterop.HookRandomizer();
             }
 
@@ -56,8 +64,8 @@ namespace TheRealJournalRando
 
             foreach (MinimalEnemyDef enemyDef in EnemyData.NormalData.Values)
             {
-                string entryName = $"Journal_Entry_Only-{enemyDef.icName}";
-                string notesName = $"Hunter's_Notes-{enemyDef.icName}";
+                string entryName = enemyDef.icName.AsEntryName();
+                string notesName = enemyDef.icName.AsNotesName();
                 LanguageString localizedEnemyName = new("Journal", $"NAME_{enemyDef.convoName}");
 
                 Finder.DefineCustomItem(new EnemyJournalEntryOnlyItem(enemyDef.pdName)
@@ -95,11 +103,6 @@ namespace TheRealJournalRando
                     flingType = FlingType.Everywhere,
                     tags = new()
                     {
-                        new ImplicitCostTag()
-                        {
-                            Cost = EnemyKillCost.ConstructEntryCost(enemyDef.icName),
-                            Inherent = false,
-                        },
                         InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
                         InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
                     }
@@ -110,11 +113,6 @@ namespace TheRealJournalRando
                     flingType = FlingType.Everywhere,
                     tags = new()
                     {
-                        new ImplicitCostTag()
-                        {
-                            Cost = EnemyKillCost.ConstructNotesCost(enemyDef.icName),
-                            Inherent = false,
-                        },
                         InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
                         InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
                     }

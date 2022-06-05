@@ -25,35 +25,35 @@
     "icName": "Hunter's_Mark",
     "pdName": "HunterMark",
     "convoName": "HUNTERMARK",
-    "notesCost": 1,
+    "unkillable": true,
     "ignoredForHunterMark": true
   },
   {
     "icName": "Void_Idol_1",
     "pdName": "VoidIdol_1",
     "convoName": "VOID_IDOL_1",
-    "notesCost": 1,
+    "unkillable": true,
     "ignoredForHunterMark": true
   },
   {
     "icName": "Void_Idol_2",
     "pdName": "VoidIdol_2",
     "convoName": "VOID_IDOL_2",
-    "notesCost": 1,
+    "unkillable": true,
     "ignoredForHunterMark": true
   },
   {
     "icName": "Void_Idol_3",
     "pdName": "VoidIdol_3",
     "convoName": "VOID_IDOL_3",
-    "notesCost": 1,
+    "unkillable": true,
     "ignoredForHunterMark": true
   },
   {
     "icName": "Weathered_Mask",
     "pdName": "GodseekerMask",
     "convoName": "GODSEEKER_MASK",
-    "notesCost": 1,
+    "unkillable": true,
     "ignoredForHunterMark": true
   }
 ]

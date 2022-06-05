@@ -1,14 +1,16 @@
 ﻿using MenuChanger.Attributes;
+using System;
 
 namespace TheRealJournalRando.Rando
 {
+    [Flags]
     public enum JournalRandomizationType
     {
-        None,
-        EntriesOnly,
-        NotesOnly,
+        None = 0,
+        EntriesOnly = 1,
+        NotesOnly = 2,
         [MenuLabel("Full Journal Rando")]
-        All
+        All = 3,
     }
 
     public enum CostRandomizationType
@@ -66,6 +68,8 @@ namespace TheRealJournalRando.Rando
 
         public class CostSettings
         {
+            public CostRandomizationType CostRandomizationType { get; set; } = CostRandomizationType.RandomPerEntry;
+
             [MenuLabel("Minimum Cost Weight")]
             [MenuRange(0f, 1f)]
             public float MinimumCostWeight { get; set; } = 0.5f;

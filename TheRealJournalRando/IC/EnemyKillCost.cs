@@ -62,8 +62,16 @@ namespace TheRealJournalRando.IC
 
         public static EnemyKillCost ConstructCustomCost(string icKey, int amount)
         {
-            MinimalEnemyDef def = EnemyData.NormalData[icKey];
-            return new EnemyKillCost(def.pdName, def.convoName, amount);
+            try
+            {
+                MinimalEnemyDef def = EnemyData.NormalData[icKey];
+                return new EnemyKillCost(def.pdName, def.convoName, amount);
+            }
+            catch
+            {
+                TheRealJournalRando.Instance.LogError($"Failed to construct cost: {amount} {icKey}");
+                throw;
+            }
         }
     }
 }

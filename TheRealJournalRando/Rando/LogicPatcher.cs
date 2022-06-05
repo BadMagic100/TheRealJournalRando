@@ -30,11 +30,11 @@ namespace TheRealJournalRando.Rando
 
         private static void AddTermsAndItems(LogicManagerBuilder lmb)
         {
-            Term hunterNotes = lmb.GetTerm("HUNTERNOTES");
+            Term hunterNotes = lmb.GetOrAddTerm("HUNTERNOTES");
             foreach (MinimalEnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
             {
-                lmb.AddItem(new EmptyItem($"Journal_Entry_Only-{enemy.icName}"));
-                string hunterNotesItemName = $"Hunter's_Notes-{enemy.icName}";
+                lmb.AddItem(new EmptyItem(enemy.icName.AsEntryName()));
+                string hunterNotesItemName = enemy.icName.AsNotesName();
                 if (enemy.ignoredForHunterMark)
                 {
                     lmb.AddItem(new EmptyItem(hunterNotesItemName));
@@ -60,8 +60,8 @@ namespace TheRealJournalRando.Rando
             // todo - logic for special enemy locations
             foreach (MinimalEnemyDef enemy in EnemyData.NormalData.Values)
             {
-                string entryLocationName = $"Journal_Entry_Only-{enemy.icName}";
-                string hunterNotesLocationName = $"Hunter's_Notes-{enemy.icName}";
+                string entryLocationName = enemy.icName.AsEntryName();
+                string hunterNotesLocationName = enemy.icName.AsNotesName();
                 string logic = $"Defeated_Any_{enemy.icName}";
                 lmb.AddLogicDef(new RawLogicDef(entryLocationName, logic));
                 lmb.AddLogicDef(new RawLogicDef(hunterNotesLocationName, logic));

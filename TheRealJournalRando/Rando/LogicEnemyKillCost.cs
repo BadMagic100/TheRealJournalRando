@@ -15,6 +15,8 @@ namespace TheRealJournalRando.Rando
 
         public LogicEnemyKillCost(LogicManager lm, string enemyIcName, int amount)
         {
+            EnemyIcName = enemyIcName;
+            Amount = amount;
             CanBenchWaypoint = lm.GetTerm("Can_Bench");
             // use our own custom-defined "Defeated_Any" waypoints to make sure we can cover our special cases
             DefeatWaypoint = lm.GetTerm($"Defeated_Any_{enemyIcName}");
