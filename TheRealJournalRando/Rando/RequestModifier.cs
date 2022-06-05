@@ -1,7 +1,9 @@
 ﻿using ItemChanger;
 using ItemChanger.Placements;
+using RandomizerCore.Logic;
 using RandomizerMod.RC;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TheRealJournalRando.Data;
 using TheRealJournalRando.IC;
@@ -11,12 +13,31 @@ namespace TheRealJournalRando.Rando
     internal static class RequestModifier
     {
         private const string POOL_JOURNAL_ENTRIES = "JournalEntries"; //from rando's pools.json
+        private static readonly HashSet<string> handledCostTerms = new()
+        {
+            "HORNETS",
+            "CRYSTALGUARDIANS",
+            "GRIMMKINNOVICES",
+            "GRIMMKINMASTERS",
+            "GRIMMKINNIGHTMARES",
+            "KINGSMOULDS"
+        };
+        private static readonly Dictionary<string, string> icNameByTermName = new()
+        {
+            ["HORNETS"] = "Hornet",
+            ["CRYSTALGUARDIANS"] = "Crystal_Guardian",
+            ["GRIMMKINNOVICES"] = "Grimmkin_Novice",
+            ["GRIMMKINMASTERS"] = "Grimmkin_Master",
+            ["GRIMMKINNIGHTMARES"] = "Grimmkin_Nightmare",
+            ["KINGSMOULDS"] = "Kingsmould",
+        };
 
         public static void Hook()
         {
             RequestBuilder.OnUpdate.Subscribe(-500f, SetupRefs);
             RequestBuilder.OnUpdate.Subscribe(-490f, ApplyNotesCostRandomization);
             RequestBuilder.OnUpdate.Subscribe(0f, ApplyPoolSettings);
+            RequestBuilder.OnUpdate.Subscribe(0f, AddVanillaFiniteEnemies);
             RequestBuilder.OnUpdate.Subscribe(20f, DupeJournal);
         }
 
@@ -89,16 +110,28 @@ namespace TheRealJournalRando.Rando
                     }
                     if (pmt is ISingleCostPlacement iscp)
                     {
-                        foreach (LogicEnemyKillCost cost in rl.costs.OfType<LogicEnemyKillCost>())
+                        foreach (LogicCost lc in rl.costs)
                         {
-                            EnemyKillCost newCost = EnemyKillCost.ConstructCustomCost(cost.EnemyIcName, cost.Amount);
-                            if (iscp.Cost == null)
+                            Cost? newCost = null;
+                            if (lc is LogicEnemyKillCost kc)
                             {
-                                iscp.Cost = newCost;
+                                newCost = EnemyKillCost.ConstructCustomCost(kc.EnemyIcName, kc.Amount);
                             }
-                            else
+                            else if (lc is SimpleCost sc && handledCostTerms.Contains(sc.term.Name))
                             {
-                                iscp.Cost += newCost;
+                                newCost = EnemyKillCost.ConstructCustomCost(icNameByTermName[sc.term.Name], sc.threshold);
+                            }
+
+                            if (newCost != null)
+                            {
+                                if (iscp.Cost == null)
+                                {
+                                    iscp.Cost = newCost;
+                                }
+                                else
+                                {
+                                    iscp.Cost += newCost;
+                                }
                             }
                         }
                     }
@@ -107,7 +140,35 @@ namespace TheRealJournalRando.Rando
                 {
                     info.onRandoLocationCreation += (factory, rl) =>
                     {
-                        rl.AddCost(new LogicEnemyKillCost(factory.lm, enemy.icName, enemy.respawns, isNotes ? enemy.notesCost : 1));
+                        int cost = isNotes ? enemy.notesCost : 1;
+                        if (enemy.icName == "Hornet")
+                        {
+                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("HORNETS"), cost));
+                        }
+                        else if (enemy.icName == "Crystal_Guardian")
+                        {
+                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("CRYSTALGUARDIANS"), cost));
+                        }
+                        else if (enemy.icName == "Grimmkin_Novice")
+                        {
+                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINNOVICES"), cost));
+                        }
+                        else if (enemy.icName == "Grimmkin_Master")
+                        {
+                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINMASTERS"), cost));
+                        }
+                        else if (enemy.icName == "Grimmkin_Nightmare")
+                        {
+                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINNIGHTMARES"), cost));
+                        }
+                        else if (enemy.icName == "Kingsmould")
+                        {
+                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("KINGSMOULDS"), cost));
+                        }
+                        else
+                        {
+                            rl.AddCost(new LogicEnemyKillCost(factory.lm, enemy.icName, enemy.respawns, cost));
+                        }
                     };
                 }
             });
@@ -154,21 +215,22 @@ namespace TheRealJournalRando.Rando
                 {
                     info.onRandoLocationCreation += (factory, rl) =>
                     {
-                        if (rl.costs == null)
-                        {
-                            TheRealJournalRando.Instance.Log("Rejected cost randomization for " + notesName);
-                            return;
-                        }
-
                         double weight = RandoInterop.Settings.Costs.CostRandomizationType switch
                         {
                             CostRandomizationType.RandomFixedWeight => fixedWeight,
                             CostRandomizationType.RandomPerEntry => ComputeWeight(factory.rng),
                             _ => throw new NotImplementedException("Invalid cost randomization type!")
                         };
-                        foreach (LogicEnemyKillCost c in rl.costs.OfType<LogicEnemyKillCost>())
+                        foreach (LogicCost c in rl.costs)
                         {
-                            c.Amount = (int)Math.Max(1, Math.Round(c.Amount * weight));
+                            if (c is SimpleCost sc && handledCostTerms.Contains(sc.term.Name))
+                            {
+                                sc.threshold = (int)Math.Max(1, Math.Round(sc.threshold * weight));
+                            }
+                            else if (c is LogicEnemyKillCost kc)
+                            {
+                                kc.Amount = (int)Math.Max(1, Math.Round(kc.Amount * weight));
+                            }
                         }
                     };
                 });
@@ -180,6 +242,31 @@ namespace TheRealJournalRando.Rando
             double result = Math.Min(RandoInterop.Settings.Costs.MinimumCostWeight, RandoInterop.Settings.Costs.MaximumCostWeight)
                 + rng.NextDouble() * Math.Abs(RandoInterop.Settings.Costs.MaximumCostWeight - RandoInterop.Settings.Costs.MinimumCostWeight);
             return (float)result;
+        }
+
+        private static void AddVanillaFiniteEnemies(RequestBuilder rb)
+        {
+            rb.AddToVanilla(LogicItems.Hornet, LocationNames.Mothwing_Cloak);
+            rb.AddToVanilla(LogicItems.Hornet, LogicLocations.Hornet2);
+
+            rb.AddToVanilla(LogicItems.CrystalGuardian, LocationNames.Boss_Geo_Crystal_Guardian);
+            rb.AddToVanilla(LogicItems.CrystalGuardian, LocationNames.Boss_Geo_Enraged_Guardian);
+
+            rb.AddToVanilla(LogicItems.GrimmkinNovice, LocationNames.Grimmkin_Flame_City_Storerooms);
+            rb.AddToVanilla(LogicItems.GrimmkinNovice, LocationNames.Grimmkin_Flame_Crystal_Peak);
+            rb.AddToVanilla(LogicItems.GrimmkinNovice, LocationNames.Grimmkin_Flame_Greenpath);
+
+            rb.AddToVanilla(LogicItems.GrimmkinMaster, LocationNames.Grimmkin_Flame_Kings_Pass);
+            rb.AddToVanilla(LogicItems.GrimmkinMaster, LocationNames.Grimmkin_Flame_Resting_Grounds);
+            rb.AddToVanilla(LogicItems.GrimmkinMaster, LocationNames.Grimmkin_Flame_Kingdoms_Edge);
+
+            rb.AddToVanilla(LogicItems.GrimmkinNightmare, LocationNames.Grimmkin_Flame_Fungal_Core);
+            rb.AddToVanilla(LogicItems.GrimmkinNightmare, LocationNames.Grimmkin_Flame_Hive);
+            rb.AddToVanilla(LogicItems.GrimmkinNightmare, LocationNames.Grimmkin_Flame_Ancient_Basin);
+
+            rb.AddToVanilla(LogicItems.Kingsmould, LogicLocations.KingsmouldPalaceEntry);
+            rb.AddToVanilla(LogicItems.Kingsmould, LogicLocations.KingsmouldPalaceArena1);
+            rb.AddToVanilla(LogicItems.RespawningKingsmould, LocationNames.Journal_Entry_Seal_of_Binding);
         }
     }
 }

@@ -44,13 +44,17 @@
     <None Remove="build.yml" />
     <None Remove="README.md" />
     <None Remove="Resources\languageData.json" />
+    <None Remove="Resources\Logic\enemyLocations.json" />
     <None Remove="Resources\Logic\macros.json" />
+    <None Remove="Resources\Logic\terms.json" />
     <None Remove="Resources\Logic\waypoints.json" />
     <None Remove="Resources\normalJournalData.json" />
     <None Remove="Resources\specialJournalData.json" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Logic\enemyLocations.json" />
     <EmbeddedResource Include="Resources\Logic\macros.json" />
+    <EmbeddedResource Include="Resources\Logic\terms.json" />
     <EmbeddedResource Include="Resources\Logic\waypoints.json" />
     <EmbeddedResource Include="Resources\normalJournalData.json" />
     <EmbeddedResource Include="Resources\languageData.json" />

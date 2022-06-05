@@ -1,0 +1,14 @@
+﻿[
+  {
+    "name": "Hornet_2",
+    "logic": "Deepnest_East_Hornet[left1] + Defeated_Hornet_2"
+  },
+  {
+    "name": "Kingsmould_Palace_Entry",
+    "logic": "*White_Palace_11[door2]"
+  },
+  {
+    "name": "Kingsmould_Palace_Arena_1",
+    "logic": "White_Palace_02[left1] + (RIGHTCLAW | WINGS | RIGHTDASH) + COMBAT[White_Palace_Arenas]"
+  }
+]
