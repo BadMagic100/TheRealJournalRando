@@ -46,7 +46,7 @@ namespace TheRealJournalRando
             if (ModHooks.GetMod("Randomizer 4") is Mod)
             {
                 List<RawLogicDef> logic = new();
-                foreach(MinimalEnemyDef def in EnemyData.NormalData.Values)
+                foreach(EnemyDef def in EnemyData.NormalData.Values)
                 {
                     logic.Add(new($"Defeated_Any_{def.icName}", "ANY"));
                 }
@@ -62,7 +62,7 @@ namespace TheRealJournalRando
             Events.OnItemChangerHook += LanguageData.Hook;
             Events.OnItemChangerUnhook += LanguageData.Unhook;
 
-            foreach (MinimalEnemyDef enemyDef in EnemyData.NormalData.Values)
+            foreach (EnemyDef enemyDef in EnemyData.NormalData.Values)
             {
                 string entryName = enemyDef.icName.AsEntryName();
                 string notesName = enemyDef.icName.AsNotesName();

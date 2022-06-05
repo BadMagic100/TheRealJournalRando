@@ -30,7 +30,7 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            foreach (MinimalEnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
             {
                 EditJournalItemAndLocationRequest(enemy, false, rb);
                 EditJournalItemAndLocationRequest(enemy, true, rb);
@@ -58,7 +58,7 @@ namespace TheRealJournalRando.Rando
             }
         }
 
-        private static void EditJournalItemAndLocationRequest(MinimalEnemyDef enemy, bool isNotes, RequestBuilder rb)
+        private static void EditJournalItemAndLocationRequest(EnemyDef enemy, bool isNotes, RequestBuilder rb)
         {
             string itemLocationName = isNotes ? enemy.icName.AsNotesName() : enemy.icName.AsEntryName();
             rb.EditItemRequest(itemLocationName, info =>
@@ -147,7 +147,7 @@ namespace TheRealJournalRando.Rando
 
             double fixedWeight = ComputeWeight(rb.rng);
 
-            foreach (MinimalEnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
             {
                 string notesName = enemy.icName.AsNotesName();
                 rb.EditLocationRequest(notesName, info =>

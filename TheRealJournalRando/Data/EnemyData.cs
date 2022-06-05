@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace TheRealJournalRando.Data
 {
-    public record struct MinimalEnemyDef(string icName, string pdName, string convoName, bool ignoredForHunterMark, bool unkillable, int notesCost);
+    public record struct EnemyDef(string icName, string pdName, string convoName, bool ignoredForHunterMark, bool respawns, bool unkillable, int notesCost);
 
     public static class EnemyData
     {
-        public static readonly IReadOnlyDictionary<string, MinimalEnemyDef> NormalData;
-        public static readonly IReadOnlyDictionary<string, MinimalEnemyDef> SpecialData;
+        public static readonly IReadOnlyDictionary<string, EnemyDef> NormalData;
+        public static readonly IReadOnlyDictionary<string, EnemyDef> SpecialData;
 
-        public static IEnumerable<MinimalEnemyDef> AllDefs => NormalData.Values.Concat(SpecialData.Values);
+        public static IEnumerable<EnemyDef> AllDefs => NormalData.Values.Concat(SpecialData.Values);
 
         static EnemyData()
         {
@@ -20,11 +20,11 @@ namespace TheRealJournalRando.Data
             SpecialData = LoadJournalData("TheRealJournalRando.Resources.specialJournalData.json");
         }
 
-        private static IReadOnlyDictionary<string, MinimalEnemyDef> LoadJournalData(string file)
+        private static IReadOnlyDictionary<string, EnemyDef> LoadJournalData(string file)
         {
             using Stream s = typeof(EnemyData).Assembly.GetManifestResourceStream(file);
             using StreamReader sr = new(s);
-            List<MinimalEnemyDef>? data = JsonConvert.DeserializeObject<List<MinimalEnemyDef>>(sr.ReadToEnd());
+            List<EnemyDef>? data = JsonConvert.DeserializeObject<List<EnemyDef>>(sr.ReadToEnd());
             if (data == null)
             {
                 throw new IOException("Failed to load enemy definitions");

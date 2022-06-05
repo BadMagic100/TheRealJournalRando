@@ -3,13 +3,15 @@
     "icName": "Crawlid",
     "pdName": "Crawler",
     "convoName": "CRAWLER",
-    "notesCost": 30
+    "notesCost": 30,
+    "respawns":  true
   },
   {
     "icName": "Vengefly",
     "pdName": "Buzzer",
     "convoName": "BUZZER",
-    "notesCost": 45
+    "notesCost": 45,
+    "respawns": true
   },
   {
     "icName": "Vengefly_King",
@@ -21,7 +23,8 @@
     "icName": "Gruzzer",
     "pdName": "Bouncer",
     "convoName": "BOUNCER",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Gruz_Mother",
@@ -33,7 +36,8 @@
     "icName": "Tiktik",
     "pdName": "Climber",
     "convoName": "CLIMBER",
-    "notesCost": 30
+    "notesCost": 30,
+    "respawns": true
   },
   {
     "icName": "Aspid_Hunter",
@@ -136,13 +140,15 @@
     "icName": "Mosscreep",
     "pdName": "MossWalker",
     "convoName": "MOSS_WALKER",
-    "notesCost": 30
+    "notesCost": 30,
+    "respawns": true
   },
   {
     "icName": "Mossfly",
     "pdName": "MossFlyer",
     "convoName": "MOSS_FLYER",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Mosskin",
@@ -166,25 +172,29 @@
     "icName": "Squit",
     "pdName": "Mosquito",
     "convoName": "MOSQUITO",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Obble",
     "pdName": "BlobFlyer",
     "convoName": "BLOB_FLYER",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Gulka",
     "pdName": "PlantShooter",
     "convoName": "PLANT_SHOOTER",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Maskfly",
     "pdName": "Pigeon",
     "convoName": "PIGEON",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Moss_Charger",
@@ -220,13 +230,15 @@
     "icName": "Aluba",
     "pdName": "LazyFlyer",
     "convoName": "LAZY_FLYER",
-    "notesCost": 1
+    "notesCost": 1,
+    "respawns": true
   },
   {
     "icName": "Uoma",
     "pdName": "JellyCrawler",
     "convoName": "JELLY_CRAWLER",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Ooma",
@@ -244,13 +256,15 @@
     "icName": "Ambloom",
     "pdName": "FungCrawler",
     "convoName": "FUNG_CRAWLER",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Fungling",
     "pdName": "FungoonBaby",
     "convoName": "FUNGOON_BABY",
-    "notesCost": 30
+    "notesCost": 30,
+    "respawns": true
   },
   {
     "icName": "Fungoon",
@@ -262,7 +276,8 @@
     "icName": "Sporg",
     "pdName": "MushroomTurret",
     "convoName": "MUSH_TURRET",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Fungified_Husk",
@@ -274,7 +289,8 @@
     "icName": "Shrumeling",
     "pdName": "MushroomBaby",
     "convoName": "MUSH_BABY",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Shrumal_Warrior",
@@ -292,7 +308,8 @@
     "icName": "Mantis_Youth",
     "pdName": "MantisFlyerChild",
     "convoName": "MANTIS_FLYER_CHILD",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Mantis_Warrior",
@@ -334,13 +351,15 @@
     "icName": "Mistake",
     "pdName": "MageBlob",
     "convoName": "MAGEBLOB",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Folly",
     "pdName": "MageBalloon",
     "convoName": "MAGE_BALLOON",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": trueks
   },
   {
     "icName": "Soul_Twister",
@@ -418,7 +437,8 @@
     "icName": "Hwurmp",
     "pdName": "Inflater",
     "convoName": "INFLATOR",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Bluggsac",
@@ -443,7 +463,8 @@
     "icName": "Flukefey",
     "pdName": "Flukefly",
     "convoName": "FLUKEFLY",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Flukemon",
@@ -455,7 +476,8 @@
     "icName": "Flukemunga",
     "pdName": "FatFluke",
     "convoName": "FAT_FLUKE",
-    "notesCost": 8
+    "notesCost": 8,
+    "respawns": true
   },
   {
     "icName": "Flukemarm",
@@ -467,13 +489,15 @@
     "icName": "Shardmite",
     "pdName": "MinesCrawler",
     "convoName": "MINES_CRAWLER",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Glimback",
     "pdName": "CrystalCrawler",
     "convoName": "CRYS_CRAWLER",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Crystal_Hunter",
@@ -533,7 +557,8 @@
     "icName": "Dirtcarver",
     "pdName": "BabyCentipede",
     "convoName": "BABY_CENTIPEDE",
-    "notesCost": 35
+    "notesCost": 35,
+    "respawns": true
   },
   {
     "icName": "Carver_Hatcher",
@@ -551,19 +576,22 @@
     "icName": "Deepling",
     "pdName": "MiniSpider",
     "convoName": "MINI_SPIDER",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Deephunter",
     "pdName": "ShootSpider",
     "convoName": "SPITTING_SPIDER",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Little_Weaver",
     "pdName": "SpiderFlyer",
     "convoName": "SPIDER_FLYER",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Stalking_Devout",
@@ -581,7 +609,8 @@
     "icName": "Shadow_Creeper",
     "pdName": "AbyssCrawler",
     "convoName": "ABYSS_CRAWLER",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Lesser_Mawlek",
@@ -605,13 +634,15 @@
     "icName": "Lightseed",
     "pdName": "OrangeScuttler",
     "convoName": "PARASITE_BLOB",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Infected_Balloon",
     "pdName": "OrangeBalloon",
     "convoName": "ORANGE_BALLOON",
-    "notesCost": 10
+    "notesCost": 10,
+    "respawns": true
   },
   {
     "icName": "Broken_Vessel",
@@ -623,7 +654,8 @@
     "icName": "Boofly",
     "pdName": "BlowFly",
     "convoName": "BIG_FAT_FLYER",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Primal_Aspid",
@@ -635,13 +667,15 @@
     "icName": "Hopper",
     "pdName": "Hopper",
     "convoName": "HOPPER",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Great_Hopper",
     "pdName": "GiantHopper",
     "convoName": "GIANT_HOPPER",
-    "notesCost": 10
+    "notesCost": 10,
+    "respawns": true
   },
   {
     "icName": "Grub_Mimic",
@@ -653,7 +687,8 @@
     "icName": "Hiveling",
     "pdName": "BeeHatchling",
     "convoName": "BEE_HATCHLING",
-    "notesCost": 30
+    "notesCost": 30,
+    "respawns": true
   },
   {
     "icName": "Hive_Soldier",
@@ -689,7 +724,8 @@
     "icName": "Loodle",
     "pdName": "GrassHopper",
     "convoName": "GRASS_HOPPER",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Mantis_Petra",
@@ -713,67 +749,78 @@
     "icName": "Sharp_Baldur",
     "pdName": "ColRoller",
     "convoName": "COL_ROLLER",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Armoured_Squit",
     "pdName": "ColMosquito",
     "convoName": "COL_MOSQUITO",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Battle_Obble",
     "pdName": "Blobble",
     "convoName": "BLOBBLE",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Oblobble",
     "pdName": "Oblobble",
     "convoName": "OBLOBBLE",
-    "notesCost": 3
+    "notesCost": 3,
+    "respawns": true
   },
   {
     "icName": "Shielded_Fool",
     "pdName": "ColShield",
     "convoName": "COL_SHIELD",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Sturdy_Fool",
     "pdName": "ColMiner",
     "convoName": "COL_MINER",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Winged_Fool",
     "pdName": "ColFlyingSentry",
     "convoName": "COL_FLYINGSENTRY",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Heavy_Fool",
     "pdName": "ColWorm",
     "convoName": "COL_WORM",
-    "notesCost": 20
+    "notesCost": 20,
+    "respawns": true
   },
   {
     "icName": "Death_Loodle",
     "pdName": "ColHopper",
     "convoName": "COL_HOPPER",
-    "notesCost": 15
+    "notesCost": 15,
+    "respawns": true
   },
   {
     "icName": "Volt_Twister",
     "pdName": "ElectricMage",
     "convoName": "ELEC_MAGE",
-    "notesCost": 6
+    "notesCost": 6,
+    "respawns": true
   },
   {
     "icName": "God_Tamer",
     "pdName": "LobsterLancer",
     "convoName": "LOBSTER_LANCER",
-    "notesCost": 1
+    "notesCost": 1,
+    "respawns": true
   },
   {
     "icName": "Pale_Lurker",
@@ -793,28 +840,32 @@
     "pdName": "GreyPrince",
     "convoName": "GREY_PRINCE",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "respawns": true
   },
   {
     "icName": "Winged_Zoteling",
     "pdName": "ZotelingBuzzer",
     "convoName": "ZOTE_FLYER",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "respawns": true
   },
   {
     "icName": "Hopping_Zoteling",
     "pdName": "ZotelingHopper",
     "convoName": "ZOTE_HOPPER",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "respawns": true
   },
   {
     "icName": "Volatile_Zoteling",
     "pdName": "ZotelingBalloon",
     "convoName": "ZOTE_BALLOON",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "respawns": true
   },
   {
     "icName": "Xero",
@@ -891,40 +942,46 @@
     "pdName": "NightmareGrimm",
     "convoName": "NIGHTMARE_GRIMM",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "respawns": true
   },
   {
     "icName": "Nailmasters_Oro_&_Mato",
     "pdName": "NailBros",
     "convoName": "NAILMASTERS",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "respawns": true
   },
   {
     "icName": "Paintmaster_Sheo",
     "pdName": "Paintmaster",
     "convoName": "PAINTMASTER",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "respawns": true
   },
   {
     "icName": "Great_Nailsage_Sly",
     "pdName": "Nailsage",
     "convoName": "SAGE_SLY",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "respawns": true
   },
   {
     "icName": "Wingmould",
     "pdName": "PalaceFly",
     "convoName": "PALACE_FLY",
-    "notesCost": 10
+    "notesCost": 10,
+    "respawns": true
   },
   {
     "icName": "Royal_Retainer",
     "pdName": "WhiteRoyal",
     "convoName": "WHITE_ROYAL",
-    "notesCost": 10
+    "notesCost": 10,
+    "respawns": true
   },
   {
     "icName": "Kingsmould",
@@ -936,7 +993,8 @@
     "icName": "Sibling",
     "pdName": "Sibling",
     "convoName": "SIBLING",
-    "notesCost": 25
+    "notesCost": 25,
+    "respawns": true
   },
   {
     "icName": "Hornet",
@@ -949,6 +1007,7 @@
     "pdName": "HollowKnightPrime",
     "convoName": "PURE_VESSEL",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "respawns": true
   }
 ]

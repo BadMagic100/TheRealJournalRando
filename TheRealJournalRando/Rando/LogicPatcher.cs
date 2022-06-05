@@ -31,7 +31,7 @@ namespace TheRealJournalRando.Rando
         private static void AddTermsAndItems(LogicManagerBuilder lmb)
         {
             Term hunterNotes = lmb.GetOrAddTerm("HUNTERNOTES");
-            foreach (MinimalEnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
             {
                 lmb.AddItem(new EmptyItem(enemy.icName.AsEntryName()));
                 string hunterNotesItemName = enemy.icName.AsNotesName();
@@ -58,7 +58,7 @@ namespace TheRealJournalRando.Rando
         private static void AddLocationLogic(LogicManagerBuilder lmb)
         {
             // todo - logic for special enemy locations
-            foreach (MinimalEnemyDef enemy in EnemyData.NormalData.Values)
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
             {
                 string entryLocationName = enemy.icName.AsEntryName();
                 string hunterNotesLocationName = enemy.icName.AsNotesName();

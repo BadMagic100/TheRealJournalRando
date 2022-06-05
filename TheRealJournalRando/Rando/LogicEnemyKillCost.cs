@@ -10,13 +10,15 @@ namespace TheRealJournalRando.Rando
 
         public int Amount { get; set; }
         public string EnemyIcName { get; init; }
+        public bool Respawns { get; init; }
 
         public LogicEnemyKillCost() { }
 
-        public LogicEnemyKillCost(LogicManager lm, string enemyIcName, int amount)
+        public LogicEnemyKillCost(LogicManager lm, string enemyIcName, bool respawns, int amount)
         {
             EnemyIcName = enemyIcName;
             Amount = amount;
+            Respawns = respawns;
             CanBenchWaypoint = lm.GetTerm("Can_Bench");
             // use our own custom-defined "Defeated_Any" waypoints to make sure we can cover our special cases
             DefeatWaypoint = lm.GetTerm($"Defeated_Any_{enemyIcName}");
@@ -25,7 +27,7 @@ namespace TheRealJournalRando.Rando
         public override bool CanGet(ProgressionManager pm)
         {
             bool canDefeatEnemy = pm.Has(DefeatWaypoint.Id);
-            bool hasRequiredBench = Amount < 2 || pm.Has(CanBenchWaypoint.Id);
+            bool hasRequiredBench = Respawns || Amount < 2 || pm.Has(CanBenchWaypoint.Id);
             return canDefeatEnemy && hasRequiredBench;
         }
 
