@@ -359,7 +359,7 @@
     "pdName": "MageBalloon",
     "convoName": "MAGE_BALLOON",
     "notesCost": 15,
-    "respawns": trueks
+    "respawns": true
   },
   {
     "icName": "Soul_Twister",
