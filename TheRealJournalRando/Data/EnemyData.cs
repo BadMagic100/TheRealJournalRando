@@ -5,7 +5,8 @@ using System.Linq;
 
 namespace TheRealJournalRando.Data
 {
-    public record struct EnemyDef(string icName, string pdName, string convoName, bool ignoredForHunterMark, bool respawns, bool unkillable, int notesCost);
+    public record struct EnemyDef(string icName, string pdName, string convoName, bool isBoss,
+        bool ignoredForHunterMark, bool respawns, bool unkillable, int notesCost);
 
     public static class EnemyData
     {

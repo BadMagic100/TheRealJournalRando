@@ -52,8 +52,8 @@ namespace TheRealJournalRando.Rando
             Term grimmkinMasters = lmb.GetTerm("GRIMMKINMASTERS");
             Term grimmkinNightmares = lmb.GetTerm("GRIMMKINNIGHTMARES");
             lmb.AddItem(new SingleItem(LogicItems.GrimmkinNovice, new TermValue(grimmkinNovices, 1)));
-            lmb.AddItem(new SingleItem(LogicItems.GrimmkinMaster, new TermValue(grimmkinNovices, 1)));
-            lmb.AddItem(new SingleItem(LogicItems.GrimmkinNightmare, new TermValue(grimmkinNovices, 1)));
+            lmb.AddItem(new SingleItem(LogicItems.GrimmkinMaster, new TermValue(grimmkinMasters, 1)));
+            lmb.AddItem(new SingleItem(LogicItems.GrimmkinNightmare, new TermValue(grimmkinNightmares, 1)));
 
             Term hornets = lmb.GetTerm("HORNETS");
             lmb.AddItem(new SingleItem(LogicItems.Hornet, new TermValue(hornets, 1)));

@@ -1,10 +1,7 @@
 ﻿using ItemChanger;
 using ItemChanger.UIDefs;
 using Modding;
-using Newtonsoft.Json;
-using RandomizerCore.Logic;
 using System;
-using System.Collections.Generic;
 using TheRealJournalRando.Data;
 using TheRealJournalRando.IC;
 
@@ -45,12 +42,6 @@ namespace TheRealJournalRando
 
             if (ModHooks.GetMod("Randomizer 4") is Mod)
             {
-                List<RawLogicDef> logic = new();
-                foreach(EnemyDef def in EnemyData.NormalData.Values)
-                {
-                    logic.Add(new($"Defeated_Any_{def.icName}", "ANY"));
-                }
-                Log(JsonConvert.SerializeObject(logic));
                 Rando.RandoInterop.HookRandomizer();
             }
 
@@ -61,6 +52,8 @@ namespace TheRealJournalRando
         {
             Events.OnItemChangerHook += LanguageData.Hook;
             Events.OnItemChangerUnhook += LanguageData.Unhook;
+
+            // todo - deal with special ones
 
             foreach (EnemyDef enemyDef in EnemyData.NormalData.Values)
             {

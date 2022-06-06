@@ -22,12 +22,13 @@ namespace TheRealJournalRando.Rando
         RandomPerEntry,
     }
 
+    [Flags]
     public enum CostItemPreview
     {
-        CostAndName,
-        CostOnly,
-        NameOnly,
-        None
+        CostAndName = 0,
+        CostOnly = 1,
+        NameOnly = 2,
+        None = 3,
     }
 
     public enum VoidIdol

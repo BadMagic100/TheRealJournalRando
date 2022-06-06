@@ -11,6 +11,7 @@
     "icName": "Hollow_Knight",
     "pdName": "HollowKnight",
     "convoName": "HOLLOW_KNIGHT",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true
   },
@@ -18,6 +19,7 @@
     "icName": "Radiance",
     "pdName": "FinalBoss",
     "convoName": "FINAL_BOSS",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true
   },

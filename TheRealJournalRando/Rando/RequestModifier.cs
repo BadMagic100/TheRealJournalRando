@@ -1,6 +1,9 @@
 ﻿using ItemChanger;
 using ItemChanger.Placements;
+using ItemChanger.Tags;
+using RandomizerCore.Exceptions;
 using RandomizerCore.Logic;
+using RandomizerMod.RandomizerData;
 using RandomizerMod.RC;
 using System;
 using System.Collections.Generic;
@@ -34,16 +37,26 @@ namespace TheRealJournalRando.Rando
 
         public static void Hook()
         {
+            RequestBuilder.OnUpdate.Subscribe(-1000, rb =>
+            {
+                rb.rm.OnError += e =>
+                {
+                    if (e is UnreachableLocationException u)
+                    {
+                        TheRealJournalRando.Instance.LogError(u.GetVerboseMessage());
+                    }
+                };
+            });
             RequestBuilder.OnUpdate.Subscribe(-500f, SetupRefs);
             RequestBuilder.OnUpdate.Subscribe(-490f, ApplyNotesCostRandomization);
             RequestBuilder.OnUpdate.Subscribe(0f, ApplyPoolSettings);
             RequestBuilder.OnUpdate.Subscribe(0f, AddVanillaFiniteEnemies);
+            RequestBuilder.OnUpdate.Subscribe(10f, RestoreSkippedGrimmkinFlames); // must be done after 0 to overwrite rando's request
             RequestBuilder.OnUpdate.Subscribe(20f, DupeJournal);
+            RequestBuilder.OnUpdate.Subscribe(30f, ApplyLongLocationSettings);
+            RequestBuilder.OnUpdate.Subscribe(30f, ApplyNotesPreviewSettings);
         }
 
-        /// <summary>
-        /// Creates itemdefs/locationdefs, applies vanilla logic costs and split group
-        /// </summary>
         private static void SetupRefs(RequestBuilder rb)
         {
             if (!RandoInterop.Settings.Enabled)
@@ -51,7 +64,7 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            foreach (EnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
             {
                 EditJournalItemAndLocationRequest(enemy, false, rb);
                 EditJournalItemAndLocationRequest(enemy, true, rb);
@@ -67,8 +80,7 @@ namespace TheRealJournalRando.Rando
                     return false;
                 }
 
-                if (EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values)
-                    .SelectMany(x => new[] {x.icName.AsEntryName(), x.icName.AsNotesName()}).Contains(item))
+                if (EnemyData.AllDefs.SelectMany(x => new[] {x.icName.AsEntryName(), x.icName.AsNotesName()}).Contains(item))
                 {
                     gb = rb.GetGroupFor(ItemNames.Hunters_Journal);
                     return true;
@@ -138,52 +150,117 @@ namespace TheRealJournalRando.Rando
                 };
                 if (!enemy.unkillable)
                 {
-                    info.onRandoLocationCreation += (factory, rl) =>
-                    {
-                        int cost = isNotes ? enemy.notesCost : 1;
-                        if (enemy.icName == "Hornet")
-                        {
-                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("HORNETS"), cost));
-                        }
-                        else if (enemy.icName == "Crystal_Guardian")
-                        {
-                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("CRYSTALGUARDIANS"), cost));
-                        }
-                        else if (enemy.icName == "Grimmkin_Novice")
-                        {
-                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINNOVICES"), cost));
-                        }
-                        else if (enemy.icName == "Grimmkin_Master")
-                        {
-                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINMASTERS"), cost));
-                        }
-                        else if (enemy.icName == "Grimmkin_Nightmare")
-                        {
-                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINNIGHTMARES"), cost));
-                        }
-                        else if (enemy.icName == "Kingsmould")
-                        {
-                            rl.AddCost(new SimpleCost(factory.lm.GetTerm("KINGSMOULDS"), cost));
-                        }
-                        else
-                        {
-                            rl.AddCost(new LogicEnemyKillCost(factory.lm, enemy.icName, enemy.respawns, cost));
-                        }
-                    };
+                    info.onRandoLocationCreation += ApplyDefaultCost(enemy, isNotes);
                 }
             });
         }
 
+        private static Action<RandoFactory, RandoModLocation> ApplyDefaultCost(EnemyDef enemy, bool isNotes)
+        {
+            void ApplyCost(RandoFactory factory, RandoModLocation rl)
+            {
+                int cost = isNotes ? enemy.notesCost : 1;
+                if (enemy.icName == "Hornet")
+                {
+                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("HORNETS"), cost));
+                }
+                else if (enemy.icName == "Crystal_Guardian")
+                {
+                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("CRYSTALGUARDIANS"), cost));
+                }
+                else if (enemy.icName == "Grimmkin_Novice")
+                {
+                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINNOVICES"), cost));
+                }
+                else if (enemy.icName == "Grimmkin_Master")
+                {
+                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINMASTERS"), cost));
+                }
+                else if (enemy.icName == "Grimmkin_Nightmare")
+                {
+                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINNIGHTMARES"), cost));
+                }
+                else if (enemy.icName == "Kingsmould")
+                {
+                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("KINGSMOULDS"), cost));
+                }
+                else
+                {
+                    rl.AddCost(new LogicEnemyKillCost(factory.lm, enemy.icName, enemy.respawns, cost));
+                }
+            }
+            return ApplyCost;
+        }
+
         private static void ApplyPoolSettings(RequestBuilder rb)
         {
-            string entry = EnemyData.NormalData["Hornet"].icName.AsEntryName();
-            string notes = EnemyData.NormalData["Hornet"].icName.AsNotesName();
-            rb.AddItemByName(entry);
-            rb.AddItemByName(notes);
-            rb.AddLocationByName(entry);
-            rb.AddLocationByName(notes);
+            if (!RandoInterop.Settings.Enabled)
+            {
+                return;
+            }
 
-            //todo - real impl!
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
+            {
+                if (enemy.unkillable)
+                {
+                    continue;
+                }
+
+                string entryName = enemy.icName.AsEntryName();
+                string notesName = enemy.icName.AsNotesName();
+                bool isNormalEntry = (!enemy.isBoss && !enemy.ignoredForHunterMark);
+                // doing some implication here - if the enemy is a boss, BossEntries must be true to randomize,
+                // otherwise we don't care about the setting. (and similar for others)
+                bool normalRandomization = !isNormalEntry || RandoInterop.Settings.Pools.RegularEntries;
+                bool bossRandomization = !enemy.isBoss || RandoInterop.Settings.Pools.BossEntries;
+                bool bonusRandomization = !enemy.ignoredForHunterMark || RandoInterop.Settings.Pools.BonusEntries;
+                if (normalRandomization && bossRandomization && bonusRandomization)
+                {
+                    if (RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.EntriesOnly))
+                    {
+                        rb.AddItemByName(entryName);
+                        rb.AddLocationByName(entryName);
+                    }
+                    else
+                    {
+                        rb.AddToVanilla(entryName, entryName);
+                    }
+
+                    if (RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.NotesOnly))
+                    {
+                        rb.AddItemByName(notesName);
+                        rb.AddLocationByName(notesName);
+                    }
+                    else
+                    {
+                        rb.AddToVanilla(notesName, notesName);
+                    }
+                }
+                else
+                {
+                    rb.AddToVanilla(entryName, entryName);
+                    rb.AddToVanilla(notesName, notesName);
+                }
+            }
+        }
+
+        private static void RestoreSkippedGrimmkinFlames(RequestBuilder rb)
+        {
+            // if we can need to kill grimmkin, we need to undo everything rando has done to not skip the first 2 tiers of the questline
+            // see: https://github.com/homothetyhk/RandomizerMod/blob/934895871d9f28f0f6f5c1da00c331a6205d3ff3/RandomizerMod/RC/Requests/BuiltinRequests.cs#L855
+            //      https://github.com/homothetyhk/RandomizerMod/blob/934895871d9f28f0f6f5c1da00c331a6205d3ff3/RandomizerMod/RC/Requests/BuiltinRequests.cs#L1254
+            if (RandoInterop.Settings.Enabled && RandoInterop.Settings.Pools.BonusEntries)
+            {
+                if (rb.gs.PoolSettings.Charms && !rb.gs.PoolSettings.GrimmkinFlames)
+                {
+                    PoolDef flamePool = RandomizerMod.RandomizerData.Data.GetPoolDef(PoolNames.Flame);
+                    foreach (VanillaDef def in flamePool.Vanilla.Take(6))
+                    {
+                        rb.AddToVanilla(def.Item, def.Location);
+                    }
+                    rb.ReplaceItem(ItemNames.Grimmchild2, ItemNames.Grimmchild1);
+                }
+            }
         }
 
         private static void DupeJournal(RequestBuilder rb)
@@ -208,7 +285,7 @@ namespace TheRealJournalRando.Rando
 
             double fixedWeight = ComputeWeight(rb.rng);
 
-            foreach (EnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
             {
                 string notesName = enemy.icName.AsNotesName();
                 rb.EditLocationRequest(notesName, info =>
@@ -246,6 +323,11 @@ namespace TheRealJournalRando.Rando
 
         private static void AddVanillaFiniteEnemies(RequestBuilder rb)
         {
+            if (!RandoInterop.Settings.Enabled)
+            {
+                return;
+            }
+
             rb.AddToVanilla(LogicItems.Hornet, LocationNames.Mothwing_Cloak);
             rb.AddToVanilla(LogicItems.Hornet, LogicLocations.Hornet2);
 
@@ -267,6 +349,73 @@ namespace TheRealJournalRando.Rando
             rb.AddToVanilla(LogicItems.Kingsmould, LogicLocations.KingsmouldPalaceEntry);
             rb.AddToVanilla(LogicItems.Kingsmould, LogicLocations.KingsmouldPalaceArena1);
             rb.AddToVanilla(LogicItems.RespawningKingsmould, LocationNames.Journal_Entry_Seal_of_Binding);
+        }
+
+        private static void ApplyLongLocationSettings(RequestBuilder rb)
+        {
+            if (!RandoInterop.Settings.Enabled)
+            {
+                return;
+            }
+
+            // temporary, will need extra handling; for now just yeet it and this is a good place for it
+            rb.RemoveItemByName("Mossy_Vagabond".AsNotesName());
+            rb.RemoveLocationByName("Mossy_Vagabond".AsEntryName());
+
+            if (!RandoInterop.Settings.LongLocations.RandomizePantheonBosses)
+            {
+                foreach (string s in new[] {"Nailmasters_Oro_And_Mato", "Paintmaster_Sheo", "Great_Nailsage_Sly", "Pure_Vessel"})
+                {
+                    rb.RemoveItemByName(s.AsEntryName());
+                    rb.RemoveLocationByName(s.AsEntryName());
+
+                    rb.RemoveItemByName(s.AsNotesName());
+                    rb.RemoveLocationByName(s.AsNotesName());
+                }
+            }
+
+            if (RandoInterop.Settings.LongLocations.RandomizeWeatheredMask)
+            {
+                
+            }
+
+            if (RandoInterop.Settings.LongLocations.RandomizeVoidIdol > 0)
+            {
+
+            }
+
+            if (RandoInterop.Settings.LongLocations.RandomizeHuntersMark)
+            {
+
+            }
+        }
+
+        private static void ApplyNotesPreviewSettings(RequestBuilder rb)
+        {
+            CostItemPreview preview = RandoInterop.Settings.JournalPreviews;
+            if (!RandoInterop.Settings.Enabled || preview == CostItemPreview.CostAndName)
+            {
+                return;
+            }
+
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
+            {
+                string notesName = enemy.icName.AsNotesName();
+                rb.EditLocationRequest(notesName, info =>
+                {
+                    info.onPlacementFetch += (factory, rp, pmt) =>
+                    {
+                        if (preview.HasFlag(CostItemPreview.CostOnly))
+                        {
+                            pmt.AddTag<DisableItemPreviewTag>();
+                        }
+                        if (preview.HasFlag(CostItemPreview.NameOnly))
+                        {
+                            pmt.AddTag<DisableCostPreviewTag>();
+                        }
+                    };
+                });
+            }
         }
     }
 }

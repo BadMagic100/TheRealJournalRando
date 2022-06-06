@@ -17,6 +17,7 @@
     "icName": "Vengefly_King",
     "pdName": "BigBuzzer",
     "convoName": "BIGBUZZER",
+    "isBoss": true,
     "notesCost": 2
   },
   {
@@ -30,6 +31,7 @@
     "icName": "Gruz_Mother",
     "pdName": "BigFly",
     "convoName": "BIGFLY",
+    "isBoss": true,
     "notesCost": 3
   },
   {
@@ -103,6 +105,7 @@
     "icName": "False_Knight",
     "pdName": "FalseKnight",
     "convoName": "FALSEKNIGHT",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -206,6 +209,7 @@
     "icName": "Massive_Moss_Charger",
     "pdName": "MegaMossCharger",
     "convoName": "MEGA_MOSS_CHARGER",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -250,6 +254,7 @@
     "icName": "Uumuu",
     "pdName": "MegaJellyfish",
     "convoName": "MEGA_JELLYFISH",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -321,6 +326,7 @@
     "icName": "Mantis_Lords",
     "pdName": "MantisLord",
     "convoName": "MANTIS_LORD",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -371,12 +377,14 @@
     "icName": "Soul_Warrior",
     "pdName": "MageKnight",
     "convoName": "MAGE_KNIGHT",
+    "isBoss": true,
     "notesCost": 2
   },
   {
     "icName": "Soul_Master",
     "pdName": "MageLord",
     "convoName": "MAGE_LORD",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -413,12 +421,14 @@
     "icName": "Watcher_Knight",
     "pdName": "BlackKnight",
     "convoName": "BLACK_KNIGHT",
+    "isBoss": true,
     "notesCost": 1
   },
   {
     "icName": "The_Collector",
     "pdName": "JarCollector",
     "convoName": "JAR_COLLECTOR",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -450,12 +460,14 @@
     "icName": "Dung_Defender",
     "pdName": "DungDefender",
     "convoName": "DUNG_DEFENDER",
+    "isBoss": true,
     "notesCost": 1
   },
   {
     "icName": "White_Defender",
     "pdName": "WhiteDefender",
     "convoName": "WHITE_DEFENDER",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true
   },
@@ -527,6 +539,7 @@
     "icName": "Crystal_Guardian",
     "pdName": "MegaBeamMiner",
     "convoName": "MEGA_BEAM_MINER",
+    "isBoss": true,
     "notesCost": 2
   },
   {
@@ -603,6 +616,7 @@
     "icName": "Nosk",
     "pdName": "MimicSpider",
     "convoName": "MIMIC_SPIDER",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -628,6 +642,7 @@
     "icName": "Brooding_Mawlek",
     "pdName": "Mawlek",
     "convoName": "MAWLEK",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -648,6 +663,7 @@
     "icName": "Broken_Vessel",
     "pdName": "InfectedKnight",
     "convoName": "INFECTED_KNIGHT",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -712,6 +728,7 @@
     "icName": "Hive_Knight",
     "pdName": "HiveKnight",
     "convoName": "HIVE_KNIGHT",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -743,6 +760,7 @@
     "icName": "Traitor_Lord",
     "pdName": "TraitorLord",
     "convoName": "TRAITOR_LORD",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -770,6 +788,7 @@
     "icName": "Oblobble",
     "pdName": "Oblobble",
     "convoName": "OBLOBBLE",
+    "isBoss": true,
     "notesCost": 3,
     "respawns": true
   },
@@ -819,6 +838,7 @@
     "icName": "God_Tamer",
     "pdName": "LobsterLancer",
     "convoName": "LOBSTER_LANCER",
+    "isBoss": true,
     "notesCost": 1,
     "respawns": true
   },
@@ -839,6 +859,7 @@
     "icName": "Grey_Prince_Zote",
     "pdName": "GreyPrince",
     "convoName": "GREY_PRINCE",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
     "respawns": true
@@ -871,42 +892,49 @@
     "icName": "Xero",
     "pdName": "GhostXero",
     "convoName": "GHOST_XERO",
+    "isBoss": true,
     "notesCost": 1
   },
   {
     "icName": "Gorb",
     "pdName": "GhostAladar",
     "convoName": "GHOST_ALADAR",
+    "isBoss": true,
     "notesCost": 1
   },
   {
     "icName": "Elder_Hu",
     "pdName": "GhostHu",
     "convoName": "GHOST_HU",
+    "isBoss": true,
     "notesCost": 1
   },
   {
     "icName": "Marmu",
     "pdName": "GhostMarmu",
     "convoName": "GHOST_MARMU",
+    "isBoss": true,
     "notesCost": 1
   },
   {
     "icName": "No_Eyes",
     "pdName": "GhostNoEyes",
     "convoName": "GHOST_NOEYES",
+    "isBoss": true,
     "notesCost": 1
   },
   {
     "icName": "Galien",
     "pdName": "GhostGalien",
     "convoName": "GHOST_GALIEN",
+    "isBoss": true,
     "notesCost": 1
   },
   {
     "icName": "Markoth",
     "pdName": "GhostMarkoth",
     "convoName": "GHOST_MARKOTH",
+    "isBoss": true,
     "notesCost": 1
   },
   {
@@ -934,6 +962,7 @@
     "icName": "Grimm",
     "pdName": "Grimm",
     "convoName": "GRIMM",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true
   },
@@ -941,14 +970,16 @@
     "icName": "Nightmare_King",
     "pdName": "NightmareGrimm",
     "convoName": "NIGHTMARE_GRIMM",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
     "respawns": true
   },
   {
-    "icName": "Nailmasters_Oro_&_Mato",
+    "icName": "Nailmasters_Oro_And_Mato",
     "pdName": "NailBros",
     "convoName": "NAILMASTERS",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
     "respawns": true
@@ -957,6 +988,7 @@
     "icName": "Paintmaster_Sheo",
     "pdName": "Paintmaster",
     "convoName": "PAINTMASTER",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
     "respawns": true
@@ -965,6 +997,7 @@
     "icName": "Great_Nailsage_Sly",
     "pdName": "Nailsage",
     "convoName": "SAGE_SLY",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
     "respawns": true
@@ -1006,6 +1039,7 @@
     "icName": "Pure_Vessel",
     "pdName": "HollowKnightPrime",
     "convoName": "PURE_VESSEL",
+    "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
     "respawns": true
