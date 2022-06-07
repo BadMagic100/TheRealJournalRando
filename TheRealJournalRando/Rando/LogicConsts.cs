@@ -14,7 +14,6 @@
         public const string RespawningGruzMother = "Respawning_Gruz_Mother";
         public const string VengeflyKing = "Vengefly_King";
         public const string RespawningVengeflyKing = "Respawning_Vengefly_King";
-        public const string Myla = "Myla";
     }
 
     internal static class LogicLocations
@@ -26,6 +25,5 @@
         public const string BaldurAncestralMound = "Baldur_Ancestral_Mound";
         public const string BaldurShellLeftBaldur = "Baldur_Shell_Left_Baldur";
         public const string BaldurShellRightBaldur = "Baldur_Shell_Right_Baldur";
-        public const string Myla = "Myla";
     }
 }

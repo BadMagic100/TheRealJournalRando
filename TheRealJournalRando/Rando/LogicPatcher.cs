@@ -80,9 +80,6 @@ namespace TheRealJournalRando.Rando
             lmb.AddItem(new SingleItem(LogicItems.VengeflyKing, new TermValue(vengeflyKings, 1)));
             lmb.AddItem(new SingleItem(LogicItems.RespawningVengeflyKing, new TermValue(vengeflyKings, ARBITRARILY_LARGE_ENEMY_VALUE)));
 
-            Term myla = lmb.GetTerm("MYLA");
-            lmb.AddItem(new SingleItem(LogicItems.Myla, new TermValue(myla, 1)));
-
         }
 
         private static void OverrideBaseRandoJournalItems(LogicManagerBuilder lmb)
@@ -115,7 +112,7 @@ namespace TheRealJournalRando.Rando
                 string entryLocationName = enemy.icName.AsEntryName();
                 string hunterNotesLocationName = enemy.icName.AsNotesName();
                 string logic = $"Defeated_Any_{enemy.icName}";
-                lmb.AddLogicDef(new RawLogicDef(entryLocationName, enemy.icName == "Husk_Miner" ? logic + " | MYLA" : logic));
+                lmb.AddLogicDef(new RawLogicDef(entryLocationName, logic));
                 lmb.AddLogicDef(new RawLogicDef(hunterNotesLocationName, logic));
             }
         }

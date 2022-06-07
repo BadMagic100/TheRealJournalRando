@@ -28,10 +28,6 @@
     "name": "Baldur_Shell_Right_Baldur",
     "logic": "RIGHTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | SHADESKIPS)))"
   },
-  {
-    "name": "Myla",
-    "logic": "(Crossroads_45[left1] | Crossroads_45[right1]) + FULLSUPERDASH"
-  },
   // location logic for special-case journal entries
   {
     "name": "Hunter's_Mark",

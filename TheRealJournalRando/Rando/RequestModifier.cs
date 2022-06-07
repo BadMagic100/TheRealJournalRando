@@ -336,8 +336,6 @@ namespace TheRealJournalRando.Rando
 
             rb.AddToVanilla(LogicItems.GruzMother, LocationNames.Boss_Geo_Gruz_Mother);
             rb.AddToVanilla(LogicItems.RespawningGruzMother, LocationNames.Charm_Notch_Colosseum);
-
-            rb.AddToVanilla(LogicItems.Myla, LogicLocations.Myla);
         }
 
         private static void ApplyLongLocationSettings(RequestBuilder rb)
