@@ -57,60 +57,74 @@ namespace TheRealJournalRando
 
             foreach (EnemyDef enemyDef in EnemyData.NormalData.Values)
             {
-                string entryName = enemyDef.icName.AsEntryName();
-                string notesName = enemyDef.icName.AsNotesName();
-                LanguageString localizedEnemyName = new("Journal", $"NAME_{enemyDef.convoName}");
-
-                Finder.DefineCustomItem(new EnemyJournalEntryOnlyItem(enemyDef.pdName)
-                {
-                    name = entryName,
-                    UIDef = new MsgUIDef
-                    {
-                        name = new FormatString(new LanguageString("Fmt", "ENTRY_ITEM_NAME"), localizedEnemyName.Clone()),
-                        shopDesc = new FormatString(new LanguageString("Fmt", "ENTRY_SHOP_DESC"), localizedEnemyName.Clone()),
-                        sprite = new JournalBadgeSprite(enemyDef.pdName),
-                    },
-                    tags = new()
-                    {
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
-                    }
-                });
-                Finder.DefineCustomItem(new EnemyJournalNotesOnlyItem(enemyDef.pdName)
-                {
-                    name = notesName,
-                    UIDef = new MsgUIDef
-                    {
-                        name = new FormatString(new LanguageString("Fmt", "NOTES_ITEM_NAME"), localizedEnemyName.Clone()),
-                        shopDesc = new FormatString(new LanguageString("Fmt", "NOTES_SHOP_DESC"), localizedEnemyName.Clone()),
-                        sprite = new JournalBadgeSprite(enemyDef.pdName),
-                    },
-                    tags = new()
-                    {
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
-                    }
-                });
-
-                Finder.DefineCustomLocation(new EnemyJournalLocation(enemyDef.pdName, EnemyJournalLocationType.Entry)
-                {
-                    name = entryName,
-                    flingType = FlingType.Everywhere,
-                    tags = new()
-                    {
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
-                    }
-                });
-                Finder.DefineCustomLocation(new EnemyJournalLocation(enemyDef.pdName, EnemyJournalLocationType.Notes)
-                {
-                    name = notesName,
-                    flingType = FlingType.Everywhere,
-                    tags = new()
-                    {
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
-                    }
-                });
+                DefineStandardEntryAndNoteItems(enemyDef);
+                DefineStandardEntryAndNoteLocations(enemyDef);
             }
+            DefineStandardEntryAndNoteItems(EnemyData.SpecialData["Mossy_Vagabond"]);
+
+        }
+
+        private void DefineStandardEntryAndNoteItems(EnemyDef enemyDef)
+        {
+            string entryName = enemyDef.icName.AsEntryName();
+            string notesName = enemyDef.icName.AsNotesName();
+            LanguageString localizedEnemyName = new("Journal", $"NAME_{enemyDef.convoName}");
+
+            Finder.DefineCustomItem(new EnemyJournalEntryOnlyItem(enemyDef.pdName)
+            {
+                name = entryName,
+                UIDef = new MsgUIDef
+                {
+                    name = new FormatString(new LanguageString("Fmt", "ENTRY_ITEM_NAME"), localizedEnemyName.Clone()),
+                    shopDesc = new FormatString(new LanguageString("Fmt", "ENTRY_SHOP_DESC"), localizedEnemyName.Clone()),
+                    sprite = new JournalBadgeSprite(enemyDef.pdName),
+                },
+                tags = new()
+                    {
+                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
+                    }
+            });
+            Finder.DefineCustomItem(new EnemyJournalNotesOnlyItem(enemyDef.pdName)
+            {
+                name = notesName,
+                UIDef = new MsgUIDef
+                {
+                    name = new FormatString(new LanguageString("Fmt", "NOTES_ITEM_NAME"), localizedEnemyName.Clone()),
+                    shopDesc = new FormatString(new LanguageString("Fmt", "NOTES_SHOP_DESC"), localizedEnemyName.Clone()),
+                    sprite = new JournalBadgeSprite(enemyDef.pdName),
+                },
+                tags = new()
+                    {
+                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
+                    }
+            });
+        }
+
+        private void DefineStandardEntryAndNoteLocations(EnemyDef enemyDef)
+        {
+            string entryName = enemyDef.icName.AsEntryName();
+            string notesName = enemyDef.icName.AsNotesName();
+
+            Finder.DefineCustomLocation(new EnemyJournalLocation(enemyDef.pdName, EnemyJournalLocationType.Entry)
+            {
+                name = entryName,
+                flingType = FlingType.Everywhere,
+                tags = new()
+                    {
+                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
+                    }
+            });
+            Finder.DefineCustomLocation(new EnemyJournalLocation(enemyDef.pdName, EnemyJournalLocationType.Notes)
+            {
+                name = notesName,
+                flingType = FlingType.Everywhere,
+                tags = new()
+                    {
+                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
+                    }
+            });
         }
 
         public void OnLoadGlobal(GlobalSettings s) => GS = s;

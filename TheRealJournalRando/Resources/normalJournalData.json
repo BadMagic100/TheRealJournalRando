@@ -4,7 +4,7 @@
     "pdName": "Crawler",
     "convoName": "CRAWLER",
     "notesCost": 30,
-    "respawns":  true
+    "respawns": true
   },
   {
     "icName": "Vengefly",
@@ -1034,6 +1034,22 @@
     "pdName": "Hornet",
     "convoName": "HORNET",
     "notesCost": 2
+  },
+  {
+    "icName": "Hollow_Knight",
+    "pdName": "HollowKnight",
+    "convoName": "HOLLOW_KNIGHT",
+    "isBoss": true,
+    "notesCost": 1,
+    "ignoredForHunterMark": true
+  },
+  {
+    "icName": "Radiance",
+    "pdName": "FinalBoss",
+    "convoName": "FINAL_BOSS",
+    "isBoss": true,
+    "notesCost": 1,
+    "ignoredForHunterMark": true
   },
   {
     "icName": "Pure_Vessel",

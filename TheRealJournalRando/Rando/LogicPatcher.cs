@@ -1,4 +1,5 @@
-﻿using RandomizerCore;
+﻿using ItemChanger;
+using RandomizerCore;
 using RandomizerCore.Logic;
 using RandomizerCore.LogicItems;
 using RandomizerMod.RC;
@@ -26,6 +27,7 @@ namespace TheRealJournalRando.Rando
             }
 
             AddTermsAndItems(lmb);
+            OverrideBaseRandoJournalItems(lmb);
             AddMacrosAndWaypoints(lmb);
             AddLocationLogic(lmb);
         }
@@ -81,6 +83,17 @@ namespace TheRealJournalRando.Rando
             Term myla = lmb.GetTerm("MYLA");
             lmb.AddItem(new SingleItem(LogicItems.Myla, new TermValue(myla, 1)));
 
+        }
+
+        private static void OverrideBaseRandoJournalItems(LogicManagerBuilder lmb)
+        {
+            Term hunterNotes = lmb.GetTerm("HUNTERNOTES");
+            foreach (string entry in new[] { 
+                ItemNames.Journal_Entry_Goam, ItemNames.Journal_Entry_Garpede, 
+                ItemNames.Journal_Entry_Charged_Lumafly, ItemNames.Journal_Entry_Void_Tendrils})
+            {
+                lmb.AddItem(new SingleItem(entry, new TermValue(hunterNotes, 1)));
+            }
         }
 
         private static void AddMacrosAndWaypoints(LogicManagerBuilder lmb)

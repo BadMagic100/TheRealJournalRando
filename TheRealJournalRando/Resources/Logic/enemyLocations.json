@@ -1,4 +1,5 @@
 ﻿[
+  // location logic for vanilla finite enemies
   {
     "name": "Hornet_2",
     "logic": "Deepnest_East_Hornet[left1] + Defeated_Hornet_2"
@@ -30,5 +31,26 @@
   {
     "name": "Myla",
     "logic": "(Crossroads_45[left1] | Crossroads_45[right1]) + FULLSUPERDASH"
+  },
+  // location logic for special-case journal entries
+  {
+    "name": "Hunter's_Mark",
+    "logic": "Fungus1_08[left1] + HUNTERNOTES>144" //145 entries required (146 in journal including shade)
+  },
+  {
+    "name": "Journal_Entry-Void_Idol_1",
+    "logic": "ANY"
+  },
+  {
+    "name": "Journal_Entry-Void_Idol_2",
+    "logic": "ANY"
+  },
+  {
+    "name": "Journal_Entry-Void_Idol_3",
+    "logic": "ANY"
+  },
+  {
+    "name": "Journal_Entry-Weathered_Mask",
+    "logic": "ANY"
   }
 ]
