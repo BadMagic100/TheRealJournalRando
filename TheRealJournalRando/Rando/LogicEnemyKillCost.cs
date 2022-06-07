@@ -27,7 +27,7 @@ namespace TheRealJournalRando.Rando
         public override bool CanGet(ProgressionManager pm)
         {
             bool canDefeatEnemy = pm.Has(DefeatWaypoint.Id);
-            bool hasRequiredBench = Respawns || Amount < 2 || pm.Has(CanBenchWaypoint.Id);
+            bool hasRequiredBench = Amount < 2 || Respawns || pm.Has(CanBenchWaypoint.Id);
             return canDefeatEnemy && hasRequiredBench;
         }
 

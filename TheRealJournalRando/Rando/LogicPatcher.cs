@@ -11,6 +11,8 @@ namespace TheRealJournalRando.Rando
 {
     internal static class LogicPatcher
     {
+        private const int ARBITRARILY_LARGE_ENEMY_VALUE = 10000;
+
         public static void Hook()
         {
             RCData.RuntimeLogicOverride.Subscribe(10f, ApplyLogic);
@@ -63,7 +65,21 @@ namespace TheRealJournalRando.Rando
 
             Term kingsmoulds = lmb.GetTerm("KINGSMOULDS");
             lmb.AddItem(new SingleItem(LogicItems.Kingsmould, new TermValue(kingsmoulds, 1)));
-            lmb.AddItem(new SingleItem(LogicItems.RespawningKingsmould, new TermValue(kingsmoulds, 1000)));
+            lmb.AddItem(new SingleItem(LogicItems.RespawningKingsmould, new TermValue(kingsmoulds, ARBITRARILY_LARGE_ENEMY_VALUE)));
+
+            Term elderbaldurs = lmb.GetTerm("ELDERBALDURS");
+            lmb.AddItem(new SingleItem(LogicItems.ElderBaldur, new TermValue(elderbaldurs, 1)));
+
+            Term gruzMothers = lmb.GetTerm("GRUZMOTHERS");
+            lmb.AddItem(new SingleItem(LogicItems.GruzMother, new TermValue(gruzMothers, 1)));
+            lmb.AddItem(new SingleItem(LogicItems.RespawningGruzMother, new TermValue(gruzMothers, ARBITRARILY_LARGE_ENEMY_VALUE)));
+
+            Term vengeflyKings = lmb.GetTerm("VENGEFLYKINGS");
+            lmb.AddItem(new SingleItem(LogicItems.VengeflyKing, new TermValue(vengeflyKings, 1)));
+            lmb.AddItem(new SingleItem(LogicItems.RespawningVengeflyKing, new TermValue(vengeflyKings, ARBITRARILY_LARGE_ENEMY_VALUE)));
+
+            Term myla = lmb.GetTerm("MYLA");
+            lmb.AddItem(new SingleItem(LogicItems.Myla, new TermValue(myla, 1)));
 
         }
 
@@ -86,7 +102,7 @@ namespace TheRealJournalRando.Rando
                 string entryLocationName = enemy.icName.AsEntryName();
                 string hunterNotesLocationName = enemy.icName.AsNotesName();
                 string logic = $"Defeated_Any_{enemy.icName}";
-                lmb.AddLogicDef(new RawLogicDef(entryLocationName, logic));
+                lmb.AddLogicDef(new RawLogicDef(entryLocationName, enemy.icName == "Husk_Miner" ? logic + " | MYLA" : logic));
                 lmb.AddLogicDef(new RawLogicDef(hunterNotesLocationName, logic));
             }
         }

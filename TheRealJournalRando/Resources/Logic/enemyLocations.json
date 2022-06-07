@@ -10,5 +10,25 @@
   {
     "name": "Kingsmould_Palace_Arena_1",
     "logic": "White_Palace_02[left1] + (RIGHTCLAW | WINGS | RIGHTDASH) + COMBAT[White_Palace_Arenas]"
+  },
+  {
+    "name": "Baldur_Greenpath_Entrance",
+    "logic": "Crossroads_11_alt[right1] + LEFTBALDURS"
+  },
+  {
+    "name": "Baldur_Ancestral_Mound",
+    "logic": "Crossroads_ShamanTemple[left1] + LEFTBALDURS"
+  },
+  {
+    "name": "Baldur_Shell_Left_Baldur",
+    "logic": "LEFTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | SHADESKIPS)))"
+  },
+  {
+    "name": "Baldur_Shell_Right_Baldur",
+    "logic": "RIGHTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | SHADESKIPS)))"
+  },
+  {
+    "name": "Myla",
+    "logic": "(Crossroads_45[left1] | Crossroads_45[right1]) + FULLSUPERDASH"
   }
 ]

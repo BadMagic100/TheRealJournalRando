@@ -622,5 +622,13 @@
   {
     "name": "Defeated_Any_Pure_Vessel",
     "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Hollow_Knight",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Any_Radiance",
+    "logic": "ANY"
   }
 ]

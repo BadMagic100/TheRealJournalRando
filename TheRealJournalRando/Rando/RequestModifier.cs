@@ -16,15 +16,6 @@ namespace TheRealJournalRando.Rando
     internal static class RequestModifier
     {
         private const string POOL_JOURNAL_ENTRIES = "JournalEntries"; //from rando's pools.json
-        private static readonly HashSet<string> handledCostTerms = new()
-        {
-            "HORNETS",
-            "CRYSTALGUARDIANS",
-            "GRIMMKINNOVICES",
-            "GRIMMKINMASTERS",
-            "GRIMMKINNIGHTMARES",
-            "KINGSMOULDS"
-        };
         private static readonly Dictionary<string, string> icNameByTermName = new()
         {
             ["HORNETS"] = "Hornet",
@@ -33,7 +24,11 @@ namespace TheRealJournalRando.Rando
             ["GRIMMKINMASTERS"] = "Grimmkin_Master",
             ["GRIMMKINNIGHTMARES"] = "Grimmkin_Nightmare",
             ["KINGSMOULDS"] = "Kingsmould",
+            ["ELDERBALDURS"] = "Elder_Baldur",
+            ["GRUZMOTHERS"] = "Gruz_Mother",
+            ["VENGEFLYKINGS"] = "Vengefly_King",
         };
+        private static readonly Dictionary<string, string> termNameByIcName = icNameByTermName.ToDictionary(i => i.Value, i => i.Key);
 
         public static void Hook()
         {
@@ -129,7 +124,7 @@ namespace TheRealJournalRando.Rando
                             {
                                 newCost = EnemyKillCost.ConstructCustomCost(kc.EnemyIcName, kc.Amount);
                             }
-                            else if (lc is SimpleCost sc && handledCostTerms.Contains(sc.term.Name))
+                            else if (lc is SimpleCost sc && icNameByTermName.ContainsKey(sc.term.Name))
                             {
                                 newCost = EnemyKillCost.ConstructCustomCost(icNameByTermName[sc.term.Name], sc.threshold);
                             }
@@ -160,29 +155,10 @@ namespace TheRealJournalRando.Rando
             void ApplyCost(RandoFactory factory, RandoModLocation rl)
             {
                 int cost = isNotes ? enemy.notesCost : 1;
-                if (enemy.icName == "Hornet")
+                if (termNameByIcName.ContainsKey(enemy.icName))
                 {
-                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("HORNETS"), cost));
-                }
-                else if (enemy.icName == "Crystal_Guardian")
-                {
-                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("CRYSTALGUARDIANS"), cost));
-                }
-                else if (enemy.icName == "Grimmkin_Novice")
-                {
-                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINNOVICES"), cost));
-                }
-                else if (enemy.icName == "Grimmkin_Master")
-                {
-                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINMASTERS"), cost));
-                }
-                else if (enemy.icName == "Grimmkin_Nightmare")
-                {
-                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("GRIMMKINNIGHTMARES"), cost));
-                }
-                else if (enemy.icName == "Kingsmould")
-                {
-                    rl.AddCost(new SimpleCost(factory.lm.GetTerm("KINGSMOULDS"), cost));
+                    Term t = factory.lm.GetTerm(termNameByIcName[enemy.icName]);
+                    rl.AddCost(new SimpleCost(t, cost));
                 }
                 else
                 {
@@ -300,7 +276,7 @@ namespace TheRealJournalRando.Rando
                         };
                         foreach (LogicCost c in rl.costs)
                         {
-                            if (c is SimpleCost sc && handledCostTerms.Contains(sc.term.Name))
+                            if (c is SimpleCost sc && icNameByTermName.ContainsKey(sc.term.Name))
                             {
                                 sc.threshold = (int)Math.Max(1, Math.Round(sc.threshold * weight));
                             }
@@ -349,6 +325,19 @@ namespace TheRealJournalRando.Rando
             rb.AddToVanilla(LogicItems.Kingsmould, LogicLocations.KingsmouldPalaceEntry);
             rb.AddToVanilla(LogicItems.Kingsmould, LogicLocations.KingsmouldPalaceArena1);
             rb.AddToVanilla(LogicItems.RespawningKingsmould, LocationNames.Journal_Entry_Seal_of_Binding);
+
+            rb.AddToVanilla(LogicItems.ElderBaldur, LogicLocations.BaldurShellLeftBaldur);
+            rb.AddToVanilla(LogicItems.ElderBaldur, LogicLocations.BaldurShellRightBaldur);
+            rb.AddToVanilla(LogicItems.ElderBaldur, LogicLocations.BaldurGreenpathEntrance);
+            rb.AddToVanilla(LogicItems.ElderBaldur, LogicLocations.BaldurAncestralMound);
+
+            rb.AddToVanilla(LogicItems.VengeflyKing, LocationNames.Boss_Geo_Vengefly_King);
+            rb.AddToVanilla(LogicItems.RespawningVengeflyKing, LocationNames.Charm_Notch_Colosseum);
+
+            rb.AddToVanilla(LogicItems.GruzMother, LocationNames.Boss_Geo_Gruz_Mother);
+            rb.AddToVanilla(LogicItems.RespawningGruzMother, LocationNames.Charm_Notch_Colosseum);
+
+            rb.AddToVanilla(LogicItems.Myla, LogicLocations.Myla);
         }
 
         private static void ApplyLongLocationSettings(RequestBuilder rb)
@@ -362,6 +351,17 @@ namespace TheRealJournalRando.Rando
             rb.RemoveItemByName("Mossy_Vagabond".AsNotesName());
             rb.RemoveLocationByName("Mossy_Vagabond".AsEntryName());
 
+            if (!RandoInterop.Settings.LongLocations.RandomizeMenderbug)
+            {
+                rb.RemoveItemByName("Menderbug".AsEntryName());
+                rb.RemoveLocationByName("Menderbug".AsEntryName());
+
+                rb.RemoveItemByName("Menderbug".AsNotesName());
+                rb.RemoveLocationByName("Menderbug".AsNotesName());
+            }
+
+            // todo - this still respects boss + bonus settings, meaning they must both be on for these locations to be placed.
+            // not sure if that's desirable
             if (!RandoInterop.Settings.LongLocations.RandomizePantheonBosses)
             {
                 foreach (string s in new[] {"Nailmasters_Oro_And_Mato", "Paintmaster_Sheo", "Great_Nailsage_Sly", "Pure_Vessel"})
