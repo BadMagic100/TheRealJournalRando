@@ -47,6 +47,7 @@ namespace TheRealJournalRando.Rando
             RequestBuilder.OnUpdate.Subscribe(0f, ApplyPoolSettings);
             RequestBuilder.OnUpdate.Subscribe(0f, AddVanillaFiniteEnemies);
             RequestBuilder.OnUpdate.Subscribe(10f, RestoreSkippedGrimmkinFlames); // must be done after 0 to overwrite rando's request
+            RequestBuilder.OnUpdate.Subscribe(10f, GrantStartingItems);
             RequestBuilder.OnUpdate.Subscribe(20f, DupeJournal);
             RequestBuilder.OnUpdate.Subscribe(30f, ApplyLongLocationSettings);
             RequestBuilder.OnUpdate.Subscribe(30f, ApplyNotesPreviewSettings);
@@ -235,6 +236,30 @@ namespace TheRealJournalRando.Rando
                         rb.AddToVanilla(def.Item, def.Location);
                     }
                     rb.ReplaceItem(ItemNames.Grimmchild2, ItemNames.Grimmchild1);
+                }
+            }
+        }
+
+        private static void GrantStartingItems(RequestBuilder rb)
+        {
+            if (!RandoInterop.Settings.Enabled || RandoInterop.Settings.StartingItems == StartingItems.None)
+            {
+                return;
+            }
+
+            if (RandoInterop.Settings.StartingItems.HasFlag(StartingItems.Journal))
+            {
+                rb.AddToStart(ItemNames.Hunters_Journal);
+                rb.GetItemGroupFor(ItemNames.Hunters_Journal).Items.Remove(ItemNames.Hunters_Journal, 1);
+            }
+            // the menu handles this too, but you shouldn't get starting entries if entries are rando'd (to avoid a stupid amount of empty locations)
+            // in theory though you could manually edit GS to get to this point so redundant checks
+            if (RandoInterop.Settings.StartingItems.HasFlag(StartingItems.Entries) && 
+                !RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.EntriesOnly))
+            {
+                foreach (EnemyDef enemy in EnemyData.NormalData.Values)
+                {
+                    rb.AddToStart(enemy.icName.AsEntryName());
                 }
             }
         }

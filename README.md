@@ -18,13 +18,21 @@ is provided below, grouped by category.
   * Entries only - For killable enemies, the "location" is killing a single enemy of a given type
     (when the enemy would normally become visible in the journal). The corresponding item will unlock the
     journal entry. Killing the default number of enemies will unlock the Hunter's notes as usual.
-  * Notes only - For killable enemies, the "location" is killing many enemies of a given type (when the
-    Hunter's notes would normally become visible in the journal, varies by enemy and cost settings). The
-    corresponding item will unlock only the Hunter's notes. Killing a single enemy will unlock the entry
-    as usual.
+  * Notes only - For killable enemies, the "location" is killing many enemies of a given type (cost varies
+    by enemy and cost settings). The corresponding item will unlock only the Hunter's notes. Killing a 
+    single enemy will unlock the entry as usual. The item at Hunter's notes locations can be previewed in
+    the journal once you have the corresponding entry, and regardless of whether or not you have the notes
+    item.
   * Full Journal Rando - Both of the location types described above will exist. There will be 2 corresponding
     item types, one which grants only visibility in the journal, and one which grants the Hunter's notes.
     The items are progressive, so you are guaranteed to receive them in order.
+* **Starting Items** - useful items you might want to start with.
+  * None - no additional starting items
+  * Hunter's Journal - grants the Hunter's Journal to make it more convenient to preview note locations
+    by killing enemies.
+  * Tier 1 Entries - grants the first tier of journal entries for all enemies. Makes it more convenient to
+    preview, but still requires you to randomly (or vanilla-ly) obtain the Hunter's Journal first.
+  * Journal and Entries - grants both the Hunter's Journal and the first level of entries for all enemies.
 * **Hunter's Notes Previews** - How previews will be handled at Hunter's notes locations. The options
   are the same shop preview settings in base rando.
 * **Dupe Hunter's Journal** - For helping get access to the above previews.

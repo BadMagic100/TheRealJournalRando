@@ -31,6 +31,17 @@ namespace TheRealJournalRando.Rando
         None = 3,
     }
 
+    [Flags]
+    public enum StartingItems
+    {
+        None = 0,
+        [MenuLabel("Hunter's Journal")]
+        Journal = 1,
+        [MenuLabel("Tier 1 Entries")]
+        Entries = 2,
+        JournalAndEntries = 3,
+    }
+
     public enum VoidIdol
     {
         None = 0,
@@ -51,6 +62,8 @@ namespace TheRealJournalRando.Rando
 
         [MenuLabel("Randomization Type")]
         public JournalRandomizationType JournalRandomizationType { get; set; } = JournalRandomizationType.All;
+
+        public StartingItems StartingItems { get; set; } = StartingItems.None;
 
         [MenuLabel("Hunter's Notes Previews")]
         public CostItemPreview JournalPreviews { get; set; } = CostItemPreview.CostAndName;

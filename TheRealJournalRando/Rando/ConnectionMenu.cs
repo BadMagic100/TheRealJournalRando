@@ -13,12 +13,14 @@ namespace TheRealJournalRando.Rando
     {
         private const int VSPACE_SMALL = 50;
         private const int VSPACE_MED = 200;
-        private const int VSPACE_LARGE = 300;
+        private const int VSPACE_LARGE = 350;
         private const int HSPACE_LARGE = 300;
         private const int HSPACE_XLARGE = 450;
         private const int HSPACE_XXLARGE = 750;
 
         internal MenuPage? journalRandoPage;
+        internal MenuEnum<JournalRandomizationType>? randomizationTypeControl;
+        internal MenuEnum<StartingItems>? startItemsControl;
 
         private static ConnectionMenu? instance = null;
         internal static ConnectionMenu Instance => instance ??= new();
@@ -48,6 +50,10 @@ namespace TheRealJournalRando.Rando
             VerticalItemPanel toplevelVip = new(journalRandoPage, new Vector2(0, 400), VSPACE_LARGE, true);
 
             MenuElementFactory<JournalRandomizationSettings> toplevelMef = new(journalRandoPage, RandoInterop.Settings);
+            randomizationTypeControl = (MenuEnum<JournalRandomizationType>)toplevelMef.ElementLookup[nameof(JournalRandomizationSettings.JournalRandomizationType)];
+            randomizationTypeControl.SelfChanged += RandomizationTypeChanged;
+            startItemsControl = (MenuEnum<StartingItems>)toplevelMef.ElementLookup[nameof(JournalRandomizationSettings.StartingItems)];
+            startItemsControl.InterceptChanged += StartItemsChanging;
             MenuLabel headingLabel = new(journalRandoPage, "Journal Entries (Extended)");
             VerticalItemPanel toplevelSettingHolder = new(journalRandoPage, Vector2.zero, VSPACE_SMALL, false, toplevelMef.Elements);
             toplevelSettingHolder.Insert(0, headingLabel);
@@ -87,6 +93,22 @@ namespace TheRealJournalRando.Rando
 
             toplevelVip.ResetNavigation();
             toplevelVip.SymSetNeighbor(Neighbor.Down, journalRandoPage.backButton);
+        }
+
+        private void RandomizationTypeChanged(IValueElement obj)
+        {
+            if (randomizationTypeControl?.Value.HasFlag(JournalRandomizationType.EntriesOnly) == true)
+            {
+                startItemsControl?.SetValue(startItemsControl.Value & ~StartingItems.Entries);
+            }
+        }
+
+        private void StartItemsChanging(MenuItem self, ref object newValue, ref bool cancelChange)
+        {
+            if (randomizationTypeControl?.Value.HasFlag(JournalRandomizationType.EntriesOnly) == true)
+            {
+                newValue = ((StartingItems)newValue) & ~StartingItems.Entries;
+            }
         }
     }
 }
