@@ -11,6 +11,12 @@ You can submit logic changes as pull requests in this repo (this is a Github thi
 unfamiliar). Please read the below instructions for info on logic requirements and style guidelines before
 contributing.
 
+## Help wanted
+
+Currently, I am looking for contributions to fill in the Defeated_Any_<Enemy_Name> waypoints. These should
+essentially be giant OR expressions listing out all the ways to reach and kill a given enemy type. Logic for
+enemies that don't appear in the list is not needed at this time (it's already handled separately).
+
 ## Logic requirements
 
 * With the exception of Oro and Mato, Sheo, Sly, and Pure Vessel in Pantheons, going to Godhome is not
@@ -36,6 +42,11 @@ When contributing logic, please follow the below style restrictions.
 
 I don't know whether ANDs or ORs take precedence, and I don't expect you or casual logic-readers to know either.
 Play it safe and group relevant terms in parentheses to keep logic readable and maintainable.
+
+### Waypoints/transitions come first
+
+Always start your logic clauses with the transition or waypoint that lets you enter the room, where appropriate.
+If there are multiple clauses OR'd together, this is true of each clause.
 
 ### Reuse existing logic when possible
 
