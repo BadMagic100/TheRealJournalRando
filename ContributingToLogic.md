@@ -81,3 +81,4 @@ If there are multiple clauses OR'd together, this is true of each clause.
   the macro file.
 * If a given enemy may warrant a combat macro in the future, please *do* use the macro in the waypoint logic
   but leave the macro expression as `ANY` to allow future updates.
+* If you're using a combat macro, place it as the last term in the corresponding waypoint.
