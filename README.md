@@ -5,6 +5,79 @@ This mod adds items and locations for every journal entry that is not included i
 with the following exceptions of Shade, which is always granted when gaining the Hunter's journal to prevent
 the UI from breaking.
 
+This readme is broken into 3 major sections:
+* [Items, Costs, and Locations](#Items-Costs-and-Locations) explains the ItemChanger items, locations, and costs added
+  by this mod. **This section is 
+  highly recommended reading whether you are developer using these in your own mod or a player using the randomizer
+  connection.**
+* [Logic Info](#Logic-Info) explains details of how logic works in the randomizer connection, including a few quirks that
+  may not be immediately obvious. **This sections is highly recommended reading before playing the randomizer 
+  connection.**
+* [Settings](#Settings) explains the various settings available in the randomizer connection in more detail.
+
+## Items, Costs, and Locations
+
+This mod introduces 2 new items types, 2 new location types, and 1 new payable cost type. Each killable enemy has 2
+new items and locations corresponding to unlocking the Hunter's Journal entry and completing the Hunter's notes for that
+enemy. Extra (non-killable) entries, including Hunter's Mark, Void Idol, and Weathered Mask, each have 1 new item and
+location added that corresponds to unlocking the entire entry and Hunter's notes, similar to the journal entries in
+base rando.
+
+### Items
+
+Journal entry items and Hunter's notes items are provided for each killable enemy type. If both items are placed, for
+a given enemy, they act progressively (in other words, you are guaranteed the entry before the notes). If only one 
+item is placed, the other behaves as it would in vanilla. If only the entry item is placed, killing the normal amount
+of that enemy will unlock the hunter's notes text. If only the notes item is placed, you must kill one enemy of the
+appropriate type before viewing the entry in the journal. Regardless of which items are or are not placed, you must
+obtain the Hunter's journal to be able to view any entry in the journal.
+
+### Costs
+
+This mod adds a cost which represents killing a certain number of a given enemy. All killable enemies are counted,
+including most Godhome bosses (more details on how this works in logic below). Godhome Nightmare King Grimm and
+Crystal/Enraged guardian do not count, as they don't count towards the journal entry/hunter's notes in vanilla HK.
+These costs can be applied on any location, though the randomizer connection only applies them to the journal entry and
+Hunter's notes locations.
+
+### Locations
+
+Journal entry and Hunter's notes locations are very nearly indistinguishable aside from costs and previews. Both locations
+work like this:
+* When you kill an enemy of the appropriate type, check if there are any costs on the location.
+* If the cost is payable, pay it and give the item(s). If the cost is not payable, do nothing
+* If there is no cost, give the item(s).
+
+In addition, the items and costs of the Hunter's notes location can be previewed in the notes pane of the Hunter's
+journal once you've obtained both the Hunter's journal and the corresponding Journal entry (either from
+obtaining the placed item, or by killing the appropriate enemy type if the entry is not placed). This preview is either
+in place of the "Defeat X more to decipher the Hunter's notes" text if you have not obtained the notes item, or after
+the end of the Hunter's notes if you have obtained the items.
+
+## Logic Info
+
+Mostly, logic works how you would expect, with a few quirks to note.
+* Both Journal entry and Hunter's notes locations will be on logic once you can kill any enemy of the appropriate type,
+  as the logic is primarily controlled by cost (see below).
+* Because Hunter's notes location may only require 1 kill, either if the cost is 1 kill or if there is a different
+  cost type on the location (perhaps placed by another connection), the Hunter's notes location will show up as
+  "reachable" in the helper log even if it's not currently possible to kill multiple enemies of that type (for example,
+  `Hunter's_Notes-Hornet` with no access to Kingdom's Edge access). These costs are taken into account in logic though,
+  so in such a case you can't have required progression locked behind an area you need that progression for. This is
+  similar to how the checks at Seer are "in logic" even without having Dream Nail or enough essence to pay costs.
+* Although Godhome bosses count as kills, this is not required in logic except for checks that are exclusive to Godhome.
+  Counting Godhome bosses exists only to allow other mods to implment costs larger than 1 for bosses.
+* Costs of higher than 1 enemy require either access to a bench or for the enemy to automatically respawn when reloading
+  the room.
+* Most enemies with a finite or semi-finite supply are handled appropriately in logic (in other words, it is not
+  assumed that they respawn). This includes Elder Baldurs, the Vengefly King in Greenpath, the Gruz Mother in
+  Crossroads, and the Kingsmoulds outside Path of Pain. The 2 non-respawning Husk Miners (Myla and the one outside
+  Deep Focus) were deemed too difficult to handle and are not considered in logic; if you kill them to get checks
+  before having access to other Husk Miners it will be considered a sequence break.
+* Enemies in Crossroads that are replaced after infection are not considered in logic to prevent you from being locked
+  out of the check. 
+* Because Infected enemies require infection to kill, it's probably slightly more likely you'll see early infection.
+
 ## Settings
 
 When enabled with rando, this mod will provide several connection settings. More information about each
