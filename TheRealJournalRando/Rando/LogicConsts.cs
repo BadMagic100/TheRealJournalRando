@@ -14,6 +14,8 @@
         public const string RespawningGruzMother = "Respawning_Gruz_Mother";
         public const string VengeflyKing = "Vengefly_King";
         public const string RespawningVengeflyKing = "Respawning_Vengefly_King";
+        public const string MimicGrub = "Mimic_Grub";
+        public const string RespawningMimicGrub = "Respawning_Mimic_Grub";
     }
 
     internal static class LogicLocations

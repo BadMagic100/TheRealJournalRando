@@ -9,7 +9,7 @@
   },
   {
     "name": "Defeated_Any_Vengefly_King",
-    "logic": "ANY"
+    "logic": "VENGEFLYKINGS"
   },
   {
     "name": "Defeated_Any_Gruzzer",
@@ -17,7 +17,7 @@
   },
   {
     "name": "Defeated_Any_Gruz_Mother",
-    "logic": "ANY"
+    "logic": "GRUZMOTHERS"
   },
   {
     "name": "Defeated_Any_Tiktik",
@@ -85,7 +85,7 @@
   },
   {
     "name": "Defeated_Any_Elder_Baldur",
-    "logic": "ANY"
+    "logic": "ELDERBALDURS"
   },
   {
     "name": "Defeated_Any_Mosscreep",
@@ -333,7 +333,7 @@
   },
   {
     "name": "Defeated_Any_Crystal_Guardian",
-    "logic": "ANY"
+    "logic": "CRYSTALGUARDIANS"
   },
   {
     "name": "Defeated_Any_Furious_Vengefly",
@@ -429,7 +429,7 @@
   },
   {
     "name": "Defeated_Any_Grub_Mimic",
-    "logic": "ANY"
+    "logic": "MIMICS"
   },
   {
     "name": "Defeated_Any_Hiveling",
@@ -569,15 +569,15 @@
   },
   {
     "name": "Defeated_Any_Grimmkin_Novice",
-    "logic": "ANY"
+    "logic": "GRIMMKINNOVICES"
   },
   {
     "name": "Defeated_Any_Grimmkin_Master",
-    "logic": "ANY"
+    "logic": "GRIMMKINMASTERS"
   },
   {
     "name": "Defeated_Any_Grimmkin_Nightmare",
-    "logic": "ANY"
+    "logic": "GRIMMKINNIGHTMARES"
   },
   {
     "name": "Defeated_Any_Grimm",
@@ -609,7 +609,7 @@
   },
   {
     "name": "Defeated_Any_Kingsmould",
-    "logic": "ANY"
+    "logic": "KINGSMOULDS"
   },
   {
     "name": "Defeated_Any_Sibling",
@@ -617,7 +617,7 @@
   },
   {
     "name": "Defeated_Any_Hornet",
-    "logic": "Defeated_Hornet_1 | Defeated_Hornet_2"
+    "logic": "HORNETS"
   },
   {
     "name": "Defeated_Any_Pure_Vessel",

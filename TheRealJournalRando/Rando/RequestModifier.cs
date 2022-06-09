@@ -27,6 +27,7 @@ namespace TheRealJournalRando.Rando
             ["ELDERBALDURS"] = "Elder_Baldur",
             ["GRUZMOTHERS"] = "Gruz_Mother",
             ["VENGEFLYKINGS"] = "Vengefly_King",
+            ["MIMICS"] = "Mimic_Grub",
         };
         private static readonly Dictionary<string, string> termNameByIcName = icNameByTermName.ToDictionary(i => i.Value, i => i.Key);
 
@@ -46,6 +47,7 @@ namespace TheRealJournalRando.Rando
             RequestBuilder.OnUpdate.Subscribe(-490f, ApplyNotesCostRandomization);
             RequestBuilder.OnUpdate.Subscribe(0f, ApplyPoolSettings);
             RequestBuilder.OnUpdate.Subscribe(0f, AddVanillaFiniteEnemies);
+            RequestBuilder.OnUpdate.Subscribe(5f, AutoGiveRandomizedLifeseeds);
             RequestBuilder.OnUpdate.Subscribe(10f, RestoreSkippedGrimmkinFlames); // must be done after 0 to overwrite rando's request
             RequestBuilder.OnUpdate.Subscribe(10f, GrantStartingItems);
             RequestBuilder.OnUpdate.Subscribe(20f, DupeJournal);
@@ -240,6 +242,36 @@ namespace TheRealJournalRando.Rando
             }
         }
 
+        private static void AutoGiveRandomizedLifeseeds(RequestBuilder rb)
+        {
+            // when lifeseeds are randomized, it is impossible to kill lifeseeds, regardless of journal randomization settings.
+            // to cope with this, auto-grant the full lifeseed entry and remove the locations from randomization
+            if (!RandoInterop.Settings.Enabled || !rb.gs.PoolSettings.LifebloodCocoons)
+            {
+                return;
+            }
+
+            EnemyDef lifeseed = EnemyData.NormalData["Lifeseed"];
+            string entryName = lifeseed.icName.AsEntryName();
+            string notesName = lifeseed.icName.AsNotesName();
+
+            rb.AddToStart(entryName);
+            rb.AddToStart(notesName);
+
+            if (RandoInterop.Settings.Pools.RegularEntries)
+            {
+                rb.RemoveItemByName(entryName);
+                rb.RemoveLocationByName(entryName);
+                rb.RemoveItemByName(notesName);
+                rb.RemoveLocationByName(notesName);
+            }
+            else
+            {
+                rb.RemoveFromVanilla(entryName);
+                rb.RemoveFromVanilla(notesName);
+            }
+        }
+
         private static void GrantStartingItems(RequestBuilder rb)
         {
             if (!RandoInterop.Settings.Enabled || RandoInterop.Settings.StartingItems == StartingItems.None)
@@ -259,7 +291,11 @@ namespace TheRealJournalRando.Rando
             {
                 foreach (EnemyDef enemy in EnemyData.NormalData.Values)
                 {
-                    rb.AddToStart(enemy.icName.AsEntryName());
+                    string name = enemy.icName.AsEntryName();
+                    if (!rb.IsAtStart(name))
+                    {
+                        rb.AddToStart(name);
+                    }
                 }
             }
         }
@@ -361,6 +397,9 @@ namespace TheRealJournalRando.Rando
 
             rb.AddToVanilla(LogicItems.GruzMother, LocationNames.Boss_Geo_Gruz_Mother);
             rb.AddToVanilla(LogicItems.RespawningGruzMother, LocationNames.Charm_Notch_Colosseum);
+
+            // non-respawning grubs are already placed by rando, and handled correctly if randomized as well.
+            rb.AddToVanilla(LogicItems.RespawningMimicGrub, LocationNames.Pale_Ore_Colosseum);
         }
 
         private static void ApplyLongLocationSettings(RequestBuilder rb)

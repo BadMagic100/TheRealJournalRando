@@ -62,6 +62,11 @@ namespace TheRealJournalRando.Rando
             Term hornets = lmb.GetTerm("HORNETS");
             lmb.AddItem(new SingleItem(LogicItems.Hornet, new TermValue(hornets, 1)));
 
+            Term mimics = lmb.GetTerm("MIMICS");
+            // this overrides the mimic item from base rando logic
+            lmb.AddItem(new SingleItem(LogicItems.MimicGrub, new TermValue(mimics, 1)));
+            lmb.AddItem(new SingleItem(LogicItems.RespawningMimicGrub, new TermValue(mimics, ARBITRARILY_LARGE_ENEMY_VALUE)));
+
             Term crystalGuardians = lmb.GetTerm("CRYSTALGUARDIANS");
             lmb.AddItem(new SingleItem(LogicItems.CrystalGuardian, new TermValue(crystalGuardians, 1)));
 
