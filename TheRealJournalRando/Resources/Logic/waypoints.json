@@ -65,7 +65,7 @@
   },
   {
     "name": "Defeated_Any_False_Knight",
-    "logic": "ANY"
+    "logic": "Defeated_False_Knight"
   },
   {
     "name": "Defeated_Any_Maggot",
@@ -157,7 +157,7 @@
   },
   {
     "name": "Defeated_Any_Uumuu",
-    "logic": "ANY"
+    "logic": "Defeated_Uumuu"
   },
   {
     "name": "Defeated_Any_Ambloom",
@@ -201,7 +201,7 @@
   },
   {
     "name": "Defeated_Any_Mantis_Lords",
-    "logic": "ANY"
+    "logic": "Defeated_Mantis_Lords"
   },
   {
     "name": "Defeated_Any_Husk_Sentry",
@@ -233,11 +233,11 @@
   },
   {
     "name": "Defeated_Any_Soul_Warrior",
-    "logic": "ANY"
+    "logic": "Defeated_Sanctum_Warrior | Defeated_Elegant_Warrior | Defeated_Colosseum_3"
   },
   {
     "name": "Defeated_Any_Soul_Master",
-    "logic": "ANY"
+    "logic": "Defeated_Soul_Master"
   },
   {
     "name": "Defeated_Any_Husk_Dandy",
@@ -261,11 +261,11 @@
   },
   {
     "name": "Defeated_Any_Watcher_Knight",
-    "logic": "ANY"
+    "logic": "Defeated_Watcher_Knights"
   },
   {
     "name": "Defeated_Any_The_Collector",
-    "logic": "ANY"
+    "logic": "Defeated_Collector"
   },
   {
     "name": "Defeated_Any_Belfly",
@@ -285,11 +285,11 @@
   },
   {
     "name": "Defeated_Any_Dung_Defender",
-    "logic": "ANY"
+    "logic": "Defeated_Dung_Defender"
   },
   {
     "name": "Defeated_Any_White_Defender",
-    "logic": "ANY"
+    "logic": "Defeated_White_Defender"
   },
   {
     "name": "Defeated_Any_Flukefey",
@@ -305,7 +305,7 @@
   },
   {
     "name": "Defeated_Any_Flukemarm",
-    "logic": "ANY"
+    "logic": "Defeated_Flukemarm"
   },
   {
     "name": "Defeated_Any_Shardmite",
@@ -381,7 +381,7 @@
   },
   {
     "name": "Defeated_Any_Nosk",
-    "logic": "ANY"
+    "logic": "Defeated_Nosk"
   },
   {
     "name": "Defeated_Any_Shadow_Creeper",
@@ -397,7 +397,7 @@
   },
   {
     "name": "Defeated_Any_Brooding_Mawlek",
-    "logic": "ANY"
+    "logic": "Defeated_Brooding_Mawlek"
   },
   {
     "name": "Defeated_Any_Lightseed",
@@ -409,7 +409,7 @@
   },
   {
     "name": "Defeated_Any_Broken_Vessel",
-    "logic": "ANY"
+    "logic": "Defeated_Broken_Vessel"
   },
   {
     "name": "Defeated_Any_Boofly",
@@ -449,7 +449,7 @@
   },
   {
     "name": "Defeated_Any_Hive_Knight",
-    "logic": "ANY"
+    "logic": "Defeated_Hive_Knight"
   },
   {
     "name": "Defeated_Any_Spiny_Husk",
@@ -469,7 +469,7 @@
   },
   {
     "name": "Defeated_Any_Traitor_Lord",
-    "logic": "ANY"
+    "logic": "Defeated_Traitor_Lord"
   },
   {
     "name": "Defeated_Any_Sharp_Baldur",
@@ -513,59 +513,59 @@
   },
   {
     "name": "Defeated_Any_God_Tamer",
-    "logic": "ANY"
+    "logic": "Defeated_Colosseum_3"
   },
   {
     "name": "Defeated_Any_Pale_Lurker",
-    "logic": "ANY"
+    "logic": "Defeated_Pale_Lurker"
   },
   {
     "name": "Defeated_Any_Zote",
-    "logic": "ANY"
+    "logic": "Defeated_Colosseum_Zote"
   },
   {
     "name": "Defeated_Any_Grey_Prince_Zote",
-    "logic": "ANY"
+    "logic": "Defeated_Grey_Prince_Zote"
   },
   {
     "name": "Defeated_Any_Winged_Zoteling",
-    "logic": "ANY"
+    "logic": "Defeated_Grey_Prince_Zote"
   },
   {
     "name": "Defeated_Any_Hopping_Zoteling",
-    "logic": "ANY"
+    "logic": "Defeated_Grey_Prince_Zote"
   },
   {
     "name": "Defeated_Any_Volatile_Zoteling",
-    "logic": "ANY"
+    "logic": "Defeated_Grey_Prince_Zote"
   },
   {
     "name": "Defeated_Any_Xero",
-    "logic": "ANY"
+    "logic": "Defeated_Xero"
   },
   {
     "name": "Defeated_Any_Gorb",
-    "logic": "ANY"
+    "logic": "Defeated_Gorb"
   },
   {
     "name": "Defeated_Any_Elder_Hu",
-    "logic": "ANY"
+    "logic": "Defeated_Elder_Hu"
   },
   {
     "name": "Defeated_Any_Marmu",
-    "logic": "ANY"
+    "logic": "Defeated_Marmu"
   },
   {
     "name": "Defeated_Any_No_Eyes",
-    "logic": "ANY"
+    "logic": "Defeated_No_Eyes"
   },
   {
     "name": "Defeated_Any_Galien",
-    "logic": "ANY"
+    "logic": "Defeated_Galien"
   },
   {
     "name": "Defeated_Any_Markoth",
-    "logic": "ANY"
+    "logic": "Defeated_Markoth"
   },
   {
     "name": "Defeated_Any_Grimmkin_Novice",
@@ -581,7 +581,7 @@
   },
   {
     "name": "Defeated_Any_Grimm",
-    "logic": "ANY"
+    "logic": "Defeated_Grimm"
   },
   {
     "name": "Defeated_Any_Nightmare_King",
@@ -629,6 +629,10 @@
   },
   {
     "name": "Defeated_Any_Radiance",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Colosseum_3",
     "logic": "ANY"
   }
 ]
