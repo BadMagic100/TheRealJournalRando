@@ -21,7 +21,7 @@ enemies that don't appear in the list is not needed at this time (it's already h
 
 * With the exception of Oro and Mato, Sheo, Sly, and Pure Vessel in Pantheons, going to Godhome is not
   logically required.
-* Enemies in infected crossroads are not logically required.
+* Enemies that get replaced or removed when crossroads is infected are not logically required.
 * The non-respawning Husk Miners (Myla and the one outside Deep Focus room) are not logically required.
 
 ## Writing logic
