@@ -129,7 +129,7 @@
   },
   {
     "name": "Defeated_Any_Massive_Moss_Charger",
-    "logic": "ANY"
+    "logic": "*Boss_Geo-Massive_Moss_Charger"
   },
   {
     "name": "Defeated_Any_Moss_Knight",
@@ -589,15 +589,15 @@
   },
   {
     "name": "Defeated_Any_Nailmasters_Oro_And_Mato",
-    "logic": "ANY"
+    "logic": "Defeated_Pantheon_1"
   },
   {
     "name": "Defeated_Any_Paintmaster_Sheo",
-    "logic": "ANY"
+    "logic": "Defeated_Pantheon_2"
   },
   {
     "name": "Defeated_Any_Great_Nailsage_Sly",
-    "logic": "ANY"
+    "logic": "Defeated_Pantheon_3"
   },
   {
     "name": "Defeated_Any_Wingmould",
@@ -621,7 +621,7 @@
   },
   {
     "name": "Defeated_Any_Pure_Vessel",
-    "logic": "ANY"
+    "logic": "Defeated_Pantheon_4"
   },
   {
     "name": "Defeated_Any_Hollow_Knight",
@@ -633,6 +633,26 @@
   },
   {
     "name": "Defeated_Colosseum_3",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Pantheon_1",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Pantheon_2",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Pantheon_3",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Pantheon_4",
+    "logic": "ANY"
+  },
+  {
+    "name": "Defeated_Pantheon_5",
     "logic": "ANY"
   }
 ]

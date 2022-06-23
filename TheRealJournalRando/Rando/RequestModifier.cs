@@ -1,5 +1,4 @@
 ﻿using ItemChanger;
-using ItemChanger.Placements;
 using ItemChanger.Tags;
 using RandomizerCore.Exceptions;
 using RandomizerCore.Logic;
@@ -67,8 +66,10 @@ namespace TheRealJournalRando.Rando
                 EditJournalItemAndLocationRequest(enemy, false, rb);
                 EditJournalItemAndLocationRequest(enemy, true, rb);
             }
-            
+
+            #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             rb.OnGetGroupFor.Subscribe(0f, MatchJournalGroup);
+            #pragma warning restore CS8622
 
             static bool MatchJournalGroup(RequestBuilder rb, string item, RequestBuilder.ElementType type, out GroupBuilder? gb)
             {
@@ -110,41 +111,6 @@ namespace TheRealJournalRando.Rando
                     SceneName = Finder.GetLocation(itemLocationName).sceneName,
                     FlexibleCount = false,
                     AdditionalProgressionPenalty = false,
-                };
-                info.customAddToPlacement += (factory, rp, pmt, item) =>
-                {
-                    pmt.Add(item);
-                    if (rp.Location is not RandoModLocation rl || rl.costs == null)
-                    {
-                        return;
-                    }
-                    if (pmt is ISingleCostPlacement iscp)
-                    {
-                        foreach (LogicCost lc in rl.costs)
-                        {
-                            Cost? newCost = null;
-                            if (lc is LogicEnemyKillCost kc)
-                            {
-                                newCost = EnemyKillCost.ConstructCustomCost(kc.EnemyIcName, kc.Amount);
-                            }
-                            else if (lc is SimpleCost sc && icNameByTermName.ContainsKey(sc.term.Name))
-                            {
-                                newCost = EnemyKillCost.ConstructCustomCost(icNameByTermName[sc.term.Name], sc.threshold);
-                            }
-
-                            if (newCost != null)
-                            {
-                                if (iscp.Cost == null)
-                                {
-                                    iscp.Cost = newCost;
-                                }
-                                else
-                                {
-                                    iscp.Cost += newCost;
-                                }
-                            }
-                        }
-                    }
                 };
                 if (!enemy.unkillable)
                 {
@@ -349,6 +315,26 @@ namespace TheRealJournalRando.Rando
                     };
                 });
             }
+
+            #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
+            rb.CostConverters.Subscribe(0f, ConvertKillCosts);
+            #pragma warning restore CS8622
+
+            static bool ConvertKillCosts(LogicCost lc, out Cost? cost)
+            {
+                if (lc is LogicEnemyKillCost kc)
+                {
+                    cost = EnemyKillCost.ConstructCustomCost(kc.EnemyIcName, kc.Amount);
+                    return true;
+                }
+                else if (lc is SimpleCost sc && icNameByTermName.ContainsKey(sc.term.Name))
+                {
+                    cost = EnemyKillCost.ConstructCustomCost(icNameByTermName[sc.term.Name], sc.threshold);
+                    return true;
+                }
+                cost = default;
+                return false;
+            }
         }
 
         private static float ComputeWeight(Random rng)
@@ -399,7 +385,7 @@ namespace TheRealJournalRando.Rando
             rb.AddToVanilla(LogicItems.RespawningGruzMother, LocationNames.Charm_Notch_Colosseum);
 
             // non-respawning grubs are already placed by rando, and handled correctly if randomized as well.
-            rb.AddToVanilla(LogicItems.RespawningMimicGrub, LocationNames.Pale_Ore_Colosseum);
+            rb.AddToVanilla(LogicItems.MimicGrub, LocationNames.Pale_Ore_Colosseum);
         }
 
         private static void ApplyLongLocationSettings(RequestBuilder rb)

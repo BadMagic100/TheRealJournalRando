@@ -64,8 +64,8 @@ namespace TheRealJournalRando.Rando
 
             Term mimics = lmb.GetTerm("MIMICS");
             // this overrides the mimic item from base rando logic
+            // it's reasonable to expect folks to 2 colo1 twice for VFK costs, not super reasonable to expect folks to do colo2 5 times for mimic costs
             lmb.AddItem(new SingleItem(LogicItems.MimicGrub, new TermValue(mimics, 1)));
-            lmb.AddItem(new SingleItem(LogicItems.RespawningMimicGrub, new TermValue(mimics, ARBITRARILY_LARGE_ENEMY_VALUE)));
 
             Term crystalGuardians = lmb.GetTerm("CRYSTALGUARDIANS");
             lmb.AddItem(new SingleItem(LogicItems.CrystalGuardian, new TermValue(crystalGuardians, 1)));
