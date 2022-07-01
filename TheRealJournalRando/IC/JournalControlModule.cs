@@ -1,17 +1,23 @@
 ﻿using HutongGames.PlayMaker;
 using ItemChanger.Extensions;
-using ItemChanger.Modules;
 using Modding;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using TheRealJournalRando.Fsm;
+using Module = ItemChanger.Modules.Module;
 
 namespace TheRealJournalRando.IC
 {
     public class JournalControlModule : Module
     {
+        private static readonly MethodInfo origRecordKillForJournal = typeof(EnemyDeathEffects).GetMethod("orig_RecordKillForJournal",
+            BindingFlags.NonPublic | BindingFlags.Instance);
+
         public bool hasResetCrawlidPd = false;
 
         public Dictionary<string, bool> hasEntry = new()
@@ -24,6 +30,7 @@ namespace TheRealJournalRando.IC
         };
 
         private Dictionary<string, Func<string>?> notesPreviews = new();
+        private ILHook? ilOrigRecordKillForJournal;
 
         public override void Initialize()
         {
@@ -33,6 +40,8 @@ namespace TheRealJournalRando.IC
             On.JournalEntryStats.Awake += RerouteShadeEntryPd;
             ModHooks.SetPlayerBoolHook += JournalDataSetOverride;
             ModHooks.GetPlayerBoolHook += JournalDataGetOverride;
+
+            ilOrigRecordKillForJournal = new ILHook(origRecordKillForJournal, ILOverrideJournalMessage);
 
             if (!hasResetCrawlidPd)
             {
@@ -50,6 +59,8 @@ namespace TheRealJournalRando.IC
             On.JournalEntryStats.Awake -= RerouteShadeEntryPd;
             ModHooks.SetPlayerBoolHook -= JournalDataSetOverride;
             ModHooks.GetPlayerBoolHook -= JournalDataGetOverride;
+
+            ilOrigRecordKillForJournal?.Dispose();
         }
 
         public void RegisterEnemyEntry(string pdName)
@@ -168,6 +179,24 @@ namespace TheRealJournalRando.IC
                     }
                     return pd.GetInt("kills" + pdName);
                 });
+            }
+        }
+
+        private void ILOverrideJournalMessage(ILContext il)
+        {
+            ILCursor cursor = new ILCursor(il).Goto(0);
+
+            if (cursor.TryGotoNext(
+                i => i.MatchLdsfld(typeof(EnemyDeathEffects), "journalUpdateMessageSpawned")
+            ))
+            {
+                cursor.Emit(OpCodes.Ldarg_0);
+                cursor.Emit(OpCodes.Ldfld, typeof(EnemyDeathEffects).GetField("playerDataName", BindingFlags.NonPublic | BindingFlags.Instance));
+                cursor.EmitDelegate<Func<string, bool>>(pdName =>
+                {
+                    return EnemyEntryIsRegistered(pdName) || EnemyNotesIsRegistered(pdName);
+                });
+                cursor.Emit(OpCodes.Brtrue_S, il.Instrs.Last());
             }
         }
 

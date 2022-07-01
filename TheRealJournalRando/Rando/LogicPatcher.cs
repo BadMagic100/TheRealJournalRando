@@ -51,6 +51,7 @@ namespace TheRealJournalRando.Rando
                     lmb.AddItem(new SingleItem(hunterNotesItemName, new TermValue(hunterNotes, 1)));
                 }
             }
+            lmb.AddItem(new EmptyItem(EnemyData.SpecialData["Weathered_Mask"].icName.AsEntryName()));
 
             Term grimmkinNovices = lmb.GetTerm("GRIMMKINNOVICES");
             Term grimmkinMasters = lmb.GetTerm("GRIMMKINMASTERS");

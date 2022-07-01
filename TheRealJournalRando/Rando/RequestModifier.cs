@@ -424,7 +424,9 @@ namespace TheRealJournalRando.Rando
 
             if (RandoInterop.Settings.LongLocations.RandomizeWeatheredMask)
             {
-                
+                string maskName = EnemyData.SpecialData["Weathered_Mask"].icName.AsEntryName();
+                rb.AddItemByName(maskName);
+                rb.AddLocationByName(maskName);
             }
 
             if (RandoInterop.Settings.LongLocations.RandomizeVoidIdol > 0)

@@ -1,7 +1,7 @@
 ﻿[
   {
     "name": "Defeated_Any_Crawlid",
-    "logic": "ANY"
+    "logic": "Cliffs_01 | (Cliffs_02[bot1] + (ANYCLAW | WINGS)) | Cliffs_02[left1] | Cliffs_02[left2] | Cliffs_02[door1] | Tutorial_01 | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
   },
   {
     "name": "Defeated_Any_Vengefly",
@@ -21,7 +21,7 @@
   },
   {
     "name": "Defeated_Any_Tiktik",
-    "logic": "ANY"
+    "logic": "Cliffs_01 | Cliffs_02 | Crossroads_ShamanTemple[left1] | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
   },
   {
     "name": "Defeated_Any_Aspid_Hunter",
@@ -37,7 +37,7 @@
   },
   {
     "name": "Defeated_Any_Wandering_Husk",
-    "logic": "ANY"
+    "logic": "Crossroads_01 | Crossroads_37[right1] | Crossroads_40 | Crossroads_ShamanTemple[left1] | Fungus1_03 | Fungus1_34"
   },
   {
     "name": "Defeated_Any_Husk_Hornhead",
@@ -654,5 +654,37 @@
   {
     "name": "Defeated_Pantheon_5",
     "logic": "ANY"
+  },
+  {
+    "name": "Cliffs_01",
+    "logic": "Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] | Cliffs_01[right4]"
+  },
+  {
+    "name": "Crossroads_01",
+    "logic": "Crossroads_01[top1] | Crossroads_01[left1] | Crossroads_01[right1]"
+  },
+  {
+    "name": "Crossroads_05",
+    "logic": "Crossroads_05[left1] | Crossroads_05[right1]"
+  },
+  {
+    "name": "Crossroads_40",
+    "logic": "Crossroads_40[left1] | Crossroads_40[right1]"
+  },
+  {
+    "name": "Fungus1_03",
+    "logic": "Fungus1_03[left1] | Fungus1_03[right1] | Fungus1_03[bot1]"
+  },
+  {
+    "name": "Fungus1_34",
+    "logic": "Fungus1_34[left1] | Fungus1_34[door1]"
+  },
+  {
+    "name": "Fungus1_20_v02",
+    "logic": "Fungus1_20_v02[bot1] | Fungus1_20_v02[bot2] | Fungus1_20_v02[right1]"
+  },
+  {
+    "name": "Fungus1_28",
+    "logic": "Fungus1_28[left1] | Fungus1_28[left2]"
   }
 ]
