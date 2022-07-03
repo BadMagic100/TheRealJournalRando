@@ -1,5 +1,8 @@
 ﻿using HutongGames.PlayMaker;
+using HutongGames.PlayMaker.Actions;
+using ItemChanger;
 using ItemChanger.Extensions;
+using ItemChanger.FsmStateActions;
 using Modding;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
@@ -15,6 +18,8 @@ namespace TheRealJournalRando.IC
 {
     public class JournalControlModule : Module
     {
+        private record BossJournalUpdateInfo(string PlayerDataName, string JournalStateName = "Journal");
+
         private static readonly MethodInfo origRecordKillForJournal = typeof(EnemyDeathEffects).GetMethod("orig_RecordKillForJournal",
             BindingFlags.NonPublic | BindingFlags.Instance);
 
@@ -29,17 +34,27 @@ namespace TheRealJournalRando.IC
             ["Shade"] = true,
         };
 
+        private ParametricFsmEditBuilder<BossJournalUpdateInfo, string>? journalBlockers;
         private Dictionary<string, Func<string>?> notesPreviews = new();
         private ILHook? ilOrigRecordKillForJournal;
 
         public override void Initialize()
         {
-            On.PlayMakerFSM.OnEnable += OnFsmEnable;
             IL.JournalList.UpdateEnemyList += ILUpdateEnemyList;
             IL.JournalEntryStats.OnEnable += ILEnableJournalStats;
             On.JournalEntryStats.Awake += RerouteShadeEntryPd;
             ModHooks.SetPlayerBoolHook += JournalDataSetOverride;
             ModHooks.GetPlayerBoolHook += JournalDataGetOverride;
+
+            journalBlockers = new(x => x.JournalStateName, GetJournalMessageBlocker);
+
+            Events.AddFsmEdit(new("Enemy List", "Item List Control"), EditJournalUI);
+            Events.AddFsmEdit(new("False Knight New", "FalseyControl"), journalBlockers.GetOrAddEdit(new("FalseKnight", "Open Map Shop and Journal")));
+            Events.AddFsmEdit(new("Mantis Battle", "Battle Control"), journalBlockers.GetOrAddEdit(new("MantisLord")));
+            Events.AddFsmEdit(SceneNames.Ruins2_03_boss, new("Battle Control", "Battle Control"), journalBlockers.GetOrAddEdit(new("BlackKnight")));
+            Events.AddFsmEdit(new("Jar Collector", "Death"), journalBlockers.GetOrAddEdit(new("JarCollector", "Set Data")));
+            Events.AddFsmEdit(SceneNames.GG_Nailmasters, new("Brothers", "Combo Control"), journalBlockers.GetOrAddEdit(new("NailBros")));
+            Events.AddFsmEdit(new("Sly Boss", "Control"), journalBlockers.GetOrAddEdit(new("Nailsage")));
 
             ilOrigRecordKillForJournal = new ILHook(origRecordKillForJournal, ILOverrideJournalMessage);
 
@@ -53,12 +68,19 @@ namespace TheRealJournalRando.IC
 
         public override void Unload()
         {
-            On.PlayMakerFSM.OnEnable -= OnFsmEnable;
             IL.JournalList.UpdateEnemyList -= ILUpdateEnemyList;
             IL.JournalEntryStats.OnEnable -= ILEnableJournalStats;
             On.JournalEntryStats.Awake -= RerouteShadeEntryPd;
             ModHooks.SetPlayerBoolHook -= JournalDataSetOverride;
             ModHooks.GetPlayerBoolHook -= JournalDataGetOverride;
+
+            Events.RemoveFsmEdit(new("Enemy List", "Item List Control"), EditJournalUI);
+            Events.RemoveFsmEdit(new("False Knight New", "FalseyControl"), journalBlockers?["FalseKnight"]);
+            Events.RemoveFsmEdit(new("Mantis Battle", "Battle Control"), journalBlockers?["MantisLord"]);
+            Events.RemoveFsmEdit(SceneNames.Ruins2_03_boss, new("Battle Control", "Battle Control"), journalBlockers?["BlackKnight"]);
+            Events.RemoveFsmEdit(new("Jar Collector", "Death"), journalBlockers?["JarCollector"]);
+            Events.RemoveFsmEdit(SceneNames.GG_Nailmasters, new("Brothers", "Combo Control"), journalBlockers?["NailBros"]);
+            Events.RemoveFsmEdit(new("Sly Boss", "Control"), journalBlockers?["Nailsage"]);
 
             ilOrigRecordKillForJournal?.Dispose();
         }
@@ -160,6 +182,7 @@ namespace TheRealJournalRando.IC
                 });
             }
         }
+
         private void ILEnableJournalStats(ILContext il)
         {
             ILCursor cursor = new ILCursor(il).Goto(0);
@@ -194,7 +217,7 @@ namespace TheRealJournalRando.IC
                 cursor.Emit(OpCodes.Ldfld, typeof(EnemyDeathEffects).GetField("playerDataName", BindingFlags.NonPublic | BindingFlags.Instance));
                 cursor.EmitDelegate<Func<string, bool>>(pdName =>
                 {
-                    return EnemyEntryIsRegistered(pdName) || EnemyNotesIsRegistered(pdName);
+                    return pdName == "Dummy" || EnemyEntryIsRegistered(pdName) || EnemyNotesIsRegistered(pdName);
                 });
                 cursor.Emit(OpCodes.Brtrue_S, il.Instrs.Last());
             }
@@ -237,20 +260,32 @@ namespace TheRealJournalRando.IC
             return value;
         }
 
-        private void OnFsmEnable(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
+        private void EditJournalUI(PlayMakerFSM self)
         {
-            orig(self);
-            if (self.gameObject.name == "Enemy List" && self.FsmName == "Item List Control")
+            FsmState notesCheck = self.GetState("Notes?");
+            notesCheck.Actions[3] = new HasNotesComparisonProxy(this);
+
+            FsmState displayKillsState = self.GetState("Display Kills");
+            displayKillsState.Actions[4] = new KillCounterDisplayProxy(this);
+
+            FsmState displayNotesState = self.GetState("Get Notes");
+            displayNotesState.Actions[4] = new NotesDisplayProxy(this);
+        }
+
+        private Action<PlayMakerFSM> GetJournalMessageBlocker(BossJournalUpdateInfo info)
+        {
+            return (self) =>
             {
-                FsmState notesCheck = self.GetState("Notes?");
-                notesCheck.Actions[3] = new HasNotesComparisonProxy(this);
+                FsmState journalState = self.GetState(info.JournalStateName);
+                PlayerDataBoolTest journalCheckAction = journalState.GetActionsOfType<PlayerDataBoolTest>().First(x => x.boolName.Value == "hasJournal");
+                int idx = journalState.Actions.IndexOf(journalCheckAction);
+                journalState.Actions[idx] = new DelegateBoolTest(() =>
+                {
+                    bool isRegistered = EnemyEntryIsRegistered(info.PlayerDataName) || EnemyNotesIsRegistered(info.PlayerDataName);
 
-                FsmState displayKillsState = self.GetState("Display Kills");
-                displayKillsState.Actions[4] = new KillCounterDisplayProxy(this);
-
-                FsmState displayNotesState = self.GetState("Get Notes");
-                displayNotesState.Actions[4] = new NotesDisplayProxy(this);
-            }
+                    return !isRegistered && PlayerData.instance.GetBool("hasJournal");
+                }, journalCheckAction);
+            };
         }
         
     }
