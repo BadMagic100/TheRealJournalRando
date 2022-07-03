@@ -5,8 +5,8 @@ namespace TheRealJournalRando.IC
 {
     public class ParametricFsmEditBuilder<TKey>
     {
-        private Dictionary<TKey, Action<PlayMakerFSM>> editLookup = new();
-        private Func<TKey, Action<PlayMakerFSM>> editGenerator;
+        private readonly Dictionary<TKey, Action<PlayMakerFSM>> editLookup = new();
+        private readonly Func<TKey, Action<PlayMakerFSM>> editGenerator;
 
         public ParametricFsmEditBuilder(Func<TKey, Action<PlayMakerFSM>> editGenerator)
         {
@@ -30,9 +30,9 @@ namespace TheRealJournalRando.IC
 
     public class ParametricFsmEditBuilder<TData, TKey> where TData : class
     {
-        private Dictionary<TKey, Action<PlayMakerFSM>> editLookup = new();
-        private Func<TData, TKey> keySelector;
-        private Func<TData, Action<PlayMakerFSM>> editGenerator;
+        private readonly Dictionary<TKey, Action<PlayMakerFSM>> editLookup = new();
+        private readonly Func<TData, TKey> keySelector;
+        private readonly Func<TData, Action<PlayMakerFSM>> editGenerator;
 
         public ParametricFsmEditBuilder(Func<TData, TKey> keySelector, Func<TData, Action<PlayMakerFSM>> editGenerator)
         {

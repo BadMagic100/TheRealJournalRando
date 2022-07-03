@@ -19,6 +19,7 @@ namespace TheRealJournalRando.IC
     public class JournalControlModule : Module
     {
         private record BossJournalUpdateInfo(string PlayerDataName, string JournalStateName = "Journal");
+        private record MultiJournalUpdateInfo(string PlayerDataName, string GOPrefix);
 
         private static readonly MethodInfo origRecordKillForJournal = typeof(EnemyDeathEffects).GetMethod("orig_RecordKillForJournal",
             BindingFlags.NonPublic | BindingFlags.Instance);
@@ -35,6 +36,7 @@ namespace TheRealJournalRando.IC
         };
 
         private ParametricFsmEditBuilder<BossJournalUpdateInfo, string>? journalBlockers;
+        private ParametricFsmEditBuilder<MultiJournalUpdateInfo, string>? multiJournalBlockers;
         private Dictionary<string, Func<string>?> notesPreviews = new();
         private ILHook? ilOrigRecordKillForJournal;
 
@@ -46,7 +48,8 @@ namespace TheRealJournalRando.IC
             ModHooks.SetPlayerBoolHook += JournalDataSetOverride;
             ModHooks.GetPlayerBoolHook += JournalDataGetOverride;
 
-            journalBlockers = new(x => x.JournalStateName, GetJournalMessageBlocker);
+            journalBlockers = new(x => x.PlayerDataName, GetJournalMessageBlocker);
+            multiJournalBlockers = new(x => x.PlayerDataName, GetMultiJournalMessageBlocker);
 
             Events.AddFsmEdit(new("Enemy List", "Item List Control"), EditJournalUI);
             Events.AddFsmEdit(new("False Knight New", "FalseyControl"), journalBlockers.GetOrAddEdit(new("FalseKnight", "Open Map Shop and Journal")));
@@ -55,6 +58,8 @@ namespace TheRealJournalRando.IC
             Events.AddFsmEdit(new("Jar Collector", "Death"), journalBlockers.GetOrAddEdit(new("JarCollector", "Set Data")));
             Events.AddFsmEdit(SceneNames.GG_Nailmasters, new("Brothers", "Combo Control"), journalBlockers.GetOrAddEdit(new("NailBros")));
             Events.AddFsmEdit(new("Sly Boss", "Control"), journalBlockers.GetOrAddEdit(new("Nailsage")));
+            Events.AddFsmEdit(new("Control"), multiJournalBlockers.GetOrAddEdit(new("Sibling", "Shade Sibling")));
+            Events.AddFsmEdit(new("Control"), multiJournalBlockers.GetOrAddEdit(new("PalaceFly", "White Palace Fly")));
 
             ilOrigRecordKillForJournal = new ILHook(origRecordKillForJournal, ILOverrideJournalMessage);
 
@@ -81,6 +86,8 @@ namespace TheRealJournalRando.IC
             Events.RemoveFsmEdit(new("Jar Collector", "Death"), journalBlockers?["JarCollector"]);
             Events.RemoveFsmEdit(SceneNames.GG_Nailmasters, new("Brothers", "Combo Control"), journalBlockers?["NailBros"]);
             Events.RemoveFsmEdit(new("Sly Boss", "Control"), journalBlockers?["Nailsage"]);
+            Events.RemoveFsmEdit(new("Control"), multiJournalBlockers?["Sibling"]);
+            Events.RemoveFsmEdit(new("Control"), multiJournalBlockers?["PalaceFly"]);
 
             ilOrigRecordKillForJournal?.Dispose();
         }
@@ -272,21 +279,40 @@ namespace TheRealJournalRando.IC
             displayNotesState.Actions[4] = new NotesDisplayProxy(this);
         }
 
+        private void ReplaceHasJournalCheck(FsmState journalState, string pdName)
+        {
+            PlayerDataBoolTest journalCheckAction = journalState.GetActionsOfType<PlayerDataBoolTest>().First(x => x.boolName.Value == "hasJournal");
+            int idx = journalState.Actions.IndexOf(journalCheckAction);
+            journalState.Actions[idx] = new DelegateBoolTest(() =>
+            {
+                bool isRegistered = EnemyEntryIsRegistered(pdName) || EnemyNotesIsRegistered(pdName);
+
+                return !isRegistered && PlayerData.instance.GetBool("hasJournal");
+            }, journalCheckAction);
+        }
+
         private Action<PlayMakerFSM> GetJournalMessageBlocker(BossJournalUpdateInfo info)
         {
             return (self) =>
             {
                 FsmState journalState = self.GetState(info.JournalStateName);
-                PlayerDataBoolTest journalCheckAction = journalState.GetActionsOfType<PlayerDataBoolTest>().First(x => x.boolName.Value == "hasJournal");
-                int idx = journalState.Actions.IndexOf(journalCheckAction);
-                journalState.Actions[idx] = new DelegateBoolTest(() =>
-                {
-                    bool isRegistered = EnemyEntryIsRegistered(info.PlayerDataName) || EnemyNotesIsRegistered(info.PlayerDataName);
-
-                    return !isRegistered && PlayerData.instance.GetBool("hasJournal");
-                }, journalCheckAction);
+                ReplaceHasJournalCheck(journalState, info.PlayerDataName);
             };
         }
-        
+
+        private Action<PlayMakerFSM> GetMultiJournalMessageBlocker(MultiJournalUpdateInfo info)
+        {
+            return (self) =>
+            {
+                if (self.gameObject.name.StartsWith(info.GOPrefix))
+                {
+                    FsmState entryState = self.GetState("Journal Entry?");
+                    ReplaceHasJournalCheck(entryState, info.PlayerDataName);
+
+                    FsmState updateState = self.GetState("Journal Update?");
+                    ReplaceHasJournalCheck(updateState, info.PlayerDataName);
+                }
+            };
+        }
     }
 }
