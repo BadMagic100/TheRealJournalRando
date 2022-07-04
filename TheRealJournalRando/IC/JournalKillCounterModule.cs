@@ -187,7 +187,7 @@ namespace TheRealJournalRando.IC
             {
                 InjectRecordState(self, "Journal Entry?", "FINISHED", "Journal Update?", "Sibling");
             }
-            // grimmkin
+            // grimmkin (this can be a strong comparison)
             if (CheckFsmWeak(self, "Flamebearer Small", "Control"))
             {
                 InjectRecordState(self, "Fanfare 1", "FINISHED", "Flash Start", "FlameBearerSmall");

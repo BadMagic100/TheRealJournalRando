@@ -52,6 +52,7 @@ namespace TheRealJournalRando.Rando
             RequestBuilder.OnUpdate.Subscribe(20f, DupeJournal);
             RequestBuilder.OnUpdate.Subscribe(30f, ApplyLongLocationSettings);
             RequestBuilder.OnUpdate.Subscribe(30f, ApplyNotesPreviewSettings);
+            RequestBuilder.OnUpdate.Subscribe(50f, ForceBluggsacLocations);
         }
 
         private static void SetupRefs(RequestBuilder rb)
@@ -66,6 +67,8 @@ namespace TheRealJournalRando.Rando
                 EditJournalItemAndLocationRequest(enemy, false, rb);
                 EditJournalItemAndLocationRequest(enemy, true, rb);
             }
+
+            //todo: special data
 
             #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             rb.OnGetGroupFor.Subscribe(0f, MatchJournalGroup);
@@ -429,9 +432,9 @@ namespace TheRealJournalRando.Rando
                 rb.AddLocationByName(maskName);
             }
 
-            if (RandoInterop.Settings.LongLocations.RandomizeVoidIdol > 0)
+            for (int i = 0; i < (int)RandoInterop.Settings.LongLocations.RandomizeVoidIdol; i++)
             {
-
+                rb.AddLocationByName(EnemyData.SpecialData["Void_Idol"].icName.AsEntryName());
             }
 
             if (RandoInterop.Settings.LongLocations.RandomizeHuntersMark)
@@ -463,6 +466,36 @@ namespace TheRealJournalRando.Rando
                         {
                             pmt.AddTag<DisableCostPreviewTag>();
                         }
+                    };
+                });
+            }
+        }
+
+        private static void ForceBluggsacLocations(RequestBuilder rb)
+        {
+            if (!RandoInterop.Settings.Enabled || !RandoInterop.Settings.Pools.RegularEntries)
+            {
+                return;
+            }
+
+            foreach (string loc in new string[] {LocationNames.Rancid_Egg_Queens_Gardens, LocationNames.Rancid_Egg_Blue_Lake, 
+                LocationNames.Rancid_Egg_Crystal_Peak_Dive_Entrance, LocationNames.Rancid_Egg_Crystal_Peak_Tall_Room, 
+                LocationNames.Rancid_Egg_Beasts_Den, LocationNames.Rancid_Egg_Dark_Deepnest,
+                LocationNames.Rancid_Egg_Near_Quick_Slash, LocationNames.Rancid_Egg_Waterways_East,
+                LocationNames.Rancid_Egg_Waterways_Main, LocationNames.Rancid_Egg_Waterways_West_Bluggsac
+            })
+            {
+                rb.EditLocationRequest(loc, info =>
+                {
+                    info.customPlacementFetch = (factory, _) =>
+                    {
+                        if (factory.TryFetchPlacement(loc, out AbstractPlacement pmt))
+                        {
+                            return pmt;
+                        }
+                        pmt = Finder.GetLocationFromSheet(loc, 0).Wrap();
+                        factory.AddPlacement(pmt);
+                        return pmt;
                     };
                 });
             }

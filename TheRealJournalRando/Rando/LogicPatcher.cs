@@ -5,7 +5,6 @@ using RandomizerCore.LogicItems;
 using RandomizerMod.RC;
 using RandomizerMod.Settings;
 using System.IO;
-using System.Linq;
 using TheRealJournalRando.Data;
 
 namespace TheRealJournalRando.Rando
@@ -38,7 +37,7 @@ namespace TheRealJournalRando.Rando
             lmb.DeserializeJson(LogicManagerBuilder.JsonType.Terms, t);
 
             Term hunterNotes = lmb.GetTerm("HUNTERNOTES");
-            foreach (EnemyDef enemy in EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values))
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
             {
                 lmb.AddItem(new EmptyItem(enemy.icName.AsEntryName()));
                 string hunterNotesItemName = enemy.icName.AsNotesName();

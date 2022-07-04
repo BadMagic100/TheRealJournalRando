@@ -86,6 +86,8 @@ namespace TheRealJournalRando
             Events.OnItemChangerHook += LanguageData.Hook;
             Events.OnItemChangerUnhook += LanguageData.Unhook;
 
+            Finder.GetItemOverride += ReplaceOriginalJournalUIDefs;
+
             // todo - deal with special ones
 
             foreach (EnemyDef enemyDef in EnemyData.NormalData.Values)
@@ -111,6 +113,26 @@ namespace TheRealJournalRando
                     }
                 }
             });
+        }
+
+        private void ReplaceOriginalJournalUIDefs(GetItemEventArgs args)
+        {
+            switch (args.ItemName)
+            {
+                case ItemNames.Journal_Entry_Goam:
+                case ItemNames.Journal_Entry_Garpede:
+                case ItemNames.Journal_Entry_Charged_Lumafly:
+                case ItemNames.Journal_Entry_Void_Tendrils:
+                case ItemNames.Journal_Entry_Seal_of_Binding:
+                    if (Finder.GetItemInternal(args.ItemName) is JournalEntryItem jei && jei.UIDef is MsgUIDef md)
+                    {
+                        md.sprite = new JournalBadgeSprite(jei.playerDataName);
+                        args.Current = jei;
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void DefineStandardEntryAndNoteItems(EnemyDef enemyDef)
