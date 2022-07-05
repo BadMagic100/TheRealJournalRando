@@ -82,7 +82,9 @@ namespace TheRealJournalRando.Rando
                     return false;
                 }
 
-                if (EnemyData.AllDefs.SelectMany(x => new[] {x.icName.AsEntryName(), x.icName.AsNotesName()}).Contains(item))
+                if (EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values)
+                    .SelectMany(x => new[] {x.icName.AsEntryName(), x.icName.AsNotesName()})
+                    .Append(SpecialEnemies.Void_Idol.AsEntryName()).Contains(item))
                 {
                     gb = rb.GetGroupFor(ItemNames.Hunters_Journal);
                     return true;
@@ -427,14 +429,14 @@ namespace TheRealJournalRando.Rando
 
             if (RandoInterop.Settings.LongLocations.RandomizeWeatheredMask)
             {
-                string maskName = EnemyData.SpecialData["Weathered_Mask"].icName.AsEntryName();
+                string maskName = EnemyData.SpecialData.Weathered_Mask.icName.AsEntryName();
                 rb.AddItemByName(maskName);
                 rb.AddLocationByName(maskName);
             }
 
             for (int i = 0; i < (int)RandoInterop.Settings.LongLocations.RandomizeVoidIdol; i++)
             {
-                rb.AddLocationByName(EnemyData.SpecialData["Void_Idol"].icName.AsEntryName());
+                rb.AddLocationByName(SpecialEnemies.Void_Idol.AsEntryName());
             }
 
             if (RandoInterop.Settings.LongLocations.RandomizeHuntersMark)

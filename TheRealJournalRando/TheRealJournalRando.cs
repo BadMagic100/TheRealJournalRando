@@ -95,12 +95,12 @@ namespace TheRealJournalRando
                 DefineStandardEntryAndNoteItems(enemyDef);
                 DefineStandardEntryAndNoteLocations(enemyDef);
             }
-            DefineStandardEntryAndNoteItems(EnemyData.SpecialData["Mossy_Vagabond"]);
-            DefineFullEntryItem(EnemyData.SpecialData["Weathered_Mask"]);
+            DefineStandardEntryAndNoteItems(EnemyData.SpecialData.Mossy_Vagabond);
+            DefineFullEntryItem(EnemyData.SpecialData.Weathered_Mask);
 
             Finder.DefineCustomLocation(new ObjectLocation()
             {
-                name = EnemyData.SpecialData["Weathered_Mask"].icName.AsEntryName(),
+                name = EnemyData.SpecialData.Weathered_Mask.icName.AsEntryName(),
                 sceneName = SceneNames.GG_Land_of_Storms,
                 objectName = "Shiny Item GG Storms",
                 flingType = FlingType.DirectDeposit,
