@@ -12,7 +12,9 @@ namespace TheRealJournalRando.Rando
         public string EnemyIcName { get; init; }
         public bool Respawns { get; init; }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public LogicEnemyKillCost() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         public LogicEnemyKillCost(LogicManager lm, string enemyIcName, bool respawns, int amount)
         {

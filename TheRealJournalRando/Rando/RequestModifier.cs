@@ -8,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TheRealJournalRando.Data;
+using TheRealJournalRando.Data.Generated;
 using TheRealJournalRando.IC;
+using TheRealJournalRando.Rando.Generated;
 
 namespace TheRealJournalRando.Rando
 {
@@ -17,16 +19,16 @@ namespace TheRealJournalRando.Rando
         private const string POOL_JOURNAL_ENTRIES = "JournalEntries"; //from rando's pools.json
         private static readonly Dictionary<string, string> icNameByTermName = new()
         {
-            ["HORNETS"] = "Hornet",
-            ["CRYSTALGUARDIANS"] = "Crystal_Guardian",
-            ["GRIMMKINNOVICES"] = "Grimmkin_Novice",
-            ["GRIMMKINMASTERS"] = "Grimmkin_Master",
-            ["GRIMMKINNIGHTMARES"] = "Grimmkin_Nightmare",
-            ["KINGSMOULDS"] = "Kingsmould",
-            ["ELDERBALDURS"] = "Elder_Baldur",
-            ["GRUZMOTHERS"] = "Gruz_Mother",
-            ["VENGEFLYKINGS"] = "Vengefly_King",
-            ["MIMICS"] = "Mimic_Grub",
+            [Terms.HORNETS] = EnemyNames.Hornet,
+            [Terms.CRYSTALGUARDIANS] = EnemyNames.Crystal_Guardian,
+            [Terms.GRIMMKINNOVICES] = EnemyNames.Grimmkin_Novice,
+            [Terms.GRIMMKINMASTERS] = EnemyNames.Grimmkin_Master,
+            [Terms.GRIMMKINNIGHTMARES] = EnemyNames.Grimmkin_Nightmare,
+            [Terms.KINGSMOULDS] = EnemyNames.Kingsmould,
+            [Terms.ELDERBALDURS] = EnemyNames.Elder_Baldur,
+            [Terms.GRUZMOTHERS] = EnemyNames.Gruz_Mother,
+            [Terms.VENGEFLYKINGS] = EnemyNames.Vengefly_King,
+            [Terms.MIMICS] = EnemyNames.Grub_Mimic
         };
         private static readonly Dictionary<string, string> termNameByIcName = icNameByTermName.ToDictionary(i => i.Value, i => i.Key);
 
@@ -222,7 +224,7 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            EnemyDef lifeseed = EnemyData.NormalData["Lifeseed"];
+            EnemyDef lifeseed = EnemyData.NormalData[EnemyNames.Lifeseed];
             string entryName = lifeseed.icName.AsEntryName();
             string notesName = lifeseed.icName.AsNotesName();
 
@@ -357,7 +359,7 @@ namespace TheRealJournalRando.Rando
             }
 
             rb.AddToVanilla(LogicItems.Hornet, LocationNames.Mothwing_Cloak);
-            rb.AddToVanilla(LogicItems.Hornet, LogicLocations.Hornet2);
+            rb.AddToVanilla(LogicItems.Hornet, Locations.Hornet_2);
 
             rb.AddToVanilla(LogicItems.CrystalGuardian, LocationNames.Boss_Geo_Crystal_Guardian);
             rb.AddToVanilla(LogicItems.CrystalGuardian, LocationNames.Boss_Geo_Enraged_Guardian);
@@ -374,14 +376,14 @@ namespace TheRealJournalRando.Rando
             rb.AddToVanilla(LogicItems.GrimmkinNightmare, LocationNames.Grimmkin_Flame_Hive);
             rb.AddToVanilla(LogicItems.GrimmkinNightmare, LocationNames.Grimmkin_Flame_Ancient_Basin);
 
-            rb.AddToVanilla(LogicItems.Kingsmould, LogicLocations.KingsmouldPalaceEntry);
-            rb.AddToVanilla(LogicItems.Kingsmould, LogicLocations.KingsmouldPalaceArena1);
+            rb.AddToVanilla(LogicItems.Kingsmould, Locations.Kingsmould_Palace_Entry);
+            rb.AddToVanilla(LogicItems.Kingsmould, Locations.Kingsmould_Palace_Arena_1);
             rb.AddToVanilla(LogicItems.RespawningKingsmould, LocationNames.Journal_Entry_Seal_of_Binding);
 
-            rb.AddToVanilla(LogicItems.ElderBaldur, LogicLocations.BaldurShellLeftBaldur);
-            rb.AddToVanilla(LogicItems.ElderBaldur, LogicLocations.BaldurShellRightBaldur);
-            rb.AddToVanilla(LogicItems.ElderBaldur, LogicLocations.BaldurGreenpathEntrance);
-            rb.AddToVanilla(LogicItems.ElderBaldur, LogicLocations.BaldurAncestralMound);
+            rb.AddToVanilla(LogicItems.ElderBaldur, Locations.Baldur_Shell_Left_Baldur);
+            rb.AddToVanilla(LogicItems.ElderBaldur, Locations.Baldur_Shell_Right_Baldur);
+            rb.AddToVanilla(LogicItems.ElderBaldur, Locations.Baldur_Greenpath_Entrance);
+            rb.AddToVanilla(LogicItems.ElderBaldur, Locations.Baldur_Ancestral_Mound);
 
             rb.AddToVanilla(LogicItems.VengeflyKing, LocationNames.Boss_Geo_Vengefly_King);
             rb.AddToVanilla(LogicItems.RespawningVengeflyKing, LocationNames.Charm_Notch_Colosseum);
@@ -390,7 +392,7 @@ namespace TheRealJournalRando.Rando
             rb.AddToVanilla(LogicItems.RespawningGruzMother, LocationNames.Charm_Notch_Colosseum);
 
             // non-respawning grubs are already placed by rando, and handled correctly if randomized as well.
-            rb.AddToVanilla(LogicItems.MimicGrub, LocationNames.Pale_Ore_Colosseum);
+            rb.AddToVanilla(ItemNames.Mimic_Grub, LocationNames.Pale_Ore_Colosseum);
         }
 
         private static void ApplyLongLocationSettings(RequestBuilder rb)
@@ -401,23 +403,24 @@ namespace TheRealJournalRando.Rando
             }
 
             // temporary, will need extra handling; for now just yeet it and this is a good place for it
-            rb.RemoveItemByName("Mossy_Vagabond".AsNotesName());
-            rb.RemoveLocationByName("Mossy_Vagabond".AsEntryName());
+            rb.RemoveItemByName(EnemyNames.Mossy_Vagabond.AsNotesName());
+            rb.RemoveLocationByName(EnemyNames.Mossy_Vagabond.AsEntryName());
 
             if (!RandoInterop.Settings.LongLocations.RandomizeMenderbug)
             {
-                rb.RemoveItemByName("Menderbug".AsEntryName());
-                rb.RemoveLocationByName("Menderbug".AsEntryName());
+                rb.RemoveItemByName(EnemyNames.Menderbug.AsEntryName());
+                rb.RemoveLocationByName(EnemyNames.Menderbug.AsEntryName());
 
-                rb.RemoveItemByName("Menderbug".AsNotesName());
-                rb.RemoveLocationByName("Menderbug".AsNotesName());
+                rb.RemoveItemByName(EnemyNames.Menderbug.AsNotesName());
+                rb.RemoveLocationByName(EnemyNames.Menderbug.AsNotesName());
             }
 
             // todo - this still respects boss + bonus settings, meaning they must both be on for these locations to be placed.
             // not sure if that's desirable
             if (!RandoInterop.Settings.LongLocations.RandomizePantheonBosses)
             {
-                foreach (string s in new[] {"Nailmasters_Oro_And_Mato", "Paintmaster_Sheo", "Great_Nailsage_Sly", "Pure_Vessel"})
+                foreach (string s in new[] {EnemyNames.Nailmasters_Oro_And_Mato, 
+                    EnemyNames.Paintmaster_Sheo, EnemyNames.Great_Nailsage_Sly, EnemyNames.Pure_Vessel})
                 {
                     rb.RemoveItemByName(s.AsEntryName());
                     rb.RemoveLocationByName(s.AsEntryName());

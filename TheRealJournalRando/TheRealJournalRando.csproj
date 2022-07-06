@@ -17,6 +17,8 @@
         <Nullable>enable</Nullable>
         <HollowKnightRefs>..\API</HollowKnightRefs>
         <ExportDir>bin\Publish</ExportDir>
+        <AdditionalFileItemNames>EmbeddedResource</AdditionalFileItemNames>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
     <Import Project="LocalOverrides.targets" Condition="Exists('LocalOverrides.targets')" />
     <Target Name="CopyMod" AfterTargets="PostBuildEvent">
@@ -41,6 +43,9 @@
         </ItemGroup>
         <WriteLinesToFile File="$(ExportDir)/VERSION.txt" Lines="@(VersionNumber)" Overwrite="true" Encoding="UTF-8" />
     </Target>
+    <ItemGroup>
+        <ProjectReference Include="..\ConstsGenerator\ConstsGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
     <ItemGroup>
         <None Remove="build.yml" />
         <None Remove="README.md" />

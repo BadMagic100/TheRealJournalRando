@@ -1,16 +1,11 @@
 ﻿using ItemChanger;
-using ItemChanger.Extensions;
-using ItemChanger.FsmStateActions;
 using ItemChanger.Items;
 using ItemChanger.Locations;
 using ItemChanger.Tags;
 using ItemChanger.UIDefs;
-using ItemChanger.Util;
 using Modding;
-using MonoMod.RuntimeDetour;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using TheRealJournalRando.Data;
 using TheRealJournalRando.IC;
 using FormatString = TheRealJournalRando.IC.FormatString;
@@ -39,33 +34,9 @@ namespace TheRealJournalRando
 
         public override string GetVersion() => GetType().Assembly.GetName().Version.ToString();
 
-        private static Hook? lazyHook;
-        private static readonly MethodInfo AddChangeSceneToShiny = typeof(ShinyUtility).GetMethod(nameof(ShinyUtility.AddChangeSceneToShiny));
-
         public TheRealJournalRando() : base()
         {
             _instance = this;
-            lazyHook = new Hook(AddChangeSceneToShiny, AdjustDreamExitRule);
-        }
-
-        private static void AdjustDreamExitRule(Action<PlayMakerFSM, Transition> orig, PlayMakerFSM shinyFsm, Transition t)
-        {
-            if (t.GateName == "door_Land_of_Storms_return")
-            {
-                shinyFsm.FsmVariables.FindFsmBool("Exit Dream").Value = true;
-                shinyFsm.FsmVariables.FindFsmString("Return Door").Value = "door_Land_of_Storms_return";
-                shinyFsm.GetState("Fade Pause").AddFirstAction(new Lambda(() =>
-                {
-                    PlayerData.instance.SetString(nameof(PlayerData.dreamReturnScene), t.SceneName);
-                    HeroController.instance.proxyFSM.FsmVariables.GetFsmBool("No Charms").Value = false;
-                    // fixes minion spawning issue after Dream Nail, Dreamers, etc
-                    // could extremely rarely be undesired, if the target scene is in Godhome
-                }));
-            }
-            else
-            {
-                orig(shinyFsm, t);
-            }
         }
 
         public override void Initialize()
@@ -109,7 +80,9 @@ namespace TheRealJournalRando
                 {
                     new ChangeSceneTag()
                     {
-                        changeTo = new Transition(SceneNames.GG_Atrium_Roof, "door_Land_of_Storms_return")
+                        changeTo = new Transition(SceneNames.GG_Atrium_Roof, "door_Land_of_Storms_return"),
+                        dreamReturn = true,
+                        deactivateNoCharms = true,
                     }
                 }
             });

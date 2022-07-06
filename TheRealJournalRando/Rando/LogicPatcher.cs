@@ -6,6 +6,7 @@ using RandomizerMod.RC;
 using RandomizerMod.Settings;
 using System.IO;
 using TheRealJournalRando.Data;
+using TheRealJournalRando.Rando.Generated;
 
 namespace TheRealJournalRando.Rando
 {
@@ -36,7 +37,7 @@ namespace TheRealJournalRando.Rando
             using Stream t = typeof(LogicPatcher).Assembly.GetManifestResourceStream("TheRealJournalRando.Resources.Logic.terms.json");
             lmb.DeserializeJson(LogicManagerBuilder.JsonType.Terms, t);
 
-            Term hunterNotes = lmb.GetTerm("HUNTERNOTES");
+            Term hunterNotes = lmb.GetTerm(Terms.HUNTERNOTES);
             foreach (EnemyDef enemy in EnemyData.NormalData.Values)
             {
                 lmb.AddItem(new EmptyItem(enemy.icName.AsEntryName()));
@@ -52,36 +53,36 @@ namespace TheRealJournalRando.Rando
             }
             lmb.AddItem(new EmptyItem(EnemyData.SpecialData.Weathered_Mask.icName.AsEntryName()));
 
-            Term grimmkinNovices = lmb.GetTerm("GRIMMKINNOVICES");
-            Term grimmkinMasters = lmb.GetTerm("GRIMMKINMASTERS");
-            Term grimmkinNightmares = lmb.GetTerm("GRIMMKINNIGHTMARES");
+            Term grimmkinNovices = lmb.GetTerm(Terms.GRIMMKINNOVICES);
+            Term grimmkinMasters = lmb.GetTerm(Terms.GRIMMKINMASTERS);
+            Term grimmkinNightmares = lmb.GetTerm(Terms.GRIMMKINNIGHTMARES);
             lmb.AddItem(new SingleItem(LogicItems.GrimmkinNovice, new TermValue(grimmkinNovices, 1)));
             lmb.AddItem(new SingleItem(LogicItems.GrimmkinMaster, new TermValue(grimmkinMasters, 1)));
             lmb.AddItem(new SingleItem(LogicItems.GrimmkinNightmare, new TermValue(grimmkinNightmares, 1)));
 
-            Term hornets = lmb.GetTerm("HORNETS");
+            Term hornets = lmb.GetTerm(Terms.HORNETS);
             lmb.AddItem(new SingleItem(LogicItems.Hornet, new TermValue(hornets, 1)));
 
-            Term mimics = lmb.GetTerm("MIMICS");
+            Term mimics = lmb.GetTerm(Terms.MIMICS);
             // this overrides the mimic item from base rando logic
             // it's reasonable to expect folks to 2 colo1 twice for VFK costs, not super reasonable to expect folks to do colo2 5 times for mimic costs
-            lmb.AddItem(new SingleItem(LogicItems.MimicGrub, new TermValue(mimics, 1)));
+            lmb.AddItem(new SingleItem(ItemNames.Mimic_Grub, new TermValue(mimics, 1)));
 
-            Term crystalGuardians = lmb.GetTerm("CRYSTALGUARDIANS");
+            Term crystalGuardians = lmb.GetTerm(Terms.CRYSTALGUARDIANS);
             lmb.AddItem(new SingleItem(LogicItems.CrystalGuardian, new TermValue(crystalGuardians, 1)));
 
-            Term kingsmoulds = lmb.GetTerm("KINGSMOULDS");
+            Term kingsmoulds = lmb.GetTerm(Terms.KINGSMOULDS);
             lmb.AddItem(new SingleItem(LogicItems.Kingsmould, new TermValue(kingsmoulds, 1)));
             lmb.AddItem(new SingleItem(LogicItems.RespawningKingsmould, new TermValue(kingsmoulds, ARBITRARILY_LARGE_ENEMY_VALUE)));
 
-            Term elderbaldurs = lmb.GetTerm("ELDERBALDURS");
+            Term elderbaldurs = lmb.GetTerm(Terms.ELDERBALDURS);
             lmb.AddItem(new SingleItem(LogicItems.ElderBaldur, new TermValue(elderbaldurs, 1)));
 
-            Term gruzMothers = lmb.GetTerm("GRUZMOTHERS");
+            Term gruzMothers = lmb.GetTerm(Terms.GRUZMOTHERS);
             lmb.AddItem(new SingleItem(LogicItems.GruzMother, new TermValue(gruzMothers, 1)));
             lmb.AddItem(new SingleItem(LogicItems.RespawningGruzMother, new TermValue(gruzMothers, ARBITRARILY_LARGE_ENEMY_VALUE)));
 
-            Term vengeflyKings = lmb.GetTerm("VENGEFLYKINGS");
+            Term vengeflyKings = lmb.GetTerm(Terms.VENGEFLYKINGS);
             lmb.AddItem(new SingleItem(LogicItems.VengeflyKing, new TermValue(vengeflyKings, 1)));
             lmb.AddItem(new SingleItem(LogicItems.RespawningVengeflyKing, new TermValue(vengeflyKings, ARBITRARILY_LARGE_ENEMY_VALUE)));
 
@@ -89,7 +90,7 @@ namespace TheRealJournalRando.Rando
 
         private static void OverrideBaseRandoJournalItems(LogicManagerBuilder lmb)
         {
-            Term hunterNotes = lmb.GetTerm("HUNTERNOTES");
+            Term hunterNotes = lmb.GetTerm(Terms.HUNTERNOTES);
             foreach (string entry in new[] { 
                 ItemNames.Journal_Entry_Goam, ItemNames.Journal_Entry_Garpede, 
                 ItemNames.Journal_Entry_Charged_Lumafly, ItemNames.Journal_Entry_Void_Tendrils})
