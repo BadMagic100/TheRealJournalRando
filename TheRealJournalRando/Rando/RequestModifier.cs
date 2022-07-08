@@ -71,7 +71,6 @@ namespace TheRealJournalRando.Rando
                 EditJournalItemAndLocationRequest(enemy, true, rb);
             }
 
-            // vagabond gets 2 item/location defs
             EditJournalItemAndLocationRequest(EnemyData.SpecialData.Mossy_Vagabond, false, rb);
             EditJournalItemAndLocationRequest(EnemyData.SpecialData.Mossy_Vagabond, true, rb);
 
@@ -376,11 +375,6 @@ namespace TheRealJournalRando.Rando
             {
                 if (lc is LogicEnemyKillCost kc)
                 {
-                    if (kc.EnemyIcName == EnemyNames.Mossy_Vagabond)
-                    {
-                        cost = default;
-                        return true;
-                    }
                     cost = EnemyKillCost.ConstructCost(kc.EnemyIcName, kc.Amount);
                     return true;
                 }
@@ -391,18 +385,16 @@ namespace TheRealJournalRando.Rando
                 }
                 else if (lc is ForkedLogicCost fc)
                 {
-                    cost = default;
-                    return true;
-                    //if (fc.Cost1 is LogicEnemyKillCost kcc1)
-                    //{
-                    //    cost = EnemyKillCost.ConstructCost(kcc1.EnemyIcName, kcc1.Amount);
-                    //    return true;
-                    //}
-                    //else if (fc.Cost2 is LogicEnemyKillCost kcc2)
-                    //{
-                    //    cost = EnemyKillCost.ConstructCost(kcc2.EnemyIcName, kcc2.Amount);
-                    //    return true;
-                    //}
+                    if (fc.Cost1 is LogicEnemyKillCost kcc1)
+                    {
+                        cost = EnemyKillCost.ConstructCost(kcc1.EnemyIcName, kcc1.Amount);
+                        return true;
+                    }
+                    else if (fc.Cost2 is LogicEnemyKillCost kcc2)
+                    {
+                        cost = EnemyKillCost.ConstructCost(kcc2.EnemyIcName, kcc2.Amount);
+                        return true;
+                    }
                 }
                 cost = default;
                 return false;

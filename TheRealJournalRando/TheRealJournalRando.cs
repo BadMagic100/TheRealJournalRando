@@ -86,17 +86,20 @@ namespace TheRealJournalRando
                     containerType = MossCorpseContainer.MossCorpse,
                     tags = new()
                     {
+                        new DualLocationMutableContainerTag(),
                         new DestroyOnECLReplaceTag()
                         {
                             sceneName = SceneNames.Fungus3_39,
                             objectPath = "corpse set/fat_moss_knight_dead0000"
-                        }
+                        },
+                        new SuppressSingleCostTag()
+                        {
+                            costMatcher = new MossyVagabondKillCostMatcher(),
+                        },
+                        // these will be unloaded, but they will still be returned in GetPlacementAndLocationTags and our soft deps don't check load state.
+                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter"),
                     }
-                },
-                tags = new()
-                {
-                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                    InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
                 },
                 Test = new PDBool(nameof(PlayerData.crossroadsInfected))
             });
@@ -114,17 +117,19 @@ namespace TheRealJournalRando
                     containerType = MossCorpseContainer.MossCorpse,
                     tags = new()
                     {
+                        new DualLocationMutableContainerTag(),
                         new DestroyOnECLReplaceTag()
                         {
                             sceneName = SceneNames.Fungus3_39,
                             objectPath = "corpse set/fat_moss_knight_dead0000 (2)"
-                        }
+                        },
+                        new SuppressSingleCostTag()
+                        {
+                            costMatcher = new MossyVagabondKillCostMatcher(),
+                        },
+                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter"),
                     }
-                },
-                tags = new()
-                {
-                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                    InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
                 },
                 Test = new PDBool(nameof(PlayerData.crossroadsInfected))
             });

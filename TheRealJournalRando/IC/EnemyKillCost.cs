@@ -1,6 +1,5 @@
 ﻿using ItemChanger;
 using TheRealJournalRando.Data;
-using TheRealJournalRando.Data.Generated;
 
 namespace TheRealJournalRando.IC
 {
@@ -53,8 +52,7 @@ namespace TheRealJournalRando.IC
         {
             try
             {
-                // todo: this is super hacky, deal with it better
-                EnemyDef def = icKey == EnemyNames.Mossy_Vagabond ? EnemyData.SpecialData.Mossy_Vagabond : EnemyData.NormalData[icKey];
+                EnemyDef def = EnemyData.Lookup(icKey);
                 return new EnemyKillCost(def.pdName, def.convoName, amount);
             }
             catch

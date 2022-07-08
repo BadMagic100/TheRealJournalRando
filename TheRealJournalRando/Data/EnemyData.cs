@@ -21,6 +21,20 @@ namespace TheRealJournalRando.Data
         public EnemyDef Void_Idol_3;
         public EnemyDef Weathered_Mask;
 
+        public EnemyDef this[string key]
+        {
+            get => key switch
+            {
+                EnemyNames.Mossy_Vagabond => Mossy_Vagabond,
+                EnemyNames.Hunters_Mark => Hunters_Mark,
+                EnemyNames.Void_Idol_1 => Void_Idol_1,
+                EnemyNames.Void_Idol_2 => Void_Idol_2,
+                EnemyNames.Void_Idol_3 => Void_Idol_3,
+                EnemyNames.Weathered_Mask => Weathered_Mask,
+                _ => throw new KeyNotFoundException($"Couldn't find key '{key}' in special enemy data")
+            };
+        }
+
         public IEnumerable<EnemyDef> Values { get => new[] { Mossy_Vagabond, Hunters_Mark, Void_Idol_1, Void_Idol_2, Void_Idol_3, Weathered_Mask }; }
     }
 
@@ -28,6 +42,15 @@ namespace TheRealJournalRando.Data
     {
         public static readonly IReadOnlyDictionary<string, EnemyDef> NormalData;
         public static readonly SpecialEnemies SpecialData;
+
+        public static EnemyDef Lookup(string key)
+        {
+            if (NormalData.TryGetValue(key, out EnemyDef enemyDef))
+            {
+                return enemyDef;
+            }
+            return SpecialData[key];
+        }
 
         static EnemyData()
         {

@@ -63,7 +63,7 @@ namespace TheRealJournalRando.Rando
         [MenuLabel("Randomization Type")]
         public JournalRandomizationType JournalRandomizationType { get; set; } = JournalRandomizationType.All;
 
-        public StartingItems StartingItems { get; set; } = StartingItems.None;
+        public StartingItems StartingItems { get; set; } = StartingItems.Journal;
 
         [MenuLabel("Hunter's Notes Previews")]
         public CostItemPreview JournalPreviews { get; set; } = CostItemPreview.CostAndName;
@@ -86,7 +86,7 @@ namespace TheRealJournalRando.Rando
 
             [MenuLabel("Minimum Cost Weight")]
             [MenuRange(0f, 1f)]
-            public float MinimumCostWeight { get; set; } = 0.5f;
+            public float MinimumCostWeight { get; set; } = 0.25f;
 
             [MenuLabel("Maximum Cost Weight")]
             [MenuRange(0f, 1f)]
