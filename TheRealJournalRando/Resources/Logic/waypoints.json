@@ -632,6 +632,10 @@
     "logic": "ANY"
   },
   {
+    "name": "Defeated_Any_Mossy_Vagabond",
+    "logic": "Fungus3_39[left1] | Fungus3_39[right1]"
+  },
+  {
     "name": "Defeated_Colosseum_3",
     "logic": "ANY"
   },

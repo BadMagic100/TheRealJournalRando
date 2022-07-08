@@ -6,6 +6,7 @@ using RandomizerMod.RC;
 using RandomizerMod.Settings;
 using System.IO;
 using TheRealJournalRando.Data;
+using TheRealJournalRando.Data.Generated;
 using TheRealJournalRando.Rando.Generated;
 
 namespace TheRealJournalRando.Rando
@@ -51,7 +52,13 @@ namespace TheRealJournalRando.Rando
                     lmb.AddItem(new SingleItem(hunterNotesItemName, new TermValue(hunterNotes, 1)));
                 }
             }
-            lmb.AddItem(new EmptyItem(EnemyData.SpecialData.Weathered_Mask.icName.AsEntryName()));
+            lmb.AddItem(new EmptyItem(EnemyNames.Mossy_Vagabond.AsEntryName()));
+            lmb.AddItem(new SingleItem(EnemyNames.Mossy_Vagabond.AsNotesName(), new TermValue(hunterNotes, 1)));
+            lmb.AddItem(new EmptyItem(EnemyNames.Weathered_Mask.AsEntryName()));
+            lmb.AddItem(new EmptyItem(EnemyNames.Void_Idol_1.AsEntryName()));
+            lmb.AddItem(new EmptyItem(EnemyNames.Void_Idol_2.AsEntryName()));
+            lmb.AddItem(new EmptyItem(EnemyNames.Void_Idol_3.AsEntryName()));
+            lmb.AddItem(new EmptyItem(EnemyNames.Hunters_Mark));
 
             Term grimmkinNovices = lmb.GetTerm(Terms.GRIMMKINNOVICES);
             Term grimmkinMasters = lmb.GetTerm(Terms.GRIMMKINMASTERS);

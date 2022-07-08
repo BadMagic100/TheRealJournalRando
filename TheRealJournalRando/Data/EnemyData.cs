@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TheRealJournalRando.Data.Generated;
 
 namespace TheRealJournalRando.Data
 {
@@ -10,9 +11,10 @@ namespace TheRealJournalRando.Data
 
     public class SpecialEnemies
     {
-        public const string Void_Idol = "Void_Idol";
+        public const string Void_Idol_Prefix = "Void_Idol_";
 
         public EnemyDef Mossy_Vagabond;
+        [JsonProperty(EnemyNames.Hunters_Mark)]
         public EnemyDef Hunters_Mark;
         public EnemyDef Void_Idol_1;
         public EnemyDef Void_Idol_2;

@@ -1,5 +1,6 @@
 ﻿using ItemChanger;
 using TheRealJournalRando.Data;
+using TheRealJournalRando.Data.Generated;
 
 namespace TheRealJournalRando.IC
 {
@@ -48,23 +49,12 @@ namespace TheRealJournalRando.IC
             }
         }
 
-        public static EnemyKillCost ConstructEntryCost(string icKey)
-        {
-            EnemyDef def = EnemyData.NormalData[icKey];
-            return new EnemyKillCost(def.pdName, def.convoName, 1);
-        }
-
-        public static EnemyKillCost ConstructNotesCost(string icKey)
-        {
-            EnemyDef def = EnemyData.NormalData[icKey];
-            return new EnemyKillCost(def.pdName, def.convoName, def.notesCost);
-        }
-
-        public static EnemyKillCost ConstructCustomCost(string icKey, int amount)
+        public static EnemyKillCost ConstructCost(string icKey, int amount)
         {
             try
             {
-                EnemyDef def = EnemyData.NormalData[icKey];
+                // todo: this is super hacky, deal with it better
+                EnemyDef def = icKey == EnemyNames.Mossy_Vagabond ? EnemyData.SpecialData.Mossy_Vagabond : EnemyData.NormalData[icKey];
                 return new EnemyKillCost(def.pdName, def.convoName, amount);
             }
             catch

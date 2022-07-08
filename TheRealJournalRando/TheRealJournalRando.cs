@@ -7,6 +7,7 @@ using Modding;
 using System;
 using System.Collections.Generic;
 using TheRealJournalRando.Data;
+using TheRealJournalRando.Data.Generated;
 using TheRealJournalRando.IC;
 using FormatString = TheRealJournalRando.IC.FormatString;
 
@@ -59,6 +60,8 @@ namespace TheRealJournalRando
 
             Finder.GetItemOverride += ReplaceOriginalJournalUIDefs;
 
+            Container.DefineContainer<MossCorpseContainer>();
+
             // todo - deal with special ones
 
             foreach (EnemyDef enemyDef in EnemyData.NormalData.Values)
@@ -66,12 +69,71 @@ namespace TheRealJournalRando
                 DefineStandardEntryAndNoteItems(enemyDef);
                 DefineStandardEntryAndNoteLocations(enemyDef);
             }
-            DefineStandardEntryAndNoteItems(EnemyData.SpecialData.Mossy_Vagabond);
-            DefineFullEntryItem(EnemyData.SpecialData.Weathered_Mask);
 
+            // mossy vagabond items and locations
+            DefineStandardEntryAndNoteItems(EnemyData.SpecialData.Mossy_Vagabond);
+            Finder.DefineCustomLocation(new DualLocation()
+            {
+                name = EnemyNames.Mossy_Vagabond.AsEntryName(),
+                sceneName = SceneNames.Fungus3_39,
+                flingType = FlingType.Everywhere,
+                falseLocation = new EnemyJournalLocation(EnemyData.SpecialData.Mossy_Vagabond.pdName, EnemyJournalLocationType.Entry),
+                trueLocation = new ExistingFsmContainerLocation()
+                {
+                    sceneName = SceneNames.Fungus3_39,
+                    objectName = "Mossman Inspect",
+                    fsmName = "Conversation Control",
+                    containerType = MossCorpseContainer.MossCorpse,
+                    tags = new()
+                    {
+                        new DestroyOnECLReplaceTag()
+                        {
+                            sceneName = SceneNames.Fungus3_39,
+                            objectPath = "corpse set/fat_moss_knight_dead0000"
+                        }
+                    }
+                },
+                tags = new()
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                    InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
+                },
+                Test = new PDBool(nameof(PlayerData.crossroadsInfected))
+            });
+            Finder.DefineCustomLocation(new DualLocation()
+            {
+                name = EnemyNames.Mossy_Vagabond.AsNotesName(),
+                sceneName = SceneNames.Fungus3_39,
+                flingType = FlingType.Everywhere,
+                falseLocation = new EnemyJournalLocation(EnemyData.SpecialData.Mossy_Vagabond.pdName, EnemyJournalLocationType.Notes),
+                trueLocation = new ExistingFsmContainerLocation()
+                {
+                    sceneName = SceneNames.Fungus3_39,
+                    objectName = "Mossman Inspect (1)",
+                    fsmName = "Conversation Control",
+                    containerType = MossCorpseContainer.MossCorpse,
+                    tags = new()
+                    {
+                        new DestroyOnECLReplaceTag()
+                        {
+                            sceneName = SceneNames.Fungus3_39,
+                            objectPath = "corpse set/fat_moss_knight_dead0000 (2)"
+                        }
+                    }
+                },
+                tags = new()
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                    InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
+                },
+                Test = new PDBool(nameof(PlayerData.crossroadsInfected))
+            });
+
+            // weathered mask items and locations
+            DefineFullEntryItem(EnemyData.SpecialData.Weathered_Mask);
             Finder.DefineCustomLocation(new ObjectLocation()
             {
-                name = EnemyData.SpecialData.Weathered_Mask.icName.AsEntryName(),
+                name = EnemyNames.Weathered_Mask.AsEntryName(),
                 sceneName = SceneNames.GG_Land_of_Storms,
                 objectName = "Shiny Item GG Storms",
                 flingType = FlingType.DirectDeposit,
