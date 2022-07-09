@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TheRealJournalRando.Data;
 using TheRealJournalRando.Fsm;
 using Module = ItemChanger.Modules.Module;
 
@@ -45,6 +46,7 @@ namespace TheRealJournalRando.IC
             IL.JournalList.UpdateEnemyList += ILUpdateEnemyList;
             IL.JournalEntryStats.OnEnable += ILEnableJournalStats;
             On.JournalEntryStats.Awake += RerouteShadeEntryPd;
+            On.PlayerData.CountJournalEntries += RecountJournalEntries;
             ModHooks.SetPlayerBoolHook += JournalDataSetOverride;
             ModHooks.GetPlayerBoolHook += JournalDataGetOverride;
 
@@ -76,6 +78,7 @@ namespace TheRealJournalRando.IC
             IL.JournalList.UpdateEnemyList -= ILUpdateEnemyList;
             IL.JournalEntryStats.OnEnable -= ILEnableJournalStats;
             On.JournalEntryStats.Awake -= RerouteShadeEntryPd;
+            On.PlayerData.CountJournalEntries -= RecountJournalEntries;
             ModHooks.SetPlayerBoolHook -= JournalDataSetOverride;
             ModHooks.GetPlayerBoolHook -= JournalDataGetOverride;
 
@@ -228,6 +231,43 @@ namespace TheRealJournalRando.IC
                 });
                 cursor.Emit(OpCodes.Brtrue_S, il.Instrs.Last());
             }
+        }
+
+        private void RecountJournalEntries(On.PlayerData.orig_CountJournalEntries orig, PlayerData self)
+        {
+            // start with the shade counted
+            int completedEntries = 1;
+            int completedNotes = 1;
+            int totalEntries = 146;
+            int bonusEntries = 0; // for debugging purposes; not put in PD
+
+            foreach (EnemyDef enemy in EnemyData.NormalData.Values.Append(EnemyData.SpecialData.Mossy_Vagabond))
+            {
+                bool entryComplete = EnemyEntryIsRegistered(enemy.pdName) ? hasEntry[enemy.pdName] : self.GetBool("killed" + enemy.pdName);
+                bool notesComplete = EnemyNotesIsRegistered(enemy.pdName) ? hasNotes[enemy.pdName] : self.GetInt("kills" + enemy.pdName) <= 0;
+                if (enemy.ignoredForHunterMark)
+                {
+                    // bonus entries add to the total count if entry is complete, and the corresponding completed count if completed
+                    if (entryComplete || notesComplete)
+                    {
+                        totalEntries++;
+                        bonusEntries++;
+                    }
+                }
+
+                if (entryComplete)
+                {
+                    completedEntries++;
+                }
+                if (notesComplete)
+                {
+                    completedNotes++;
+                }
+            }
+            TheRealJournalRando.Instance.LogDebug($"Overridden entry count ({totalEntries} total including {bonusEntries} extra). {completedEntries} completed entries, {completedNotes} completed notes.");
+            self.SetInt(nameof(PlayerData.journalEntriesTotal), totalEntries);
+            self.SetInt(nameof(PlayerData.journalEntriesCompleted), completedEntries);
+            self.SetInt(nameof(PlayerData.journalNotesCompleted), completedNotes);
         }
 
         private void RerouteShadeEntryPd(On.JournalEntryStats.orig_Awake orig, JournalEntryStats self)

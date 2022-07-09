@@ -231,6 +231,14 @@ namespace TheRealJournalRando.Rando
                     rb.AddToVanilla(notesName, notesName);
                 }
             }
+            else
+            {
+                EnemyDef enemy = EnemyData.SpecialData.Mossy_Vagabond;
+                string entryName = enemy.icName.AsEntryName();
+                string notesName = enemy.icName.AsNotesName();
+                rb.AddToVanilla(entryName, entryName);
+                rb.AddToVanilla(notesName, notesName);
+            }
         }
 
         private static void RestoreSkippedGrimmkinFlames(RequestBuilder rb)

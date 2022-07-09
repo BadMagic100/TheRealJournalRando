@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using TheRealJournalRando.Data;
 using TheRealJournalRando.Data.Generated;
 using TheRealJournalRando.IC;
+using EmbeddedSprite = TheRealJournalRando.IC.EmbeddedSprite;
 using FormatString = TheRealJournalRando.IC.FormatString;
 
 namespace TheRealJournalRando
@@ -96,9 +97,8 @@ namespace TheRealJournalRando
                         {
                             costMatcher = new MossyVagabondKillCostMatcher(),
                         },
-                        // these will be unloaded, but they will still be returned in GetPlacementAndLocationTags and our soft deps don't check load state.
+                        // this will be unloaded, but it will still be returned in GetPlacementAndLocationTags and our soft deps don't check load state.
                         InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter"),
                     }
                 },
                 Test = new PDBool(nameof(PlayerData.crossroadsInfected))
@@ -128,7 +128,6 @@ namespace TheRealJournalRando
                             costMatcher = new MossyVagabondKillCostMatcher(),
                         },
                         InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter"),
                     }
                 },
                 Test = new PDBool(nameof(PlayerData.crossroadsInfected))
@@ -150,7 +149,23 @@ namespace TheRealJournalRando
                         changeTo = new Transition(SceneNames.GG_Atrium_Roof, "door_Land_of_Storms_return"),
                         dreamReturn = true,
                         deactivateNoCharms = true,
-                    }
+                    },
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                }
+            });
+
+            // hunter's mark items and locations
+            DefineHunterMarkItem();
+            Finder.DefineCustomLocation(new HuntersMarkLocation()
+            {
+                name = EnemyNames.Hunters_Mark,
+                sceneName = SceneNames.Fungus1_08,
+                objectName = "Hunter Entry/Shiny Item HunterMark",
+                flingType = FlingType.Everywhere,
+                elevation = -1.7f,
+                tags = new List<Tag>()
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
                 }
             });
         }
@@ -226,6 +241,29 @@ namespace TheRealJournalRando
                     sprite = new JournalBadgeSprite(enemyDef.pdName),
                 }
             });
+        }
+
+        private void DefineHunterMarkItem()
+        {
+            EnemyDef def = EnemyData.SpecialData.Hunters_Mark;
+            string name = def.icName;
+            LanguageString localizedName = new("Journal", $"NAME_{def.convoName}");
+            Finder.DefineCustomItem(new JournalEntryItem()
+            {
+                name = name,
+                playerDataName = def.pdName,
+                UIDef = new BigUIDef()
+                {
+                    name = localizedName,
+                    bigSprite = new EmbeddedSprite("HunterMark-Lg"),
+                    take = new LanguageString("Prompts", "GET_ITEM_INTRO1"),
+                    descOne = new LanguageString("Prompts", "GET_HUNTERMARK_1"),
+                    descTwo = new LanguageString("Prompts", "GET_HUNTERMARK_2"),
+                    shopDesc = new BoxedString("The mark of a true Hunter. I guess they hand these out to anyone these days."),
+                    sprite = new EmbeddedSprite("HunterMark-Sm"),
+                }
+            });
+
         }
 
         private void DefineStandardEntryAndNoteLocations(EnemyDef enemyDef)

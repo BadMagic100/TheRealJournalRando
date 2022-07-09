@@ -56,6 +56,8 @@
         <None Remove="Resources\Logic\waypoints.json" />
         <None Remove="Resources\normalJournalData.json" />
         <None Remove="Resources\specialJournalData.json" />
+        <None Remove="Resources\Sprites\HunterMark-Lg.png" />
+        <None Remove="Resources\Sprites\HunterMark-Sm.png" />
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="Resources\Logic\enemyLocations.json" />
@@ -65,6 +67,8 @@
         <EmbeddedResource Include="Resources\normalJournalData.json" />
         <EmbeddedResource Include="Resources\languageData.json" />
         <EmbeddedResource Include="Resources\specialJournalData.json" />
+        <EmbeddedResource Include="Resources\Sprites\HunterMark-Lg.png" />
+        <EmbeddedResource Include="Resources\Sprites\HunterMark-Sm.png" />
     </ItemGroup>
     <ItemGroup>
         <Reference Include="Assembly-CSharp">
