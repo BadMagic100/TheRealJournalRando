@@ -70,6 +70,9 @@ namespace TheRealJournalRando.Rando
             Term hornets = lmb.GetTerm(Terms.HORNETS);
             lmb.AddItem(new SingleItem(LogicItems.Hornet, new TermValue(hornets, 1)));
 
+            Term bluggsacs = lmb.GetTerm(Terms.BLUGGSACS);
+            lmb.AddItem(new SingleItem(LogicItems.Bluggsac, new TermValue(bluggsacs, 1)));
+
             Term mimics = lmb.GetTerm(Terms.MIMICS);
             // this overrides the mimic item from base rando logic
             // it's reasonable to expect folks to 2 colo1 twice for VFK costs, not super reasonable to expect folks to do colo2 5 times for mimic costs

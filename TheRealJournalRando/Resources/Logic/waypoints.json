@@ -281,7 +281,7 @@
   },
   {
     "name": "Defeated_Any_Bluggsac",
-    "logic": "ANY"
+    "logic": "BLUGGSACS"
   },
   {
     "name": "Defeated_Any_Dung_Defender",

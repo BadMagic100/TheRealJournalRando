@@ -4,6 +4,7 @@ namespace TheRealJournalRando.Rando
 {
     internal static class LogicItems
     {
+        public const string Bluggsac = EnemyNames.Bluggsac;
         public const string GrimmkinNovice = EnemyNames.Grimmkin_Novice;
         public const string GrimmkinMaster = EnemyNames.Grimmkin_Master;
         public const string GrimmkinNightmare = EnemyNames.Grimmkin_Nightmare;

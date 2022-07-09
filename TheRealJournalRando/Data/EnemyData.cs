@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ItemChanger;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -42,6 +43,14 @@ namespace TheRealJournalRando.Data
     {
         public static readonly IReadOnlyDictionary<string, EnemyDef> NormalData;
         public static readonly SpecialEnemies SpecialData;
+
+        public static readonly string[] BluggsacLocations = {
+            LocationNames.Rancid_Egg_Queens_Gardens, LocationNames.Rancid_Egg_Blue_Lake,
+            LocationNames.Rancid_Egg_Crystal_Peak_Dive_Entrance, LocationNames.Rancid_Egg_Crystal_Peak_Tall_Room,
+            LocationNames.Rancid_Egg_Beasts_Den, LocationNames.Rancid_Egg_Dark_Deepnest,
+            LocationNames.Rancid_Egg_Near_Quick_Slash, LocationNames.Rancid_Egg_Waterways_East,
+            LocationNames.Rancid_Egg_Waterways_Main, LocationNames.Rancid_Egg_Waterways_West_Bluggsac
+        };
 
         public static EnemyDef Lookup(string key)
         {

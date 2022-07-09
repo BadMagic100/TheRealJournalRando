@@ -29,7 +29,8 @@ namespace TheRealJournalRando.Rando
             [Terms.ELDERBALDURS] = EnemyNames.Elder_Baldur,
             [Terms.GRUZMOTHERS] = EnemyNames.Gruz_Mother,
             [Terms.VENGEFLYKINGS] = EnemyNames.Vengefly_King,
-            [Terms.MIMICS] = EnemyNames.Grub_Mimic
+            [Terms.MIMICS] = EnemyNames.Grub_Mimic,
+            [Terms.BLUGGSACS] = EnemyNames.Bluggsac,
         };
         private static readonly Dictionary<string, string> termNameByIcName = icNameByTermName.ToDictionary(i => i.Value, i => i.Key);
 
@@ -450,6 +451,11 @@ namespace TheRealJournalRando.Rando
 
             // non-respawning grubs are already placed by rando, and handled correctly if randomized as well.
             rb.AddToVanilla(ItemNames.Mimic_Grub, LocationNames.Pale_Ore_Colosseum);
+
+            foreach (string bluggsac in EnemyData.BluggsacLocations)
+            {
+                rb.AddToVanilla(LogicItems.Bluggsac, bluggsac);
+            }
         }
 
         private static void ApplyLongLocationSettings(RequestBuilder rb)
@@ -548,12 +554,7 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            foreach (string loc in new string[] {LocationNames.Rancid_Egg_Queens_Gardens, LocationNames.Rancid_Egg_Blue_Lake, 
-                LocationNames.Rancid_Egg_Crystal_Peak_Dive_Entrance, LocationNames.Rancid_Egg_Crystal_Peak_Tall_Room, 
-                LocationNames.Rancid_Egg_Beasts_Den, LocationNames.Rancid_Egg_Dark_Deepnest,
-                LocationNames.Rancid_Egg_Near_Quick_Slash, LocationNames.Rancid_Egg_Waterways_East,
-                LocationNames.Rancid_Egg_Waterways_Main, LocationNames.Rancid_Egg_Waterways_West_Bluggsac
-            })
+            foreach (string loc in EnemyData.BluggsacLocations)
             {
                 rb.EditLocationRequest(loc, info =>
                 {
