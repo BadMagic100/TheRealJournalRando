@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <RootNamespace>TheRealJournalRando</RootNamespace>
-    <AssemblyName>TheRealJournalRando</AssemblyName>
+    <RootNamespace>TrjrICTests</RootNamespace>
+    <AssemblyName>TrjrICTests</AssemblyName>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyTitle>TheRealJournalRando</AssemblyTitle>
-    <Product>TheRealJournalRando</Product>
-    <Description>A Hollow Knight mod that adds Hunter's Journal Entries and Hunter's Notes to the randomization pool</Description>
-    <Copyright>Copyright © BadMagic100 2022</Copyright>
-    <Authors>BadMagic100</Authors>
-    <NoWarn>7035</NoWarn>
+    <AssemblyTitle>TrjrICTests</AssemblyTitle>
+    <Product>TrjrICTests</Product>
+    <Description>A Hollow Knight mod that...</Description>
+    <Copyright>Copyright © BadMagic 2022</Copyright>
+    <Authors>BadMagic</Authors>
     <AssemblyVersion>0.1.*</AssemblyVersion>
     <Deterministic>false</Deterministic>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -17,8 +16,6 @@
     <Nullable>enable</Nullable>
     <HollowKnightRefs>..\API</HollowKnightRefs>
     <ExportDir>bin\Publish</ExportDir>
-    <AdditionalFileItemNames>EmbeddedResource</AdditionalFileItemNames>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
   <Import Project="LocalOverrides.targets" Condition="Exists('LocalOverrides.targets')" />
   <Target Name="CopyMod" AfterTargets="PostBuildEvent">
@@ -44,33 +41,6 @@
     <WriteLinesToFile File="$(ExportDir)/VERSION.txt" Lines="@(VersionNumber)" Overwrite="true" Encoding="UTF-8" />
   </Target>
   <ItemGroup>
-    <ProjectReference Include="..\ConstsGenerator\ConstsGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="build.yml" />
-    <None Remove="README.md" />
-    <None Remove="Resources\languageData.json" />
-    <None Remove="Resources\Logic\enemyLocations.json" />
-    <None Remove="Resources\Logic\macros.json" />
-    <None Remove="Resources\Logic\terms.json" />
-    <None Remove="Resources\Logic\waypoints.json" />
-    <None Remove="Resources\normalJournalData.json" />
-    <None Remove="Resources\specialJournalData.json" />
-    <None Remove="Resources\Sprites\HunterMark-Lg.png" />
-    <None Remove="Resources\Sprites\HunterMark-Sm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Logic\enemyLocations.json" />
-    <EmbeddedResource Include="Resources\Logic\macros.json" />
-    <EmbeddedResource Include="Resources\Logic\terms.json" />
-    <EmbeddedResource Include="Resources\Logic\waypoints.json" />
-    <EmbeddedResource Include="Resources\normalJournalData.json" />
-    <EmbeddedResource Include="Resources\languageData.json" />
-    <EmbeddedResource Include="Resources\specialJournalData.json" />
-    <EmbeddedResource Include="Resources\Sprites\HunterMark-Lg.png" />
-    <EmbeddedResource Include="Resources\Sprites\HunterMark-Sm.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>$(HollowKnightRefs)/Assembly-CSharp.dll</HintPath>
     </Reference>
@@ -83,11 +53,8 @@
     <Reference Include="ItemChanger">
       <HintPath>$(HollowKnightRefs)/Mods/ItemChanger/ItemChanger.dll</HintPath>
     </Reference>
-    <Reference Include="MagicUI">
-      <HintPath>$(HollowKnightRefs)/Mods/MagicUI/MagicUI.dll</HintPath>
-    </Reference>
-    <Reference Include="MenuChanger">
-      <HintPath>$(HollowKnightRefs)/Mods/MenuChanger/MenuChanger.dll</HintPath>
+    <Reference Include="ItemChangerTesting">
+      <HintPath>$(HollowKnightRefs)/Mods/ItemChangerTesting/ItemChangerTesting.dll</HintPath>
     </Reference>
     <Reference Include="MMHOOK_Assembly-CSharp">
       <HintPath>$(HollowKnightRefs)/MMHOOK_Assembly-CSharp.dll</HintPath>
@@ -115,12 +82,6 @@
     </Reference>
     <Reference Include="PlayMaker">
       <HintPath>$(HollowKnightRefs)/PlayMaker.dll</HintPath>
-    </Reference>
-    <Reference Include="RandomizerCore">
-      <HintPath>$(HollowKnightRefs)/Mods/RandomizerCore/RandomizerCore.dll</HintPath>
-    </Reference>
-    <Reference Include="RandomizerMod">
-      <HintPath>$(HollowKnightRefs)/Mods/Randomizer 4/RandomizerMod.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition">
       <HintPath>$(HollowKnightRefs)/System.ComponentModel.Composition.dll</HintPath>
@@ -360,5 +321,8 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="LocalOverrides.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheRealJournalRando\TheRealJournalRando.csproj" />
   </ItemGroup>
 </Project>

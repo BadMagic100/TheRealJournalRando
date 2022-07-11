@@ -3,3 +3,4 @@ MagicUI
 MenuChanger
 Randomizer 4
 RandomizerCore
+ItemChangerTesting

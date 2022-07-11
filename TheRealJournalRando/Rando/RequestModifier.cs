@@ -497,11 +497,15 @@ namespace TheRealJournalRando.Rando
                 }
             }
 
+            string maskName = EnemyData.SpecialData.Weathered_Mask.icName.AsEntryName();
             if (RandoInterop.Settings.LongLocations.RandomizeWeatheredMask)
             {
-                string maskName = EnemyData.SpecialData.Weathered_Mask.icName.AsEntryName();
                 rb.AddItemByName(maskName);
                 rb.AddLocationByName(maskName);
+            }
+            else
+            {
+                rb.AddToVanilla(maskName, maskName);
             }
 
             for (int i = 0; i < (int)RandoInterop.Settings.LongLocations.RandomizeVoidIdol; i++)

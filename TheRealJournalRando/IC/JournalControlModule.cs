@@ -241,6 +241,7 @@ namespace TheRealJournalRando.IC
             int totalEntries = 146;
             int bonusEntries = 0; // for debugging purposes; not put in PD
 
+            // it is incredibly convenient that hunter's mark and godhome entries are so bonus they never count (even towards the total)
             foreach (EnemyDef enemy in EnemyData.NormalData.Values.Append(EnemyData.SpecialData.Mossy_Vagabond))
             {
                 bool entryComplete = EnemyEntryIsRegistered(enemy.pdName) ? hasEntry[enemy.pdName] : self.GetBool("killed" + enemy.pdName);

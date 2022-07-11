@@ -63,8 +63,6 @@ namespace TheRealJournalRando
 
             Container.DefineContainer<MossCorpseContainer>();
 
-            // todo - deal with special ones
-
             foreach (EnemyDef enemyDef in EnemyData.NormalData.Values)
             {
                 DefineStandardEntryAndNoteItems(enemyDef);
@@ -154,6 +152,13 @@ namespace TheRealJournalRando
                 }
             });
 
+            // void idol items and locations
+            for (int i = 0; i < 3; i++)
+            {
+                DefineVoidIdolEntryItem(i);
+                DefineVoidIdolLocation(i);
+            }
+
             // hunter's mark items and locations
             DefineHunterMarkItem();
             Finder.DefineCustomLocation(new HuntersMarkLocation()
@@ -190,7 +195,7 @@ namespace TheRealJournalRando
             }
         }
 
-        private void DefineStandardEntryAndNoteItems(EnemyDef enemyDef)
+        public void DefineStandardEntryAndNoteItems(EnemyDef enemyDef)
         {
             string entryName = enemyDef.icName.AsEntryName();
             string notesName = enemyDef.icName.AsNotesName();
@@ -206,9 +211,9 @@ namespace TheRealJournalRando
                     sprite = new JournalBadgeSprite(enemyDef.pdName),
                 },
                 tags = new()
-                    {
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
-                    }
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
+                }
             });
             Finder.DefineCustomItem(new EnemyJournalNotesOnlyItem(enemyDef.pdName)
             {
@@ -220,13 +225,13 @@ namespace TheRealJournalRando
                     sprite = new JournalBadgeSprite(enemyDef.pdName),
                 },
                 tags = new()
-                    {
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
-                    }
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
+                }
             });
         }
 
-        private void DefineFullEntryItem(EnemyDef enemyDef)
+        public void DefineFullEntryItem(EnemyDef enemyDef)
         {
             string name = enemyDef.icName.AsEntryName();
             LanguageString localizedEnemyName = new("Journal", $"NAME_{enemyDef.convoName}");
@@ -239,11 +244,50 @@ namespace TheRealJournalRando
                     name = new FormatString(new LanguageString("Fmt", "ENTRY_ITEM_NAME"), localizedEnemyName.Clone()),
                     shopDesc = new PaywallString("Journal", $"NOTE_{enemyDef.convoName}"),
                     sprite = new JournalBadgeSprite(enemyDef.pdName),
+                },
+                tags = new()
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
                 }
             });
         }
 
-        private void DefineHunterMarkItem()
+        public void DefineVoidIdolEntryItem(int tier)
+        {
+            EnemyDef enemyDef = tier switch
+            {
+                0 => EnemyData.SpecialData.Void_Idol_1,
+                1 => EnemyData.SpecialData.Void_Idol_2,
+                2 => EnemyData.SpecialData.Void_Idol_3,
+                _ => throw new NotImplementedException()
+            };
+            string name = enemyDef.icName.AsEntryName();
+            LanguageString localizedEnemyName = new("Journal", $"NAME_{enemyDef.convoName}");
+            string? prev = tier == 0 ? null : $"{SpecialEnemies.Void_Idol_Prefix}{tier}".AsEntryName();
+            string? next = tier == 2 ? null : $"{SpecialEnemies.Void_Idol_Prefix}{tier + 2}".AsEntryName();
+            Finder.DefineCustomItem(new JournalEntryItem()
+            {
+                name = name,
+                playerDataName = enemyDef.pdName,
+                UIDef = new MsgUIDef()
+                {
+                    name = new FormatString(new LanguageString("Fmt", "ENTRY_ITEM_NAME"), localizedEnemyName.Clone()),
+                    shopDesc = new PaywallString("Journal", $"NOTE_{enemyDef.convoName}"),
+                    sprite = new JournalBadgeSprite(enemyDef.pdName),
+                },
+                tags = new()
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                    new ItemChainTag()
+                    {
+                        predecessor = prev,
+                        successor = next,
+                    }
+                }
+            });
+        }
+
+        public void DefineHunterMarkItem()
         {
             EnemyDef def = EnemyData.SpecialData.Hunters_Mark;
             string name = def.icName;
@@ -261,12 +305,16 @@ namespace TheRealJournalRando
                     descTwo = new LanguageString("Prompts", "GET_HUNTERMARK_2"),
                     shopDesc = new BoxedString("The mark of a true Hunter. I guess they hand these out to anyone these days."),
                     sprite = new EmbeddedSprite("HunterMark-Sm"),
+                },
+                tags = new()
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
                 }
             });
 
         }
 
-        private void DefineStandardEntryAndNoteLocations(EnemyDef enemyDef)
+        public void DefineStandardEntryAndNoteLocations(EnemyDef enemyDef)
         {
             string entryName = enemyDef.icName.AsEntryName();
             string notesName = enemyDef.icName.AsNotesName();
@@ -276,20 +324,43 @@ namespace TheRealJournalRando
                 name = entryName,
                 flingType = FlingType.Everywhere,
                 tags = new()
-                    {
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
-                    }
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                    InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
+                }
             });
             Finder.DefineCustomLocation(new EnemyJournalLocation(enemyDef.pdName, EnemyJournalLocationType.Notes)
             {
                 name = notesName,
                 flingType = FlingType.Everywhere,
                 tags = new()
-                    {
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
-                    }
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                    InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
+                }
+            });
+        }
+
+        public void DefineVoidIdolLocation(int tier)
+        {
+            EnemyDef def = tier switch
+            {
+                0 => EnemyData.SpecialData.Void_Idol_1,
+                1 => EnemyData.SpecialData.Void_Idol_2,
+                2 => EnemyData.SpecialData.Void_Idol_3,
+                _ => throw new NotImplementedException()
+            };
+
+            Finder.DefineCustomLocation(new VoidIdolLocation()
+            {
+                name = def.icName.AsEntryName(),
+                tier = tier,
+                flingType = FlingType.Everywhere,
+                sceneName = SceneNames.GG_Workshop,
+                tags = new()
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
+                }
             });
         }
 
