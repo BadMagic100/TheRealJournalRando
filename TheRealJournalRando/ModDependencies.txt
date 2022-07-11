@@ -1,4 +1,4 @@
 ItemChanger
 MenuChanger
 Randomizer 4
-RandomizerCoremizerCore
+RandomizerCore
