@@ -195,7 +195,7 @@ namespace TheRealJournalRando
             }
         }
 
-        public void DefineStandardEntryAndNoteItems(EnemyDef enemyDef)
+        private void DefineStandardEntryAndNoteItems(EnemyDef enemyDef)
         {
             string entryName = enemyDef.icName.AsEntryName();
             string notesName = enemyDef.icName.AsNotesName();
@@ -231,7 +231,7 @@ namespace TheRealJournalRando
             });
         }
 
-        public void DefineFullEntryItem(EnemyDef enemyDef)
+        private void DefineFullEntryItem(EnemyDef enemyDef)
         {
             string name = enemyDef.icName.AsEntryName();
             LanguageString localizedEnemyName = new("Journal", $"NAME_{enemyDef.convoName}");
@@ -252,7 +252,7 @@ namespace TheRealJournalRando
             });
         }
 
-        public void DefineVoidIdolEntryItem(int tier)
+        private void DefineVoidIdolEntryItem(int tier)
         {
             EnemyDef enemyDef = tier switch
             {
@@ -287,7 +287,7 @@ namespace TheRealJournalRando
             });
         }
 
-        public void DefineHunterMarkItem()
+        private void DefineHunterMarkItem()
         {
             EnemyDef def = EnemyData.SpecialData.Hunters_Mark;
             string name = def.icName;
@@ -314,7 +314,7 @@ namespace TheRealJournalRando
 
         }
 
-        public void DefineStandardEntryAndNoteLocations(EnemyDef enemyDef)
+        private void DefineStandardEntryAndNoteLocations(EnemyDef enemyDef)
         {
             string entryName = enemyDef.icName.AsEntryName();
             string notesName = enemyDef.icName.AsNotesName();
@@ -341,7 +341,7 @@ namespace TheRealJournalRando
             });
         }
 
-        public void DefineVoidIdolLocation(int tier)
+        private void DefineVoidIdolLocation(int tier)
         {
             EnemyDef def = tier switch
             {
