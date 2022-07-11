@@ -83,9 +83,6 @@
     <Reference Include="ItemChanger">
       <HintPath>$(HollowKnightRefs)/Mods/ItemChanger/ItemChanger.dll</HintPath>
     </Reference>
-    <Reference Include="MagicUI">
-      <HintPath>$(HollowKnightRefs)/Mods/MagicUI/MagicUI.dll</HintPath>
-    </Reference>
     <Reference Include="MenuChanger">
       <HintPath>$(HollowKnightRefs)/Mods/MenuChanger/MenuChanger.dll</HintPath>
     </Reference>

@@ -1,5 +1,4 @@
 ItemChanger
-MagicUI
 MenuChanger
 Randomizer 4
-RandomizerCore
+RandomizerCoremizerCore

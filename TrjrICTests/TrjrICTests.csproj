@@ -10,6 +10,7 @@
     <Copyright>Copyright © BadMagic 2022</Copyright>
     <Authors>BadMagic</Authors>
     <AssemblyVersion>0.1.*</AssemblyVersion>
+    <NoWarn>7035</NoWarn>
     <Deterministic>false</Deterministic>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <LangVersion>latest</LangVersion>
