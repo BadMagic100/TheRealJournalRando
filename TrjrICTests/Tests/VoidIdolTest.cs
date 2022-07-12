@@ -8,6 +8,8 @@ namespace TrjrICTests.Tests
 {
     public class VoidIdolTest : Test
     {
+        public override int Priority => -1;
+
         public override void Start(TestArgs args)
         {
             base.Start(args);

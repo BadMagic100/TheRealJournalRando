@@ -49,13 +49,12 @@
   <ItemGroup>
     <None Remove="build.yml" />
     <None Remove="README.md" />
+    <None Remove="Resources\journalData.json" />
     <None Remove="Resources\languageData.json" />
     <None Remove="Resources\Logic\enemyLocations.json" />
     <None Remove="Resources\Logic\macros.json" />
     <None Remove="Resources\Logic\terms.json" />
     <None Remove="Resources\Logic\waypoints.json" />
-    <None Remove="Resources\normalJournalData.json" />
-    <None Remove="Resources\specialJournalData.json" />
     <None Remove="Resources\Sprites\HunterMark-Lg.png" />
     <None Remove="Resources\Sprites\HunterMark-Sm.png" />
   </ItemGroup>
@@ -64,9 +63,8 @@
     <EmbeddedResource Include="Resources\Logic\macros.json" />
     <EmbeddedResource Include="Resources\Logic\terms.json" />
     <EmbeddedResource Include="Resources\Logic\waypoints.json" />
-    <EmbeddedResource Include="Resources\normalJournalData.json" />
+    <EmbeddedResource Include="Resources\journalData.json" />
     <EmbeddedResource Include="Resources\languageData.json" />
-    <EmbeddedResource Include="Resources\specialJournalData.json" />
     <EmbeddedResource Include="Resources\Sprites\HunterMark-Lg.png" />
     <EmbeddedResource Include="Resources\Sprites\HunterMark-Sm.png" />
   </ItemGroup>

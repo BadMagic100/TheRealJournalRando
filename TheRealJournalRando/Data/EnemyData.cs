@@ -3,46 +3,33 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TheRealJournalRando.Data.Generated;
 
 namespace TheRealJournalRando.Data
 {
+    /// <summary>
+    /// Broad, multipurpose definition of an enemy for a journal entry
+    /// </summary>
+    /// <param name="icName">The name of the enemy (IC friendly). Usually, this the English enemy name with spaces replaced by underscores</param>
+    /// <param name="pdName">The name of the enemy in playerdata.</param>
+    /// <param name="convoName">The name of the enemy in language keys</param>
+    /// <param name="isBoss">Whether the enemy is a boss</param>
+    /// <param name="ignoredForHunterMark">Whether the enemy will be ignored in counting hunter's mark (i.e. it's bonus content)</param>
+    /// <param name="ignoredForJournalCount">Whether the enemy, when ignored for hunter's mark, should also be ignored when counting total number of entries</param>
+    /// <param name="respawns">Whether the enemy respawns without a bench</param>
+    /// <param name="unkillable">Whether the enemy is a "special" enemy, such as Goam, Garpede, etc that can't be killed</param>
+    /// <param name="notesCost">The number of kills needed for hunter's notes in base game</param>
+    /// <param name="icIgnore">Whether to ignore this enemy when creating items and locations in IC generically (i.e. needs special handling in IC)</param>
+    /// <param name="logicItemIgnore">Whether to ignore this enemy when defining logic items generically (e.g. doesn't have the "standard" entry and note items)</param>
+    /// <param name="logicLocationIgnore">Whether to ignore this enemy when defining logic locations generically (e.g. special handling for location logic)</param>
+    /// <param name="requestDefineIgnore">Whether to ignore this enemy when defining item/location defs and costs (e.g. doesn't have hunter's notes)</param>
+    /// <param name="requestAddIgnore">Whether to ignore this enemy when defining pool requests generically (e.g. uses long location settings)</param>
     public record struct EnemyDef(string icName, string pdName, string convoName, bool isBoss,
-        bool ignoredForHunterMark, bool respawns, bool unkillable, int notesCost);
-
-    public class SpecialEnemies
-    {
-        public const string Void_Idol_Prefix = "Void_Idol_";
-
-        public EnemyDef Mossy_Vagabond;
-        [JsonProperty(EnemyNames.Hunters_Mark)]
-        public EnemyDef Hunters_Mark;
-        public EnemyDef Void_Idol_1;
-        public EnemyDef Void_Idol_2;
-        public EnemyDef Void_Idol_3;
-        public EnemyDef Weathered_Mask;
-
-        public EnemyDef this[string key]
-        {
-            get => key switch
-            {
-                EnemyNames.Mossy_Vagabond => Mossy_Vagabond,
-                EnemyNames.Hunters_Mark => Hunters_Mark,
-                EnemyNames.Void_Idol_1 => Void_Idol_1,
-                EnemyNames.Void_Idol_2 => Void_Idol_2,
-                EnemyNames.Void_Idol_3 => Void_Idol_3,
-                EnemyNames.Weathered_Mask => Weathered_Mask,
-                _ => throw new KeyNotFoundException($"Couldn't find key '{key}' in special enemy data")
-            };
-        }
-
-        public IEnumerable<EnemyDef> Values { get => new[] { Mossy_Vagabond, Hunters_Mark, Void_Idol_1, Void_Idol_2, Void_Idol_3, Weathered_Mask }; }
-    }
+        bool ignoredForHunterMark, bool ignoredForJournalCount, bool respawns, bool unkillable, int notesCost, 
+        bool icIgnore, bool logicItemIgnore, bool logicLocationIgnore, bool requestDefineIgnore, bool requestAddIgnore);
 
     public static class EnemyData
     {
-        public static readonly IReadOnlyDictionary<string, EnemyDef> NormalData;
-        public static readonly SpecialEnemies SpecialData;
+        public static readonly IReadOnlyDictionary<string, EnemyDef> Enemies;
 
         public static readonly string[] BluggsacLocations = {
             LocationNames.Rancid_Egg_Queens_Gardens, LocationNames.Rancid_Egg_Blue_Lake,
@@ -52,21 +39,9 @@ namespace TheRealJournalRando.Data
             LocationNames.Rancid_Egg_Waterways_Main, LocationNames.Rancid_Egg_Waterways_West_Bluggsac
         };
 
-        public static EnemyDef Lookup(string key)
-        {
-            if (NormalData.TryGetValue(key, out EnemyDef enemyDef))
-            {
-                return enemyDef;
-            }
-            return SpecialData[key];
-        }
-
         static EnemyData()
         {
-            NormalData = LoadJournalData("TheRealJournalRando.Resources.normalJournalData.json");
-            SpecialData = JsonConvert.DeserializeObject<SpecialEnemies>(
-                JsonConvert.SerializeObject(LoadJournalData("TheRealJournalRando.Resources.specialJournalData.json")))
-                ?? new();
+            Enemies = LoadJournalData("TheRealJournalRando.Resources.journalData.json");
         }
 
         private static IReadOnlyDictionary<string, EnemyDef> LoadJournalData(string file)

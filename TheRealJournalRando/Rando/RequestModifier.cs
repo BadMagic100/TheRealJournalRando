@@ -66,20 +66,17 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
+            foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.requestDefineIgnore))
             {
                 EditJournalItemAndLocationRequest(enemy, false, rb);
                 EditJournalItemAndLocationRequest(enemy, true, rb);
             }
 
-            EditJournalItemAndLocationRequest(EnemyData.SpecialData.Mossy_Vagabond, false, rb);
-            EditJournalItemAndLocationRequest(EnemyData.SpecialData.Mossy_Vagabond, true, rb);
-
-            EditJournalItemAndLocationRequest(EnemyData.SpecialData.Hunters_Mark, false, rb, noPrefix: true);
-            EditJournalItemAndLocationRequest(EnemyData.SpecialData.Weathered_Mask, false, rb);
-            EditJournalItemAndLocationRequest(EnemyData.SpecialData.Void_Idol_1, false, rb);
-            EditJournalItemAndLocationRequest(EnemyData.SpecialData.Void_Idol_2, false, rb);
-            EditJournalItemAndLocationRequest(EnemyData.SpecialData.Void_Idol_3, false, rb);
+            EditJournalItemAndLocationRequest(EnemyData.Enemies[EnemyNames.Hunters_Mark], false, rb, noPrefix: true);
+            EditJournalItemAndLocationRequest(EnemyData.Enemies[EnemyNames.Weathered_Mask], false, rb);
+            EditJournalItemAndLocationRequest(EnemyData.Enemies[EnemyNames.Void_Idol_1], false, rb);
+            EditJournalItemAndLocationRequest(EnemyData.Enemies[EnemyNames.Void_Idol_2], false, rb);
+            EditJournalItemAndLocationRequest(EnemyData.Enemies[EnemyNames.Void_Idol_3], false, rb);
 
 #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             rb.OnGetGroupFor.Subscribe(0f, MatchJournalGroup);
@@ -93,7 +90,7 @@ namespace TheRealJournalRando.Rando
                     return false;
                 }
 
-                if (EnemyData.NormalData.Values.Concat(EnemyData.SpecialData.Values.Except(EnemyData.SpecialData.Hunters_Mark.Yield()))
+                if (EnemyData.Enemies.Values.Except(EnemyData.Enemies[EnemyNames.Hunters_Mark].Yield())
                     .SelectMany(x => new[] {x.icName.AsEntryName(), x.icName.AsNotesName()})
                     .Append(EnemyNames.Hunters_Mark)
                     .Contains(item))
@@ -166,7 +163,7 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
+            foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.requestAddIgnore))
             {
                 string entryName = enemy.icName.AsEntryName();
                 string notesName = enemy.icName.AsNotesName();
@@ -204,41 +201,6 @@ namespace TheRealJournalRando.Rando
                     rb.AddToVanilla(notesName, notesName);
                 }
             }
-
-            // mossy vagabond
-            if (RandoInterop.Settings.Pools.RegularEntries)
-            {
-                EnemyDef enemy = EnemyData.SpecialData.Mossy_Vagabond;
-                string entryName = enemy.icName.AsEntryName();
-                string notesName = enemy.icName.AsNotesName();
-                if (RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.EntriesOnly))
-                {
-                    rb.AddItemByName(entryName);
-                    rb.AddLocationByName(entryName);
-                }
-                else
-                {
-                    rb.AddToVanilla(entryName, entryName);
-                }
-
-                if (RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.NotesOnly))
-                {
-                    rb.AddItemByName(notesName);
-                    rb.AddLocationByName(notesName);
-                }
-                else
-                {
-                    rb.AddToVanilla(notesName, notesName);
-                }
-            }
-            else
-            {
-                EnemyDef enemy = EnemyData.SpecialData.Mossy_Vagabond;
-                string entryName = enemy.icName.AsEntryName();
-                string notesName = enemy.icName.AsNotesName();
-                rb.AddToVanilla(entryName, entryName);
-                rb.AddToVanilla(notesName, notesName);
-            }
         }
 
         private static void RestoreSkippedGrimmkinFlames(RequestBuilder rb)
@@ -269,7 +231,7 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            EnemyDef lifeseed = EnemyData.NormalData[EnemyNames.Lifeseed];
+            EnemyDef lifeseed = EnemyData.Enemies[EnemyNames.Lifeseed];
             string entryName = lifeseed.icName.AsEntryName();
             string notesName = lifeseed.icName.AsNotesName();
 
@@ -307,7 +269,8 @@ namespace TheRealJournalRando.Rando
             if (RandoInterop.Settings.StartingItems.HasFlag(StartingItems.Entries) && 
                 !RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.EntriesOnly))
             {
-                foreach (EnemyDef enemy in EnemyData.NormalData.Values)
+                // stuff with requestDefineIgnore means it doesn't have an associated hunter's mark - it's not previewable anyway so having it won't help
+                foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.requestDefineIgnore))
                 {
                     string name = enemy.icName.AsEntryName();
                     if (!rb.IsAtStart(name))
@@ -340,7 +303,7 @@ namespace TheRealJournalRando.Rando
 
             double fixedWeight = ComputeWeight(rb.rng);
 
-            foreach (EnemyDef enemy in EnemyData.NormalData.Values.Append(EnemyData.SpecialData.Mossy_Vagabond))
+            foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.requestDefineIgnore))
             {
                 string notesName = enemy.icName.AsNotesName();
                 rb.EditLocationRequest(notesName, info =>
@@ -364,14 +327,6 @@ namespace TheRealJournalRando.Rando
                                 kc.Amount = (int)Math.Max(1, Math.Round(kc.Amount * weight));
                             }
                         }
-
-                        if (enemy.icName == EnemyNames.Mossy_Vagabond)
-                        {
-                            for(int i = 0; i < rl.costs.Count; i++)
-                            {
-                                rl.costs[i] = new ForkedLogicCost(rl.costs[i], new SimpleCost(rb.lm.GetTerm("DREAMER"), 1));
-                            }
-                        }
                     };
                 });
             }
@@ -391,19 +346,6 @@ namespace TheRealJournalRando.Rando
                 {
                     cost = EnemyKillCost.ConstructCost(icNameByTermName[sc.term.Name], sc.threshold);
                     return true;
-                }
-                else if (lc is ForkedLogicCost fc)
-                {
-                    if (fc.Cost1 is LogicEnemyKillCost kcc1)
-                    {
-                        cost = EnemyKillCost.ConstructCost(kcc1.EnemyIcName, kcc1.Amount);
-                        return true;
-                    }
-                    else if (fc.Cost2 is LogicEnemyKillCost kcc2)
-                    {
-                        cost = EnemyKillCost.ConstructCost(kcc2.EnemyIcName, kcc2.Amount);
-                        return true;
-                    }
                 }
                 cost = default;
                 return false;
@@ -472,32 +414,46 @@ namespace TheRealJournalRando.Rando
             {
                 return;
             }
+            // all our long locations have been opted out of the standard request process; we can just add them directly via the toggles
 
-            if (!RandoInterop.Settings.LongLocations.RandomizeMenderbug)
+            string menderEntryName = EnemyNames.Menderbug.AsEntryName();
+            string menderNotesName = EnemyNames.Menderbug.AsNotesName();
+            if (RandoInterop.Settings.LongLocations.RandomizeMenderbug)
             {
-                rb.RemoveItemByName(EnemyNames.Menderbug.AsEntryName());
-                rb.RemoveLocationByName(EnemyNames.Menderbug.AsEntryName());
+                rb.AddItemByName(menderEntryName);
+                rb.AddLocationByName(menderEntryName);
 
-                rb.RemoveItemByName(EnemyNames.Menderbug.AsNotesName());
-                rb.RemoveLocationByName(EnemyNames.Menderbug.AsNotesName());
+                rb.AddItemByName(menderNotesName);
+                rb.AddLocationByName(menderNotesName);
+            }
+            else
+            {
+                rb.AddToVanilla(menderEntryName, menderEntryName);
+                rb.AddToVanilla(menderNotesName, menderNotesName);
             }
 
-            // todo - this still respects boss + bonus settings, meaning they must both be on for these locations to be placed.
-            // not sure if that's desirable
-            if (!RandoInterop.Settings.LongLocations.RandomizePantheonBosses)
-            {
-                foreach (string s in new[] {EnemyNames.Nailmasters_Oro_And_Mato, 
-                    EnemyNames.Paintmaster_Sheo, EnemyNames.Great_Nailsage_Sly, EnemyNames.Pure_Vessel})
-                {
-                    rb.RemoveItemByName(s.AsEntryName());
-                    rb.RemoveLocationByName(s.AsEntryName());
 
-                    rb.RemoveItemByName(s.AsNotesName());
-                    rb.RemoveLocationByName(s.AsNotesName());
+            foreach (string s in new[] {EnemyNames.Nailmasters_Oro_And_Mato,
+                    EnemyNames.Paintmaster_Sheo, EnemyNames.Great_Nailsage_Sly, EnemyNames.Pure_Vessel})
+            {
+                string entryName = s.AsEntryName();
+                string notesName = s.AsNotesName();
+                if (RandoInterop.Settings.LongLocations.RandomizePantheonBosses)
+                {
+                    rb.AddItemByName(entryName);
+                    rb.AddLocationByName(entryName);
+
+                    rb.AddItemByName(notesName);
+                    rb.AddLocationByName(notesName);
+                }
+                else
+                {
+                    rb.AddToVanilla(entryName, entryName);
+                    rb.AddToVanilla(notesName, notesName);
                 }
             }
 
-            string maskName = EnemyData.SpecialData.Weathered_Mask.icName.AsEntryName();
+            string maskName = EnemyNames.Weathered_Mask.AsEntryName();
             if (RandoInterop.Settings.LongLocations.RandomizeWeatheredMask)
             {
                 rb.AddItemByName(maskName);
@@ -510,13 +466,13 @@ namespace TheRealJournalRando.Rando
 
             for (int i = 0; i < (int)RandoInterop.Settings.LongLocations.RandomizeVoidIdol; i++)
             {
-                string idolName = (SpecialEnemies.Void_Idol_Prefix + (i + 1)).AsEntryName();
+                string idolName = (EnemyNames.Void_Idol_Prefix + (i + 1)).AsEntryName();
                 rb.AddItemByName(idolName);
                 rb.AddLocationByName(idolName);
             }
             for (int i = (int)RandoInterop.Settings.LongLocations.RandomizeVoidIdol; i < 3; i++)
             {
-                string idolName = (SpecialEnemies.Void_Idol_Prefix + (i + 1)).AsEntryName();
+                string idolName = (EnemyNames.Void_Idol_Prefix + (i + 1)).AsEntryName();
                 rb.AddToVanilla(idolName, idolName);
             }
 
@@ -539,7 +495,7 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
+            foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.requestDefineIgnore))
             {
                 string notesName = enemy.icName.AsNotesName();
                 rb.EditLocationRequest(notesName, info =>

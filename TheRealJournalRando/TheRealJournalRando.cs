@@ -6,6 +6,7 @@ using ItemChanger.UIDefs;
 using Modding;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TheRealJournalRando.Data;
 using TheRealJournalRando.Data.Generated;
 using TheRealJournalRando.IC;
@@ -63,20 +64,21 @@ namespace TheRealJournalRando
 
             Container.DefineContainer<MossCorpseContainer>();
 
-            foreach (EnemyDef enemyDef in EnemyData.NormalData.Values)
+            foreach (EnemyDef enemyDef in EnemyData.Enemies.Values.Where(x => !x.icIgnore))
             {
                 DefineStandardEntryAndNoteItems(enemyDef);
                 DefineStandardEntryAndNoteLocations(enemyDef);
             }
 
             // mossy vagabond items and locations
-            DefineStandardEntryAndNoteItems(EnemyData.SpecialData.Mossy_Vagabond);
+            EnemyDef mossyVagabond = EnemyData.Enemies[EnemyNames.Mossy_Vagabond];
+            DefineStandardEntryAndNoteItems(mossyVagabond);
             Finder.DefineCustomLocation(new DualLocation()
             {
                 name = EnemyNames.Mossy_Vagabond.AsEntryName(),
                 sceneName = SceneNames.Fungus3_39,
                 flingType = FlingType.Everywhere,
-                falseLocation = new EnemyJournalLocation(EnemyData.SpecialData.Mossy_Vagabond.pdName, EnemyJournalLocationType.Entry),
+                falseLocation = new EnemyJournalLocation(mossyVagabond.pdName, EnemyJournalLocationType.Entry),
                 trueLocation = new ExistingFsmContainerLocation()
                 {
                     sceneName = SceneNames.Fungus3_39,
@@ -106,7 +108,7 @@ namespace TheRealJournalRando
                 name = EnemyNames.Mossy_Vagabond.AsNotesName(),
                 sceneName = SceneNames.Fungus3_39,
                 flingType = FlingType.Everywhere,
-                falseLocation = new EnemyJournalLocation(EnemyData.SpecialData.Mossy_Vagabond.pdName, EnemyJournalLocationType.Notes),
+                falseLocation = new EnemyJournalLocation(mossyVagabond.pdName, EnemyJournalLocationType.Notes),
                 trueLocation = new ExistingFsmContainerLocation()
                 {
                     sceneName = SceneNames.Fungus3_39,
@@ -132,7 +134,7 @@ namespace TheRealJournalRando
             });
 
             // weathered mask items and locations
-            DefineFullEntryItem(EnemyData.SpecialData.Weathered_Mask);
+            DefineFullEntryItem(EnemyData.Enemies[EnemyNames.Weathered_Mask]);
             Finder.DefineCustomLocation(new ObjectLocation()
             {
                 name = EnemyNames.Weathered_Mask.AsEntryName(),
@@ -256,15 +258,15 @@ namespace TheRealJournalRando
         {
             EnemyDef enemyDef = tier switch
             {
-                0 => EnemyData.SpecialData.Void_Idol_1,
-                1 => EnemyData.SpecialData.Void_Idol_2,
-                2 => EnemyData.SpecialData.Void_Idol_3,
+                0 => EnemyData.Enemies[EnemyNames.Void_Idol_1],
+                1 => EnemyData.Enemies[EnemyNames.Void_Idol_2],
+                2 => EnemyData.Enemies[EnemyNames.Void_Idol_3],
                 _ => throw new NotImplementedException()
             };
             string name = enemyDef.icName.AsEntryName();
             LanguageString localizedEnemyName = new("Journal", $"NAME_{enemyDef.convoName}");
-            string? prev = tier == 0 ? null : $"{SpecialEnemies.Void_Idol_Prefix}{tier}".AsEntryName();
-            string? next = tier == 2 ? null : $"{SpecialEnemies.Void_Idol_Prefix}{tier + 2}".AsEntryName();
+            string? prev = tier == 0 ? null : $"{EnemyNames.Void_Idol_Prefix}{tier}".AsEntryName();
+            string? next = tier == 2 ? null : $"{EnemyNames.Void_Idol_Prefix}{tier + 2}".AsEntryName();
             Finder.DefineCustomItem(new JournalEntryItem()
             {
                 name = name,
@@ -289,7 +291,7 @@ namespace TheRealJournalRando
 
         private void DefineHunterMarkItem()
         {
-            EnemyDef def = EnemyData.SpecialData.Hunters_Mark;
+            EnemyDef def = EnemyData.Enemies[EnemyNames.Hunters_Mark];
             string name = def.icName;
             LanguageString localizedName = new("Journal", $"NAME_{def.convoName}");
             Finder.DefineCustomItem(new JournalEntryItem()
@@ -345,9 +347,9 @@ namespace TheRealJournalRando
         {
             EnemyDef def = tier switch
             {
-                0 => EnemyData.SpecialData.Void_Idol_1,
-                1 => EnemyData.SpecialData.Void_Idol_2,
-                2 => EnemyData.SpecialData.Void_Idol_3,
+                0 => EnemyData.Enemies[EnemyNames.Void_Idol_1],
+                1 => EnemyData.Enemies[EnemyNames.Void_Idol_2],
+                2 => EnemyData.Enemies[EnemyNames.Void_Idol_3],
                 _ => throw new NotImplementedException()
             };
 

@@ -119,7 +119,8 @@
     "pdName": "MenderBug",
     "convoName": "MENDERBUG",
     "notesCost": 1,
-    "ignoredForHunterMark": true
+    "ignoredForHunterMark": true,
+    "requestAddIgnore": true
   },
   {
     "icName": "Lifeseed",
@@ -982,7 +983,8 @@
     "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
-    "respawns": true
+    "respawns": true,
+    "requestAddIgnore": true
   },
   {
     "icName": "Paintmaster_Sheo",
@@ -991,7 +993,8 @@
     "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
-    "respawns": true
+    "respawns": true,
+    "requestAddIgnore": true
   },
   {
     "icName": "Great_Nailsage_Sly",
@@ -1000,7 +1003,8 @@
     "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
-    "respawns": true
+    "respawns": true,
+    "requestAddIgnore": true
   },
   {
     "icName": "Wingmould",
@@ -1058,6 +1062,82 @@
     "isBoss": true,
     "notesCost": 1,
     "ignoredForHunterMark": true,
-    "respawns": true
+    "respawns": true,
+    "requestAddIgnore": true
+  },
+  // definitions for entries that need special placement, e.g. should be granted after reloading from an ending cutscene, needs a DualPlacement,
+  // and/or can't be handled by the normal EnemyJournalLocation
+  {
+    "icName": "Mossy_Vagabond",
+    "pdName": "MossKnightFat",
+    "convoName": "MOSS_KNIGHT_FAT",
+    "notesCost": 10,
+    "icIgnore": true,
+    "logicLocationIgnore": true
+  },
+  {
+    "icName": "Hunter's_Mark",
+    "pdName": "HunterMark",
+    "convoName": "HUNTERMARK",
+    "unkillable": true,
+    "ignoredForHunterMark": true,
+    "ignoredForJournalCount": true,
+    "icIgnore": true,
+    "logicItemIgnore": true,
+    "logicLocationIgnore": true,
+    "requestDefineIgnore": true,
+    "requestAddIgnore": true
+  },
+  {
+    "icName": "Void_Idol_1",
+    "pdName": "VoidIdol_1",
+    "convoName": "VOID_IDOL_1",
+    "unkillable": true,
+    "ignoredForHunterMark": true,
+    "ignoredForJournalCount": true,
+    "icIgnore": true,
+    "logicItemIgnore": true,
+    "logicLocationIgnore": true,
+    "requestDefineIgnore": true,
+    "requestAddIgnore": true
+  },
+  {
+    "icName": "Void_Idol_2",
+    "pdName": "VoidIdol_2",
+    "convoName": "VOID_IDOL_2",
+    "unkillable": true,
+    "ignoredForHunterMark": true,
+    "ignoredForJournalCount": true,
+    "icIgnore": true,
+    "logicItemIgnore": true,
+    "logicLocationIgnore": true,
+    "requestDefineIgnore": true,
+    "requestAddIgnore": true
+  },
+  {
+    "icName": "Void_Idol_3",
+    "pdName": "VoidIdol_3",
+    "convoName": "VOID_IDOL_3",
+    "unkillable": true,
+    "ignoredForHunterMark": true,
+    "ignoredForJournalCount": true,
+    "icIgnore": true,
+    "logicItemIgnore": true,
+    "logicLocationIgnore": true,
+    "requestDefineIgnore": true,
+    "requestAddIgnore": true
+  },
+  {
+    "icName": "Weathered_Mask",
+    "pdName": "GodseekerMask",
+    "convoName": "GODSEEKER_MASK",
+    "unkillable": true,
+    "ignoredForHunterMark": true,
+    "ignoredForJournalCount": true,
+    "icIgnore": true,
+    "logicItemIgnore": true,
+    "logicLocationIgnore": true,
+    "requestDefineIgnore": true,
+    "requestAddIgnore": true
   }
 ]

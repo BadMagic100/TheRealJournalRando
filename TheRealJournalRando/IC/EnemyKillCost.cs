@@ -52,7 +52,7 @@ namespace TheRealJournalRando.IC
         {
             try
             {
-                EnemyDef def = EnemyData.Lookup(icKey);
+                EnemyDef def = EnemyData.Enemies[icKey];
                 return new EnemyKillCost(def.pdName, def.convoName, amount);
             }
             catch

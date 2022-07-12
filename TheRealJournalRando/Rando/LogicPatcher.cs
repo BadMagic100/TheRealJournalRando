@@ -5,6 +5,7 @@ using RandomizerCore.LogicItems;
 using RandomizerMod.RC;
 using RandomizerMod.Settings;
 using System.IO;
+using System.Linq;
 using TheRealJournalRando.Data;
 using TheRealJournalRando.Data.Generated;
 using TheRealJournalRando.Rando.Generated;
@@ -39,7 +40,7 @@ namespace TheRealJournalRando.Rando
             lmb.DeserializeJson(LogicManagerBuilder.JsonType.Terms, t);
 
             Term hunterNotes = lmb.GetTerm(Terms.HUNTERNOTES);
-            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
+            foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.logicItemIgnore))
             {
                 lmb.AddItem(new EmptyItem(enemy.icName.AsEntryName()));
                 string hunterNotesItemName = enemy.icName.AsNotesName();
@@ -52,8 +53,6 @@ namespace TheRealJournalRando.Rando
                     lmb.AddItem(new SingleItem(hunterNotesItemName, new TermValue(hunterNotes, 1)));
                 }
             }
-            lmb.AddItem(new EmptyItem(EnemyNames.Mossy_Vagabond.AsEntryName()));
-            lmb.AddItem(new SingleItem(EnemyNames.Mossy_Vagabond.AsNotesName(), new TermValue(hunterNotes, 1)));
             lmb.AddItem(new EmptyItem(EnemyNames.Weathered_Mask.AsEntryName()));
             lmb.AddItem(new EmptyItem(EnemyNames.Void_Idol_1.AsEntryName()));
             lmb.AddItem(new EmptyItem(EnemyNames.Void_Idol_2.AsEntryName()));
@@ -123,7 +122,7 @@ namespace TheRealJournalRando.Rando
             using Stream s = typeof(LogicPatcher).Assembly.GetManifestResourceStream("TheRealJournalRando.Resources.Logic.enemyLocations.json");
             lmb.DeserializeJson(LogicManagerBuilder.JsonType.Locations, s);
 
-            foreach (EnemyDef enemy in EnemyData.NormalData.Values)
+            foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.logicLocationIgnore))
             {
                 string entryLocationName = enemy.icName.AsEntryName();
                 string hunterNotesLocationName = enemy.icName.AsNotesName();
