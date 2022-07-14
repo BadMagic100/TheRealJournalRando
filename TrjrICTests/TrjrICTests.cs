@@ -8,6 +8,8 @@ namespace TrjrICTests
 {
     public class TrjrICTests : Mod
     {
+        public static TrjrICTests Instance = new();
+
         public override string GetVersion() => GetType().Assembly.GetName().Version.ToString();
 
         public override int LoadPriority() => 99999; // force load after TRJR has hooked IC
@@ -17,6 +19,7 @@ namespace TrjrICTests
             Log("Initializing");
 
             ItemChangerTestingMenu.TestInjectors += InjectTests;
+            Instance = this;
 
             Log("Initialized");
         }

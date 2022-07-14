@@ -23,7 +23,7 @@ namespace TheRealJournalRando.IC
                     .FirstOrDefault();
                 if (stat != null)
                 {
-                    return GameCameras.instance.hudCamera.transform.Find($"Inventory/Journal/Enemy List/{stat.name}/Portrait")
+                    return stat.transform.Find($"Portrait")
                         .GetComponent<SpriteRenderer>().sprite;
                 }
                 return Modding.CanvasUtil.NullSprite();
