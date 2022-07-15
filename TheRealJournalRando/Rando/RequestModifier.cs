@@ -420,11 +420,25 @@ namespace TheRealJournalRando.Rando
             string menderNotesName = EnemyNames.Menderbug.AsNotesName();
             if (RandoInterop.Settings.LongLocations.RandomizeMenderbug)
             {
-                rb.AddItemByName(menderEntryName);
-                rb.AddLocationByName(menderEntryName);
+                if (RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.EntriesOnly))
+                {
+                    rb.AddItemByName(menderEntryName);
+                    rb.AddLocationByName(menderEntryName);
+                }
+                else
+                {
+                    rb.AddToVanilla(menderEntryName, menderEntryName);
+                }
 
-                rb.AddItemByName(menderNotesName);
-                rb.AddLocationByName(menderNotesName);
+                if (RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.NotesOnly))
+                {
+                    rb.AddItemByName(menderNotesName);
+                    rb.AddLocationByName(menderNotesName);
+                }
+                else
+                {
+                    rb.AddToVanilla(menderNotesName, menderNotesName);
+                }
             }
             else
             {
@@ -440,11 +454,25 @@ namespace TheRealJournalRando.Rando
                 string notesName = s.AsNotesName();
                 if (RandoInterop.Settings.LongLocations.RandomizePantheonBosses)
                 {
-                    rb.AddItemByName(entryName);
-                    rb.AddLocationByName(entryName);
+                    if (RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.EntriesOnly))
+                    {
+                        rb.AddItemByName(entryName);
+                        rb.AddLocationByName(entryName);
+                    }
+                    else
+                    {
+                        rb.AddToVanilla(entryName, entryName);
+                    }
 
-                    rb.AddItemByName(notesName);
-                    rb.AddLocationByName(notesName);
+                    if (RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.NotesOnly))
+                    {
+                        rb.AddItemByName(notesName);
+                        rb.AddLocationByName(notesName);
+                    }
+                    else
+                    {
+                        rb.AddToVanilla(notesName, notesName);
+                    }
                 }
                 else
                 {
