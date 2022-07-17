@@ -1,8 +1,9 @@
 ﻿using ItemChanger;
-using ItemChanger.Extensions;
 using ItemChanger.Tags;
+using RandomizerCore;
 using RandomizerCore.Exceptions;
 using RandomizerCore.Logic;
+using RandomizerCore.Randomization;
 using RandomizerMod.RandomizerData;
 using RandomizerMod.RC;
 using System;
@@ -57,6 +58,7 @@ namespace TheRealJournalRando.Rando
             RequestBuilder.OnUpdate.Subscribe(30f, ApplyLongLocationSettings);
             RequestBuilder.OnUpdate.Subscribe(30f, ApplyNotesPreviewSettings);
             RequestBuilder.OnUpdate.Subscribe(50f, ForceBluggsacLocations);
+            RequestBuilder.OnUpdate.Subscribe(100f, DerangeJournals);
         }
 
         private static void SetupRefs(RequestBuilder rb)
@@ -78,7 +80,7 @@ namespace TheRealJournalRando.Rando
             EditJournalItemAndLocationRequest(EnemyData.Enemies[EnemyNames.Void_Idol_2], false, rb);
             EditJournalItemAndLocationRequest(EnemyData.Enemies[EnemyNames.Void_Idol_3], false, rb);
 
-#pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
+            #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             rb.OnGetGroupFor.Subscribe(0f, MatchJournalGroup);
             #pragma warning restore CS8622
 
@@ -90,8 +92,12 @@ namespace TheRealJournalRando.Rando
                     return false;
                 }
 
-                if (EnemyData.Enemies.Values.Except(EnemyData.Enemies[EnemyNames.Hunters_Mark].Yield())
+                if (EnemyData.Enemies.Values.Where(x => !x.requestDefineIgnore)
                     .SelectMany(x => new[] {x.icName.AsEntryName(), x.icName.AsNotesName()})
+                    .Append(EnemyNames.Weathered_Mask.AsEntryName())
+                    .Append(EnemyNames.Void_Idol_1.AsEntryName())
+                    .Append(EnemyNames.Void_Idol_2.AsEntryName())
+                    .Append(EnemyNames.Void_Idol_3.AsEntryName())
                     .Append(EnemyNames.Hunters_Mark)
                     .Contains(item))
                 {
@@ -414,6 +420,25 @@ namespace TheRealJournalRando.Rando
             {
                 return;
             }
+
+            // respect base rando WP settings
+            HashSet<string> palaceJournals = new(new string[] { EnemyNames.Royal_Retainer, EnemyNames.Kingsmould, EnemyNames.Wingmould }
+                .SelectMany(x => new string[] { x.AsEntryName(), x.AsNotesName() }));
+            if (rb.gs.LongLocationSettings.WhitePalaceRando != RandomizerMod.Settings.LongLocationSettings.WPSetting.Allowed)
+            {
+                rb.RemoveItemsWhere(i => palaceJournals.Contains(i));
+                rb.RemoveLocationsWhere(l => palaceJournals.Contains(l));
+                foreach (string j in palaceJournals)
+                {
+                    // if the location isn't defined in vanilla, or the defined vanilla location doesn't have the vanilla item
+                    if (!rb.Vanilla.TryGetValue(j, out List<VanillaDef> v) || !v.Select(x => x.Item).Contains(j))
+                    {
+                        // add it
+                        rb.AddToVanilla(j, j);
+                    }
+                }
+            }
+
             // all our long locations have been opted out of the standard request process; we can just add them directly via the toggles
 
             string menderEntryName = EnemyNames.Menderbug.AsEntryName();
@@ -565,6 +590,36 @@ namespace TheRealJournalRando.Rando
                         return pmt;
                     };
                 });
+            }
+        }
+
+        private static void DerangeJournals(RequestBuilder rb)
+        {
+            if (!RandoInterop.Settings.Enabled || !rb.gs.CursedSettings.Deranged)
+            {
+                return;
+            }
+
+            HashSet<string> journalNames = new(EnemyData.Enemies.Values.Where(x => !x.requestDefineIgnore)
+                    .SelectMany(x => new[] { x.icName.AsEntryName(), x.icName.AsNotesName() })
+                    .Append(EnemyNames.Weathered_Mask.AsEntryName())
+                    .Append(EnemyNames.Void_Idol_1.AsEntryName())
+                    .Append(EnemyNames.Void_Idol_2.AsEntryName())
+                    .Append(EnemyNames.Void_Idol_3.AsEntryName())
+                    .Append(EnemyNames.Hunters_Mark));
+
+            bool NoVanillaJournalLocation(IRandoItem item, IRandoLocation location)
+            {
+                // to be allowed in the constraint, any item at the journal location must not be the vanilla item
+                return !journalNames.Contains(location.Name) || location.Name != item.Name;
+            }
+
+            foreach (ItemGroupBuilder gb in rb.EnumerateItemGroups())
+            {
+                if (gb.strategy is DefaultGroupPlacementStrategy ps)
+                {
+                    ps.Constraints += NoVanillaJournalLocation;
+                }
             }
         }
     }

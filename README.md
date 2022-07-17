@@ -141,3 +141,9 @@ is provided below, grouped by category.
   (Oro & Mato, Sheo, Sly, and Pure Vessel) will be randomized.
 * **Randomize Weathered Mask** - whether the Weathered Mask entry will be randomized.
 * **Randomize Void Idol** - the maximum level of the Void Idol entry to randomize.
+
+### Base Rando Settings
+
+Journal rando respects the deranged and white palace settings from base rando. To prevent logic from becoming
+overcomplicated, Kingsmould, Wingmould, and Royal Retainer entries are only randomized if full palace rando is
+allowed.
