@@ -1037,6 +1037,7 @@
     "icName": "Hornet",
     "pdName": "Hornet",
     "convoName": "HORNET",
+    "isBoss": true,
     "notesCost": 2
   },
   {

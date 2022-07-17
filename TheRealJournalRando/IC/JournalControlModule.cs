@@ -241,6 +241,20 @@ namespace TheRealJournalRando.IC
             int totalEntries = 146;
             int bonusEntries = 0; // for debugging purposes; not put in PD
 
+            // deal with base IC special entries. seal of binding is not counted.
+            foreach (string pdName in new string[] { "Worm", "BigCentipede", "ZapBug", "AbyssTendril" })
+            {
+                bool entryComplete = self.GetBool("killed" + pdName);
+                bool notesComplete = self.GetInt("kills" + pdName) <= 0;
+                if (entryComplete)
+                {
+                    completedEntries++;
+                }
+                if (notesComplete)
+                {
+                    completedNotes++;
+                }
+            }
             // hunter's mark and godhome entries are so bonus they never count (even towards the total)
             foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.ignoredForJournalCount))
             {

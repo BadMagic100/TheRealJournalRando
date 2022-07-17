@@ -1,7 +1,7 @@
 ﻿[
   {
     "name": "Defeated_Any_Crawlid",
-    "logic": "Cliffs_01 | (Cliffs_02[bot1] + (ANYCLAW | WINGS)) | Cliffs_02[left1] | Cliffs_02[left2] | Cliffs_02[door1] | Tutorial_01 | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
+    "logic": "Cliffs_01[any] | (Cliffs_02[bot1] + (ANYCLAW | WINGS)) | Cliffs_02[left1] | Cliffs_02[left2] | Cliffs_02[door1] | Tutorial_01 | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
   },
   {
     "name": "Defeated_Any_Vengefly",
@@ -21,7 +21,7 @@
   },
   {
     "name": "Defeated_Any_Tiktik",
-    "logic": "Cliffs_01 | Cliffs_02 | Crossroads_ShamanTemple[left1] | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
+    "logic": "Cliffs_01[any] | Cliffs_02 | Crossroads_ShamanTemple[left1] | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
   },
   {
     "name": "Defeated_Any_Aspid_Hunter",
@@ -660,35 +660,160 @@
     "logic": "ANY"
   },
   {
-    "name": "Cliffs_01",
+    "name": "Cliffs_01[any]",
     "logic": "Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] | Cliffs_01[right4]"
   },
   {
+    "name": "Fungus1_28",
+    "logic": "Fungus1_28[left1] | Fungus1_28[left2]"
+  },
+  // auto-generated safe waypoint logic
+  {
     "name": "Crossroads_01",
-    "logic": "Crossroads_01[top1] | Crossroads_01[left1] | Crossroads_01[right1]"
+    "logic": "Crossroads_01[right1] | Crossroads_01[top1] | Crossroads_01[left1]"
   },
   {
     "name": "Crossroads_05",
-    "logic": "Crossroads_05[left1] | Crossroads_05[right1]"
+    "logic": "Crossroads_05[right1] | Crossroads_05[left1]"
+  },
+  {
+    "name": "Crossroads_13",
+    "logic": "Crossroads_13[right1] | Crossroads_13[left1]"
+  },
+  {
+    "name": "Crossroads_15",
+    "logic": "Crossroads_15[right1] | Crossroads_15[left1]"
+  },
+  {
+    "name": "Crossroads_16",
+    "logic": "Crossroads_16[bot1] | Crossroads_16[left1] | Crossroads_16[right1]"
+  },
+  {
+    "name": "Crossroads_25",
+    "logic": "Crossroads_25[left1] | Crossroads_25[right1]"
+  },
+  {
+    "name": "Crossroads_39",
+    "logic": "Crossroads_39[left1] | Crossroads_39[right1]"
   },
   {
     "name": "Crossroads_40",
     "logic": "Crossroads_40[left1] | Crossroads_40[right1]"
   },
   {
+    "name": "Crossroads_42",
+    "logic": "Crossroads_42[right1] | Crossroads_42[left1]"
+  },
+  {
+    "name": "Fungus1_01",
+    "logic": "Fungus1_01[right1] | Fungus1_01[left1]"
+  },
+  {
+    "name": "Fungus1_01b",
+    "logic": "Fungus1_01b[right1] | Fungus1_01b[left1]"
+  },
+  {
     "name": "Fungus1_03",
-    "logic": "Fungus1_03[left1] | Fungus1_03[right1] | Fungus1_03[bot1]"
+    "logic": "Fungus1_03[bot1] | Fungus1_03[left1] | Fungus1_03[right1]"
+  },
+  {
+    "name": "Fungus1_05",
+    "logic": "Fungus1_05[top1] | Fungus1_05[right1] | Fungus1_05[bot1]"
+  },
+  {
+    "name": "Fungus1_07",
+    "logic": "Fungus1_07[right1] | Fungus1_07[top1] | Fungus1_07[left1]"
+  },
+  {
+    "name": "Fungus1_10",
+    "logic": "Fungus1_10[top1] | Fungus1_10[left1] | Fungus1_10[right1]"
+  },
+  {
+    "name": "Fungus1_12",
+    "logic": "Fungus1_12[right1] | Fungus1_12[left1]"
+  },
+  {
+    "name": "Fungus1_17",
+    "logic": "Fungus1_17[right1] | Fungus1_17[left1]"
+  },
+  {
+    "name": "Fungus1_19",
+    "logic": "Fungus1_19[bot1] | Fungus1_19[left1] | Fungus1_19[right1]"
+  },
+  {
+    "name": "Fungus1_20_v02",
+    "logic": "Fungus1_20_v02[right1] | Fungus1_20_v02[bot1] | Fungus1_20_v02[bot2]"
+  },
+  {
+    "name": "Fungus1_22",
+    "logic": "Fungus1_22[left1] | Fungus1_22[top1]"
+  },
+  {
+    "name": "Fungus1_23",
+    "logic": "Fungus1_23[right1] | Fungus1_23[left1]"
+  },
+  {
+    "name": "Fungus1_29",
+    "logic": "Fungus1_29[right1] | Fungus1_29[left1]"
+  },
+  {
+    "name": "Fungus1_31",
+    "logic": "Fungus1_31[right1] | Fungus1_31[top1] | Fungus1_31[bot1]"
+  },
+  {
+    "name": "Fungus1_32",
+    "logic": "Fungus1_32[left1] | Fungus1_32[bot1] | Fungus1_32[top1]"
   },
   {
     "name": "Fungus1_34",
     "logic": "Fungus1_34[left1] | Fungus1_34[door1]"
   },
   {
-    "name": "Fungus1_20_v02",
-    "logic": "Fungus1_20_v02[bot1] | Fungus1_20_v02[bot2] | Fungus1_20_v02[right1]"
+    "name": "Fungus2_08",
+    "logic": "Fungus2_08[right1] | Fungus2_08[left1] | Fungus2_08[left2]"
   },
   {
-    "name": "Fungus1_28",
-    "logic": "Fungus1_28[left1] | Fungus1_28[left2]"
+    "name": "Fungus2_10",
+    "logic": "Fungus2_10[bot1] | Fungus2_10[right1] | Fungus2_10[right2]"
+  },
+  {
+    "name": "Fungus2_28",
+    "logic": "Fungus2_28[left2] | Fungus2_28[left1]"
+  },
+  {
+    "name": "Fungus2_33",
+    "logic": "Fungus2_33[left1] | Fungus2_33[right1]"
+  },
+  {
+    "name": "Fungus3_25b",
+    "logic": "Fungus3_25b[left1] | Fungus3_25b[right1]"
+  },
+  {
+    "name": "Fungus3_27",
+    "logic": "Fungus3_27[right1] | Fungus3_27[left1]"
+  },
+  {
+    "name": "Fungus3_39",
+    "logic": "Fungus3_39[left1]"
+  },
+  {
+    "name": "Mines_17",
+    "logic": "Mines_17[left1] | Mines_17[right1]"
+  },
+  {
+    "name": "Ruins1_17",
+    "logic": "Ruins1_17[top1] | Ruins1_17[right1]"
+  },
+  {
+    "name": "Walk_Through_Fungus2_04",
+    "logic": "Fungus2_04[right1] | Fungus2_04[top1]"
+  },
+  {
+    "name": "Walk_Through_Fungus3_04",
+    "logic": "Fungus3_04[left1] | Fungus3_04[left2]"
+  },
+  {
+    "name": "White_Palace_15",
+    "logic": "White_Palace_15[right1]"
   }
 ]
