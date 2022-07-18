@@ -73,86 +73,12 @@ namespace TheRealJournalRando
             // mossy vagabond items and locations
             EnemyDef mossyVagabond = EnemyData.Enemies[EnemyNames.Mossy_Vagabond];
             DefineStandardEntryAndNoteItems(mossyVagabond);
-            Finder.DefineCustomLocation(new DualLocation()
-            {
-                name = EnemyNames.Mossy_Vagabond.AsEntryName(),
-                sceneName = SceneNames.Fungus3_39,
-                flingType = FlingType.Everywhere,
-                falseLocation = new EnemyJournalLocation(mossyVagabond.pdName, EnemyJournalLocationType.Entry),
-                trueLocation = new ExistingFsmContainerLocation()
-                {
-                    sceneName = SceneNames.Fungus3_39,
-                    objectName = "Mossman Inspect",
-                    fsmName = "Conversation Control",
-                    containerType = MossCorpseContainer.MossCorpse,
-                    tags = new()
-                    {
-                        new DualLocationMutableContainerTag(),
-                        new DestroyOnECLReplaceTag()
-                        {
-                            sceneName = SceneNames.Fungus3_39,
-                            objectPath = "corpse set/fat_moss_knight_dead0000"
-                        },
-                        new SuppressSingleCostTag()
-                        {
-                            costMatcher = new MossyVagabondKillCostMatcher(),
-                        },
-                        // this will be unloaded, but it will still be returned in GetPlacementAndLocationTags and our soft deps don't check load state.
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                    }
-                },
-                Test = new PDBool(nameof(PlayerData.crossroadsInfected))
-            });
-            Finder.DefineCustomLocation(new DualLocation()
-            {
-                name = EnemyNames.Mossy_Vagabond.AsNotesName(),
-                sceneName = SceneNames.Fungus3_39,
-                flingType = FlingType.Everywhere,
-                falseLocation = new EnemyJournalLocation(mossyVagabond.pdName, EnemyJournalLocationType.Notes),
-                trueLocation = new ExistingFsmContainerLocation()
-                {
-                    sceneName = SceneNames.Fungus3_39,
-                    objectName = "Mossman Inspect (1)",
-                    fsmName = "Conversation Control",
-                    containerType = MossCorpseContainer.MossCorpse,
-                    tags = new()
-                    {
-                        new DualLocationMutableContainerTag(),
-                        new DestroyOnECLReplaceTag()
-                        {
-                            sceneName = SceneNames.Fungus3_39,
-                            objectPath = "corpse set/fat_moss_knight_dead0000 (2)"
-                        },
-                        new SuppressSingleCostTag()
-                        {
-                            costMatcher = new MossyVagabondKillCostMatcher(),
-                        },
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                    }
-                },
-                Test = new PDBool(nameof(PlayerData.crossroadsInfected))
-            });
+            DefineVagabondLocation(mossyVagabond, EnemyJournalLocationType.Entry, "Mossman Inspect", "corpse set/fat_moss_knight_dead0000");
+            DefineVagabondLocation(mossyVagabond, EnemyJournalLocationType.Notes, "Mossman Inspect (1)", "corpse set/fat_moss_knight_dead0000 (2)");
 
             // weathered mask items and locations
             DefineFullEntryItem(EnemyData.Enemies[EnemyNames.Weathered_Mask]);
-            Finder.DefineCustomLocation(new ObjectLocation()
-            {
-                name = EnemyNames.Weathered_Mask.AsEntryName(),
-                sceneName = SceneNames.GG_Land_of_Storms,
-                objectName = "Shiny Item GG Storms",
-                flingType = FlingType.DirectDeposit,
-                forceShiny = true,
-                tags = new List<Tag>()
-                {
-                    new ChangeSceneTag()
-                    {
-                        changeTo = new Transition(SceneNames.GG_Atrium_Roof, "door_Land_of_Storms_return"),
-                        dreamReturn = true,
-                        deactivateNoCharms = true,
-                    },
-                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
-                }
-            });
+            DefineWeatheredMaskLocation();
 
             // void idol items and locations
             for (int i = 0; i < 3; i++)
@@ -163,18 +89,7 @@ namespace TheRealJournalRando
 
             // hunter's mark items and locations
             DefineHunterMarkItem();
-            Finder.DefineCustomLocation(new HuntersMarkLocation()
-            {
-                name = EnemyNames.Hunters_Mark,
-                sceneName = SceneNames.Fungus1_08,
-                objectName = "Hunter Entry/Shiny Item HunterMark",
-                flingType = FlingType.Everywhere,
-                elevation = -1.7f,
-                tags = new List<Tag>()
-                {
-                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
-                }
-            });
+            DefineHunterMarkLocation();
         }
 
         private void ReplaceOriginalJournalUIDefs(GetItemEventArgs args)
@@ -324,6 +239,7 @@ namespace TheRealJournalRando
             Finder.DefineCustomLocation(new EnemyJournalLocation(enemyDef.pdName, EnemyJournalLocationType.Entry)
             {
                 name = entryName,
+                sceneName = enemyDef.singleSceneName,
                 flingType = FlingType.Everywhere,
                 tags = new()
                 {
@@ -334,11 +250,75 @@ namespace TheRealJournalRando
             Finder.DefineCustomLocation(new EnemyJournalLocation(enemyDef.pdName, EnemyJournalLocationType.Notes)
             {
                 name = notesName,
+                sceneName = enemyDef.singleSceneName,
                 flingType = FlingType.Everywhere,
                 tags = new()
                 {
                     InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
                     InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
+                }
+            });
+        }
+
+        private void DefineVagabondLocation(EnemyDef mossyVagabond, EnemyJournalLocationType journalType, 
+            string inspectObject, string replaceObjectPath)
+        {
+            string name = journalType switch
+            {
+                EnemyJournalLocationType.Entry => mossyVagabond.icName.AsEntryName(),
+                EnemyJournalLocationType.Notes => mossyVagabond.icName.AsNotesName(),
+                _ => throw new NotImplementedException(),
+            };
+            Finder.DefineCustomLocation(new DualLocation()
+            {
+                name = name,
+                sceneName = SceneNames.Fungus3_39,
+                flingType = FlingType.Everywhere,
+                falseLocation = new EnemyJournalLocation(mossyVagabond.pdName, journalType),
+                trueLocation = new ExistingFsmContainerLocation()
+                {
+                    sceneName = SceneNames.Fungus3_39,
+                    objectName = inspectObject,
+                    fsmName = "Conversation Control",
+                    containerType = MossCorpseContainer.MossCorpse,
+                    tags = new()
+                    {
+                        new DualLocationMutableContainerTag(),
+                        new DestroyOnECLReplaceTag()
+                        {
+                            sceneName = SceneNames.Fungus3_39,
+                            objectPath = replaceObjectPath
+                        },
+                        new SuppressSingleCostTag()
+                        {
+                            costMatcher = new MossyVagabondKillCostMatcher(),
+                        },
+                        // this will be unloaded, but it will still be returned in GetPlacementAndLocationTags and our soft deps don't check load state.
+                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                    }
+                },
+                Test = new PDBool(nameof(PlayerData.crossroadsInfected))
+            });
+        }
+
+        private void DefineWeatheredMaskLocation()
+        {
+            Finder.DefineCustomLocation(new ObjectLocation()
+            {
+                name = EnemyNames.Weathered_Mask.AsEntryName(),
+                sceneName = SceneNames.GG_Land_of_Storms,
+                objectName = "Shiny Item GG Storms",
+                flingType = FlingType.DirectDeposit,
+                forceShiny = true,
+                tags = new List<Tag>()
+                {
+                    new ChangeSceneTag()
+                    {
+                        changeTo = new Transition(SceneNames.GG_Atrium_Roof, "door_Land_of_Storms_return"),
+                        dreamReturn = true,
+                        deactivateNoCharms = true,
+                    },
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
                 }
             });
         }
@@ -360,6 +340,22 @@ namespace TheRealJournalRando
                 flingType = FlingType.Everywhere,
                 sceneName = SceneNames.GG_Workshop,
                 tags = new()
+                {
+                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
+                }
+            });
+        }
+
+        private void DefineHunterMarkLocation()
+        {
+            Finder.DefineCustomLocation(new HuntersMarkLocation()
+            {
+                name = EnemyNames.Hunters_Mark,
+                sceneName = SceneNames.Fungus1_08,
+                objectName = "Hunter Entry/Shiny Item HunterMark",
+                flingType = FlingType.Everywhere,
+                elevation = -1.7f,
+                tags = new List<Tag>()
                 {
                     InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
                 }

@@ -118,6 +118,7 @@
     "icName": "Menderbug",
     "pdName": "MenderBug",
     "convoName": "MENDERBUG",
+    "singleSceneName": "Crossroads_01",
     "notesCost": 1,
     "ignoredForHunterMark": true,
     "requestAddIgnore": true
