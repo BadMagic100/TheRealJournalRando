@@ -130,10 +130,12 @@ namespace TheRealJournalRando.Rando
             });
             rb.EditLocationRequest(itemLocationName, info =>
             {
-                info.getLocationDef = () => new()
+                info.getLocationDef = () => new PartialLocationDef()
                 {
                     Name = itemLocationName,
-                    SceneName = Finder.GetLocation(itemLocationName).sceneName,
+                    SceneName = enemy.logicSceneName != null ? enemy.logicSceneName : Finder.GetLocation(itemLocationName).sceneName,
+                    ExplicitTitledArea = enemy.singleTitledArea,
+                    ExplicitMapArea = enemy.singleMapArea,
                     FlexibleCount = false,
                     AdditionalProgressionPenalty = false,
                 };

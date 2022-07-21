@@ -672,6 +672,7 @@
     "icName": "Boofly",
     "pdName": "BlowFly",
     "convoName": "BIG_FAT_FLYER",
+    "singleTitledArea": "Kingdom's Edge",
     "notesCost": 20,
     "respawns": true
   },
@@ -769,6 +770,7 @@
     "icName": "Sharp_Baldur",
     "pdName": "ColRoller",
     "convoName": "COL_ROLLER",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 20,
     "respawns": true
   },
@@ -776,6 +778,7 @@
     "icName": "Armoured_Squit",
     "pdName": "ColMosquito",
     "convoName": "COL_MOSQUITO",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 15,
     "respawns": true
   },
@@ -783,6 +786,7 @@
     "icName": "Battle_Obble",
     "pdName": "Blobble",
     "convoName": "BLOBBLE",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 15,
     "respawns": true
   },
@@ -798,6 +802,7 @@
     "icName": "Shielded_Fool",
     "pdName": "ColShield",
     "convoName": "COL_SHIELD",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 25,
     "respawns": true
   },
@@ -805,6 +810,7 @@
     "icName": "Sturdy_Fool",
     "pdName": "ColMiner",
     "convoName": "COL_MINER",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 25,
     "respawns": true
   },
@@ -812,6 +818,7 @@
     "icName": "Winged_Fool",
     "pdName": "ColFlyingSentry",
     "convoName": "COL_FLYINGSENTRY",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 25,
     "respawns": true
   },
@@ -819,6 +826,7 @@
     "icName": "Heavy_Fool",
     "pdName": "ColWorm",
     "convoName": "COL_WORM",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 20,
     "respawns": true
   },
@@ -826,6 +834,8 @@
     "icName": "Death_Loodle",
     "pdName": "ColHopper",
     "convoName": "COL_HOPPER",
+    "singleSceneName": "Room_Colosseum_Gold",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 15,
     "respawns": true
   },
@@ -833,6 +843,8 @@
     "icName": "Volt_Twister",
     "pdName": "ElectricMage",
     "convoName": "ELEC_MAGE",
+    "singleSceneName": "Room_Colosseum_Gold",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 6,
     "respawns": true
   },
@@ -854,6 +866,8 @@
     "icName": "Zote",
     "pdName": "Zote",
     "convoName": "ZOTE",
+    "singleSceneName": "Room_Colosseum_Bronze",
+    "logicSceneName": "Room_Colosseum_01",
     "notesCost": 1,
     "ignoredForHunterMark": true
   },
