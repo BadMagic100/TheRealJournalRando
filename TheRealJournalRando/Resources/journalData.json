@@ -852,6 +852,8 @@
     "icName": "God_Tamer",
     "pdName": "LobsterLancer",
     "convoName": "LOBSTER_LANCER",
+    "singleSceneName": "Room_Colosseum_Gold",
+    "logicSceneName": "Room_Colosseum_01",
     "isBoss": true,
     "notesCost": 1,
     "respawns": true

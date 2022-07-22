@@ -1,7 +1,7 @@
 ﻿[
   {
     "name": "Defeated_Any_Crawlid",
-    "logic": "Cliffs_01[any] | (Cliffs_02[bot1] + (ANYCLAW | WINGS)) | Cliffs_02[left1] | Cliffs_02[left2] | Cliffs_02[door1] | Tutorial_01 | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
+    "logic": "Cliffs_01[right4] | (Cliffs_02[bot1] + (ANYCLAW | WINGS)) | Cliffs_02[left1] | Cliffs_02[left2] | Cliffs_02[door1] | Tutorial_01 | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
   },
   {
     "name": "Defeated_Any_Vengefly",
@@ -21,11 +21,11 @@
   },
   {
     "name": "Defeated_Any_Tiktik",
-    "logic": "Cliffs_01[any] | Cliffs_02 | Crossroads_ShamanTemple[left1] | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
+    "logic": "Cliffs_01[right4] | Cliffs_02 | Crossroads_ShamanTemple[left1] | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
   },
   {
     "name": "Defeated_Any_Aspid_Hunter",
-    "logic": "ANY"
+    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + 2HITS | OBSCURESKIPS) + LEFTDASH))"
   },
   {
     "name": "Defeated_Any_Aspid_Mother",
@@ -41,7 +41,7 @@
   },
   {
     "name": "Defeated_Any_Husk_Hornhead",
-    "logic": "ANY"
+    "logic": "Abyss_02"
   },
   {
     "name": "Defeated_Any_Leaping_Husk",
@@ -49,7 +49,7 @@
   },
   {
     "name": "Defeated_Any_Husk_Bully",
-    "logic": "ANY"
+    "logic": "Abyss_02"
   },
   {
     "name": "Defeated_Any_Husk_Warrior",
@@ -205,7 +205,7 @@
   },
   {
     "name": "Defeated_Any_Husk_Sentry",
-    "logic": "ANY"
+    "logic": "Abyss_02"
   },
   {
     "name": "Defeated_Any_Heavy_Sentry",
@@ -213,11 +213,11 @@
   },
   {
     "name": "Defeated_Any_Winged_Sentry",
-    "logic": "ANY"
+    "logic": "Abyss_01[right1] | Abyss_01 + ((RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH)) | (LEFTCLAW + LEFTDASH) | WINGS) | Abyss_02"
   },
   {
     "name": "Defeated_Any_Lance_Sentry",
-    "logic": "ANY"
+    "logic": "Abyss_02"
   },
   {
     "name": "Defeated_Any_Mistake",
@@ -269,7 +269,7 @@
   },
   {
     "name": "Defeated_Any_Belfly",
-    "logic": "ANY"
+    "logic": "*Pale_Ore-Basin"
   },
   {
     "name": "Defeated_Any_Pilflip",
@@ -385,15 +385,15 @@
   },
   {
     "name": "Defeated_Any_Shadow_Creeper",
-    "logic": "ANY"
+    "logic": "Abyss_04 | Abyss_06_Core[top1] | Abyss_06_Core[left1] | ((Abyss_06_Core[left3] | Abyss_06_Core[bot1] | Abyss_06_Core[right2]) + (ANYCLAW | WINGS | SCREAM | ENEMYPOGOS)) | Abyss_12[right1] | Abyss_19 | Abyss_20[top1] | Abyss_20[top2]"
   },
   {
     "name": "Defeated_Any_Lesser_Mawlek",
-    "logic": "ANY"
+    "logic": "Abyss_17[top1]"
   },
   {
     "name": "Defeated_Any_Mawlurk",
-    "logic": "ANY"
+    "logic": "Abyss_20[top1] | Abyss_20[top2]"
   },
   {
     "name": "Defeated_Any_Brooding_Mawlek",
@@ -401,11 +401,11 @@
   },
   {
     "name": "Defeated_Any_Lightseed",
-    "logic": "ANY"
+    "logic": "Abyss_19 | Abyss_19[bot1] | Abyss_20[top1] | Abyss_20[top2]"
   },
   {
     "name": "Defeated_Any_Infected_Balloon",
-    "logic": "ANY"
+    "logic": "Abyss_19 + WINGS | Abyss_20[top1]"
   },
   {
     "name": "Defeated_Any_Broken_Vessel",
@@ -433,7 +433,7 @@
   },
   {
     "name": "Defeated_Any_Hiveling",
-    "logic": "ANY"
+    "logic": "Abyss_03_c"
   },
   {
     "name": "Defeated_Any_Hive_Soldier",
@@ -613,7 +613,7 @@
   },
   {
     "name": "Defeated_Any_Sibling",
-    "logic": "ANY"
+    "logic": "Abyss_06_Core"
   },
   {
     "name": "Defeated_Any_Hornet",
@@ -660,12 +660,13 @@
     "logic": "ANY"
   },
   {
-    "name": "Cliffs_01[any]",
-    "logic": "Cliffs_01[right1] | Cliffs_01[right2] | Cliffs_01[right3] | Cliffs_01[right4]"
-  },
-  {
     "name": "Fungus1_28",
     "logic": "Fungus1_28[left1] | Fungus1_28[left2]"
+  },
+  // manually generated room waypoints
+  {
+    "name": "Abyss_02",
+    "logic": "Abyss_02[right1] | (Abyss_02[bot1] + (LEFTCLAW | WINGS))"
   },
   // auto-generated safe waypoint logic
   {
