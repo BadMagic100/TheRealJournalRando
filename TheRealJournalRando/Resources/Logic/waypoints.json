@@ -1,11 +1,11 @@
 ﻿[
   {
     "name": "Defeated_Any_Crawlid",
-    "logic": "Cliffs_01[right4] | (Cliffs_02[bot1] + (ANYCLAW | WINGS)) | Cliffs_02[left1] | Cliffs_02[left2] | Cliffs_02[door1] | Tutorial_01 | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
+    "logic": "Cliffs_01 | Cliffs_02 | Cliffs_02[bot1] + (ANYCLAW | WINGS) | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Crossroads_ShamanTemple[left1] | Fungus1_20_v02 | Fungus1_28 | Tutorial_01"
   },
   {
     "name": "Defeated_Any_Vengefly",
-    "logic": "ANY"
+    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1]"
   },
   {
     "name": "Defeated_Any_Vengefly_King",
@@ -13,7 +13,7 @@
   },
   {
     "name": "Defeated_Any_Gruzzer",
-    "logic": "ANY"
+    "logic": "Crossroads_25"
   },
   {
     "name": "Defeated_Any_Gruz_Mother",
@@ -21,43 +21,43 @@
   },
   {
     "name": "Defeated_Any_Tiktik",
-    "logic": "Cliffs_01[right4] | Cliffs_02 | Crossroads_ShamanTemple[left1] | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Fungus1_20_v02 | Fungus1_28"
+    "logic": "Cliffs_01 | Cliffs_02 | Crossroads_ShamanTemple[left1] | Crossroads_01 | Crossroads_03 | Crossroads_05 | Crossroads_07 | *Rancid_Egg-Blue_Lake | Crossroads_ShamanTemple[left1] + UPWALLBREAK | Fungus1_20_v02 | Fungus1_28"
   },
   {
     "name": "Defeated_Any_Aspid_Hunter",
-    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + 2HITS | OBSCURESKIPS) + LEFTDASH))"
+    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + 2HITS) + LEFTDASH)) | Crossroads_03 | Crossroads_08 | Crossroads_19 | Crossroads_22[bot1]"
   },
   {
     "name": "Defeated_Any_Aspid_Mother",
-    "logic": "ANY"
+    "logic": "Crossroads_19 | *Glowing_Womb | Crossroads_27 | Crossroads_35[right1]"
   },
   {
     "name": "Defeated_Any_Aspid_Hatchling",
-    "logic": "ANY"
+    "logic": "*Defeated_Any_Aspid_Mother"
   },
   {
     "name": "Defeated_Any_Wandering_Husk",
-    "logic": "Crossroads_01 | Crossroads_37[right1] | Crossroads_40 | Crossroads_ShamanTemple[left1] | Fungus1_03 | Fungus1_34"
+    "logic": "Crossroads_01 | Crossroads_21 | Crossroads_37[right1] | Crossroads_40 | Crossroads_ShamanTemple[left1] | Fungus1_03 | Fungus1_34"
   },
   {
     "name": "Defeated_Any_Husk_Hornhead",
-    "logic": "Abyss_02"
+    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_04[door1] | Crossroads_16 | Crossroads_37[right1] | Crossroads_39 | Crossroads_40"
   },
   {
     "name": "Defeated_Any_Leaping_Husk",
-    "logic": "ANY"
+    "logic": "((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_19 | Crossroads_37[right1]"
   },
   {
     "name": "Defeated_Any_Husk_Bully",
-    "logic": "Abyss_02"
+    "logic": "Abyss_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_37[right1]"
   },
   {
     "name": "Defeated_Any_Husk_Warrior",
-    "logic": "ANY"
+    "logic": "Crossroads_15"
   },
   {
     "name": "Defeated_Any_Husk_Guard",
-    "logic": "ANY"
+    "logic": "Crossroads_48[left1]"
   },
   {
     "name": "Defeated_Any_Entombed_Husk",
@@ -69,11 +69,11 @@
   },
   {
     "name": "Defeated_Any_Maggot",
-    "logic": "ANY"
+    "logic": "(Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + (ANYCLAW | WINGS + INFECTED)"
   },
   {
     "name": "Defeated_Any_Menderbug",
-    "logic": "ANY"
+    "logic": "Crossroads_01[top1] + (QUAKE | OBSCURESKIPS + LEFTSLASH) | (Crossroads_01[left1] + RIGHTFIREBALL) | (Crossroads_01[right1] + LEFTFIREBALL)"
   },
   {
     "name": "Defeated_Any_Lifeseed",
@@ -81,7 +81,7 @@
   },
   {
     "name": "Defeated_Any_Baldur",
-    "logic": "ANY"
+    "logic": "Crossroads_ShamanTemple[left1]"
   },
   {
     "name": "Defeated_Any_Elder_Baldur",
@@ -337,19 +337,19 @@
   },
   {
     "name": "Defeated_Any_Furious_Vengefly",
-    "logic": "ANY"
+    "logic": "DREAMER + (Crossroads_01 | Crossroads_03 | Crossroads_04[left1] | Crossroads_05 | Crossroads_11_alt[left1] | Crossroads_11_alt[right1] | Crossroads_13 | Crossroads_16 | Crossroads_21 | Crossroads_42)"
   },
   {
     "name": "Defeated_Any_Volatile_Gruzzer",
-    "logic": "ANY"
+    "logic": "DREAMER + (Crossroads_07 | Crossroads_25)"
   },
   {
     "name": "Defeated_Any_Violent_Husk",
-    "logic": "ANY"
+    "logic": "DREAMER + (Crossroads_01 | Crossroads_04[left1] | Crossroads_05 | Crossroads_13 | Crossroads_21 | Crossroads_39 | Crossroads_40)"
   },
   {
     "name": "Defeated_Any_Slobbering_Husk",
-    "logic": "ANY"
+    "logic": "DREAMER + (Crossroads_04[left1] | Crossroads_08 | Crossroads_15 | Crossroads_21 | Crossroads_39 | Crossroads_40)"
   },
   {
     "name": "Defeated_Any_Dirtcarver",

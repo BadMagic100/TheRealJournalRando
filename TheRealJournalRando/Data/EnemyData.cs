@@ -28,7 +28,7 @@ namespace TheRealJournalRando.Data
     /// <param name="logicLocationIgnore">Whether to ignore this enemy when defining logic locations generically (e.g. special handling for location logic).</param>
     /// <param name="requestDefineIgnore">Whether to ignore this enemy when defining item/location defs and costs (e.g. doesn't have hunter's notes).</param>
     /// <param name="requestAddIgnore">Whether to ignore this enemy when defining pool requests generically (e.g. uses long location settings).</param>
-    public record struct EnemyDef(string icName, string pdName, string convoName, bool isBoss, 
+    public record EnemyDef(string icName, string pdName, string convoName, bool isBoss, 
         string? singleSceneName, string? logicSceneName, string? singleTitledArea, string? singleMapArea,
         bool ignoredForHunterMark, bool ignoredForJournalCount, bool respawns, bool unkillable, int notesCost, 
         bool icIgnore, bool logicItemIgnore, bool logicLocationIgnore, bool requestDefineIgnore, bool requestAddIgnore);
