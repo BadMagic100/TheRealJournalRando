@@ -37,11 +37,11 @@
   },
   {
     "name": "Defeated_Any_Wandering_Husk",
-    "logic": "Crossroads_01 | Crossroads_21 | Crossroads_37[right1] | Crossroads_40 | Crossroads_ShamanTemple[left1] | Fungus1_03 | Fungus1_34"
+    "logic": "Crossroads_01 | Crossroads_21 | Crossroads_37[right1] | Crossroads_40 | Crossroads_ShamanTemple[left1] | Deepnest_03 | Deepnest_33[top2] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS) | Fungus1_03 | Fungus1_34"
   },
   {
     "name": "Defeated_Any_Husk_Hornhead",
-    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_04[door1] | Crossroads_16 | Crossroads_37[right1] | Crossroads_39 | Crossroads_40"
+    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_04[door1] | Crossroads_16 | Crossroads_37[right1] | Crossroads_39 | Crossroads_40 | Deepnest_03 | Deepnest_33[bot1] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[bot1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS)"
   },
   {
     "name": "Defeated_Any_Leaping_Husk",
@@ -89,11 +89,11 @@
   },
   {
     "name": "Defeated_Any_Mosscreep",
-    "logic": "ANY"
+    "logic": "Deepnest_43[left1] + (ANYCLAW | WINGS) | Deepnest_43[bot1] + (FULLCLAW | (ANYCLAW + WINGS))"
   },
   {
     "name": "Defeated_Any_Mossfly",
-    "logic": "ANY"
+    "logic": "Deepnest_43[left1] + (ANYCLAW | WINGS) | Deepnest_43[bot1] + (FULLCLAW | (ANYCLAW + WINGS))"
   },
   {
     "name": "Defeated_Any_Mosskin",
@@ -269,7 +269,7 @@
   },
   {
     "name": "Defeated_Any_Belfly",
-    "logic": "*Pale_Ore-Basin"
+    "logic": "*Pale_Ore-Basin | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_09[left1]"
   },
   {
     "name": "Defeated_Any_Pilflip",
@@ -353,31 +353,31 @@
   },
   {
     "name": "Defeated_Any_Dirtcarver",
-    "logic": "ANY"
+    "logic": "Deepnest_01b | Deepnest_01b[right2] | Deepnest_02 | Deepnest_16[bot1] + (LEFTCLAW | (RIGHTCLAW + WINGS)) | Deepnest_17 | Deepnest_26 | Deepnest_26b[right2] | Deepnest_30[top1] | *Soul_Totem-Deepnest_Vessel"
   },
   {
     "name": "Defeated_Any_Carver_Hatcher",
-    "logic": "ANY"
+    "logic": "Deepnest_26 | Deepnest_26b[right2]"
   },
   {
     "name": "Defeated_Any_Corpse_Creeper",
-    "logic": "ANY"
+    "logic": "Deepnest_03 | Deepnest_33[bot1] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[bot1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS) | Deepnest_Spider_Town[left1]"
   },
   {
     "name": "Defeated_Any_Deepling",
-    "logic": "ANY"
+    "logic": "(Deepnest_39[top1] | Deepnest_39[left1] | Deepnest_39[door1] | Deepnest_41[left2]) + (LANTERN | DARKROOMS) | (Deepnest_39 + (ANYCLAW | WINGS | (AIRSTALL + ROOMSOUL + ENEMYPOGOS))) | Deepnest_42[bot1] | Deepnest_Spider_Town[left1]"
   },
   {
     "name": "Defeated_Any_Deephunter",
-    "logic": "ANY"
+    "logic": "Deepnest_02 | Deepnest_03 | Deepnest_16[bot1] + (LEFTCLAW | (RIGHTCLAW + WINGS)) | Deepnest_33[bot1] | Deepnest_34 | Deepnest_35 | (Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | Deepnest_41 | Deepnest_42[bot1] | Deepnest_45_v02 | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS + (RIGHTCLAW | SHADESKIPS))"
   },
   {
     "name": "Defeated_Any_Little_Weaver",
-    "logic": "ANY"
+    "logic": "Deepnest_39 | (Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW)) | Deepnest_41[left1] | Deepnest_41[right1]) + (LANTERN | DARKROOMS) | Deepnest_42[bot1]"
   },
   {
     "name": "Defeated_Any_Stalking_Devout",
-    "logic": "ANY"
+    "logic": "(Deepnest_34 | (Deepnest_39[top1] | Deepnest_39[door1] | Deepnest_39[left1] | Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | *Rancid_Egg-Dark_Deepnest) + COMBAT[Any_Devout] | (Deepnest_39 | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS)) + COMBAT[Left_Devout]"
   },
   {
     "name": "Defeated_Any_Nosk",
@@ -413,19 +413,19 @@
   },
   {
     "name": "Defeated_Any_Boofly",
-    "logic": "ANY"
+    "logic": "Deepnest_East_01 | Deepnest_East_03 | Deepnest_East_04 | Deepnest_East_07"
   },
   {
     "name": "Defeated_Any_Primal_Aspid",
-    "logic": "ANY"
+    "logic": "Deepnest_East_04 | Deepnest_East_06[left1] | (Deepnest_East_06[top1] | Deepnest_East_06[bot1]) + (WINGS | RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_06[door1] + (WINGS | LEFTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_07 | Deepnest_East_11 | Deepnest_East_14[top1] + QUAKE + ROOMSOUL | Deepnest_East_14b[right1]"
   },
   {
     "name": "Defeated_Any_Hopper",
-    "logic": "ANY"
+    "logic": "Deepnest_East_06[left1] | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_11 | Deepnest_East_14[top1] + QUAKE + ROOMSOUL | Deepnest_East_14[door1] | Deepnest_East_14b[right1] | Deepnest_East_17[left1] + QUAKE + ROOMSOUL | Deepnest_East_18"
   },
   {
     "name": "Defeated_Any_Great_Hopper",
-    "logic": "ANY"
+    "logic": "Deepnest_East_06[top1] | Deepnest_East_06[bot1] | Deepnest_East_06[door1] | Deepnest_East_06[left1] + (RIGHTCLAW | WINGS + BACKGROUNDPOGOS) | Deepnest_East_08[right1] | *Rancid_Egg-Near_Quick_Slash | Deepnest_East_14b[right1]"
   },
   {
     "name": "Defeated_Any_Grub_Mimic",
@@ -433,7 +433,7 @@
   },
   {
     "name": "Defeated_Any_Hiveling",
-    "logic": "Abyss_03_c"
+    "logic": "Abyss_03_c | Deepnest_East_01 | Deepnest_East_02[bot1] | Deepnest_East_02[top1] | Deepnest_East_02[bot2] | Deepnest_East_02[right1] | *Quick_Slash"
   },
   {
     "name": "Defeated_Any_Hive_Soldier",
@@ -453,7 +453,7 @@
   },
   {
     "name": "Defeated_Any_Spiny_Husk",
-    "logic": "ANY"
+    "logic": "Deepnest_43[left1]"
   },
   {
     "name": "Defeated_Any_Loodle",
@@ -461,7 +461,7 @@
   },
   {
     "name": "Defeated_Any_Mantis_Petra",
-    "logic": "ANY"
+    "logic": "Deepnest_43[left1]"
   },
   {
     "name": "Defeated_Any_Mantis_Traitor",
@@ -667,6 +667,10 @@
   {
     "name": "Abyss_02",
     "logic": "Abyss_02[right1] | (Abyss_02[bot1] + (LEFTCLAW | WINGS))"
+  },
+  {
+    "name": "Deepnest_East_01",
+    "logic": "Deepnest_East_01[right1] | Deepnest_East_01[top1] | Deepnest_East_01[bot1]"
   },
   // auto-generated safe waypoint logic
   {

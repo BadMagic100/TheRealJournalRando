@@ -1,4 +1,5 @@
 ﻿{
+  "COMBAT[Any_Devout]": "COMBAT[Right_Devout] | COMBAT[Left_Devout]",
   "COMBAT[Vengefly_King]": "ANY",
   "COMBAT[Entombed_Husk]": "ANY",
   "COMBAT[Menderbug]": "ANY",

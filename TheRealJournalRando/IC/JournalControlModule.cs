@@ -262,8 +262,10 @@ namespace TheRealJournalRando.IC
                 bool notesComplete = EnemyNotesIsRegistered(enemy.pdName) ? hasNotes[enemy.pdName] : self.GetInt("kills" + enemy.pdName) <= 0;
                 if (enemy.ignoredForHunterMark)
                 {
-                    // bonus entries add to the total count if entry is complete, and the corresponding completed count if completed
-                    if (entryComplete || notesComplete)
+                    // bonus entries add to the total count iff fully complete. needs to wait until both entry and notes are had,
+                    // so that you don't end up with extra entries over the total (if notes are had and entry isn't) or undercounting
+                    // notes against the total (if entry is had and notes aren't)
+                    if (entryComplete && notesComplete)
                     {
                         totalEntries++;
                         bonusEntries++;
