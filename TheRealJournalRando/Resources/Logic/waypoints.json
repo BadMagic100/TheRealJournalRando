@@ -5,7 +5,7 @@
   },
   {
     "name": "Defeated_Any_Vengefly",
-    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[door1] | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1]"
+    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[left1] | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1]"
   },
   {
     "name": "Defeated_Any_Vengefly_King",
