@@ -5,7 +5,7 @@
   },
   {
     "name": "Defeated_Any_Vengefly",
-    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1]"
+    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[door1] | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1]"
   },
   {
     "name": "Defeated_Any_Vengefly_King",
@@ -41,7 +41,7 @@
   },
   {
     "name": "Defeated_Any_Husk_Hornhead",
-    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_04[door1] | Crossroads_16 | Crossroads_37[right1] | Crossroads_39 | Crossroads_40 | Deepnest_03 | Deepnest_33[bot1] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[bot1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS)"
+    "logic": "Abyss_02 | Cliffs_02[left1] | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_04[door1] | Crossroads_16 | Crossroads_37[right1] | Crossroads_39 | Crossroads_40 | Deepnest_03 | Deepnest_33[bot1] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[bot1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS)"
   },
   {
     "name": "Defeated_Any_Leaping_Husk",
@@ -49,7 +49,7 @@
   },
   {
     "name": "Defeated_Any_Husk_Bully",
-    "logic": "Abyss_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_37[right1]"
+    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_37[right1]"
   },
   {
     "name": "Defeated_Any_Husk_Warrior",
@@ -353,7 +353,7 @@
   },
   {
     "name": "Defeated_Any_Dirtcarver",
-    "logic": "Deepnest_01b | Deepnest_01b[right2] | Deepnest_02 | Deepnest_16[bot1] + (LEFTCLAW | (RIGHTCLAW + WINGS)) | Deepnest_17 | Deepnest_26 | Deepnest_26b[right2] | Deepnest_30[top1] | *Soul_Totem-Deepnest_Vessel"
+    "logic": "Deepnest_01b | Deepnest_02 | Deepnest_16[bot1] + (LEFTCLAW | (RIGHTCLAW + WINGS)) | Deepnest_17 | Deepnest_26 | Deepnest_26b[right2] | Deepnest_30[top1] | *Soul_Totem-Deepnest_Vessel"
   },
   {
     "name": "Defeated_Any_Carver_Hatcher",
@@ -369,7 +369,7 @@
   },
   {
     "name": "Defeated_Any_Deephunter",
-    "logic": "Deepnest_02 | Deepnest_03 | Deepnest_16[bot1] + (LEFTCLAW | (RIGHTCLAW + WINGS)) | Deepnest_33[bot1] | Deepnest_34 | Deepnest_35 | (Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | Deepnest_41 | Deepnest_42[bot1] | Deepnest_45_v02 | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS + (RIGHTCLAW | SHADESKIPS))"
+    "logic": "Deepnest_02 | Deepnest_03 | Deepnest_16[bot1] + (LEFTCLAW | (RIGHTCLAW + WINGS)) | Deepnest_33[bot1] | Deepnest_34 | Deepnest_35 | (Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | Deepnest_41 | Deepnest_42[bot1] | Deepnest_45_v02[left1] | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS + (RIGHTCLAW | SHADESKIPS))"
   },
   {
     "name": "Defeated_Any_Little_Weaver",
@@ -417,11 +417,11 @@
   },
   {
     "name": "Defeated_Any_Primal_Aspid",
-    "logic": "Deepnest_East_04 | Deepnest_East_06[left1] | (Deepnest_East_06[top1] | Deepnest_East_06[bot1]) + (WINGS | RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_06[door1] + (WINGS | LEFTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_07 | Deepnest_East_11 | Deepnest_East_14[top1] + QUAKE + ROOMSOUL | Deepnest_East_14b[right1]"
+    "logic": "Deepnest_East_04 | Deepnest_East_06[left1] | (Deepnest_East_06[top1] | Deepnest_East_06[bot1]) + (WINGS | RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_06[door1] + (WINGS | LEFTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_07 | Deepnest_East_11 | Deepnest_East_14[top2] + QUAKE + ROOMSOUL | Deepnest_East_14b[right1]"
   },
   {
     "name": "Defeated_Any_Hopper",
-    "logic": "Deepnest_East_06[left1] | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_11 | Deepnest_East_14[top1] + QUAKE + ROOMSOUL | Deepnest_East_14[door1] | Deepnest_East_14b[right1] | Deepnest_East_17[left1] + QUAKE + ROOMSOUL | Deepnest_East_18"
+    "logic": "Deepnest_East_06[left1] | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_11 | Deepnest_East_14[top2] + QUAKE + ROOMSOUL | Deepnest_East_14[door1] | Deepnest_East_14b[right1] | Deepnest_East_17[left1] + QUAKE + ROOMSOUL | Deepnest_East_18"
   },
   {
     "name": "Defeated_Any_Great_Hopper",
