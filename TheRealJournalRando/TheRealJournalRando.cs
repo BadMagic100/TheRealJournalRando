@@ -274,7 +274,10 @@ namespace TheRealJournalRando
                 name = name,
                 sceneName = SceneNames.Fungus3_39,
                 flingType = FlingType.Everywhere,
-                falseLocation = new EnemyJournalLocation(mossyVagabond.pdName, journalType),
+                falseLocation = new EnemyJournalLocation(mossyVagabond.pdName, journalType)
+                {
+                    sceneName = SceneNames.Fungus3_39
+                },
                 trueLocation = new ExistingFsmContainerLocation()
                 {
                     sceneName = SceneNames.Fungus3_39,

@@ -5,7 +5,7 @@
   },
   {
     "name": "Defeated_Any_Vengefly",
-    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[left1] | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1]"
+    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[left1] | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1] | Fungus1_20_v02 | Fungus1_28[left1]"
   },
   {
     "name": "Defeated_Any_Vengefly_King",
@@ -41,15 +41,15 @@
   },
   {
     "name": "Defeated_Any_Husk_Hornhead",
-    "logic": "Abyss_02 | Cliffs_02[left1] | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_04[door1] | Crossroads_16 | Crossroads_37[right1] | Crossroads_39 | Crossroads_40 | Deepnest_03 | Deepnest_33[bot1] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[bot1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS)"
+    "logic": "Abyss_02 | Cliffs_02[left1] | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_04[door1] | Crossroads_16 | Crossroads_37[right1] | Crossroads_39 | Crossroads_40 | Deepnest_03 | Deepnest_33[bot1] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[bot1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS) | Fungus1_03 | Fungus1_34"
   },
   {
     "name": "Defeated_Any_Leaping_Husk",
-    "logic": "((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_19 | Crossroads_37[right1]"
+    "logic": "((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_19 | Crossroads_37[right1] | Fungus1_34"
   },
   {
     "name": "Defeated_Any_Husk_Bully",
-    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_37[right1]"
+    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_37[right1] | Fungus1_03"
   },
   {
     "name": "Defeated_Any_Husk_Warrior",
@@ -89,7 +89,7 @@
   },
   {
     "name": "Defeated_Any_Mosscreep",
-    "logic": "Deepnest_43[left1] + (ANYCLAW | WINGS) | Deepnest_43[bot1] + (FULLCLAW | (ANYCLAW + WINGS))"
+    "logic": "Deepnest_43[left1] + (ANYCLAW | WINGS) | Deepnest_43[bot1] + (FULLCLAW | (ANYCLAW + WINGS)) | Fungus1_01 | Fungus1_03 | Fungus1_05 | Fungus1_07 | Fungus1_10 | Fungus1_11 | Fungus1_19 | Fungus1_21 | Fungus1_22 | Fungus1_31 | Fungus1_31[bot1] | Fungus1_32 | Fungus1_34"
   },
   {
     "name": "Defeated_Any_Mossfly",
@@ -97,35 +97,35 @@
   },
   {
     "name": "Defeated_Any_Mosskin",
-    "logic": "ANY"
+    "logic": "Fungus1_01 | Fungus1_05 | Fungus1_06[bot1] | Fungus1_07 | Fungus1_13[right1] + (LEFTCLAW | WINGS) | Fungus1_31"
   },
   {
     "name": "Defeated_Any_Volatile_Mosskin",
-    "logic": "ANY"
+    "logic": "Fungus1_01 | Fungus1_02 | Fungus1_05 | Fungus1_06[bot1] | Fungus1_19 | Fungus1_22 | Fungus1_31 | Fungus1_31[bot1]"
   },
   {
     "name": "Defeated_Any_Fool_Eater",
-    "logic": "ANY"
+    "logic": "Fungus1_01 | Fungus1_03 | Fungus1_19 | Fungus1_22 | Fungus1_22[bot1] | Fungus1_34"
   },
   {
     "name": "Defeated_Any_Squit",
-    "logic": "ANY"
+    "logic": "Fungus1_02 | Fungus1_05 | Fungus1_06[left1] | Fungus1_06[bot1] | Fungus1_07 | Fungus1_17 | Fungus1_22"
   },
   {
     "name": "Defeated_Any_Obble",
-    "logic": "ANY"
+    "logic": "Fungus1_19 | Fungus1_31 | Fungus1_31[bot1]"
   },
   {
     "name": "Defeated_Any_Gulka",
-    "logic": "ANY"
+    "logic": "Fungus1_11 + (COMBAT[Right_Gulka] | COMBAT[Up_Gulka]) | Fungus1_12 + COMBAT[Any_Gulka] | Fungus1_29 + (COMBAT[Left_Gulka] | SCREAM | (UPSLASH + PROFICIENTCOMBAT))"
   },
   {
     "name": "Defeated_Any_Maskfly",
-    "logic": "ANY"
+    "logic": "Fungus1_01 + (COMBAT[Right_Maskfly] | UPSLASH | SCREAM) | Fungus1_01[right1] + COMBAT[Left_Maskfly] | Fungus1_01b | Fungus1_03 + (COMBAT[Right_Maskfly] | SCREAM | LEFTDASHSLASH | LEFTFIREBALL | RIGHTCLAW | WINGS) | (Fungus1_12[left1] + (COMBAT[Right_Maskfly] | RIGHTSLASH)) | (Fungus1_12[right1] + (COMBAT[Left_Maskfly] | LEFTSLASH)) | (Fungus1_23[left1] + COMBAT[Right_Maskfly]) | (Fungus1_23[right1] + COMBAT[Left_Maskfly]) | (*Queen's_Gardens_Map + COMBAT[Left_Maskfly]) | (Fungus1_24[left1] + (UPSLASH | SCREAM)) | (Fungus1_26[door_SlugShrine] + COMBAT[Right_Maskfly]) | (Fungus1_26[right1] + COMBAT[Left_Maskfly]) | (Fungus1_36[left1] + COMBAT[Right_Maskfly])"
   },
   {
     "name": "Defeated_Any_Moss_Charger",
-    "logic": "ANY"
+    "logic": "Fungus1_10 | Fungus1_17 | Fungus1_21"
   },
   {
     "name": "Defeated_Any_Massive_Moss_Charger",
@@ -133,19 +133,19 @@
   },
   {
     "name": "Defeated_Any_Moss_Knight",
-    "logic": "ANY"
+    "logic": "Fungus1_21 | Fungus1_32"
   },
   {
     "name": "Defeated_Any_Durandoo",
-    "logic": "ANY"
+    "logic": "(Fungus1_11 | Fungus1_12 | Fungus1_13[right1]) + ACID + COMBAT[Durandoo]"
   },
   {
     "name": "Defeated_Any_Duranda",
-    "logic": "ANY"
+    "logic": "Fungus1_09[right1] + COMBAT[Duranda] | Fungus1_09[left1] + (SCREAM | RIGHTFIREBALL | (3HITS + (RIGHTDASHSLASH | GREATSLASH)) | (1HIT + CYCLONE))"
   },
   {
     "name": "Defeated_Any_Aluba",
-    "logic": "ANY"
+    "logic": "Fungus1_26[door_SlugShrine] + (WINGS | Shaman_Stone + LEFTFIREBALL | (LEFTSUPERDASH + SCREAM | LEFTDASH + PRECISEMOVEMENT + (SCREAM | UPSLASH)) + (ACID | 1HIT))"
   },
   {
     "name": "Defeated_Any_Uoma",
@@ -457,7 +457,7 @@
   },
   {
     "name": "Defeated_Any_Loodle",
-    "logic": "ANY"
+    "logic": "Fungus1_23"
   },
   {
     "name": "Defeated_Any_Mantis_Petra",
@@ -659,10 +659,6 @@
     "name": "Defeated_Pantheon_5",
     "logic": "ANY"
   },
-  {
-    "name": "Fungus1_28",
-    "logic": "Fungus1_28[left1] | Fungus1_28[left2]"
-  },
   // manually generated room waypoints
   {
     "name": "Abyss_02",
@@ -671,6 +667,22 @@
   {
     "name": "Deepnest_East_01",
     "logic": "Deepnest_East_01[right1] | Deepnest_East_01[top1] | Deepnest_East_01[bot1]"
+  },
+  {
+    "name": "Fungus1_02",
+    "logic": "Fungus1_02[left1] | Fungus1_02[right1] | Fungus1_02[right2]"
+  },
+  {
+    "name": "Fungus1_11",
+    "logic": "Fungus1_11[top1] | Fungus1_11[right1] | Fungus1_11[right2] | Fungus1_11[left1] | Fungus1_11[bot1]"
+  },
+  {
+    "name": "Fungus1_28",
+    "logic": "Fungus1_28[left1] | Fungus1_28[left2]"
+  },
+  {
+    "name": "Fungus1_31",
+    "logic": "Fungus1_31[right1] | Fungus1_31[top1] | (Fungus1_31[bot1] + Can_Replenish_Geo)"
   },
   // auto-generated safe waypoint logic
   {
@@ -760,10 +772,6 @@
   {
     "name": "Fungus1_29",
     "logic": "Fungus1_29[right1] | Fungus1_29[left1]"
-  },
-  {
-    "name": "Fungus1_31",
-    "logic": "Fungus1_31[right1] | Fungus1_31[top1] | Fungus1_31[bot1]"
   },
   {
     "name": "Fungus1_32",
