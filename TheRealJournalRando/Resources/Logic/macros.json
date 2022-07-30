@@ -6,7 +6,7 @@
   "COMBAT[Right_Gulka]": "Glowing_Womb | GREATSLASH | RIGHTDASHSLASH | RIGHTFIREBALL | RIGHTSLASH",
   "COMBAT[Up_Gulka]": "UPSLASH | SCREAM",
   "COMBAT[Any_Gulka]": "COMBAT[Left_Gulka] | COMBAT[Right_Gulka] | COMBAT[Up_Gulka]",
-  "COMBAT[Vengefly_King]": "ANY",
+  "COMBAT[Shrumal_Ogre]": "SIDESLASH | UPSLASH | Cyclone_Slash | Great_Slash | FULLDASHSLASH | ANYDASHSLASH + DASHMASTER + OBSCURESKIPS | SPICYCOMBATSKIPS",
   "COMBAT[Entombed_Husk]": "ANY",
   "COMBAT[Durandoo]": "ACID + UPSLASH | SIDESLASH | FIREBALL | SCREAM",
   "COMBAT[Duranda]": "SIDESLASH | FIREBALL | SCREAM",
