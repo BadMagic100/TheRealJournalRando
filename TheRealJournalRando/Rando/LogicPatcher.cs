@@ -40,16 +40,25 @@ namespace TheRealJournalRando.Rando
             lmb.DeserializeJson(LogicManagerBuilder.JsonType.Terms, t);
 
             Term hunterNotes = lmb.GetTerm(Terms.HUNTERNOTES);
+            Term progressiveNotes = lmb.GetTerm(Terms.PROGRESSIVENOTES);
             foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.logicItemIgnore))
             {
-                lmb.AddItem(new EmptyItem(enemy.icName.AsEntryName()));
+                Term progressiveEntry = lmb.GetOrAddTerm($"ENTRY[{enemy.icName}]");
+                string journalEntryItemName = enemy.icName.AsEntryName();
                 string hunterNotesItemName = enemy.icName.AsNotesName();
                 if (enemy.ignoredForHunterMark)
                 {
+                    lmb.AddItem(new EmptyItem(journalEntryItemName));
                     lmb.AddItem(new EmptyItem(hunterNotesItemName));
                 }
                 else
                 {
+                    // entry: if notes are progressive and you have one of the things already, gives the thing and notes
+                    //        else, give the thing
+                    // notes: if notes are progressive and you have one of the things already, gives the thing and notes
+                    //        else if you don't have the thing, give the thing
+                    //        else (if notes are not progressive) give the thing and notes
+                    lmb.AddItem(new EmptyItem(journalEntryItemName));
                     lmb.AddItem(new SingleItem(hunterNotesItemName, new TermValue(hunterNotes, 1)));
                 }
             }

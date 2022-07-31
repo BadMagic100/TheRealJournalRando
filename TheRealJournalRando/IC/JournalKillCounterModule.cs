@@ -1,12 +1,16 @@
 ﻿using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using ItemChanger;
+using ItemChanger.Components;
 using ItemChanger.Extensions;
 using ItemChanger.FsmStateActions;
+using ItemChanger.Items;
 using ItemChanger.Modules;
 using Modding;
 using System.Collections.Generic;
 using System.Linq;
+using TheRealJournalRando.Data;
+using TheRealJournalRando.Data.Generated;
 using TheRealJournalRando.Fsm;
 
 namespace TheRealJournalRando.IC
@@ -21,6 +25,7 @@ namespace TheRealJournalRando.IC
 
         public override void Initialize()
         {
+            AbstractItem.AfterGiveGlobal += CountMimicKills;
             ModHooks.RecordKillForJournalHook += OnJournalRecord;
             On.PlayMakerFSM.OnEnable += OnFsmEnable;
             On.ScuttlerControl.Hit += OnScuttlerKilled;
@@ -29,6 +34,7 @@ namespace TheRealJournalRando.IC
 
         public override void Unload()
         {
+            AbstractItem.AfterGiveGlobal -= CountMimicKills;
             ModHooks.RecordKillForJournalHook -= OnJournalRecord;
             On.PlayMakerFSM.OnEnable -= OnFsmEnable;
             On.ScuttlerControl.Hit -= OnScuttlerKilled;
@@ -75,8 +81,25 @@ namespace TheRealJournalRando.IC
             {
                 playerDataName = "Dummy";
             }
+            // if killing a mimic from a container, eat the actual kill - the mimic item is responsible for the counting
+            if (playerDataName == EnemyData.Enemies[EnemyNames.Grub_Mimic].pdName)
+            {
+                ContainerInfoComponent? info = enemyDeathEffects.GetComponentInParent<ContainerInfoComponent>();
+                if (info != null && info.info.containerType == Container.Mimic)
+                {
+                    playerDataName = "Dummy";
+                }
+            }
 
             Record(playerDataName);
+        }
+
+        private void CountMimicKills(ReadOnlyGiveEventArgs obj)
+        {
+            if (obj.Item is MimicItem)
+            {
+                Record(EnemyData.Enemies[EnemyNames.Grub_Mimic].pdName);
+            }
         }
 
         private void OnScuttlerKilled(On.ScuttlerControl.orig_Hit orig, ScuttlerControl self, HitInstance damageInstance)

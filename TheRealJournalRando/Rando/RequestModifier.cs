@@ -37,6 +37,8 @@ namespace TheRealJournalRando.Rando
 
         public static void Hook()
         {
+            ProgressionInitializer.OnCreateProgressionInitializer += CreateInitialProgression;
+
             RequestBuilder.OnUpdate.Subscribe(-1000, rb =>
             {
                 rb.rm.OnError += e =>
@@ -59,6 +61,19 @@ namespace TheRealJournalRando.Rando
             RequestBuilder.OnUpdate.Subscribe(30f, ApplyNotesPreviewSettings);
             RequestBuilder.OnUpdate.Subscribe(50f, ForceBluggsacLocations);
             RequestBuilder.OnUpdate.Subscribe(100f, DerangeJournals);
+        }
+
+        private static void CreateInitialProgression(LogicManager lm, RandomizerMod.Settings.GenerationSettings gs, ProgressionInitializer pi)
+        {
+            if (!RandoInterop.Settings.Enabled)
+            {
+                return;
+            }
+
+            if (RandoInterop.Settings.JournalRandomizationType == JournalRandomizationType.All)
+            {
+                pi.Setters.Add(new TermValue(lm.GetTerm(Terms.PROGRESSIVENOTES), 1));
+            }
         }
 
         private static void SetupRefs(RequestBuilder rb)
