@@ -5,7 +5,7 @@
   },
   {
     "name": "Defeated_Any_Vengefly",
-    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[left1] | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1] | Fungus1_20_v02 | Fungus1_28[left1] | Room_Colosseum_01[left1] + Defeated_Colosseum_1"
+    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[left1] | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1] | Fungus1_20_v02 | Fungus1_28[left1] | Room_Colosseum_01[left1] + Defeated_Colosseum_1 | Ruins1_03 | Ruins1_04[right1] | Ruins1_04[bot1] | Ruins1_04[door1] | Ruins1_05c[top3] | Ruins1_05c[top2] | Ruins1_17 | Tutorial_01"
   },
   {
     "name": "Defeated_Any_Vengefly_King",
@@ -37,19 +37,19 @@
   },
   {
     "name": "Defeated_Any_Wandering_Husk",
-    "logic": "Crossroads_01 | Crossroads_21 | Crossroads_37[right1] | Crossroads_40 | Crossroads_ShamanTemple[left1] | Deepnest_03 | Deepnest_33[top2] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS) | Fungus1_03 | Fungus1_34"
+    "logic": "Crossroads_01 | Crossroads_21 | Crossroads_37[right1] | Crossroads_40 | Crossroads_ShamanTemple[left1] | Deepnest_03 | Deepnest_33[top2] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS) | Fungus1_03 | Fungus1_34 | Ruins1_04[door1] | Ruins1_04[bot1] | Ruins1_04[right1] + (ENEMYPOGOS | LEFTDASH | WINGS | LEFTCLAW | PRECISEMOVEMENT) | Ruins1_28 | Ruins1_28[left1]"
   },
   {
     "name": "Defeated_Any_Husk_Hornhead",
-    "logic": "Abyss_02 | Cliffs_02[left1] | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_04[door1] | Crossroads_16 | Crossroads_37[right1] | Crossroads_39 | Crossroads_40 | Deepnest_03 | Deepnest_33[bot1] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[bot1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS) | Fungus1_03 | Fungus1_34 | Fungus2_03"
+    "logic": "Abyss_02 | Cliffs_02[left1] | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_04[door1] | Crossroads_16 | Crossroads_37[right1] | Crossroads_39 | Crossroads_40 | Deepnest_03 | Deepnest_33[bot1] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[bot1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS) | Fungus1_03 | Fungus1_34 | Fungus2_03 | Ruins1_01[bot1] | Ruins1_03 | Ruins1_05[bot1] + (ANYCLAW | WINGS) | Ruins1_17 | Ruins2_06[right1]"
   },
   {
     "name": "Defeated_Any_Leaping_Husk",
-    "logic": "((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_19 | Crossroads_37[right1] | Fungus1_34"
+    "logic": "((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_19 | Crossroads_37[right1] | Fungus1_34 | Ruins1_01[left1] | Ruins1_03 | Ruins1_17"
   },
   {
     "name": "Defeated_Any_Husk_Bully",
-    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_37[right1] | Fungus1_03"
+    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_37[right1] | Fungus1_03 | Ruins1_01[left1] | Ruins1_04[right1] | Ruins1_05c | Ruins1_28 | Ruins1_28[left1]"
   },
   {
     "name": "Defeated_Any_Husk_Warrior",
@@ -205,31 +205,31 @@
   },
   {
     "name": "Defeated_Any_Husk_Sentry",
-    "logic": "Abyss_02"
+    "logic": "Abyss_02 | Ruins1_01[left1] | Ruins1_02[top1] | Ruins1_03 | Ruins1_04[right1] | Ruins1_05c | *Simple_Key-City | Ruins2_05[left1] | Ruins2_05[bot1] + (SCREAM | UPSLASH | GREATSLASH) | *Lore_Tablet-Dung_Defender | Waterways_07[top1] | Waterways_07[door1]"
   },
   {
     "name": "Defeated_Any_Heavy_Sentry",
-    "logic": "ANY"
+    "logic": "Ruins1_05[right1] | Ruins1_05c | Ruins2_01[top1] | Ruins2_05[left1] | *Lore_Tablet-Dung_Defender | Waterways_07[top1] | Waterways_07[door1]"
   },
   {
     "name": "Defeated_Any_Winged_Sentry",
-    "logic": "Abyss_01[right1] | Abyss_01 + ((RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH)) | (LEFTCLAW + LEFTDASH) | WINGS) | Abyss_02 | RestingGrounds_06[right1]"
+    "logic": "Abyss_01[right1] | Abyss_01 + ((RIGHTCLAW + (LEFTDASH | LEFTSUPERDASH)) | (LEFTCLAW + LEFTDASH) | WINGS) | Abyss_02 | RestingGrounds_06[right1] | Ruins1_03 | Ruins1_05[right1] | Ruins1_05[bot1] + (ANYCLAW | WINGS) | Ruins1_17 | Ruins1_28 | Ruins2_01 | Ruins2_03b | Ruins2_05[left1] | Waterways_13[left1] + ANYCLAW"
   },
   {
     "name": "Defeated_Any_Lance_Sentry",
-    "logic": "Abyss_02"
+    "logic": "Abyss_02 | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c[top1] | Ruins1_05c + (ANYCLAW | WINGS + ENEMYPOGOS) | Ruins1_17 | Ruins2_01[left2] | Ruins2_01[top1] | Ruins2_01[bot1] + (ANYCLAW | WINGS | ENEMYPOGOS) | Ruins2_03[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)) | Ruins2_06[right2]"
   },
   {
     "name": "Defeated_Any_Mistake",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_3"
+    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_3 | Ruins1_23[top1] + Defeated_Sanctum_Warrior | Ruins1_23[right2] | (Ruins1_23[left1] | Ruins1_23[bot1]) + (ANYCLAW | WINGS) | Ruins1_25[left1] | Ruins1_25[left2] | Ruins1_30[left2] | Ruins1_30[left1] + (ANYCLAW | WINGS) | Ruins1_32[right1] + ANYCLAW | Ruins1_32[right2]"
   },
   {
     "name": "Defeated_Any_Folly",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_3"
+    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_3 | Ruins1_30[left1] + (ANYCLAW | WINGS) | Ruins1_32[right1] + ANYCLAW | Ruins1_32[right2]"
   },
   {
     "name": "Defeated_Any_Soul_Twister",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_3"
+    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_3 | Ruins1_23[top1] + Defeated_Sanctum_Warrior | Ruins1_23[right2] | (Ruins1_23[left1] | Ruins1_23[bot1]) + (ANYCLAW | WINGS) | Ruins1_25[left2] | Ruins1_30 + (ANYCLAW | WINGS) | Ruins1_30[left1] | Ruins1_30[right1]"
   },
   {
     "name": "Defeated_Any_Soul_Warrior",
@@ -241,23 +241,23 @@
   },
   {
     "name": "Defeated_Any_Husk_Dandy",
-    "logic": "ANY"
+    "logic": "Ruins_House_02[left1] | Ruins1_27[right1] | Ruins2_01 | Ruins2_01_b | Ruins2_03b | Ruins2_04[right2] | Ruins2_05[bot1] | Ruins2_06[top1] | Ruins2_09[bot1]"
   },
   {
     "name": "Defeated_Any_Cowardly_Husk",
-    "logic": "ANY"
+    "logic": "Ruins_House_02[left1] | Ruins1_27[right1] | Ruins2_01 | Ruins2_01_b | Ruins2_03b | Ruins2_04[right2] | Ruins2_05[bot1] | Ruins2_09[bot1]"
   },
   {
     "name": "Defeated_Any_Gluttonous_Husk",
-    "logic": "ANY"
+    "logic": "Ruins_House_02[left1] | Ruins2_01[left2] | Ruins2_01_b | Ruins2_03b | Ruins2_04[door_Ruin_House_01] | Ruins2_05[bot1] | Ruins2_06[right2] | Ruins2_09[bot1]"
   },
   {
     "name": "Defeated_Any_Gorgeous_Husk",
-    "logic": "ANY"
+    "logic": "Ruins_House_02[left1]"
   },
   {
     "name": "Defeated_Any_Great_Husk_Sentry",
-    "logic": "COMBAT[Great_Husk_Sentry] + (RestingGrounds_06[right1])"
+    "logic": "COMBAT[Great_Husk_Sentry] + (RestingGrounds_06[right1] | Ruins2_01[left2] | Ruins2_03[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)) | Ruins2_03b | Ruins2_04[right2])"
   },
   {
     "name": "Defeated_Any_Watcher_Knight",
@@ -269,15 +269,15 @@
   },
   {
     "name": "Defeated_Any_Belfly",
-    "logic": "*Pale_Ore-Basin | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_09[left1] | RestingGrounds_10 + UPWALLBREAK | Room_Colosseum_01[left1] + Defeated_Colosseum_2"
+    "logic": "*Pale_Ore-Basin | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_09[left1] | RestingGrounds_10 + UPWALLBREAK | Room_Colosseum_01[left1] + Defeated_Colosseum_2 | Ruins1_01[left1] | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c | Ruins2_07[right1] | Waterways_01 | Waterways_02[top1] | Waterways_02[top2] | (Waterways_02[bot2] | Waterways_02[top3] + QUAKE) + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | *Soul_Totem-Top_Left_Waterways | Waterways_07 | *Soul_Totem-Waterways-Flukemarm | Waterways_08[left2] | Waterways_13[left1]"
   },
   {
     "name": "Defeated_Any_Pilflip",
-    "logic": "ANY"
+    "logic": "Waterways_01 | Waterways_02[bot2] | Waterways_02[top2] | Waterways_02[top1] | Waterways_02[top3] + QUAKE + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_06[right1] + (LEFTSUPERDASH | ACID) | Waterways_06[top1] | *Soul_Totem-Waterways_East"
   },
   {
     "name": "Defeated_Any_Hwurmp",
-    "logic": "ANY"
+    "logic": "Waterways_01 | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[left1] | Waterways_04b[right2] + WINGS + (LEFTCLAW | ENEMYPOGOS | SCREAM) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW)) | Waterways_07 | Waterways_09[left1] | Waterways_09[right1] | *Isma's_Tear | Waterways_14[bot1] + ANYCLAW + (ACID | RIGHTSUPERDASH + WINGS) | Waterways_14[bot2] + (LEFTCLAW + WINGS | RIGHTCLAW) + (ACID | LEFTSUPERDASH + WINGS)"
   },
   {
     "name": "Defeated_Any_Bluggsac",
@@ -293,11 +293,11 @@
   },
   {
     "name": "Defeated_Any_Flukefey",
-    "logic": "ANY"
+    "logic": "Waterways_02 | Waterways_04b[left1] | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[right2] + (SWIM | LEFTSUPERDASH + SCREAM) | Waterways_06[right1] + (LEFTSUPERDASH | ACID) | Waterways_06[top1] | Waterways_08"
   },
   {
     "name": "Defeated_Any_Flukemon",
-    "logic": "ANY"
+    "logic": "Waterways_02[top1] | Waterways_02[top3] + QUAKE | Waterways_02[top2] + (ANYCLAW | WINGS) | Waterways_02[bot1] | Waterways_02[bot2] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[left1] | Waterways_04[right1] + (RIGHTCLAW + LEFTSUPERDASH | ANYCLAW + LEFTDASH | WINGS | ENEMYPOGOS) | *Soul_Totem-Top_Left_Waterways | Waterways_08"
   },
   {
     "name": "Defeated_Any_Flukemunga",
@@ -337,7 +337,7 @@
   },
   {
     "name": "Defeated_Any_Furious_Vengefly",
-    "logic": "DREAMER + (Crossroads_01 | Crossroads_03 | Crossroads_04[left1] | Crossroads_05 | Crossroads_11_alt[left1] | Crossroads_11_alt[right1] | Crossroads_13 | Crossroads_16 | Crossroads_21 | Crossroads_42) | Room_Colosseum_01[left1] + Defeated_Colosseum_3"
+    "logic": "DREAMER + (Crossroads_01 | Crossroads_03 | Crossroads_04[left1] | Crossroads_05 | Crossroads_11_alt[left1] | Crossroads_11_alt[right1] | Crossroads_13 | Crossroads_16 | Crossroads_21 | Crossroads_42) | Room_Colosseum_01[left1] + Defeated_Colosseum_3 | Ruins2_07[left1]"
   },
   {
     "name": "Defeated_Any_Volatile_Gruzzer",
@@ -601,11 +601,11 @@
   },
   {
     "name": "Defeated_Any_Wingmould",
-    "logic": "ANY"
+    "logic": "White_Palace_01[left1] + (RIGHTDASH | FULLCLAW | WINGS | ANYCLAW + RIGHTSUPERDASH) | White_Palace_01[right1] + (LEFTDASH | LEFTSUPERDASH | WINGS) | White_Palace_01[top1] + Palace_Entrance_Lantern_Lit | White_Palace_06[bot1] + (SCREAM | WINGS + UPSLASH | RIGHTCLAW) | White_Palace_06[top1] | White_Palace_13[right1] | White_Palace_13[left1] + RIGHTCLAW + FULLSUPERDASH | White_Palace_13[left2] + (WINGS + RIGHTDASH | RIGHTSUPERDASH) | White_Palace_13[left3] | White_Palace_18[top1] | White_Palace_18[right1] + WINGS + RIGHTCLAW | *Soul_Totem-Path_of_Pain_Hidden + LEFTSUPERDASH | White_Palace_19[top1]"
   },
   {
     "name": "Defeated_Any_Royal_Retainer",
-    "logic": "ANY"
+    "logic": "White_Palace_03_Hub | White_Palace_04[right2] + LEFTCLAW + FULLDASH + (WINGS | RIGHTCLAW) | White_Palace_04[top1] + RIGHTDASH + WINGS | White_Palace_12[right1] | White_Palace_14[right1] | White_Palace_15"
   },
   {
     "name": "Defeated_Any_Kingsmould",
@@ -707,6 +707,10 @@
   {
     "name": "Hive_04",
     "logic": "Hive_04[left1] | Hive_04[right1]"
+  },
+  {
+    "name": "Waterways_08",
+    "logic": "Waterways_08[top1] | Waterways_08[left1] | Waterways_08[left2]"
   },
   // auto-generated safe waypoint logic
   {
