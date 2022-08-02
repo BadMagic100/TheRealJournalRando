@@ -74,6 +74,10 @@ namespace TheRealJournalRando.Rando
             {
                 pi.Setters.Add(new TermValue(lm.GetTerm(Terms.PROGRESSIVENOTES), 1));
             }
+            if (RandoInterop.Settings.Pools.BossEntries && RandoInterop.Settings.Pools.BossEntries && !gs.PoolSettings.GrimmkinFlames)
+            {
+                pi.Setters.Add(new TermValue(lm.GetTerm(Terms.VANILLAFLAMES), 1));
+            }
         }
 
         private static void SetupRefs(RequestBuilder rb)

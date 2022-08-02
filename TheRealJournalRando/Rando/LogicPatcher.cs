@@ -2,6 +2,7 @@
 using RandomizerCore;
 using RandomizerCore.Logic;
 using RandomizerCore.LogicItems;
+using RandomizerCore.LogicItems.Templates;
 using RandomizerMod.RC;
 using RandomizerMod.Settings;
 using System.IO;
@@ -40,10 +41,9 @@ namespace TheRealJournalRando.Rando
             lmb.DeserializeJson(LogicManagerBuilder.JsonType.Terms, t);
 
             Term hunterNotes = lmb.GetTerm(Terms.HUNTERNOTES);
-            Term progressiveNotes = lmb.GetTerm(Terms.PROGRESSIVENOTES);
             foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.logicItemIgnore))
             {
-                Term progressiveEntry = lmb.GetOrAddTerm($"ENTRY[{enemy.icName}]");
+                Term progressiveEntry = lmb.GetOrAddTerm($"PARTIALENTRY[{enemy.icName}]");
                 string journalEntryItemName = enemy.icName.AsEntryName();
                 string hunterNotesItemName = enemy.icName.AsNotesName();
                 if (enemy.ignoredForHunterMark)
@@ -53,13 +53,24 @@ namespace TheRealJournalRando.Rando
                 }
                 else
                 {
-                    // entry: if notes are progressive and you have one of the things already, gives the thing and notes
-                    //        else, give the thing
-                    // notes: if notes are progressive and you have one of the things already, gives the thing and notes
-                    //        else if you don't have the thing, give the thing
-                    //        else (if notes are not progressive) give the thing and notes
-                    lmb.AddItem(new EmptyItem(journalEntryItemName));
-                    lmb.AddItem(new SingleItem(hunterNotesItemName, new TermValue(hunterNotes, 1)));
+                    // entry: if notes are progressive and you have one of the things already, gives the entry part and notes
+                    //        else, give an entry part
+                    // notes: if you already have one of the entry parts, give the notes and entry part
+                    //           (regardless whether notes are progressive you should definitely get it)
+                    //        else (if you don't have one of the things)
+                    //          if notes are progressive, you only get one of the entry parts (you have to earn the notes!)
+                    //          else get the entry part and the notes
+                    lmb.AddTemplateItem(new BranchedItemTemplate(journalEntryItemName, $"{Terms.PROGRESSIVENOTES} + {progressiveEntry.Name}",
+                        new MultiItemTemplate(journalEntryItemName, new[] { (progressiveEntry.Name, 1), (hunterNotes.Name, 1) }),
+                        new SingleItemTemplate(journalEntryItemName, (progressiveEntry.Name, 1))));
+
+                    MultiItemTemplate notesAndEntryPart = new(hunterNotesItemName, new[] { (progressiveEntry.Name, 1), (hunterNotes.Name, 1) });
+                    lmb.AddTemplateItem(new BranchedItemTemplate(hunterNotesItemName, progressiveEntry.Name,
+                        notesAndEntryPart,
+                        new BranchedItemTemplate(hunterNotesItemName, Terms.PROGRESSIVENOTES,
+                            new SingleItemTemplate(hunterNotesItemName, (progressiveEntry.Name, 1)),
+                            notesAndEntryPart)
+                    ));
                 }
             }
             lmb.AddItem(new EmptyItem(EnemyNames.Weathered_Mask.AsEntryName()));

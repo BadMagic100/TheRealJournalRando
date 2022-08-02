@@ -12,9 +12,10 @@
   "COMBAT[Duranda]": "SIDESLASH | FIREBALL | SCREAM",
   "COMBAT[Great_Husk_Sentry]": "ANY", // consistent with base rando apparently
   "COMBAT[Flukemunga]": "SCREAM | UPSLASH + (WINGS | ANYCLAW) | SIDESLASH + (FULLSHADOWDASH | QUAKE)",
-  "COMBAT[Nightmare_King]": "ANY",
-  "COMBAT[Hollow_Knight]": "ANY",
-  "COMBAT[Radiance]": "ANY",
+  "COMBAT[Nightmare_King]": "(FIREBALL>1 | QUAKE>1 | SCREAM>1 | MILDCOMBATSKIPS + SPELLS>1) + (FULLDASH | ANYDASH + MILDCOMBATSKIPS | SPICYCOMBATSKIPS) + NAILCOMBAT",
+  "COMBAT[Hollow_Knight]": "BOSS",
+  "COMBAT[Radiance]": "FULLDASH + (FULLSHADOWDASH | QUAKE) + (FIREBALL>1 | SCREAM>1 | MILDCOMBATSKIPS + (FIREBALL | SCREAM) | SPICYCOMBATSKIPS) + (UPSLASH | MILDCOMBATSKIPS + (SIDESLASH | GREATSLASH) | SPICYCOMBATSKIPS)",
   "COMBAT[Colosseum_3]": "BOSS + (FOCUS | SPICYCOMBATSKIPS)",
-  "1HIT": "MASKSHARDS>3 | Can_Bench + (FRAGILEHEART | Lifeblood_Heart + NOTCHES>$SafeNotchCost[8] | Lifeblood_Core | Joni's_Blessing + NOTCHES>$SafeNotchCost[27])"
+  "1HIT": "MASKSHARDS>3 | Can_Bench + (FRAGILEHEART | Lifeblood_Heart + NOTCHES>$SafeNotchCost[8] | Lifeblood_Core | Joni's_Blessing + NOTCHES>$SafeNotchCost[27])",
+  "9FLAMES": "FLAMES>8"
 }
