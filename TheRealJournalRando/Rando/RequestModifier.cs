@@ -74,10 +74,6 @@ namespace TheRealJournalRando.Rando
             {
                 pi.Setters.Add(new TermValue(lm.GetTerm(Terms.PROGRESSIVENOTES), 1));
             }
-            if (RandoInterop.Settings.Pools.BossEntries && RandoInterop.Settings.Pools.BossEntries && !gs.PoolSettings.GrimmkinFlames)
-            {
-                pi.Setters.Add(new TermValue(lm.GetTerm(Terms.VANILLAFLAMES), 1));
-            }
         }
 
         private static void SetupRefs(RequestBuilder rb)
@@ -445,7 +441,7 @@ namespace TheRealJournalRando.Rando
             // respect base rando WP settings
             HashSet<string> palaceJournals = new(new string[] { EnemyNames.Royal_Retainer, EnemyNames.Kingsmould, EnemyNames.Wingmould }
                 .SelectMany(x => new string[] { x.AsEntryName(), x.AsNotesName() }));
-            if (rb.gs.LongLocationSettings.WhitePalaceRando != RandomizerMod.Settings.LongLocationSettings.WPSetting.Allowed)
+            if (rb.gs.LongLocationSettings.WhitePalaceRando == RandomizerMod.Settings.LongLocationSettings.WPSetting.ExcludeWhitePalace)
             {
                 rb.RemoveItemsWhere(i => palaceJournals.Contains(i));
                 rb.RemoveLocationsWhere(l => palaceJournals.Contains(l));
@@ -458,6 +454,10 @@ namespace TheRealJournalRando.Rando
                         rb.AddToVanilla(j, j);
                     }
                 }
+            }
+            if (rb.gs.LongLocationSettings.WhitePalaceRando == RandomizerMod.Settings.LongLocationSettings.WPSetting.ExcludePathOfPain)
+            {
+                rb.RemoveFromVanilla(LogicItems.RespawningKingsmould, LocationNames.Journal_Entry_Seal_of_Binding);
             }
 
             // all our long locations have been opted out of the standard request process; we can just add them directly via the toggles

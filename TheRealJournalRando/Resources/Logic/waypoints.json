@@ -585,7 +585,7 @@
   },
   {
     "name": "Defeated_Any_Nightmare_King",
-    "logic": "Grimm_Main_Tent[left1] + Grimmchild + (9FLAMES | VANILLAFLAMES + Troupe_Banishment) + DREAMNAIL + COMBAT[Nightmare_King]"
+    "logic": "Grimm_Main_Tent[left1] + Grimmchild + 9FLAMES + DREAMNAIL + COMBAT[Nightmare_King]"
   },
   {
     "name": "Troupe_Banishment",

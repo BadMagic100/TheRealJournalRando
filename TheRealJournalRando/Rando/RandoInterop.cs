@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using ItemChanger;
+using Newtonsoft.Json;
 using RandomizerMod.Logging;
+using RandomizerMod.RC;
+using TheRealJournalRando.IC;
 
 namespace TheRealJournalRando.Rando
 {
@@ -14,6 +17,21 @@ namespace TheRealJournalRando.Rando
             RequestModifier.Hook();
 
             SettingsLog.AfterLogSettings += AddJournalRandoSettings;
+            RandoController.OnExportCompleted += OnExportCompleted;
+        }
+
+        private static void OnExportCompleted(RandoController rc)
+        {
+            if (!Settings.Enabled)
+            {
+                return;
+            }
+
+            // if GK nightmares or NKG will be randomized
+            if (Settings.Pools.BonusEntries)
+            {
+                ItemChangerMod.Modules.GetOrAdd<GrimmQuestAfterBanishment>();
+            }
         }
 
         private static void AddJournalRandoSettings(LogArguments args, System.IO.TextWriter tw)
