@@ -693,10 +693,6 @@
     "logic": "Fungus1_02[left1] | Fungus1_02[right1] | Fungus1_02[right2]"
   },
   {
-    "name": "Fungus1_11",
-    "logic": "Fungus1_11[top1] | Fungus1_11[right1] | Fungus1_11[right2] | Fungus1_11[left1] | Fungus1_11[bot1]"
-  },
-  {
     "name": "Fungus1_28",
     "logic": "Fungus1_28[left1] | Fungus1_28[left2]"
   },

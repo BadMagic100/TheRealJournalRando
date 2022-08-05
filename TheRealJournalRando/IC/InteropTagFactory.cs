@@ -1,4 +1,6 @@
-﻿using ItemChanger.Tags;
+﻿using ItemChanger;
+using ItemChanger.Tags;
+using System.Collections.Generic;
 
 namespace TheRealJournalRando.IC
 {
@@ -14,12 +16,18 @@ namespace TheRealJournalRando.IC
 
         private const string CmiModSourceProperty = "ModSource";
         private const string CmiPoolGroupProperty = "PoolGroup";
+        private const string CmiSceneNamesProperty = "SceneNames";
+        private const string CmiTitledAreaNamesProperty = "TitledAreaNames";
+        private const string CmiMapAreaNamesProperty = "MapAreaNames";
+        private const string CmiHighlightScenesProperty = "HighlightScenes";
+        private const string CmiPinSpriteProperty = "PinSprite";
+        private const string CmiMapLocationsProperty = "MapLocations";
 
         private const string RiMessageProperty = "DisplayMessage";
         private const string RiSourceProperty = "DisplaySource";
         private const string RiIgnoreProperty = "IgnoreItem";
 
-        public static InteropTag CmiSharedTag(string? poolGroup = null)
+        public static InteropTag CmiSharedTag(string? poolGroup = null, ISprite? pinSprite = null)
         {
             InteropTag t = new()
             {
@@ -30,6 +38,20 @@ namespace TheRealJournalRando.IC
                 }
             };
             t.SetProperty(CmiPoolGroupProperty, poolGroup);
+            t.SetProperty(CmiPinSpriteProperty, pinSprite);
+            return t;
+        }
+
+        public static InteropTag CmiLocationTag(string? poolGroup = null, ISprite? pinSprite = null,
+            IEnumerable<string>? sceneNames = null, IEnumerable<string>? titledAreaNames = null, IEnumerable<string>? mapAreaNames = null,
+            string[]? highlightScenes = null, (string, float, float)[]? mapLocations = null)
+        {
+            InteropTag t = CmiSharedTag(poolGroup: poolGroup, pinSprite: pinSprite);
+            t.SetProperty(CmiSceneNamesProperty, sceneNames);
+            t.SetProperty(CmiTitledAreaNamesProperty, titledAreaNames);
+            t.SetProperty(CmiMapAreaNamesProperty, mapAreaNames);
+            t.SetProperty(CmiHighlightScenesProperty, highlightScenes);
+            t.SetProperty(CmiMapLocationsProperty, mapLocations);
             return t;
         }
 
@@ -46,7 +68,7 @@ namespace TheRealJournalRando.IC
         public static InteropTag RecentItemsLocationTag(string? messageOverride = null, string? sourceOverride = null,
             bool? ignore = null)
         {
-            InteropTag t = RecentItemsSharedTag(messageOverride);
+            InteropTag t = RecentItemsSharedTag(messageOverride: messageOverride);
             t.SetProperty(RiSourceProperty, sourceOverride);
             t.SetProperty(RiIgnoreProperty, ignore);
             return t;

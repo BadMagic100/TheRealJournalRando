@@ -148,7 +148,7 @@ namespace TheRealJournalRando.Rando
                 info.getLocationDef = () => new PartialLocationDef()
                 {
                     Name = itemLocationName,
-                    SceneName = enemy.logicSceneName ?? Finder.GetLocation(itemLocationName).sceneName,
+                    SceneName = enemy.singleSceneName!, // this is fine, SceneName can be null.
                     ExplicitTitledArea = enemy.singleTitledArea,
                     ExplicitMapArea = enemy.singleMapArea,
                     FlexibleCount = false,

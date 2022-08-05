@@ -254,7 +254,14 @@ namespace TheRealJournalRando
                 flingType = FlingType.Everywhere,
                 tags = new()
                 {
-                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                    InteropTagFactory.CmiLocationTag(
+                        poolGroup: JOURNAL_ENTRIES,
+                        pinSprite: new JournalBadgeSprite(enemyDef.pdName),
+                        sceneNames: enemyDef.allScenes,
+                        titledAreaNames: enemyDef.allTitledAreas,
+                        mapAreaNames: enemyDef.allMapAreas,
+                        highlightScenes: enemyDef.allScenes?.ToArray()
+                    ),
                     InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
                 }
             });
