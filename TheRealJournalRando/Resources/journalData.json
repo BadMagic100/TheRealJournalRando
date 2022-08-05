@@ -387,9 +387,35 @@
     "icName": "Lifeseed",
     "pdName": "HealthScuttler",
     "convoName": "HEALTH_SCUTTLER",
-    "allScenes": [],
-    "allTitledAreas": [],
-    "allMapAreas": [],
+    "allScenes": [
+      "Crossroads_ShamanTemple",
+      "Deepnest_26",
+      "Deepnest_40",
+      "Deepnest_East_15",
+      "Fungus1_32",
+      "Fungus2_15",
+      "Fungus3_30",
+      "Tutorial_01"
+    ],
+    "allTitledAreas": [
+      "Ancestral Mound",
+      "Deepnest",
+      "Failed Tramway",
+      "Fog Canyon",
+      "Greenpath",
+      "King's Pass",
+      "Kingdom's Edge",
+      "Mantis Village"
+    ],
+    "allMapAreas": [
+      "Deepnest",
+      "Dirtmouth",
+      "Fog Canyon",
+      "Forgotten Crossroads",
+      "Fungal Wastes",
+      "Greenpath",
+      "Kingdom's Edge"
+    ],
     "notesCost": 10
   },
   {

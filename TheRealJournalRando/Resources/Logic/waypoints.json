@@ -77,7 +77,7 @@
   },
   {
     "name": "Defeated_Any_Lifeseed",
-    "logic": "ANY"
+    "logic": "*Lifeblood_Cocoon-King's_Pass | *Lifeblood_Cocoon-Ancestral_Mound | *Lifeblood_Cocoon-Greenpath | *Lifeblood_Cocoon-Fog_Canyon_West | *Lifeblood_Cocoon-Mantis_Village | *Lifeblood_Cocoon-Failed_Tramway | *Lifeblood_Cocoon-Galien | *Lifeblood_Cocoon-Kingdom's_Edge + (RIGHTCLAW | WINGS + (UPSLASH | SCREAM | GREATSLASH))"
   },
   {
     "name": "Defeated_Any_Baldur",
