@@ -1,7 +1,6 @@
 ﻿using ItemChanger;
 using ItemChanger.Tags;
 using RandomizerCore;
-using RandomizerCore.Exceptions;
 using RandomizerCore.Logic;
 using RandomizerCore.Randomization;
 using RandomizerMod.RandomizerData;
@@ -39,16 +38,6 @@ namespace TheRealJournalRando.Rando
         {
             ProgressionInitializer.OnCreateProgressionInitializer += CreateInitialProgression;
 
-            RequestBuilder.OnUpdate.Subscribe(-1000, rb =>
-            {
-                rb.rm.OnError += e =>
-                {
-                    if (e is UnreachableLocationException u)
-                    {
-                        TheRealJournalRando.Instance.LogError(u.GetVerboseMessage());
-                    }
-                };
-            });
             RequestBuilder.OnUpdate.Subscribe(-500f, SetupRefs);
             RequestBuilder.OnUpdate.Subscribe(-490f, ApplyNotesCostRandomization);
             RequestBuilder.OnUpdate.Subscribe(0f, ApplyPoolSettings);

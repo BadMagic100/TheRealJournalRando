@@ -54,10 +54,8 @@ namespace TheRealJournalRando.IC
         {
             if (playerDataName == "Dummy")
             {
-                TheRealJournalRando.Instance.LogDebug($"Rejecting dummy kill");
                 return;
             }
-            TheRealJournalRando.Instance.LogDebug($"Recording kill for {playerDataName}");
 
             if (!enemyKillCounts.ContainsKey(playerDataName))
             {

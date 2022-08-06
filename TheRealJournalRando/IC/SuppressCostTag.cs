@@ -89,7 +89,7 @@ namespace TheRealJournalRando.IC
             }
             else
             {
-                TheRealJournalRando.Instance.LogDebug("Unmatched cost, leaving it be");
+                TheRealJournalRando.Instance.LogDebug("Ignoring unmatched cost");
                 return c;
             }
         }
