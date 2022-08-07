@@ -47,7 +47,7 @@ namespace TheRealJournalRando.IC
         {
             IL.JournalList.UpdateEnemyList += ILUpdateEnemyList;
             IL.JournalEntryStats.OnEnable += ILEnableJournalStats;
-            IL.ScuttlerControl.Hit += ILOverrideScuttlerJournalMessage;
+            IL.ScuttlerControl.Hit += ILOverrideScuttlerUpdateBehavior;
             On.JournalEntryStats.Awake += RerouteShadeEntryPd;
             On.PlayerData.CountJournalEntries += RecountJournalEntries;
             ModHooks.SetPlayerBoolHook += JournalDataSetOverride;
@@ -80,7 +80,7 @@ namespace TheRealJournalRando.IC
         {
             IL.JournalList.UpdateEnemyList -= ILUpdateEnemyList;
             IL.JournalEntryStats.OnEnable -= ILEnableJournalStats;
-            IL.ScuttlerControl.Hit -= ILOverrideScuttlerJournalMessage;
+            IL.ScuttlerControl.Hit -= ILOverrideScuttlerUpdateBehavior;
             On.JournalEntryStats.Awake -= RerouteShadeEntryPd;
             On.PlayerData.CountJournalEntries -= RecountJournalEntries;
             ModHooks.SetPlayerBoolHook -= JournalDataSetOverride;
@@ -221,6 +221,28 @@ namespace TheRealJournalRando.IC
         {
             ILCursor cursor = new ILCursor(il).Goto(0);
 
+            // don't reset the new data = true bool if the entry is registered (so that the item is the only thing that grants that bool,
+            // and you don't get forced back there by killing the enemy)
+            if (cursor.TryGotoNext(
+                i => i.Match(OpCodes.Ldloc_3),
+                i => i.Match(OpCodes.Ldc_I4_1), 
+                i => i.MatchCallvirt(typeof(PlayerData).GetMethod(nameof(PlayerData.SetBool), new[] { typeof(string), typeof(bool) }))
+            ))
+            {
+                cursor.GotoNext();
+                cursor.GotoNext();
+                cursor.Remove();
+                cursor.EmitDelegate<Action<PlayerData, string, bool>>((pd, name, value) =>
+                {
+                    string pdName = name.Substring(7);
+                    if (!EnemyEntryIsRegistered(pdName))
+                    {
+                        pd.SetBool(name, value);
+                    }
+                });
+            }
+
+            // prevent false journal update messages from being created if the enemy has an item or location registered
             if (cursor.TryGotoNext(
                 i => i.MatchLdsfld(typeof(EnemyDeathEffects), "journalUpdateMessageSpawned")
             ))
@@ -235,7 +257,7 @@ namespace TheRealJournalRando.IC
             }
         }
 
-        private void ILOverrideScuttlerJournalMessage(ILContext il)
+        private void ILOverrideScuttlerUpdateBehavior(ILContext il)
         {
             ILCursor cursor = new ILCursor(il).Goto(0);
 
@@ -244,6 +266,7 @@ namespace TheRealJournalRando.IC
                 .Where(mi => mi.ReturnType == typeof(bool))
                 .First();
 
+            // prevent false journal update messages from being created if the enemy has an item or location registered
             while (cursor.TryGotoNext(MoveType.After,
                 i => i.MatchLdfld(typeof(ScuttlerControl), nameof(ScuttlerControl.journalUpdateMsgPrefab)),
                 i => i.MatchCall(uobjectToBoolCast)
@@ -255,6 +278,27 @@ namespace TheRealJournalRando.IC
                 {
                     string pdName = pdKillsName.Substring(5);
                     return prefabExists && !(EnemyEntryIsRegistered(pdName) || EnemyNotesIsRegistered(pdName));
+                });
+            }
+
+            // don't reset the new data = true bool if the entry is registered (so that the item is the only thing that grants that bool,
+            // and you don't get forced back there by killing the enemy)
+            if (cursor.TryGotoNext(
+                i => i.MatchLdfld(typeof(ScuttlerControl), nameof(ScuttlerControl.newDataPDBool)),
+                i => i.Match(OpCodes.Ldc_I4_1),
+                i => i.MatchCallvirt(typeof(PlayerData).GetMethod(nameof(PlayerData.SetBool), new[] { typeof(string), typeof(bool) }))
+            ))
+            {
+                cursor.GotoNext();
+                cursor.GotoNext();
+                cursor.Remove();
+                cursor.EmitDelegate<Action<PlayerData, string, bool>>((pd, name, value) =>
+                {
+                    string pdName = name.Substring(7);
+                    if (!EnemyEntryIsRegistered(pdName))
+                    {
+                        pd.SetBool(name, value);
+                    }
                 });
             }
         }

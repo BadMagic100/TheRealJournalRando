@@ -303,8 +303,9 @@ namespace TheRealJournalRando
                         {
                             costMatcher = new MossyVagabondKillCostMatcher(),
                         },
-                        // this will be unloaded, but it will still be returned in GetPlacementAndLocationTags and our soft deps don't check load state.
+                        // these will be unloaded, but will still be returned in GetPlacementAndLocationTags and our soft deps don't check load state.
                         InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                        InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
                     }
                 },
                 Test = new PDBool(nameof(PlayerData.crossroadsInfected))
