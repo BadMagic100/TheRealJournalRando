@@ -401,7 +401,7 @@
   },
   {
     "name": "Defeated_Any_Lightseed",
-    "logic": "Abyss_19 | Abyss_19[bot1] | Abyss_20[top1] | Abyss_20[top2] | DREAMER + (Crossroads_14 | Crossroads_43[left1] | Crossroads_43[right1])"
+    "logic": "DREAMER + Crossroads_14"
   },
   {
     "name": "Defeated_Any_Infected_Balloon",

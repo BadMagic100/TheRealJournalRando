@@ -45,6 +45,7 @@ namespace TheRealJournalRando.IC
         {
             IL.JournalList.UpdateEnemyList += ILUpdateEnemyList;
             IL.JournalEntryStats.OnEnable += ILEnableJournalStats;
+            IL.ScuttlerControl.Hit += ILOverrideScuttlerJournalMessage;
             On.JournalEntryStats.Awake += RerouteShadeEntryPd;
             On.PlayerData.CountJournalEntries += RecountJournalEntries;
             ModHooks.SetPlayerBoolHook += JournalDataSetOverride;
@@ -77,6 +78,7 @@ namespace TheRealJournalRando.IC
         {
             IL.JournalList.UpdateEnemyList -= ILUpdateEnemyList;
             IL.JournalEntryStats.OnEnable -= ILEnableJournalStats;
+            IL.ScuttlerControl.Hit -= ILOverrideScuttlerJournalMessage;
             On.JournalEntryStats.Awake -= RerouteShadeEntryPd;
             On.PlayerData.CountJournalEntries -= RecountJournalEntries;
             ModHooks.SetPlayerBoolHook -= JournalDataSetOverride;
@@ -230,6 +232,30 @@ namespace TheRealJournalRando.IC
                     return pdName == "Dummy" || EnemyEntryIsRegistered(pdName) || EnemyNotesIsRegistered(pdName);
                 });
                 cursor.Emit(OpCodes.Brtrue_S, il.Instrs.Last());
+            }
+        }
+
+        private void ILOverrideScuttlerJournalMessage(ILContext il)
+        {
+            ILCursor cursor = new ILCursor(il).Goto(0);
+
+            MethodInfo uobjectToBoolCast = typeof(UnityEngine.Object).GetMethods(BindingFlags.Static | BindingFlags.Public)
+                .Where(mi => mi.Name == "op_Implicit")
+                .Where(mi => mi.ReturnType == typeof(bool))
+                .First();
+
+            while (cursor.TryGotoNext(MoveType.After,
+                i => i.MatchLdfld(typeof(ScuttlerControl), nameof(ScuttlerControl.journalUpdateMsgPrefab)),
+                i => i.MatchCall(uobjectToBoolCast)
+            ))
+            {
+                cursor.Emit(OpCodes.Ldarg_0);
+                cursor.Emit(OpCodes.Ldfld, typeof(ScuttlerControl).GetField(nameof(ScuttlerControl.killsPDBool)));
+                cursor.EmitDelegate<Func<bool, string, bool>>((prefabExists, pdKillsName) =>
+                {
+                    string pdName = pdKillsName.Substring(5);
+                    return prefabExists && !(EnemyEntryIsRegistered(pdName) || EnemyNotesIsRegistered(pdName));
+                });
             }
         }
 
