@@ -1,7 +1,6 @@
 ﻿using ItemChanger;
 using ItemChanger.Locations;
 using ItemChanger.Placements;
-using ItemChanger.Tags;
 using System;
 
 namespace TheRealJournalRando.IC
@@ -38,7 +37,7 @@ namespace TheRealJournalRando.IC
             else if (locationType == EnemyJournalLocationType.Notes)
             {
                 controlModule.RegisterEnemyNotes(playerDataName);
-                controlModule.RegisterNotesPreviewHandler(playerDataName, GetPreviewText);
+                controlModule.RegisterNotesPreviewHandler(playerDataName, Placement);
             }
             else
             {
@@ -47,6 +46,15 @@ namespace TheRealJournalRando.IC
 
             killCounterModule = ItemChangerMod.Modules.GetOrAdd<JournalKillCounterModule>();
             killCounterModule.OnKillCountChanged += KillCountChanged;
+        }
+
+        protected override void OnUnload()
+        {
+            killCounterModule!.OnKillCountChanged -= KillCountChanged;
+            if (locationType == EnemyJournalLocationType.Notes)
+            {
+                controlModule!.DeregisterNotesPreviewHandler(playerDataName, Placement);
+            }
         }
 
         private void KillCountChanged(string pdName)
@@ -69,49 +77,6 @@ namespace TheRealJournalRando.IC
                 {
                     GiveAll();
                 }
-            }
-        }
-
-        private string GetPreviewText()
-        {
-            string costText = $"({Language.Language.Get("FREE", "IC")})";
-            if (Placement.AllObtained())
-            {
-                string s1 = Language.Language.Get("OBTAINED", "IC");
-                Placement.OnPreview(s1);
-                return s1;
-            }
-            else if (Placement is ISingleCostPlacement cp)
-            {
-                if (cp.Cost is Cost c)
-                {
-                    if (c.Paid)
-                    {
-                        string s2 = string.Format(Language.Language.Get("HUNTER_NOTES_COMPLETE", "Fmt"), Placement.GetUIName());
-                        Placement.OnPreview(s2);
-                        return s2;
-                    }
-                    else if (Placement.HasTag<DisableCostPreviewTag>())
-                    {
-                        costText = Language.Language.Get("???", "IC");
-                    }
-                    else
-                    {
-                        costText = c.GetCostText();
-                    }
-                }
-            }
-            string s3 = string.Format(Language.Language.Get("HUNTER_NOTES_HINT", "Fmt"), costText, Placement.GetUIName());
-            Placement.OnPreview(s3);
-            return s3;
-        }
-
-        protected override void OnUnload()
-        {
-            killCounterModule!.OnKillCountChanged -= KillCountChanged;
-            if (locationType == EnemyJournalLocationType.Notes)
-            {
-                controlModule!.DeregisterNotesPreviewHandler(playerDataName, GetPreviewText);
             }
         }
     }

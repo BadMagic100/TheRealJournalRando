@@ -3,6 +3,8 @@ using HutongGames.PlayMaker.Actions;
 using ItemChanger;
 using ItemChanger.Extensions;
 using ItemChanger.FsmStateActions;
+using ItemChanger.Placements;
+using ItemChanger.Tags;
 using Modding;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
@@ -38,7 +40,7 @@ namespace TheRealJournalRando.IC
 
         private ParametricFsmEditBuilder<BossJournalUpdateInfo, string>? journalBlockers;
         private ParametricFsmEditBuilder<MultiJournalUpdateInfo, string>? multiJournalBlockers;
-        private Dictionary<string, Func<string>?> notesPreviews = new();
+        private Dictionary<string, AbstractPlacement> placementsForPreview = new();
         private ILHook? ilOrigRecordKillForJournal;
 
         public override void Initialize()
@@ -113,16 +115,9 @@ namespace TheRealJournalRando.IC
             }
         }
 
-        public void RegisterNotesPreviewHandler(string pdName, Func<string> handlePreview)
+        public void RegisterNotesPreviewHandler(string pdName, AbstractPlacement placement)
         {
-            if (notesPreviews.ContainsKey(pdName))
-            {
-                notesPreviews[pdName] += handlePreview;
-            }
-            else
-            {
-                notesPreviews[pdName] = handlePreview;
-            }
+            placementsForPreview[pdName] = placement;
         }
 
         public bool EnemyEntryIsRegistered(string pdName)
@@ -135,20 +130,25 @@ namespace TheRealJournalRando.IC
             return hasNotes.ContainsKey(pdName);
         }
 
+        public bool NotesPreviewIsRegistered(string pdName)
+        {
+            return placementsForPreview.ContainsKey(pdName);
+        }
+
         public string? GetNotesPreview(string pdName)
         {
-            if (notesPreviews.ContainsKey(pdName))
+            if (placementsForPreview.TryGetValue(pdName, out AbstractPlacement placement))
             {
-                return notesPreviews[pdName]?.Invoke();
+                return GetPreviewTextForPlacement(placement);
             }
             return null;
         }
 
-        public void DeregisterNotesPreviewHandler(string pdName, Func<string> handlePreview)
+        public void DeregisterNotesPreviewHandler(string pdName, AbstractPlacement placement)
         {
-            if (notesPreviews.ContainsKey(pdName))
+            if (placementsForPreview.TryGetValue(pdName, out AbstractPlacement existingPlacement) && existingPlacement == placement)
             {
-                notesPreviews[pdName] -= handlePreview;
+                placementsForPreview.Remove(pdName);
             }
         }
 
@@ -396,6 +396,40 @@ namespace TheRealJournalRando.IC
                     ReplaceHasJournalCheck(updateState, info.PlayerDataName);
                 }
             };
+        }
+
+        private string GetPreviewTextForPlacement(AbstractPlacement pmt)
+        {
+            string costText = Language.Language.Get("FREE", "IC");
+            if (pmt.AllObtained())
+            {
+                string s1 = Language.Language.Get("OBTAINED", "IC");
+                pmt.OnPreview(s1);
+                return s1;
+            }
+            else if (pmt is ISingleCostPlacement cp)
+            {
+                if (cp.Cost is Cost c)
+                {
+                    if (c.Paid)
+                    {
+                        string s2 = string.Format(Language.Language.Get("HUNTER_NOTES_COMPLETE", "Fmt"), pmt.GetUIName());
+                        pmt.OnPreview(s2);
+                        return s2;
+                    }
+                    else if (pmt.HasTag<DisableCostPreviewTag>())
+                    {
+                        costText = Language.Language.Get("???", "IC");
+                    }
+                    else
+                    {
+                        costText = c.GetCostText();
+                    }
+                }
+            }
+            string s3 = string.Format(Language.Language.Get("HUNTER_NOTES_HINT", "Fmt"), costText, pmt.GetUIName());
+            pmt.OnPreview(s3);
+            return s3;
         }
     }
 }

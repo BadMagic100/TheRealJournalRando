@@ -276,7 +276,7 @@ namespace TheRealJournalRando
                 EnemyJournalLocationType.Notes => mossyVagabond.icName.AsNotesName(),
                 _ => throw new NotImplementedException(),
             };
-            Finder.DefineCustomLocation(new DualLocation()
+            DualLocation loc = new()
             {
                 name = name,
                 sceneName = SceneNames.Fungus3_39,
@@ -308,7 +308,12 @@ namespace TheRealJournalRando
                     }
                 },
                 Test = new PDBool(nameof(PlayerData.crossroadsInfected))
-            });
+            };
+            if (journalType == EnemyJournalLocationType.Notes)
+            {
+                loc.trueLocation.tags.Add(new HunterNotesPreviewTag() { pdName = mossyVagabond.pdName });
+            }
+            Finder.DefineCustomLocation(loc);
         }
 
         private void DefineWeatheredMaskLocation()

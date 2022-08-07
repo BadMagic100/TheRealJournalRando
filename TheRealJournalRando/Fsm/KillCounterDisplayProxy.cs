@@ -22,7 +22,7 @@ namespace TheRealJournalRando.Fsm
 
             result.Value = $"{Fsm.GetFsmString("Kill Msg 1")} {pdKills} {Fsm.GetFsmString("Kill Msg 2")}";
 
-            if (module.EnemyNotesIsRegistered(enemyName))
+            if (module.NotesPreviewIsRegistered(enemyName))
             {
                 result.Value = module.GetNotesPreview(enemyName) ?? result.Value;
             }

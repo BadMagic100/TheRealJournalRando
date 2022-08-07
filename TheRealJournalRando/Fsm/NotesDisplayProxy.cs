@@ -22,7 +22,7 @@ namespace TheRealJournalRando.Fsm
 
             result.Value = Language.Language.Get(notesConvo, "Journal").Replace("<br>", "\n");
 
-            if (module.EnemyNotesIsRegistered(enemyName))
+            if (module.NotesPreviewIsRegistered(enemyName))
             {
                 if (module.GetNotesPreview(enemyName) is string preview)
                 {
