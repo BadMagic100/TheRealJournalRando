@@ -2,3 +2,4 @@ ItemChanger
 MenuChanger
 Randomizer 4
 RandomizerCore
+ConnectionSettingsCode from https://github.com/BadMagic100/ConnectionSettingsCode/releases/download/v1.0.8256.6937/ConnectionSettingsCode.zip

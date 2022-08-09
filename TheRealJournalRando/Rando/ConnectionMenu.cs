@@ -1,4 +1,5 @@
-﻿using MenuChanger;
+﻿using ConnectionSettingsCode;
+using MenuChanger;
 using MenuChanger.Extensions;
 using MenuChanger.MenuElements;
 using MenuChanger.MenuPanels;
@@ -93,6 +94,11 @@ namespace TheRealJournalRando.Rando
 
             toplevelVip.ResetNavigation();
             toplevelVip.SymSetNeighbor(Neighbor.Down, journalRandoPage.backButton);
+
+            new SettingsCode(journalRandoPage, TheRealJournalRando.Instance, toplevelMef.Elements
+                .Concat(poolMef.Elements)
+                .Concat(costsMef.Elements)
+                .Concat(llsMef.Elements));
         }
 
         private void RandomizationTypeChanged(IValueElement obj)
