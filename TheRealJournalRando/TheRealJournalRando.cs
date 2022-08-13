@@ -243,7 +243,16 @@ namespace TheRealJournalRando
                 flingType = FlingType.Everywhere,
                 tags = new()
                 {
-                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                    InteropTagFactory.CmiLocationTag(
+                        poolGroup: JOURNAL_ENTRIES,
+                        pinSprite: new JournalBadgeSprite(enemyDef.pdName),
+                        sceneNames: enemyDef.allScenes,
+                        titledAreaNames: enemyDef.allTitledAreas,
+                        mapAreaNames: enemyDef.allMapAreas,
+                        highlightScenes: enemyDef.allScenes?.ToArray(),
+                        mapLocations: MapData.PinLookup.GetOrDefault(enemyDef.icName)
+                            ?.Select(x => ((string, float, float))x).ToArray()
+                    ),
                     InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
                 }
             });
@@ -260,7 +269,9 @@ namespace TheRealJournalRando
                         sceneNames: enemyDef.allScenes,
                         titledAreaNames: enemyDef.allTitledAreas,
                         mapAreaNames: enemyDef.allMapAreas,
-                        highlightScenes: enemyDef.allScenes?.ToArray()
+                        highlightScenes: enemyDef.allScenes?.ToArray(),
+                        mapLocations: MapData.PinLookup.GetOrDefault(enemyDef.icName)
+                            ?.Select(x => ((string, float, float))x).ToArray()
                     ),
                     InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
                 }
@@ -334,7 +345,11 @@ namespace TheRealJournalRando
                         dreamReturn = true,
                         deactivateNoCharms = true,
                     },
-                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                    InteropTagFactory.CmiLocationTag(
+                        poolGroup: JOURNAL_ENTRIES,
+                        mapLocations: MapData.PinLookup.GetOrDefault(EnemyNames.Weathered_Mask)
+                            ?.Select(x => ((string, float, float))x).ToArray()
+                    ),
                 }
             });
         }
@@ -357,7 +372,19 @@ namespace TheRealJournalRando
                 sceneName = SceneNames.GG_Workshop,
                 tags = new()
                 {
-                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
+                    InteropTagFactory.CmiLocationTag(poolGroup: JOURNAL_ENTRIES,
+                        mapLocations: MapData.PinLookup.GetOrDefault(def.icName)
+                            ?.Select(x => ((string, float, float))x).ToArray()
+                    ),
+                    new InteropTag()
+                    {
+                        Message = "RandoSupplementalMetadata",
+                        Properties =
+                        {
+                            ["PinSprite"] = new JournalBadgeSprite(def.pdName),
+                            ["PinSpriteSize"] = (85, 90)
+                        }
+                    }
                 }
             });
         }

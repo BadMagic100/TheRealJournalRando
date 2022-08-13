@@ -1,0 +1,105 @@
+﻿{
+  "Nailmasters_Oro_And_Mato": [
+    {
+      "scene": "GG_Atrium",
+      "x": 0.1,
+      "y": -0.2
+    },
+    {
+      "scene": "GG_Waterways",
+      "x": -1.5,
+      "y": -0.1
+    }
+  ],
+  "Paintmaster_Sheo": [
+    {
+      "scene": "GG_Atrium",
+      "x": 0.5,
+      "y": -0.2
+    },
+    {
+      "scene": "GG_Waterways",
+      "x": -1.2,
+      "y": -0.1
+    }
+  ],
+  "Great_Nailsage_Sly": [
+    {
+      "scene": "GG_Atrium",
+      "x": 0.9,
+      "y": -0.2
+    },
+    {
+      "scene": "GG_Waterways",
+      "x": -0.9,
+      "y": -0.1
+    }
+  ],
+  "Pure_Vessel": [
+    {
+      "scene": "GG_Atrium",
+      "x": 1.8,
+      "y": -0.2
+    },
+    {
+      "scene": "GG_Waterways",
+      "x": -0.6,
+      "y": -0.1
+    }
+  ],
+  "Weathered_Mask": [
+    {
+      "scene": "GG_Atrium_Roof",
+      "x": -0.4,
+      "y": -1.1
+    },
+    {
+      "scene": "GG_Waterways",
+      "x": -0.3,
+      "y": -0.1
+    }
+  ],
+  "Void_Idol_1": [
+    {
+      "scene": "GG_Atrium",
+      "x": 0.6,
+      "y": -1.3
+    },
+    {
+      "scene": "GG_Waterways",
+      "x": 0,
+      "y": -0.1
+    }
+  ],
+  "Void_Idol_2": [
+    {
+      "scene": "GG_Atrium",
+      "x": 0.6,
+      "y": -1.0
+    },
+    {
+      "scene": "GG_Waterways",
+      "x": 0,
+      "y": 0.2
+    }
+  ],
+  "Void_Idol_3": [
+    {
+      "scene": "GG_Atrium",
+      "x": 0.6,
+      "y": -0.7
+    },
+    {
+      "scene": "GG_Waterways",
+      "x": 0,
+      "y": 0.5
+    }
+  ],
+  "Mantis_Lords": [
+    {
+      "scene": "Fungus2_15",
+      "x": 0,
+      "y": -0.4
+    }
+  ]
+}

@@ -1,11 +1,13 @@
 ﻿using ItemChanger;
-using System.Linq;
+using ItemChanger.Internal;
 using UnityEngine;
 
 namespace TheRealJournalRando.IC
 {
     public class JournalBadgeSprite : ISprite
     {
+        private static readonly SpriteManager badgeManager = new(typeof(JournalBadgeSprite).Assembly, "TheRealJournalRando.Resources.Sprites.Badges.");
+
         public string PlayerDataName { get; set; }
 
         public JournalBadgeSprite(string playerDataName)
@@ -14,21 +16,7 @@ namespace TheRealJournalRando.IC
         }
 
         [Newtonsoft.Json.JsonIgnore]
-        public Sprite Value
-        {
-            get
-            {
-                JournalEntryStats? stat = GameCameras.instance.hudCamera.GetComponentsInChildren<JournalEntryStats>(true)
-                    .Where(j => j.playerDataName == PlayerDataName)
-                    .FirstOrDefault();
-                if (stat != null)
-                {
-                    return stat.transform.Find($"Portrait")
-                        .GetComponent<SpriteRenderer>().sprite;
-                }
-                return Modding.CanvasUtil.NullSprite();
-            }
-        }
+        public Sprite Value => badgeManager.GetSprite(PlayerDataName);
 
         public ISprite Clone() => (ISprite)MemberwiseClone();
     }

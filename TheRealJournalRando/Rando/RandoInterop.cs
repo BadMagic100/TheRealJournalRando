@@ -1,7 +1,10 @@
 ﻿using ItemChanger;
+using ItemChanger.Internal;
+using ItemChanger.Tags;
 using Newtonsoft.Json;
 using RandomizerMod.Logging;
 using RandomizerMod.RC;
+using System.Linq;
 using TheRealJournalRando.IC;
 
 namespace TheRealJournalRando.Rando
@@ -31,6 +34,23 @@ namespace TheRealJournalRando.Rando
             if (Settings.Pools.BonusEntries)
             {
                 ItemChangerMod.Modules.GetOrAdd<GrimmQuestAfterBanishment>();
+            }
+
+            // don't double up pins - aside from cost (which helperlog/rmm don't know), logic is the same
+            if (Settings.JournalRandomizationType == JournalRandomizationType.All)
+            {
+                foreach (AbstractPlacement p in Ref.Settings.Placements
+                    .Where(pair => pair.Key.StartsWith("Hunter's_Notes"))
+                    .Select(pair => pair.Value))
+                {
+                    Tag? t = p.GetPlacementAndLocationTags()
+                        .FirstOrDefault(t => t is IInteropTag iit && iit.Message == "RandoSupplementalMetadata"
+                                        && iit.TryGetProperty("ModSource", out string mod) && mod == nameof(TheRealJournalRando));
+                    if (t != null)
+                    {
+                        p.tags.Add(InteropTagFactory.CmiLocationTag(noPin: true));
+                    }
+                }
             }
         }
 

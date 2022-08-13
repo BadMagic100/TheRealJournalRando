@@ -43,7 +43,6 @@ namespace TheRealJournalRando.Rando
             Term hunterNotes = lmb.GetTerm(Terms.HUNTERNOTES);
             foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.logicItemIgnore))
             {
-                Term progressiveEntry = lmb.GetOrAddTerm($"PARTIALENTRY[{enemy.icName}]");
                 string journalEntryItemName = enemy.icName.AsEntryName();
                 string hunterNotesItemName = enemy.icName.AsNotesName();
                 if (enemy.ignoredForHunterMark)
@@ -53,6 +52,7 @@ namespace TheRealJournalRando.Rando
                 }
                 else
                 {
+                    Term progressiveEntry = lmb.GetOrAddTerm($"PARTIALENTRY[{enemy.icName}]");
                     // entry: if notes are progressive and you have one of the things already, gives the entry part and notes
                     //        else, give an entry part
                     // notes: if you already have one of the entry parts, give the notes and entry part
