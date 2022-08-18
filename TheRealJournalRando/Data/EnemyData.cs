@@ -30,11 +30,14 @@ namespace TheRealJournalRando.Data
     /// <param name="logicLocationIgnore">Whether to ignore this enemy when defining logic locations generically (e.g. special handling for location logic).</param>
     /// <param name="requestDefineIgnore">Whether to ignore this enemy when defining item/location defs and costs (e.g. doesn't have hunter's notes).</param>
     /// <param name="requestAddIgnore">Whether to ignore this enemy when defining pool requests generically (e.g. uses long location settings).</param>
+    /// <param name="index">The index of the enemy in the journal data, to provide to data consumers such as map mod to sort. Omit from json,
+    /// the correct value will be inferred when deserializing.</param>
     public record EnemyDef(string icName, string pdName, string convoName, bool isBoss, 
         string? singleSceneName, string? singleTitledArea, string? singleMapArea,
         List<string>? allScenes, List<string>? allTitledAreas, List<string>? allMapAreas,
         bool ignoredForHunterMark, bool ignoredForJournalCount, bool respawns, bool unkillable, int notesCost, 
-        bool icIgnore, bool logicItemIgnore, bool logicLocationIgnore, bool requestDefineIgnore, bool requestAddIgnore);
+        bool icIgnore, bool logicItemIgnore, bool logicLocationIgnore, bool requestDefineIgnore, bool requestAddIgnore,
+        int index);
 
     public static class EnemyData
     {
@@ -63,7 +66,7 @@ namespace TheRealJournalRando.Data
                 throw new IOException("Failed to load enemy definitions");
             }
 
-            return data.ToDictionary(e => e.icName);
+            return data.Select((e, i) => e with { index = i }).ToDictionary(e => e.icName);
         }
     }
 }

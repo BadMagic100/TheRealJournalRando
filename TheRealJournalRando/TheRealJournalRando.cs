@@ -250,6 +250,7 @@ namespace TheRealJournalRando
                         titledAreaNames: enemyDef.allTitledAreas,
                         mapAreaNames: enemyDef.allMapAreas,
                         highlightScenes: enemyDef.allScenes?.ToArray(),
+                        pinSort: enemyDef.index,
                         mapLocations: MapData.PinLookup.GetOrDefault(enemyDef.icName)
                             ?.Select(x => ((string, float, float))x).ToArray()
                     ),
@@ -270,6 +271,7 @@ namespace TheRealJournalRando
                         titledAreaNames: enemyDef.allTitledAreas,
                         mapAreaNames: enemyDef.allMapAreas,
                         highlightScenes: enemyDef.allScenes?.ToArray(),
+                        pinSort: enemyDef.index,
                         mapLocations: MapData.PinLookup.GetOrDefault(enemyDef.icName)
                             ?.Select(x => ((string, float, float))x).ToArray()
                     ),
@@ -375,16 +377,7 @@ namespace TheRealJournalRando
                     InteropTagFactory.CmiLocationTag(poolGroup: JOURNAL_ENTRIES,
                         mapLocations: MapData.PinLookup.GetOrDefault(def.icName)
                             ?.Select(x => ((string, float, float))x).ToArray()
-                    ),
-                    new InteropTag()
-                    {
-                        Message = "RandoSupplementalMetadata",
-                        Properties =
-                        {
-                            ["PinSprite"] = new JournalBadgeSprite(def.pdName),
-                            ["PinSpriteSize"] = (85, 90)
-                        }
-                    }
+                    )
                 }
             });
         }

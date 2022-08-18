@@ -44,9 +44,6 @@
     <WriteLinesToFile File="$(ExportDir)/VERSION.txt" Lines="@(VersionNumber)" Overwrite="true" Encoding="UTF-8" />
   </Target>
   <ItemGroup>
-    <ProjectReference Include="..\ConstsGenerator\ConstsGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="build.yml" />
     <None Remove="README.md" />
   </ItemGroup>
@@ -520,5 +517,8 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="LocalOverrides.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="RandoConstantGenerators" Version="1.0.1" />
   </ItemGroup>
 </Project>

@@ -23,6 +23,7 @@ namespace TheRealJournalRando.IC
         private const string CmiPinSpriteProperty = "PinSprite";
         private const string CmiMapLocationsProperty = "MapLocations";
         private const string CmiMapNoPin = "DoNotMakePin";
+        private const string CmiGridSort = "PinGridIndex";
 
         private const string RiMessageProperty = "DisplayMessage";
         private const string RiSourceProperty = "DisplaySource";
@@ -45,7 +46,7 @@ namespace TheRealJournalRando.IC
 
         public static InteropTag CmiLocationTag(string? poolGroup = null, ISprite? pinSprite = null,
             IEnumerable<string>? sceneNames = null, IEnumerable<string>? titledAreaNames = null, IEnumerable<string>? mapAreaNames = null,
-            string[]? highlightScenes = null, (string, float, float)[]? mapLocations = null, bool? noPin = null)
+            string[]? highlightScenes = null, (string, float, float)[]? mapLocations = null, bool? noPin = null, int? pinSort = null)
         {
             InteropTag t = CmiSharedTag(poolGroup: poolGroup, pinSprite: pinSprite);
             t.SetProperty(CmiSceneNamesProperty, sceneNames);
@@ -54,6 +55,7 @@ namespace TheRealJournalRando.IC
             t.SetProperty(CmiHighlightScenesProperty, highlightScenes);
             t.SetProperty(CmiMapLocationsProperty, mapLocations);
             t.SetProperty(CmiMapNoPin, noPin);
+            t.SetProperty(CmiGridSort, pinSort);
             return t;
         }
 
