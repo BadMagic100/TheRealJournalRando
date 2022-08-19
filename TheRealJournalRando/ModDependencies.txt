@@ -2,4 +2,5 @@ ItemChanger
 MenuChanger
 Randomizer 4
 RandomizerCore from https://files.catbox.moe/5e2o1n.zip
-ConnectionSettingsCode from https://github.com/BadMagic100/ConnectionSettingsCode/releases/download/v1.0.8256.6937/ConnectionSettingsCode.zip
+# to fix - setup-hk can't deal with mods not in modlinks
+MagicUI as ConnectionSettingsCode from https://github.com/BadMagic100/ConnectionSettingsCode/releases/download/v1.0.8256.6937/ConnectionSettingsCode.zip
