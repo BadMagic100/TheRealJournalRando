@@ -27,6 +27,14 @@ namespace TheRealJournalRando.IC
             this.locationType = locationType;
         }
 
+        public override GiveInfo GetGiveInfo() => new()
+        {
+            FlingType = flingType,
+            Callback = null,
+            Container = Container.Unknown,
+            MessageType = MessageType.Corner,
+        };
+
         protected override void OnLoad()
         {
             controlModule = ItemChangerMod.Modules.GetOrAdd<JournalControlModule>();
