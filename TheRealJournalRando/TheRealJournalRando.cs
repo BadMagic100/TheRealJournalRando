@@ -15,7 +15,7 @@ using FormatString = TheRealJournalRando.IC.FormatString;
 
 namespace TheRealJournalRando
 {
-    public class TheRealJournalRando : Mod, IGlobalSettings<GlobalSettings>
+    public class TheRealJournalRando : Mod, IGlobalSettings<GlobalSettings>, IMenuMod
     {
         const string JOURNAL_ENTRIES = "Journal Entries";
 
@@ -34,6 +34,8 @@ namespace TheRealJournalRando
         }
 
         public GlobalSettings GS { get; set; } = new();
+
+        public bool ToggleButtonInsideMenu => throw new NotImplementedException();
 
         public override string GetVersion() => GetType().Assembly.GetName().Version.ToString();
 
@@ -60,7 +62,7 @@ namespace TheRealJournalRando
             Events.OnItemChangerHook += LanguageData.Hook;
             Events.OnItemChangerUnhook += LanguageData.Unhook;
 
-            Finder.GetItemOverride += ReplaceOriginalJournalUIDefs;
+            AbstractItem.ModifyItemGlobal += ReplaceOriginalJournalUIDefs;
 
             Container.DefineContainer<MossCorpseContainer>();
 
@@ -92,19 +94,26 @@ namespace TheRealJournalRando
             DefineHunterMarkLocation();
         }
 
-        private void ReplaceOriginalJournalUIDefs(GetItemEventArgs args)
+        private void ReplaceOriginalJournalUIDefs(GiveEventArgs args)
         {
-            switch (args.ItemName)
+            if (!GS.PrettyJournalSprites)
+            {
+                return;
+            }
+
+            switch (args.Item.name)
             {
                 case ItemNames.Journal_Entry_Goam:
                 case ItemNames.Journal_Entry_Garpede:
                 case ItemNames.Journal_Entry_Charged_Lumafly:
                 case ItemNames.Journal_Entry_Void_Tendrils:
                 case ItemNames.Journal_Entry_Seal_of_Binding:
-                    if (Finder.GetItemInternal(args.ItemName) is JournalEntryItem jei && jei.UIDef is MsgUIDef md)
+                    if (args.Item is JournalEntryItem jei && jei.UIDef is MsgUIDef)
                     {
-                        md.sprite = new JournalBadgeSprite(jei.playerDataName);
-                        args.Current = jei;
+                        AbstractItem copy = jei.Clone();
+                        MsgUIDef uiDef = (MsgUIDef)copy.UIDef;
+                        uiDef.sprite = new JournalBadgeSprite(jei.playerDataName);
+                        args.Item = copy;
                     }
                     break;
                 default:
@@ -401,5 +410,16 @@ namespace TheRealJournalRando
         public void OnLoadGlobal(GlobalSettings s) => GS = s;
 
         public GlobalSettings OnSaveGlobal() => GS;
+
+        public List<IMenuMod.MenuEntry> GetMenuData(IMenuMod.MenuEntry? toggleButtonEntry)
+        {
+            return new()
+            {
+                new IMenuMod.MenuEntry("Prettify IC Journal Sprites", new[] { "Off", "On" },
+                    "Replaces base ItemChanger journal entry items' sprites with nicer versions in shops and Recent Items",
+                    (i) => GS.PrettyJournalSprites = i != 0,
+                    () => GS.PrettyJournalSprites ? 1 : 0)
+            };
+        }
     }
 }
