@@ -40,7 +40,7 @@ namespace TheRealJournalRando.Rando
             if (Settings.JournalRandomizationType == JournalRandomizationType.All)
             {
                 foreach (AbstractPlacement p in Ref.Settings.Placements
-                    .Where(pair => pair.Key.StartsWith("Hunter's_Notes"))
+                    .Where(pair => !pair.Key.EndsWith("Mossy_Vagabond") && pair.Key.StartsWith("Hunter's_Notes"))
                     .Select(pair => pair.Value))
                 {
                     Tag? t = p.GetPlacementAndLocationTags()

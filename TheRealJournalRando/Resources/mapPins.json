@@ -1,4 +1,326 @@
 ﻿{
+  "Entombed_Husk": [
+    {
+      "scene": "RestingGrounds_10",
+      "x": -0.1,
+      "y": -0.3
+    }
+  ],
+  "False_Knight": [
+    {
+      "scene": "Crossroads_10",
+      "x": 0.1,
+      "y": -0.4
+    }
+  ],
+  "Maggot": [
+    {
+      "scene": "Crossroads_10",
+      "x": 0.2,
+      "y": 0.3
+    }
+  ],
+  "Menderbug": [
+    {
+      "scene": "Crossroads_01",
+      "x": 0.0,
+      "y": -0.2
+    }
+  ],
+  "Massive_Moss_Charger": [
+    {
+      "scene": "Fungus1_29",
+      "x": -0.2,
+      "y": -0.1
+    }
+  ],
+  "Uumuu": [
+    {
+      "scene": "Fungus3_47",
+      "x": 0.1,
+      "y": 0.2
+    }
+  ],
+  "Mantis_Lords": [
+    {
+      "scene": "Fungus2_15",
+      "x": 0,
+      "y": -0.4
+    }
+  ],
+  "Gorgeous_Husk": [
+    {
+      "scene": "Ruins2_04",
+      "x": -0.1,
+      "y": 0.3
+    }
+  ],
+  "Watcher_Knight": [
+    {
+      "scene": "Ruins2_03",
+      "x": 0.0,
+      "y": 0.3
+    }
+  ],
+  "The_Collector": [
+    {
+      "scene": "Ruins2_11",
+      "x": 0.2,
+      "y": 0.5
+    }
+  ],
+  "Dung_Defender": [
+    {
+      "scene": "Waterways_05",
+      "x": 0.5,
+      "y": 0.0
+    }
+  ],
+  "Flukemunga": [
+    {
+      "scene": "GG_Pipeway",
+      "x": -0.2,
+      "y": -0.2
+    }
+  ],
+  "Flukemarm": [
+    {
+      "scene": "Waterways_12",
+      "x": -0.5,
+      "y": -0.2
+    }
+  ],
+  "Nosk": [
+    {
+      "scene": "Deepnest_32",
+      "x": 0.2,
+      "y": 0.0
+    }
+  ],
+  "Mawlurk": [
+    {
+      "scene": "Abyss_20",
+      "x": 0.9,
+      "y": 0.2
+    }
+  ],
+  "Broken_Vessel": [
+    {
+      "scene": "Abyss_19",
+      "x": -0.9,
+      "y": -0.4
+    }
+  ],
+  "Hive_Knight": [
+    {
+      "scene": "Hive_05",
+      "x": 0.1,
+      "y": 0.1
+    }
+  ],
+  "Traitor_Lord": [
+    {
+      "scene": "Fungus3_23",
+      "x": 0.0,
+      "y": 0.2
+    }
+  ],
+  "Shielded_Fool": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 1.9,
+      "y": 0.3
+    }
+  ],
+  "Sharp_Baldur": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 2.2,
+      "y": 0.3
+    }
+  ],
+  "Sturdy_Fool": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 2.5,
+      "y": 0.3
+    }
+  ],
+  "Zote": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 2.8,
+      "y": 0.3
+    }
+  ],
+  "Heavy_Fool": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 3.1,
+      "y": 0.3
+    }
+  ],
+  "Winged_Fool": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 3.4,
+      "y": 0.3
+    }
+  ],
+  "Armoured_Squit": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 2.0,
+      "y": 0.6
+    }
+  ],
+  "Battle_Obble": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 2.3,
+      "y": 0.6
+    }
+  ],
+  "Oblobble": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 2.6,
+      "y": 0.6
+    }
+  ],
+  "Death_Loodle": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 2.9,
+      "y": 0.6
+    }
+  ],
+  "Volt_Twister": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 3.2,
+      "y": 0.6
+    }
+  ],
+  "God_Tamer": [
+    {
+      "scene": "Deepnest_East_09",
+      "x": 3.5,
+      "y": 0.6
+    }
+  ],
+  "Pale_Lurker": [
+    {
+      "scene": "GG_Lurker",
+      "x": 1.0,
+      "y": 0.0
+    }
+  ],
+  "Grey_Prince_Zote": [
+    {
+      "scene": "Town",
+      "x": 0.9,
+      "y": -0.4
+    }
+  ],
+  "Winged_Zoteling": [
+    {
+      "scene": "Town",
+      "x": 0.9,
+      "y": -0.1
+    }
+  ],
+  "Hopping_Zoteling": [
+    {
+      "scene": "Town",
+      "x": 0.9,
+      "y": 0.2
+    }
+  ],
+  "Volatile_Zoteling": [
+    {
+      "scene": "Town",
+      "x": 0.9,
+      "y": 0.5
+    }
+  ],
+  "Xero": [
+    {
+      "scene": "RestingGrounds_02",
+      "x": 0.5,
+      "y": 0.3
+    }
+  ],
+  "Gorb": [
+    {
+      "scene": "Cliffs_02",
+      "x": -0.9,
+      "y": 1.1
+    }
+  ],
+  "Elder_Hu": [
+    {
+      "scene": "Fungus2_32",
+      "x": 0.2,
+      "y": 0.3
+    }
+  ],
+  "Marmu": [
+    {
+      "scene": "Fungus3_40",
+      "x": -0.3,
+      "y": 0.2
+    }
+  ],
+  "No_Eyes": [
+    {
+      "scene": "Fungus1_34",
+      "x": 0.7,
+      "y": 0.2
+    }
+  ],
+  "Galien": [
+    {
+      "scene": "Deepnest_40",
+      "x": -0.5,
+      "y": 0.2
+    }
+  ],
+  "Markoth": [
+    {
+      "scene": "Deepnest_East_10",
+      "x": 0.2,
+      "y": 0.0
+    }
+  ],
+  "Grimm": [
+    {
+      "scene": "Town",
+      "x": -0.8,
+      "y": 0.2
+    }
+  ],
+  "Nightmare_King": [
+    {
+      "scene": "Town",
+      "x": -0.8,
+      "y": 0.5
+    }
+  ],
+  "Hollow_Knight": [
+    {
+      "scene": "Crossroads_02",
+      "x": -0.1,
+      "y": -0.1
+    }
+  ],
+  "Radiance": [
+    {
+      "scene": "Crossroads_02",
+      "x": -0.1,
+      "y": 0.2
+    }
+  ],
   "Nailmasters_Oro_And_Mato": [
     {
       "scene": "GG_Atrium",
@@ -47,6 +369,20 @@
       "y": -0.1
     }
   ],
+  "Journal_Entry-Mossy_Vagabond": [
+    {
+      "scene": "Fungus3_39",
+      "x": 0.4,
+      "y": -0.4
+    }
+  ],
+  "Hunter's_Notes-Mossy_Vagabond": [
+    {
+      "scene": "Fungus3_39",
+      "x": 0.7,
+      "y": -0.4
+    }
+  ],
   "Weathered_Mask": [
     {
       "scene": "GG_Atrium_Roof",
@@ -62,7 +398,7 @@
   "Void_Idol_1": [
     {
       "scene": "GG_Atrium",
-      "x": 0.6,
+      "x": 0.4,
       "y": -1.3
     },
     {
@@ -74,7 +410,7 @@
   "Void_Idol_2": [
     {
       "scene": "GG_Atrium",
-      "x": 0.6,
+      "x": 0.4,
       "y": -1.0
     },
     {
@@ -86,7 +422,7 @@
   "Void_Idol_3": [
     {
       "scene": "GG_Atrium",
-      "x": 0.6,
+      "x": 0.4,
       "y": -0.7
     },
     {
@@ -95,11 +431,11 @@
       "y": 0.5
     }
   ],
-  "Mantis_Lords": [
+  "Hunter's_Mark": [
     {
-      "scene": "Fungus2_15",
-      "x": 0,
-      "y": -0.4
+      "scene": "Fungus1_08",
+      "x": 0.0,
+      "y": -0.3
     }
   ]
 }

@@ -326,7 +326,11 @@ namespace TheRealJournalRando
                             costMatcher = new MossyVagabondKillCostMatcher(),
                         },
                         // these will be unloaded, but will still be returned in GetPlacementAndLocationTags and our soft deps don't check load state.
-                        InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES),
+                        InteropTagFactory.CmiLocationTag(
+                            poolGroup: JOURNAL_ENTRIES,
+                            mapLocations: MapData.PinLookup.GetOrDefault(name)
+                                ?.Select(x => ((string, float, float))x).ToArray()
+                            ),
                         InteropTagFactory.RecentItemsLocationTag(sourceOverride: "the Hunter")
                     }
                 },
@@ -402,7 +406,11 @@ namespace TheRealJournalRando
                 elevation = -1.7f,
                 tags = new List<Tag>()
                 {
-                    InteropTagFactory.CmiSharedTag(poolGroup: JOURNAL_ENTRIES)
+                    InteropTagFactory.CmiLocationTag(
+                        poolGroup: JOURNAL_ENTRIES,
+                        mapLocations: MapData.PinLookup.GetOrDefault(EnemyNames.Hunters_Mark)
+                            ?.Select(x => ((string, float, float))x).ToArray()
+                    )
                 }
             });
         }

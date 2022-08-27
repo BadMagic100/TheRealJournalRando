@@ -2,8 +2,7 @@
 
 A Hollow Knight mod that adds Hunter's Journal Entries and Hunter's Notes to the randomization pool.
 This mod adds items and locations for every journal entry that is not included in base rando/itemchanger,
-with the following exceptions of Shade, which is always granted when gaining the Hunter's journal to prevent
-the UI from breaking.
+with the exception of Shade, which is automatically granted as usual when gaining the Hunter's Journal.
 
 This readme is broken into 3 major sections:
 * [Items, Costs, and Locations](#Items-Costs-and-Locations) explains the ItemChanger items, locations, and costs added
@@ -11,7 +10,7 @@ This readme is broken into 3 major sections:
   highly recommended reading whether you are developer using these in your own mod or a player using the randomizer
   connection.**
 * [Logic Info](#Logic-Info) explains details of how logic works in the randomizer connection, including a few quirks that
-  may not be immediately obvious. **This sections is highly recommended reading before playing the randomizer 
+  may not be immediately obvious. **This section is highly recommended reading before playing the randomizer 
   connection.**
 * [Settings](#Settings) explains the various settings available in the randomizer connection in more detail.
 
@@ -19,13 +18,14 @@ This readme is broken into 3 major sections:
 
 This mod introduces 2 new items types, 2 new location types, and 1 new payable cost type. Each killable enemy has 2
 new items and locations corresponding to unlocking the Hunter's Journal entry and completing the Hunter's notes for that
-enemy. Extra (non-killable) entries, including Hunter's Mark, Void Idol, and Weathered Mask, each have 1 new item and
-location added that corresponds to unlocking the entire entry and Hunter's notes, similar to the journal entries in
-base rando.
+enemy. Crawlids, which are normally granted automatically when gaining the Hunter's Journal, are treated the same as other
+enemies if any of these items or locations is placed, and require 30 kills for the Hunter's notes. Extra (non-killable) 
+entries, including Hunter's Mark, Void Idol, and Weathered Mask, each have 1 new item and location added that corresponds 
+to unlocking the entire entry and Hunter's notes, similar to the journal entries in base rando.
 
 ### Items
 
-Journal entry items and Hunter's notes items are provided for each killable enemy type. If both items are placed, for
+Journal entry items and Hunter's notes items are provided for each killable enemy type. If both items are placed for
 a given enemy, they act progressively (in other words, you are guaranteed the entry before the notes). If only one 
 item is placed, the other behaves as it would in vanilla. If only the entry item is placed, killing the normal amount
 of that enemy will unlock the hunter's notes text. If only the notes item is placed, you must kill one enemy of the
@@ -57,31 +57,37 @@ the end of the Hunter's notes if you have obtained the items.
 ## Logic Info
 
 Mostly, logic works how you would expect, with a few quirks to note.
-* Both Journal entry and Hunter's notes locations will be on logic once you can kill any enemy of the appropriate type,
+* Both Journal entry and Hunter's notes locations will be in logic once you can kill any enemy of the appropriate type,
   as the logic is primarily controlled by cost (see below).
 * Because Hunter's notes location may only require 1 kill, either if the cost is 1 kill or if there is a different
   cost type on the location (perhaps placed by another connection), the Hunter's notes location will show up as
   "reachable" in the helper log even if it's not currently possible to kill multiple enemies of that type (for example,
-  `Hunter's_Notes-Hornet` with no access to Kingdom's Edge access). These costs are taken into account in logic though,
+  `Hunter's_Notes-Hornet` with no access to Kingdom's Edge). These costs are taken into account in logic though,
   so in such a case you can't have required progression locked behind an area you need that progression for. This is
   similar to how the checks at Seer are "in logic" even without having Dream Nail or enough essence to pay costs.
 * Although Godhome bosses count as kills, this is not required in logic except for checks that are exclusive to Godhome.
-  Counting Godhome bosses exists only to allow other mods to implment costs larger than 1 for bosses.
+  Counting Godhome bosses exists only to allow other mods to implement costs larger than 1 for bosses.
 * Costs of higher than 1 enemy require either access to a bench or for the enemy to automatically respawn when reloading
   the room.
 * Most enemies with a finite or semi-finite supply are handled appropriately in logic (in other words, it is not
   assumed that they respawn). This includes Elder Baldurs, the Vengefly King in Greenpath, the Gruz Mother in
-  Crossroads, and the Kingsmoulds outside Path of Pain. The 2 non-respawning Husk Miners (Myla and the one outside
-  Deep Focus) were deemed too difficult to handle and are not considered in logic; if you kill them to get checks
-  before having access to other Husk Miners it will be considered a sequence break.
+  Crossroads, and the Kingsmoulds outside Path of Pain. Enemies that generally respawn, but have special cases
+  that do not (such as Husk Miners) were deemed too difficult to handle in logic, and are therefore considered 
+  sequence breaks. This means that you never have to logically kill Myla, among other things.
 * Enemies in Crossroads that are replaced after infection are not considered in logic to prevent you from being locked
   out of the check. 
-* Because Infected enemies require infection to kill, it's probably slightly more likely you'll see early infection.
+* Because Infected enemies require infection to kill, it's probably slightly more likely you'll see early infection so
+  rando can put those checks in logic.
 
 ## Settings
 
 When enabled with rando, this mod will provide several connection settings. More information about each
-is provided below, grouped by category.
+is provided below, grouped by category. This mod has a large number of settings, and provides its own
+settings code. Clicking the button to copy the code will automatically copy the code to your clipboard,
+and clicking the button to apply the code will read a code on your clipboard and apply the settings.
+
+The mod comes with some default settings enabled; I recommend these on your first playthrough to get the
+full experience of the mod without it being super cursed.
 
 ### Basic Settings
 
