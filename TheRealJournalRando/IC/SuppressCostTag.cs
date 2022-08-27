@@ -22,6 +22,8 @@ namespace TheRealJournalRando.IC
 
         public override void Load(object parent)
         {
+            base.Load(parent);
+
             if (parent is AbstractLocation loc)
             {
                 placement = loc.Placement as ISingleCostPlacement;
@@ -41,6 +43,8 @@ namespace TheRealJournalRando.IC
 
         public override void Unload(object parent)
         {
+            base.Unload(parent);
+
             if (placement != null)
             {
                 TheRealJournalRando.Instance.LogDebug($"Restoring cost on tag unload for {(placement as AbstractPlacement)?.Name}");

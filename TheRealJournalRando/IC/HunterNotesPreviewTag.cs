@@ -8,13 +8,13 @@ namespace TheRealJournalRando.IC
 
         public override void Load(object parent)
         {
+            base.Load(parent);
+
             AbstractLocation? loc = parent as AbstractLocation;
             if (loc != null && pdName != null)
             {
                 ItemChangerMod.Modules.GetOrAdd<JournalControlModule>().RegisterNotesPreviewHandler(pdName, loc.Placement);
             }
-
-            base.Load(parent);
         }
 
         public override void Unload(object parent)
