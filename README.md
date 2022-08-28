@@ -4,7 +4,7 @@ A Hollow Knight mod that adds Hunter's Journal Entries and Hunter's Notes to the
 This mod adds items and locations for every journal entry that is not included in base rando/itemchanger,
 with the exception of Shade, which is automatically granted as usual when gaining the Hunter's Journal.
 
-This readme is broken into 3 major sections:
+This readme is broken into 4 major sections, ordered by importance:
 * [Items, Costs, and Locations](#Items-Costs-and-Locations) explains the ItemChanger items, locations, and costs added
   by this mod. **This section is 
   highly recommended reading whether you are developer using these in your own mod or a player using the randomizer
@@ -13,6 +13,7 @@ This readme is broken into 3 major sections:
   may not be immediately obvious. **This section is highly recommended reading before playing the randomizer 
   connection.**
 * [Settings](#Settings) explains the various settings available in the randomizer connection in more detail.
+* [Other Mods](#Other-Mods) explains some of the unique ways this mod interacts with other rando mods.
 
 ## Items, Costs, and Locations
 
@@ -156,3 +157,33 @@ If you've randomized Hunter's Mark, you may still be expected to enter palace to
 notes to get the check at Hunter's Mark. If you exclude only Path of Pain, the Kingsmoulds at the end are not
 required to pay costs or check the corresponding journal locations. With Path of Pain excluded from randomization
 there is always enough Wingmoulds outside of Path of Pain so that the Wingmoulds in PoP may be ignored.
+
+## Other Mods
+
+This mod is the first mod that provides checks which are accessible in more than one place. As such,
+it interacts in unique ways with many other mods which have traditionally expected that checks can only
+appear in a single room. This mod provides full information about scenes, titled areas, and map areas in
+which an enemy appears so that
+
+### RandoMapMod
+
+Enemies that appear in multiple rooms appear in the bottom left corner of the world map.
+Each pin is marked with the corresponding enemy's icon. These icons will also appear around the edge
+of the quick map if the enemy appears in that area. Additionally, if pin selection (Ctrl + P) in RMM is
+enabled, the rooms that the enemy appears in are highlighted. You can lock the selection to scroll around
+the map and get a better view of the highlighted rooms.
+
+### RandoPlus
+
+In Area Blitz, an enemy's location(s) is selected if the enemy is available in at least one of the selected
+map areas.
+
+### TrandoPlus
+
+In Limited Room Rando, an enemy's location(s) is selected if at least one of its rooms is available.
+
+### MajorItemsByAreaTracker/RandoStats
+
+If the enemy is available in only a single map area, its locations are listed under that area. If the
+enemy is available in multiple map areas, its locations will be listed under "Other."
+

@@ -61,14 +61,14 @@ namespace TheRealJournalRando.Rando
                     //          if notes are progressive, you only get one of the entry parts (you have to earn the notes!)
                     //          else get the entry part and the notes
                     lmb.AddTemplateItem(new BranchedItemTemplate(journalEntryItemName, $"{Terms.PROGRESSIVENOTES} + {progressiveEntry.Name}",
-                        new MultiItemTemplate(journalEntryItemName, new[] { (progressiveEntry.Name, 1), (hunterNotes.Name, 1) }),
-                        new SingleItemTemplate(journalEntryItemName, (progressiveEntry.Name, 1))));
+                        new MultiItem(journalEntryItemName, new TermValue[] { new(progressiveEntry, 1), new(hunterNotes, 1) }),
+                        new SingleItem(journalEntryItemName, new(progressiveEntry, 1))));
 
                     MultiItemTemplate notesAndEntryPart = new(hunterNotesItemName, new[] { (progressiveEntry.Name, 1), (hunterNotes.Name, 1) });
                     lmb.AddTemplateItem(new BranchedItemTemplate(hunterNotesItemName, progressiveEntry.Name,
                         notesAndEntryPart,
                         new BranchedItemTemplate(hunterNotesItemName, Terms.PROGRESSIVENOTES,
-                            new SingleItemTemplate(hunterNotesItemName, (progressiveEntry.Name, 1)),
+                            new SingleItem(hunterNotesItemName, new(progressiveEntry, 1)),
                             notesAndEntryPart)
                     ));
                 }

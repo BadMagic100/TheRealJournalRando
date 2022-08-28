@@ -1,5 +1,5 @@
 ItemChanger
 MenuChanger
 Randomizer 4
-RandomizerCore from https://files.catbox.moe/5e2o1n.zip
+RandomizerCore
 ConnectionSettingsCode from https://github.com/BadMagic100/ConnectionSettingsCode/releases/download/v1.0.8256.6937/ConnectionSettingsCode.zip
