@@ -184,6 +184,6 @@ In Limited Room Rando, an enemy's location(s) is selected if at least one of its
 
 ### MajorItemsByAreaTracker/RandoStats
 
-If the enemy is available in only a single map area, its locations are listed under that area. If the
-enemy is available in multiple map areas, its locations will be listed under "Other."
+If the enemy is available in only a single map area, its locations are counted under that area. If the
+enemy is available in multiple map areas, its locations will be counted under "Other."
 
