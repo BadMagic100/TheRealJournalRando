@@ -163,7 +163,7 @@ there is always enough Wingmoulds outside of Path of Pain so that the Wingmoulds
 This mod is the first mod that provides checks which are accessible in more than one place. As such,
 it interacts in unique ways with many other mods which have traditionally expected that checks can only
 appear in a single room. This mod provides full information about scenes, titled areas, and map areas in
-which an enemy appears so that
+which an enemy appears so that other mods can use that info to provide a more integrated experience.
 
 ### RandoMapMod
 
