@@ -180,7 +180,8 @@ map areas.
 
 ### TrandoPlus
 
-In Limited Room Rando, an enemy's location(s) is selected if at least one of its rooms is available.
+With the Remove Random Rooms setting, an enemy's location(s) is selected if at least one of its rooms is
+available. With the Remove Empty Rooms setting, each enemy is randomly assigned one if its rooms.
 
 ### MajorItemsByAreaTracker/RandoStats
 
