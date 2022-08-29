@@ -408,7 +408,11 @@ namespace TheRealJournalRando.IC
 
         private void ReplaceHasJournalCheck(FsmState journalState, string pdName)
         {
-            PlayerDataBoolTest journalCheckAction = journalState.GetActionsOfType<PlayerDataBoolTest>().First(x => x.boolName.Value == "hasJournal");
+            PlayerDataBoolTest? journalCheckAction = journalState.GetActionsOfType<PlayerDataBoolTest>().FirstOrDefault(x => x.boolName.Value == "hasJournal");
+            if (journalCheckAction == null)
+            {
+                return;
+            }
             int idx = journalState.Actions.IndexOf(journalCheckAction);
             journalState.Actions[idx] = new DelegateBoolTest(() =>
             {

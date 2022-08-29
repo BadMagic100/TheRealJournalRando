@@ -2484,7 +2484,6 @@
     "singleTitledArea": "Abyss",
     "allScenes": [
       "Abyss_06_Core",
-      "Abyss_09",
       "Abyss_15"
     ],
     "respawns": true,

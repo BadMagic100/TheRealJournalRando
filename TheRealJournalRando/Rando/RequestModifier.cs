@@ -43,9 +43,9 @@ namespace TheRealJournalRando.Rando
             RequestBuilder.OnUpdate.Subscribe(0f, ApplyPoolSettings);
             RequestBuilder.OnUpdate.Subscribe(0f, AddVanillaFiniteEnemies);
             RequestBuilder.OnUpdate.Subscribe(5f, AutoGiveRandomizedLifeseeds);
-            RequestBuilder.OnUpdate.Subscribe(10f, RestoreSkippedGrimmkinFlames); // must be done after 0 to overwrite rando's request
             RequestBuilder.OnUpdate.Subscribe(10f, GrantStartingItems);
             RequestBuilder.OnUpdate.Subscribe(20f, DupeJournal);
+            RequestBuilder.OnUpdate.Subscribe(25f, RestoreSkippedGrimmkinFlames);
             RequestBuilder.OnUpdate.Subscribe(30f, ApplyLongLocationSettings);
             RequestBuilder.OnUpdate.Subscribe(30f, ApplyNotesPreviewSettings);
             RequestBuilder.OnUpdate.Subscribe(50f, ForceBluggsacLocations);
@@ -230,6 +230,10 @@ namespace TheRealJournalRando.Rando
                         rb.AddToVanilla(def.Item, def.Location);
                     }
                     rb.ReplaceItem(ItemNames.Grimmchild2, ItemNames.Grimmchild1);
+                }
+                if (rb.gs.DuplicateItemSettings.Grimmchild && !rb.gs.PoolSettings.GrimmkinFlames)
+                {
+                    rb.ReplaceItem($"{PlaceholderItem.Prefix}{ItemNames.Grimmchild2}", $"{PlaceholderItem.Prefix}{ItemNames.Grimmchild1}");
                 }
             }
         }

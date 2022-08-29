@@ -145,7 +145,7 @@
   },
   {
     "name": "Defeated_Any_Aluba",
-    "logic": "Fungus1_26[door_SlugShrine] + (WINGS | Shaman_Stone + LEFTFIREBALL | (LEFTSUPERDASH + SCREAM | LEFTDASH + PRECISEMOVEMENT + (SCREAM | UPSLASH)) + (ACID | 1HIT)) | Fungus3_48[right1] + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH | FIREBALL + Shaman_Stone | WINGS) | *Grub-Queen's_Gardens_Marmu + (Spore_Shroom | FIREBALL>1)"
+    "logic": "Fungus1_26[door_SlugShrine] + (WINGS | Shaman_Stone + LEFTFIREBALL | (LEFTSUPERDASH + SCREAM>1 | LEFTDASH + PRECISEMOVEMENT + (SCREAM | UPSLASH)) + (ACID | 1HIT)) | Fungus3_48[right1] + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH | FIREBALL + Shaman_Stone | WINGS) | *Grub-Queen's_Gardens_Marmu + (Spore_Shroom | FIREBALL>1)"
   },
   {
     "name": "Defeated_Any_Uoma",
@@ -617,7 +617,7 @@
   },
   {
     "name": "Defeated_Any_Sibling",
-    "logic": "Abyss_06_Core | Abyss_09 | Abyss_15[top1]"
+    "logic": "Abyss_06_Core | Abyss_15[top1]"
   },
   {
     "name": "Defeated_Any_Hornet",
