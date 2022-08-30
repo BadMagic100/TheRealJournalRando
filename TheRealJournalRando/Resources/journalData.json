@@ -51,6 +51,7 @@
       "Ruins1_04",
       "Ruins1_05c",
       "Ruins1_17",
+      "Ruins2_07",
       "Tutorial_01"
     ],
     "allTitledAreas": [
@@ -60,7 +61,8 @@
       "Colosseum",
       "Greenpath",
       "Howling Cliffs",
-      "King's Pass"
+      "King's Pass",
+      "King's Station"
     ],
     "allMapAreas": [
       "City of Tears",
@@ -1584,16 +1586,13 @@
       "Crossroads_16",
       "Crossroads_21",
       "Crossroads_42",
-      "Room_Colosseum_01",
-      "Ruins2_07"
+      "Room_Colosseum_01"
     ],
     "allTitledAreas": [
       "Colosseum",
-      "Forgotten Crossroads",
-      "King's Station"
+      "Forgotten Crossroads"
     ],
     "allMapAreas": [
-      "City of Tears",
       "Forgotten Crossroads",
       "Kingdom's Edge"
     ],

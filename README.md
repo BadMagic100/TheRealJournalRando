@@ -151,12 +151,16 @@ full experience of the mod without it being super cursed.
 
 ### Base Rando Settings
 
-Journal rando respects the deranged and white palace settings from base rando. If White Palace as a whole is
-excluded, the items and locations for Royal Retainer, Wingmoulds, and Kingsmoulds will be treated as vanilla. 
-If you've randomized Hunter's Mark, you may still be expected to enter palace to collect the required Hunter's
-notes to get the check at Hunter's Mark. If you exclude only Path of Pain, the Kingsmoulds at the end are not
-required to pay costs or check the corresponding journal locations. With Path of Pain excluded from randomization
-there is always enough Wingmoulds outside of Path of Pain so that the Wingmoulds in PoP may be ignored.
+Journal rando respects several settings from base rando:
+* The deranged setting is implemented for journals.
+* If using split groups, these journal entries will be placed in the same split group as other journal
+entries (specifically, as Hunter's Journal).
+* If White Palace as a whole is excluded, the items and locations for Royal Retainer, Wingmoulds, and 
+Kingsmoulds will be treated as vanilla. If you've randomized Hunter's Mark, you may still be expected 
+to enter palace to collect the required Hunter's notes to get the check at Hunter's Mark. If you exclude 
+only Path of Pain, the Kingsmoulds at the end are not required to pay costs or check the corresponding 
+journal locations. With Path of Pain excluded from randomization there is always enough Wingmoulds 
+outside of Path of Pain so that the Wingmoulds in PoP may be ignored.
 
 ## Other Mods
 

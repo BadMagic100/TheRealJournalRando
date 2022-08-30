@@ -1,4 +1,5 @@
 ﻿using ItemChanger;
+using ItemChanger.Locations;
 using ItemChanger.Tags;
 using RandomizerCore;
 using RandomizerCore.Logic;
@@ -599,7 +600,16 @@ namespace TheRealJournalRando.Rando
                         {
                             return pmt;
                         }
-                        pmt = Finder.GetLocationFromSheet(loc, 0).Wrap();
+                        else if (Finder.GetLocationFromSheet(loc, 0) is DualLocation dl && dl.falseLocation is ExistingFsmContainerLocation efcl)
+                        {
+                            efcl.nonreplaceable = true;
+                            pmt = dl.Wrap();
+                        }
+                        else
+                        {
+                            TheRealJournalRando.Instance.LogError($"Failed to force {loc} as a Bluggsac; unexpected data on sheet 0");
+                            pmt = Finder.GetLocation(loc).Wrap();
+                        }
                         factory.AddPlacement(pmt);
                         return pmt;
                     };
