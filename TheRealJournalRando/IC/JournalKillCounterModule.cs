@@ -57,6 +57,11 @@ namespace TheRealJournalRando.IC
                 return;
             }
 
+            if (playerDataName == EnemyPdNames.TraitorLord)
+            {
+                TheRealJournalRando.Instance.LogDebug("Record traitor lord");
+            }
+
             if (!enemyKillCounts.ContainsKey(playerDataName))
             {
                 enemyKillCounts[playerDataName] = 0;
@@ -124,29 +129,34 @@ namespace TheRealJournalRando.IC
                 return;
             }
 
+            // traitor lord with cloth (without cloth is handled by RecordKillForJournal)
+            if (CheckIsFsm(self, "Mantis Traitor Lord", "Mantis") && self.Fsm.GameObject.scene.name == SceneNames.Fungus3_23_boss)
+            {
+                Record(EnemyPdNames.TraitorLord);
+            }
             // overworld TMG journal grant - godhome TMG will need special handling. probably in Grimm Boss-Control between Death Explode and Send Death Event
             if (CheckIsFsm(self, "Defeated NPC", "Conversation Control") && self.Fsm.GameObject.scene.name == SceneNames.Grimm_Main_Tent)
             {
-                Record("Grimm");
+                Record(EnemyPdNames.Grimm);
             }
             // NKG journal grant - in vanilla, godhome NKG can't grant you journal; in rando you can fight NKG even after banishment though
             if (CheckIsFsm(self, "Grimm Control", "Control") && self.Fsm.GameObject.scene.name == SceneNames.Grimm_Nightmare)
             {
-                Record("NightmareGrimm");
+                Record(EnemyPdNames.NightmareGrimm);
             }
             // THK journal grant
             if (CheckIsFsm(self, "Hollow Knight Boss", "Phase Control") && self.Fsm.GameObject.scene.name == SceneNames.Room_Final_Boss_Core)
             {
-                Record("HollowKnight");
+                Record(EnemyPdNames.HollowKnight);
             }
             // radiance journal grant
             if (CheckIsFsm(self, "Radiance", "Control") && self.Fsm.GameObject.scene.name == SceneNames.Dream_Final_Boss)
             {
-                Record("FinalBoss");
+                Record(EnemyPdNames.FinalBoss);
             }
             if (CheckIsFsm(self, "Absolute Radiance", "Control") && self.Fsm.GameObject.scene.name == SceneNames.GG_Radiance)
             {
-                Record("FinalBoss");
+                Record(EnemyPdNames.FinalBoss);
             }
         }
 
@@ -161,39 +171,39 @@ namespace TheRealJournalRando.IC
             // False knight
             if (CheckFsmStrong(self, "False Knight New", "FalseyControl"))
             {
-                InjectRecordState(self, "Open Map Shop and Journal", "FINISHED", "Steam", "FalseKnight");
+                InjectRecordState(self, "Open Map Shop and Journal", "FINISHED", "Steam", EnemyPdNames.FalseKnight);
             }
             // Mantis lords - Sisters of Battle (in GG_Mantis_Lords_V) uses a different FSM (same name)
             // and does not grant journal entries normally; will not be handled
             if (CheckFsmStrong(self, "Mantis Battle", "Battle Control", SceneNames.Fungus2_15_boss, SceneNames.GG_Mantis_Lords))
             {
-                InjectRecordState(self, "Journal", "FINISHED", "Return 2", "MantisLord");
+                InjectRecordState(self, "Journal", "FINISHED", "Return 2", EnemyPdNames.MantisLord);
             }
             // watcher knights can otherwise be handled by hooking the PD setter, but unlike other reusable bosses you actually see a journal
             // update message from the journal state. just injecting a state later to avoid this
             if (CheckFsmStrong(self, "Battle Control", "Battle Control", SceneNames.Ruins2_03_boss, SceneNames.GG_Watcher_Knights))
             {
-                InjectRecordState(self, "Pause 5", "FINISHED", "Music End", "BlackKnight");
+                InjectRecordState(self, "Pause 5", "FINISHED", "Music End", EnemyPdNames.BlackKnight);
             }
             // Collector
             if (CheckFsmStrong(self, "Jar Collector", "Death"))
             {
-                InjectRecordState(self, "Set Data", "FINISHED", "Fall", "JarCollector");
+                InjectRecordState(self, "Set Data", "FINISHED", "Fall", EnemyPdNames.JarCollector);
             }
             // godhome troupe master grimm
             if (CheckFsmStrong(self, "Grimm Boss", "Control", SceneNames.GG_Grimm))
             {
-                InjectRecordState(self, "Death Explode", "GG BOSS", "Send Death Event", "Grimm");
+                InjectRecordState(self, "Death Explode", "GG BOSS", "Send Death Event", EnemyPdNames.Grimm);
             }
             // oro & mato
             if (CheckFsmStrong(self, "Brothers", "Combo Control", SceneNames.GG_Nailmasters))
             {
-                InjectRecordState(self, "Journal", "FINISHED", "Defeated 2", "NailBros");
+                InjectRecordState(self, "Journal", "FINISHED", "Defeated 2", EnemyPdNames.NailBros);
             }
             // nailsage sly
             if (CheckFsmStrong(self, "Sly Boss", "Control"))
             {
-                InjectRecordState(self, "Journal", "FINISHED", "Death Launch", "NailSage");
+                InjectRecordState(self, "Journal", "FINISHED", "Death Launch", EnemyPdNames.Nailsage);
             }
 
             /***** "Special" Enemies *****/
@@ -201,25 +211,25 @@ namespace TheRealJournalRando.IC
             // wingsmoulds
             if (CheckFsmWeak(self, "White Palace Fly", "Control"))
             {
-                InjectRecordState(self, "Journal Entry?", "FINISHED", "Journal Update?", "PalaceFly");
+                InjectRecordState(self, "Journal Entry?", "FINISHED", "Journal Update?", EnemyPdNames.PalaceFly);
             }
             // siblings
             if (CheckFsmWeak(self, "Shade Sibling", "Control"))
             {
-                InjectRecordState(self, "Journal Entry?", "FINISHED", "Journal Update?", "Sibling");
+                InjectRecordState(self, "Journal Entry?", "FINISHED", "Journal Update?", EnemyPdNames.Sibling);
             }
             // grimmkin (this can be a strong comparison)
             if (CheckFsmWeak(self, "Flamebearer Small", "Control"))
             {
-                InjectRecordState(self, "Fanfare 1", "FINISHED", "Flash Start", "FlameBearerSmall");
+                InjectRecordState(self, "Fanfare 1", "FINISHED", "Flash Start", EnemyPdNames.FlameBearerSmall);
             }
             if (CheckFsmWeak(self, "Flamebearer Med", "Control"))
             {
-                InjectRecordState(self, "Fanfare 2", "FINISHED", "Flash Start", "FlameBearerMed");
+                InjectRecordState(self, "Fanfare 2", "FINISHED", "Flash Start", EnemyPdNames.FlameBearerMed);
             }
             if (CheckFsmWeak(self, "Flamebearer Large", "Control"))
             {
-                InjectRecordState(self, "Fanfare 3", "FINISHED", "Flash Start", "FlameBearerLarge");
+                InjectRecordState(self, "Fanfare 3", "FINISHED", "Flash Start", EnemyPdNames.FlameBearerLarge);
             }
             // hopping/winged zotelings
             if (CheckFsmWeak(self, "Zoteling", "Control") || CheckFsmWeak(self, "Ordeal Zoteling", "Control"))
@@ -237,7 +247,7 @@ namespace TheRealJournalRando.IC
                 winged.AddLastAction(new SetStringValue()
                 {
                     stringVariable = pdVar,
-                    stringValue = "ZotelingBuzzer",
+                    stringValue = EnemyPdNames.ZotelingBuzzer,
                     everyFrame = false,
                 });
 
@@ -251,7 +261,7 @@ namespace TheRealJournalRando.IC
                 hopping.AddLastAction(new SetStringValue()
                 {
                     stringVariable = pdVar,
-                    stringValue = "ZotelingHopper",
+                    stringValue = EnemyPdNames.ZotelingHopper,
                     everyFrame = false
                 });
 
@@ -267,7 +277,7 @@ namespace TheRealJournalRando.IC
             // volatile zotelings
             if (CheckFsmWeak(self, "Zote Balloon", "Control"))
             {
-                InjectRecordState(self, "Die", "WAIT", "Reset", "ZotelingBalloon");
+                InjectRecordState(self, "Die", "WAIT", "Reset", EnemyPdNames.ZotelingBalloon);
             }
         }
 

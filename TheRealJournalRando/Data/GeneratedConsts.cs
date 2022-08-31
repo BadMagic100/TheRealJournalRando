@@ -7,4 +7,7 @@ namespace TheRealJournalRando.Data.Generated
     {
         public const string Void_Idol_Prefix = "Void_Idol_";
     }
+
+    [GenerateJsonConsts("$[*].pdName", "journalData.json")]
+    public static partial class EnemyPdNames { }
 }

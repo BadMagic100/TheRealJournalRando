@@ -661,7 +661,7 @@
   },
   {
     "name": "Defeated_Pantheon_4",
-    "logic": "GG_Atrium + Opened_Pantheon_4"
+    "logic": "GG_Atrium + Opened_Pantheon_4 + Defeated_Enraged_Guardian + Defeated_Broken_Vessel + Defeated_No_Eyes + Defeated_Traitor_Lord + Defeated_Dung_Defender + Defeated_False_Knight + Defeated_Markoth + Defeated_Watcher_Knights + Defeated_Soul_Master"
   },
   {
     "name": "Hit_Pantheon_5_Unlock_Orb",
