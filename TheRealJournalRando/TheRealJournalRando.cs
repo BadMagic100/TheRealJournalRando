@@ -256,8 +256,8 @@ namespace TheRealJournalRando
                         poolGroup: JOURNAL_ENTRIES,
                         pinSprite: new JournalBadgeSprite(enemyDef.pdName),
                         sceneNames: enemyDef.allScenes,
-                        titledAreaNames: enemyDef.allTitledAreas,
-                        mapAreaNames: enemyDef.allMapAreas,
+                        titledAreas: enemyDef.allTitledAreas,
+                        mapAreas: enemyDef.allMapAreas,
                         highlightScenes: enemyDef.allScenes?.ToArray(),
                         pinSort: enemyDef.index,
                         mapLocations: MapData.PinLookup.GetOrDefault(enemyDef.icName)
@@ -277,8 +277,8 @@ namespace TheRealJournalRando
                         poolGroup: JOURNAL_ENTRIES,
                         pinSprite: new JournalBadgeSprite(enemyDef.pdName),
                         sceneNames: enemyDef.allScenes,
-                        titledAreaNames: enemyDef.allTitledAreas,
-                        mapAreaNames: enemyDef.allMapAreas,
+                        titledAreas: enemyDef.allTitledAreas,
+                        mapAreas: enemyDef.allMapAreas,
                         highlightScenes: enemyDef.allScenes?.ToArray(),
                         pinSort: enemyDef.index,
                         mapLocations: MapData.PinLookup.GetOrDefault(enemyDef.icName)

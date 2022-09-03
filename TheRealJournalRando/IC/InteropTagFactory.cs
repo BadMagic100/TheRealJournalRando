@@ -17,8 +17,8 @@ namespace TheRealJournalRando.IC
         private const string CmiModSourceProperty = "ModSource";
         private const string CmiPoolGroupProperty = "PoolGroup";
         private const string CmiSceneNamesProperty = "SceneNames";
-        private const string CmiTitledAreaNamesProperty = "TitledAreaNames";
-        private const string CmiMapAreaNamesProperty = "MapAreaNames";
+        private const string CmiTitledAreasProperty = "TitledAreas";
+        private const string CmiMapAreasProperty = "MapAreas";
         private const string CmiHighlightScenesProperty = "HighlightScenes";
         private const string CmiPinSpriteProperty = "PinSprite";
         private const string CmiMapLocationsProperty = "MapLocations";
@@ -45,13 +45,13 @@ namespace TheRealJournalRando.IC
         }
 
         public static InteropTag CmiLocationTag(string? poolGroup = null, ISprite? pinSprite = null,
-            IEnumerable<string>? sceneNames = null, IEnumerable<string>? titledAreaNames = null, IEnumerable<string>? mapAreaNames = null,
+            IEnumerable<string>? sceneNames = null, IEnumerable<string>? titledAreas = null, IEnumerable<string>? mapAreas = null,
             string[]? highlightScenes = null, (string, float, float)[]? mapLocations = null, bool? noPin = null, int? pinSort = null)
         {
             InteropTag t = CmiSharedTag(poolGroup: poolGroup, pinSprite: pinSprite);
             t.SetProperty(CmiSceneNamesProperty, sceneNames);
-            t.SetProperty(CmiTitledAreaNamesProperty, titledAreaNames);
-            t.SetProperty(CmiMapAreaNamesProperty, mapAreaNames);
+            t.SetProperty(CmiTitledAreasProperty, titledAreas);
+            t.SetProperty(CmiMapAreasProperty, mapAreas);
             t.SetProperty(CmiHighlightScenesProperty, highlightScenes);
             t.SetProperty(CmiMapLocationsProperty, mapLocations);
             t.SetProperty(CmiMapNoPin, noPin);
