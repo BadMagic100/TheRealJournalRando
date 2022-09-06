@@ -30,6 +30,8 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
+            ItemChangerMod.Modules.GetOrAdd<FixSiblingSpawnerModule>();
+
             // if GK nightmares or NKG will be randomized
             if (Settings.Pools.BonusEntries)
             {
