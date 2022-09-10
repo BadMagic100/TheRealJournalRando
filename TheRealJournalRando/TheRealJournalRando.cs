@@ -259,7 +259,7 @@ namespace TheRealJournalRando
                         titledAreas: enemyDef.allTitledAreas,
                         mapAreas: enemyDef.allMapAreas,
                         highlightScenes: enemyDef.allScenes?.ToArray(),
-                        pinSort: enemyDef.index,
+                        pinSort: enemyDef.index * 2,
                         mapLocations: MapData.PinLookup.GetOrDefault(enemyDef.icName)
                             ?.Select(x => ((string, float, float))x).ToArray()
                     ),
@@ -280,7 +280,7 @@ namespace TheRealJournalRando
                         titledAreas: enemyDef.allTitledAreas,
                         mapAreas: enemyDef.allMapAreas,
                         highlightScenes: enemyDef.allScenes?.ToArray(),
-                        pinSort: enemyDef.index,
+                        pinSort: enemyDef.index * 2 + 1,
                         mapLocations: MapData.PinLookup.GetOrDefault(enemyDef.icName)
                             ?.Select(x => ((string, float, float))x).ToArray()
                     ),
