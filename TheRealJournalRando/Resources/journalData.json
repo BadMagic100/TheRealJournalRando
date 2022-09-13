@@ -1847,20 +1847,7 @@
     "icName": "Lightseed",
     "pdName": "OrangeScuttler",
     "convoName": "PARASITE_BLOB",
-    "allScenes": [
-      "Abyss_19",
-      "Abyss_20",
-      "Crossroads_14",
-      "Crossroads_43"
-    ],
-    "allTitledAreas": [
-      "Ancient Basin",
-      "Forgotten Crossroads"
-    ],
-    "allMapAreas": [
-      "Ancient Basin",
-      "Forgotten Crossroads"
-    ],
+    "singleSceneName": "Crossroads_14",
     "respawns": true,
     "notesCost": 20
   },
