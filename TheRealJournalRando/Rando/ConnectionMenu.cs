@@ -19,6 +19,7 @@ namespace TheRealJournalRando.Rando
         private const int HSPACE_XLARGE = 450;
         private const int HSPACE_XXLARGE = 750;
 
+        private SmallButton? pageRootButton;
         internal MenuPage? journalRandoPage;
         internal MenuEnum<JournalRandomizationType>? randomizationTypeControl;
         internal MenuEnum<StartingItems>? startItemsControl;
@@ -39,9 +40,10 @@ namespace TheRealJournalRando.Rando
 
         private bool HandleButton(MenuPage landingPage, out SmallButton button)
         {
-            SmallButton connectionMenuNavButton = new(landingPage, Localization.Localize("Journal Entries (Extended)"));
-            connectionMenuNavButton.AddHideAndShowEvent(landingPage, journalRandoPage);
-            button = connectionMenuNavButton;
+            pageRootButton = new(landingPage, Localization.Localize("Journal Entries (Extended)"));
+            pageRootButton.AddHideAndShowEvent(landingPage, journalRandoPage);
+            SetTopLevelButtonColor();
+            button = pageRootButton;
             return true;
         }
 
@@ -51,6 +53,8 @@ namespace TheRealJournalRando.Rando
             VerticalItemPanel toplevelVip = new(journalRandoPage, new Vector2(0, 400), VSPACE_LARGE, true);
 
             MenuElementFactory<JournalRandomizationSettings> toplevelMef = new(journalRandoPage, RandoInterop.Settings);
+            ToggleButton enabledControl = (ToggleButton)toplevelMef.ElementLookup[nameof(JournalRandomizationSettings.Enabled)];
+            enabledControl.SelfChanged += EnabledChanged;
             randomizationTypeControl = (MenuEnum<JournalRandomizationType>)toplevelMef.ElementLookup[nameof(JournalRandomizationSettings.JournalRandomizationType)];
             randomizationTypeControl.SelfChanged += RandomizationTypeChanged;
             startItemsControl = (MenuEnum<StartingItems>)toplevelMef.ElementLookup[nameof(JournalRandomizationSettings.StartingItems)];
@@ -99,6 +103,19 @@ namespace TheRealJournalRando.Rando
                 .Concat(poolMef.Elements)
                 .Concat(costsMef.Elements)
                 .Concat(llsMef.Elements));
+        }
+
+        private void SetTopLevelButtonColor()
+        {
+            if (pageRootButton != null)
+            {
+                pageRootButton.Text.color = RandoInterop.Settings.Enabled ? Colors.TRUE_COLOR : Colors.DEFAULT_COLOR;
+            }
+        }
+
+        private void EnabledChanged(IValueElement obj)
+        {
+            SetTopLevelButtonColor();
         }
 
         private void RandomizationTypeChanged(IValueElement obj)
