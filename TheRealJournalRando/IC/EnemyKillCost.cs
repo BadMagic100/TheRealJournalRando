@@ -23,6 +23,8 @@ namespace TheRealJournalRando.IC
             return Total - module!.GetKillCount(EnemyPdName);
         }
 
+        public override bool Includes(Cost c) => c is EnemyKillCost ekc && ekc.EnemyPdName == EnemyPdName && ekc.Total <= Total;
+
         public override bool CanPay() => GetBalanceDue() <= 0;
 
         public override void OnPay() { }

@@ -322,17 +322,18 @@ namespace TheRealJournalRando.Rando
 
             foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.requestDefineIgnore))
             {
-                string notesName = enemy.icName.AsNotesName();
+                string notesName = enemy.icName.AsNotesName(); 
+                double weight = RandoInterop.Settings.Costs.CostRandomizationType switch
+                {
+                    CostRandomizationType.RandomFixedWeight => fixedWeight,
+                    CostRandomizationType.RandomPerEntry => ComputeWeight(rb.rng),
+                    _ => throw new NotImplementedException("Invalid cost randomization type!")
+                };
+
                 rb.EditLocationRequest(notesName, info =>
                 {
                     info.onRandoLocationCreation += (factory, rl) =>
                     {
-                        double weight = RandoInterop.Settings.Costs.CostRandomizationType switch
-                        {
-                            CostRandomizationType.RandomFixedWeight => fixedWeight,
-                            CostRandomizationType.RandomPerEntry => ComputeWeight(factory.rng),
-                            _ => throw new NotImplementedException("Invalid cost randomization type!")
-                        };
                         foreach (LogicCost c in rl.costs)
                         {
                             if (c is SimpleCost sc && icNameByTermName.ContainsKey(sc.term.Name))
