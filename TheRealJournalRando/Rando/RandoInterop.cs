@@ -1,4 +1,5 @@
 ﻿using ItemChanger;
+using Modding;
 using Newtonsoft.Json;
 using RandomizerMod.Logging;
 using RandomizerMod.RC;
@@ -15,6 +16,11 @@ namespace TheRealJournalRando.Rando
             ConnectionMenu.Hook();
             LogicPatcher.Hook();
             RequestModifier.Hook();
+
+            if (ModHooks.GetMod("RandoSettingsManager") is Mod)
+            {
+                SettingsManagement.Hook();
+            }
 
             SettingsLog.AfterLogSettings += AddJournalRandoSettings;
             RandoController.OnExportCompleted += OnExportCompleted;

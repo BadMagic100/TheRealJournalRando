@@ -1,5 +1,4 @@
-﻿using ConnectionSettingsCode;
-using MenuChanger;
+﻿using MenuChanger;
 using MenuChanger.Extensions;
 using MenuChanger.MenuElements;
 using MenuChanger.MenuPanels;
@@ -24,6 +23,11 @@ namespace TheRealJournalRando.Rando
         internal MenuEnum<JournalRandomizationType>? randomizationTypeControl;
         internal MenuEnum<StartingItems>? startItemsControl;
 
+        private MenuElementFactory<JournalRandomizationSettings>? toplevelMef;
+        private MenuElementFactory<JournalRandomizationSettings.PoolSettings>? poolMef;
+        private MenuElementFactory<JournalRandomizationSettings.CostSettings>? costsMef;
+        private MenuElementFactory<JournalRandomizationSettings.LongLocationSettings>? llsMef;
+
         private static ConnectionMenu? instance = null;
         internal static ConnectionMenu Instance => instance ??= new();
 
@@ -41,7 +45,7 @@ namespace TheRealJournalRando.Rando
         private bool HandleButton(MenuPage landingPage, out SmallButton button)
         {
             pageRootButton = new(landingPage, Localization.Localize("Journal Entries (Extended)"));
-            pageRootButton.AddHideAndShowEvent(landingPage, journalRandoPage);
+            pageRootButton.AddHideAndShowEvent(landingPage, journalRandoPage!);
             SetTopLevelButtonColor();
             button = pageRootButton;
             return true;
@@ -52,7 +56,7 @@ namespace TheRealJournalRando.Rando
             journalRandoPage = new MenuPage(Localization.Localize("Journal Entries (Extended)"), landingPage);
             VerticalItemPanel toplevelVip = new(journalRandoPage, new Vector2(0, 400), VSPACE_LARGE, true);
 
-            MenuElementFactory<JournalRandomizationSettings> toplevelMef = new(journalRandoPage, RandoInterop.Settings);
+            toplevelMef = new(journalRandoPage, RandoInterop.Settings);
             ToggleButton enabledControl = (ToggleButton)toplevelMef.ElementLookup[nameof(JournalRandomizationSettings.Enabled)];
             enabledControl.SelfChanged += EnabledChanged;
             randomizationTypeControl = (MenuEnum<JournalRandomizationType>)toplevelMef.ElementLookup[nameof(JournalRandomizationSettings.JournalRandomizationType)];
@@ -69,19 +73,19 @@ namespace TheRealJournalRando.Rando
             VerticalItemPanel categoryVip = new(journalRandoPage, Vector2.zero, VSPACE_MED, false, categoryGrid1, categoryGrid2);
             toplevelVip.Add(categoryVip);
 
-            MenuElementFactory<JournalRandomizationSettings.PoolSettings> poolMef = new(journalRandoPage, RandoInterop.Settings.Pools);
+            poolMef = new(journalRandoPage, RandoInterop.Settings.Pools);
             MenuLabel poolsLabel = new(journalRandoPage, "Pool Settings");
             GridItemPanel poolSettingsHolder1 = new(journalRandoPage, Vector2.zero, 2, VSPACE_SMALL, HSPACE_LARGE, false, poolMef.Elements.Take(2).ToArray());
             GridItemPanel poolSettingsHolder2 = new(journalRandoPage, Vector2.zero, 1, VSPACE_SMALL, HSPACE_LARGE, false, poolMef.Elements[2]);
             categoryGrid1.Add(new VerticalItemPanel(journalRandoPage, Vector2.zero, VSPACE_SMALL, false, poolsLabel, poolSettingsHolder1, poolSettingsHolder2));
 
-            MenuElementFactory<JournalRandomizationSettings.CostSettings> costsMef = new(journalRandoPage, RandoInterop.Settings.Costs);
+            costsMef = new(journalRandoPage, RandoInterop.Settings.Costs);
             MenuLabel costsLabel = new(journalRandoPage, "Cost Randomization Settings");
             GridItemPanel costsSettingsHolder = new(journalRandoPage, Vector2.zero, 2, VSPACE_SMALL, HSPACE_LARGE, false, costsMef.Elements.Skip(1).ToArray());
             VerticalItemPanel costsLabelsHolder = new(journalRandoPage, Vector2.zero, VSPACE_SMALL, false, costsLabel, costsMef.Elements[0]);
             categoryGrid1.Add(new VerticalItemPanel(journalRandoPage, Vector2.zero, VSPACE_SMALL * 2 + 35, false, costsLabelsHolder, costsSettingsHolder));
 
-            MenuElementFactory<JournalRandomizationSettings.LongLocationSettings> llsMef = new(journalRandoPage, RandoInterop.Settings.LongLocations);
+            llsMef = new(journalRandoPage, RandoInterop.Settings.LongLocations);
             MenuLabel llsLabel = new(journalRandoPage, "Long Location Settings");
             GridItemPanel llsBoolSettingsHolder = new(journalRandoPage, Vector2.zero, 2, VSPACE_SMALL, HSPACE_XLARGE, false, llsMef.Elements.Take(4).ToArray());
             VerticalItemPanel llsSettingsHolder = new(journalRandoPage, Vector2.zero, VSPACE_SMALL * 2f, false, llsBoolSettingsHolder, llsMef.Elements[4]);
@@ -99,10 +103,6 @@ namespace TheRealJournalRando.Rando
             toplevelVip.ResetNavigation();
             toplevelVip.SymSetNeighbor(Neighbor.Down, journalRandoPage.backButton);
 
-            new SettingsCode(journalRandoPage, TheRealJournalRando.Instance, toplevelMef.Elements
-                .Concat(poolMef.Elements)
-                .Concat(costsMef.Elements)
-                .Concat(llsMef.Elements));
         }
 
         private void SetTopLevelButtonColor()
@@ -132,6 +132,20 @@ namespace TheRealJournalRando.Rando
             {
                 newValue = ((StartingItems)newValue) & ~StartingItems.Entries;
             }
+        }
+
+        public void Disable()
+        {
+            IValueElement? elem = toplevelMef?.ElementLookup[nameof(JournalRandomizationSettings.Enabled)];
+            elem?.SetValue(false);
+        }
+
+        public void ApplySettingsToMenu(JournalRandomizationSettings settings)
+        {
+            toplevelMef?.SetMenuValues(settings);
+            poolMef?.SetMenuValues(settings.Pools);
+            costsMef?.SetMenuValues(settings.Costs);
+            llsMef?.SetMenuValues(settings.LongLocations);
         }
     }
 }

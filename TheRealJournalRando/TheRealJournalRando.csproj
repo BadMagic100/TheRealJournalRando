@@ -234,9 +234,6 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>$(HollowKnightRefs)/Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
-    <Reference Include="ConnectionSettingsCode">
-      <HintPath>$(HollowKnightRefs)/Mods/ConnectionSettingsCode/ConnectionSettingsCode.dll</HintPath>
-    </Reference>
     <Reference Include="GalaxyCSharp">
       <HintPath>$(HollowKnightRefs)/GalaxyCSharp.dll</HintPath>
     </Reference>
@@ -278,6 +275,9 @@
     </Reference>
     <Reference Include="RandomizerMod">
       <HintPath>$(HollowKnightRefs)/Mods/Randomizer 4/RandomizerMod.dll</HintPath>
+    </Reference>
+    <Reference Include="RandoSettingsManager">
+      <HintPath>$(HollowKnightRefs)/Mods/RandoSettingsManager/RandoSettingsManager.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition">
       <HintPath>$(HollowKnightRefs)/System.ComponentModel.Composition.dll</HintPath>
