@@ -192,3 +192,8 @@ available. With the Remove Empty Rooms setting, each enemy is randomly assigned 
 If the enemy is available in only a single map area, its locations are counted under that area. If the
 enemy is available in multiple map areas, its locations will be counted under "Other."
 
+### RandoSettingsManager
+
+This connection is fully integrated with RandoSettingsManager. It does not need to be configured manually
+after saving/sharing/loading settings and will disable itself if no settings are available.
+
