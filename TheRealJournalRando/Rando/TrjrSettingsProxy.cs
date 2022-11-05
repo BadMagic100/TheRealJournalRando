@@ -29,7 +29,7 @@ namespace TheRealJournalRando.Rando
             using Stream macros = a.GetManifestResourceStream("TheRealJournalRando.Resources.Logic.macros.json");
             using Stream terms = a.GetManifestResourceStream("TheRealJournalRando.Resources.Logic.terms.json");
             using Stream waypoints = a.GetManifestResourceStream("TheRealJournalRando.Resources.Logic.waypoints.json");
-            using Stream enemyData = a.GetManifestResourceStream("TheRealJournalRando.Resources.enemyData.json");
+            using Stream enemyData = a.GetManifestResourceStream("TheRealJournalRando.Resources.journalData.json");
 
             // version based off major.minor for settings (changes to settings will bump mod version),
             // and the content of all logic-modifying files
