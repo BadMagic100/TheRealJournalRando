@@ -18,42 +18,38 @@ namespace TheRealJournalRando.Rando
         private const int HSPACE_XLARGE = 450;
         private const int HSPACE_XXLARGE = 750;
 
-        private SmallButton? pageRootButton;
-        internal MenuPage? journalRandoPage;
-        internal MenuEnum<JournalRandomizationType>? randomizationTypeControl;
-        internal MenuEnum<StartingItems>? startItemsControl;
+        private SmallButton pageRootButton;
+        private MenuPage journalRandoPage;
+        private MenuEnum<JournalRandomizationType> randomizationTypeControl;
+        private MenuEnum<StartingItems> startItemsControl;
 
-        private MenuElementFactory<JournalRandomizationSettings>? toplevelMef;
-        private MenuElementFactory<JournalRandomizationSettings.PoolSettings>? poolMef;
-        private MenuElementFactory<JournalRandomizationSettings.CostSettings>? costsMef;
-        private MenuElementFactory<JournalRandomizationSettings.LongLocationSettings>? llsMef;
+        private MenuElementFactory<JournalRandomizationSettings> toplevelMef;
+        private MenuElementFactory<JournalRandomizationSettings.PoolSettings> poolMef;
+        private MenuElementFactory<JournalRandomizationSettings.CostSettings> costsMef;
+        private MenuElementFactory<JournalRandomizationSettings.LongLocationSettings> llsMef;
 
-        private static ConnectionMenu? instance = null;
-        internal static ConnectionMenu Instance => instance ??= new();
-
-        public static void OnExitMenu()
-        {
-            instance = null;
-        }
+        internal static ConnectionMenu? Instance { get; private set; }
 
         public static void Hook()
         {
-            RandomizerMenuAPI.AddMenuPage(Instance.ConstructMenu, Instance.HandleButton);
-            MenuChangerMod.OnExitMainMenu += OnExitMenu;
+            RandomizerMenuAPI.AddMenuPage(ConstructMenu, HandleButton);
+            MenuChangerMod.OnExitMainMenu += () => Instance = null;
         }
 
-        private bool HandleButton(MenuPage landingPage, out SmallButton button)
+        private static bool HandleButton(MenuPage landingPage, out SmallButton button)
         {
-            pageRootButton = new(landingPage, Localization.Localize("Journal Entries (Extended)"));
-            pageRootButton.AddHideAndShowEvent(landingPage, journalRandoPage!);
-            SetTopLevelButtonColor();
-            button = pageRootButton;
+            button = Instance!.pageRootButton;
             return true;
         }
 
-        private void ConstructMenu(MenuPage landingPage)
+        private static void ConstructMenu(MenuPage connectionPage)
         {
-            journalRandoPage = new MenuPage(Localization.Localize("Journal Entries (Extended)"), landingPage);
+            Instance = new(connectionPage);
+        }
+
+        private ConnectionMenu(MenuPage connectionPage)
+        {
+            journalRandoPage = new MenuPage(Localization.Localize("Journal Entries (Extended)"), connectionPage);
             VerticalItemPanel toplevelVip = new(journalRandoPage, new Vector2(0, 400), VSPACE_LARGE, true);
 
             toplevelMef = new(journalRandoPage, RandoInterop.Settings);
@@ -103,14 +99,15 @@ namespace TheRealJournalRando.Rando
             toplevelVip.ResetNavigation();
             toplevelVip.SymSetNeighbor(Neighbor.Down, journalRandoPage.backButton);
 
+            pageRootButton = new(connectionPage, Localization.Localize("Journal Entries (Extended)"));
+            pageRootButton.AddHideAndShowEvent(connectionPage, journalRandoPage);
+            SetTopLevelButtonColor();
+
         }
 
         private void SetTopLevelButtonColor()
         {
-            if (pageRootButton != null)
-            {
-                pageRootButton.Text.color = RandoInterop.Settings.Enabled ? Colors.TRUE_COLOR : Colors.DEFAULT_COLOR;
-            }
+            pageRootButton.Text.color = RandoInterop.Settings.Enabled ? Colors.TRUE_COLOR : Colors.DEFAULT_COLOR;
         }
 
         private void EnabledChanged(IValueElement obj)
@@ -120,15 +117,15 @@ namespace TheRealJournalRando.Rando
 
         private void RandomizationTypeChanged(IValueElement obj)
         {
-            if (randomizationTypeControl?.Value.HasFlag(JournalRandomizationType.EntriesOnly) == true)
+            if (randomizationTypeControl.Value.HasFlag(JournalRandomizationType.EntriesOnly) == true)
             {
-                startItemsControl?.SetValue(startItemsControl.Value & ~StartingItems.Entries);
+                startItemsControl.SetValue(startItemsControl.Value & ~StartingItems.Entries);
             }
         }
 
         private void StartItemsChanging(MenuItem self, ref object newValue, ref bool cancelChange)
         {
-            if (randomizationTypeControl?.Value.HasFlag(JournalRandomizationType.EntriesOnly) == true)
+            if (randomizationTypeControl.Value.HasFlag(JournalRandomizationType.EntriesOnly) == true)
             {
                 newValue = ((StartingItems)newValue) & ~StartingItems.Entries;
             }
@@ -136,16 +133,16 @@ namespace TheRealJournalRando.Rando
 
         public void Disable()
         {
-            IValueElement? elem = toplevelMef?.ElementLookup[nameof(JournalRandomizationSettings.Enabled)];
-            elem?.SetValue(false);
+            IValueElement elem = toplevelMef.ElementLookup[nameof(JournalRandomizationSettings.Enabled)];
+            elem.SetValue(false);
         }
 
         public void ApplySettingsToMenu(JournalRandomizationSettings settings)
         {
-            toplevelMef?.SetMenuValues(settings);
-            poolMef?.SetMenuValues(settings.Pools);
-            costsMef?.SetMenuValues(settings.Costs);
-            llsMef?.SetMenuValues(settings.LongLocations);
+            toplevelMef.SetMenuValues(settings);
+            poolMef.SetMenuValues(settings.Pools);
+            costsMef.SetMenuValues(settings.Costs);
+            llsMef.SetMenuValues(settings.LongLocations);
         }
     }
 }
