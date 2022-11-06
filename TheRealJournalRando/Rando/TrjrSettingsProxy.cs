@@ -47,11 +47,11 @@ namespace TheRealJournalRando.Rando
         {
             if (settings != null)
             {
-                ConnectionMenu.Instance.ApplySettingsToMenu(settings);
+                ConnectionMenu.Instance!.ApplySettingsToMenu(settings);
             }
             else
             {
-                ConnectionMenu.Instance.Disable();
+                ConnectionMenu.Instance!.Disable();
             }
         }
 
