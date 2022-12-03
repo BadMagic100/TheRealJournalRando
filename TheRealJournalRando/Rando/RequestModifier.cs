@@ -313,6 +313,8 @@ namespace TheRealJournalRando.Rando
 
         private static void ApplyNotesCostRandomization(RequestBuilder rb)
         {
+            rb.CostConverters.Subscribe(0f, ConvertKillCosts!);
+
             if (!RandoInterop.Settings.Enabled || RandoInterop.Settings.Costs.CostRandomizationType == CostRandomizationType.Unrandomized)
             {
                 return;
@@ -348,10 +350,6 @@ namespace TheRealJournalRando.Rando
                     };
                 });
             }
-
-            #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
-            rb.CostConverters.Subscribe(0f, ConvertKillCosts);
-            #pragma warning restore CS8622
 
             static bool ConvertKillCosts(LogicCost lc, out Cost? cost)
             {
