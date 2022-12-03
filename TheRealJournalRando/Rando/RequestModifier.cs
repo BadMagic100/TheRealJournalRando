@@ -350,22 +350,22 @@ namespace TheRealJournalRando.Rando
                     };
                 });
             }
+        }
 
-            static bool ConvertKillCosts(LogicCost lc, out Cost? cost)
+        private static bool ConvertKillCosts(LogicCost lc, out Cost? cost)
+        {
+            if (lc is LogicEnemyKillCost kc)
             {
-                if (lc is LogicEnemyKillCost kc)
-                {
-                    cost = EnemyKillCost.ConstructCost(kc.EnemyIcName, kc.Amount);
-                    return true;
-                }
-                else if (lc is SimpleCost sc && icNameByTermName.ContainsKey(sc.term.Name))
-                {
-                    cost = EnemyKillCost.ConstructCost(icNameByTermName[sc.term.Name], sc.threshold);
-                    return true;
-                }
-                cost = default;
-                return false;
+                cost = EnemyKillCost.ConstructCost(kc.EnemyIcName, kc.Amount);
+                return true;
             }
+            else if (lc is SimpleCost sc && icNameByTermName.ContainsKey(sc.term.Name))
+            {
+                cost = EnemyKillCost.ConstructCost(icNameByTermName[sc.term.Name], sc.threshold);
+                return true;
+            }
+            cost = default;
+            return false;
         }
 
         private static float ComputeWeight(Random rng)
