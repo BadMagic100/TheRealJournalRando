@@ -137,7 +137,7 @@
   },
   {
     "name": "Defeated_Any_Durandoo",
-    "logic": "((Fungus1_11 | Fungus1_12 | Fungus1_13[right1]) + ACID | Fungus3_39) + COMBAT[Durandoo]"
+    "logic": "((Fungus1_11 | Fungus1_12 | Fungus1_13[right1]) + ACID | (Fungus3_39 + (ACID | RIGHTSLASH | GREATSLASH | RIGHTDASHSLASH | Cyclone_Slash | LEFTSUPERDASH)) + COMBAT[Durandoo]"
   },
   {
     "name": "Defeated_Any_Duranda",
