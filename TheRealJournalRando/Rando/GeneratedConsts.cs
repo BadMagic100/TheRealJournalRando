@@ -2,12 +2,12 @@
 
 namespace TheRealJournalRando.Rando.Generated
 {
-    [GenerateLogicDefNames("enemyLocations.json")]
+    [GenerateLogicDefNames("Logic/enemyLocations.json")]
     public static partial class Locations { }
 
-    [GenerateLogicDefNames("waypoints.json")]
+    [GenerateLogicDefNames("Logic/waypoints.json")]
     public static partial class Waypoints { }
 
-    [GenerateTerms("terms.json")]
+    [GenerateTerms("Logic/terms.json")]
     public static partial class Terms { }
 }

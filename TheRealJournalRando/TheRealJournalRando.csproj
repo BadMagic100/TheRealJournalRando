@@ -519,6 +519,6 @@
     <None Include="LocalOverrides.targets" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="RandoConstantGenerators" Version="1.0.2" />
+    <PackageReference Include="RandoConstantGenerators" Version="1.2.0" />
   </ItemGroup>
 </Project>
