@@ -15,8 +15,6 @@ namespace TheRealJournalRando.Rando
 {
     internal static class LogicPatcher
     {
-        private const int ARBITRARILY_LARGE_ENEMY_VALUE = 10000;
-
         public static void Hook()
         {
             RCData.RuntimeLogicOverride.Subscribe(10f, ApplyLogic);
@@ -52,7 +50,7 @@ namespace TheRealJournalRando.Rando
                 }
                 else
                 {
-                    Term progressiveEntry = lmb.GetOrAddTerm($"PARTIALENTRY[{enemy.icName}]");
+                    Term progressiveEntry = lmb.GetOrAddTerm($"PARTIALENTRY[{enemy.icName}]", TermType.SignedByte);
                     // entry: if notes are progressive and you have one of the things already, gives the entry part and notes
                     //        else, give an entry part
                     // notes: if you already have one of the entry parts, give the notes and entry part
@@ -102,18 +100,18 @@ namespace TheRealJournalRando.Rando
 
             Term kingsmoulds = lmb.GetTerm(Terms.KINGSMOULDS);
             lmb.AddItem(new SingleItem(LogicItems.Kingsmould, new TermValue(kingsmoulds, 1)));
-            lmb.AddItem(new SingleItem(LogicItems.RespawningKingsmould, new TermValue(kingsmoulds, ARBITRARILY_LARGE_ENEMY_VALUE)));
+            lmb.AddItem(new SingleItem(LogicItems.RespawningKingsmould, new TermValue(kingsmoulds, int.MaxValue)));
 
             Term elderbaldurs = lmb.GetTerm(Terms.ELDERBALDURS);
             lmb.AddItem(new SingleItem(LogicItems.ElderBaldur, new TermValue(elderbaldurs, 1)));
 
             Term gruzMothers = lmb.GetTerm(Terms.GRUZMOTHERS);
             lmb.AddItem(new SingleItem(LogicItems.GruzMother, new TermValue(gruzMothers, 1)));
-            lmb.AddItem(new SingleItem(LogicItems.RespawningGruzMother, new TermValue(gruzMothers, ARBITRARILY_LARGE_ENEMY_VALUE)));
+            lmb.AddItem(new SingleItem(LogicItems.RespawningGruzMother, new TermValue(gruzMothers, int.MaxValue)));
 
             Term vengeflyKings = lmb.GetTerm(Terms.VENGEFLYKINGS);
             lmb.AddItem(new SingleItem(LogicItems.VengeflyKing, new TermValue(vengeflyKings, 1)));
-            lmb.AddItem(new SingleItem(LogicItems.RespawningVengeflyKing, new TermValue(vengeflyKings, ARBITRARILY_LARGE_ENEMY_VALUE)));
+            lmb.AddItem(new SingleItem(LogicItems.RespawningVengeflyKing, new TermValue(vengeflyKings, int.MaxValue)));
 
         }
 

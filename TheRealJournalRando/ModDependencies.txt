@@ -1,5 +1,5 @@
-ItemChanger
+ItemChanger from https://files.catbox.moe/wydu5r.zip
 MenuChanger
-Randomizer 4
-RandomizerCore
+Randomizer 4 from https://cdn.discordapp.com/attachments/880316066256019496/1060432064974962708/RandomizerMod.zip
+RandomizerCore from https://cdn.discordapp.com/attachments/880316066256019496/1060432064719106119/RandomizerCore.zip
 RandoSettingsManager

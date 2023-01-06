@@ -62,7 +62,7 @@ namespace TheRealJournalRando.Rando
 
             if (RandoInterop.Settings.JournalRandomizationType == JournalRandomizationType.All)
             {
-                pi.Setters.Add(new TermValue(lm.GetTerm(Terms.PROGRESSIVENOTES), 1));
+                pi.Setters.Add(new TermValue(lm.GetTerm(Terms.PROGRESSIVENOTES)!, 1));
             }
         }
 
@@ -158,7 +158,7 @@ namespace TheRealJournalRando.Rando
                 int cost = isNotes ? enemy.notesCost : 1;
                 if (termNameByIcName.ContainsKey(enemy.icName))
                 {
-                    Term t = factory.lm.GetTerm(termNameByIcName[enemy.icName]);
+                    Term t = factory.lm.GetTerm(termNameByIcName[enemy.icName])!;
                     rl.AddCost(new SimpleCost(t, cost));
                 }
                 else

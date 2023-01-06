@@ -1,4 +1,5 @@
-﻿using RandomizerCore.Logic;
+﻿using Newtonsoft.Json;
+using RandomizerCore.Logic;
 using System.Collections.Generic;
 
 namespace TheRealJournalRando.Rando
@@ -13,7 +14,8 @@ namespace TheRealJournalRando.Rando
         public bool Respawns { get; init; }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public LogicEnemyKillCost() { }
+        [JsonConstructor]
+        private LogicEnemyKillCost() { }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         public LogicEnemyKillCost(LogicManager lm, string enemyIcName, bool respawns, int amount)
@@ -21,9 +23,11 @@ namespace TheRealJournalRando.Rando
             EnemyIcName = enemyIcName;
             Amount = amount;
             Respawns = respawns;
-            CanBenchWaypoint = lm.GetTerm("Can_Bench");
+            CanBenchWaypoint = lm.GetTerm("Can_Bench")
+                ?? throw new MissingTermException($"Can_Bench not found");
             // use our own custom-defined "Defeated_Any" waypoints to make sure we can cover our special cases
-            DefeatWaypoint = lm.GetTerm($"Defeated_Any_{enemyIcName}");
+            DefeatWaypoint = lm.GetTerm($"Defeated_Any_{enemyIcName}") 
+                ?? throw new MissingTermException($"Defeated_Any_{enemyIcName} not found");
         }
 
         public override bool CanGet(ProgressionManager pm)

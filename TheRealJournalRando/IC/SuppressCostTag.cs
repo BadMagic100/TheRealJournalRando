@@ -1,6 +1,7 @@
 ﻿using ItemChanger;
 using ItemChanger.Placements;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TheRealJournalRando.IC
 {
@@ -17,7 +18,7 @@ namespace TheRealJournalRando.IC
     {
         public ICostMatcher? costMatcher;
 
-        private readonly List<(string, Cost)> suppressedCosts = new();
+        private readonly List<Cost> suppressedCosts = new();
         private ISingleCostPlacement? placement;
 
         public override void Load(object parent)
@@ -48,18 +49,14 @@ namespace TheRealJournalRando.IC
             if (placement != null)
             {
                 TheRealJournalRando.Instance.LogDebug($"Restoring cost on tag unload for {(placement as AbstractPlacement)?.Name}");
-                foreach ((string path, Cost cost) in suppressedCosts)
-                {
-                    placement.Cost = RestoreCostPatch(placement.Cost, path, cost);
-                }
+                placement.Cost = RestoreCost(placement.Cost);
                 TheRealJournalRando.Instance.LogDebug($"Final restored cost is {placement.Cost}");
                 suppressedCosts.Clear();
             }
         }
 
-        private Cost? ModifyCost(Cost? c, string path = "/")
+        private Cost? ModifyCost(Cost? c)
         {
-            TheRealJournalRando.Instance.LogDebug($"Inspecting cost `{c}` at path `{path}`");
             if (c == null)
             {
                 return null;
@@ -67,28 +64,22 @@ namespace TheRealJournalRando.IC
 
             if (c is MultiCost mc)
             {
-                int idx = 0;
-                for (int i = 0; i < mc.Costs.Count; i++, idx++)
+                TheRealJournalRando.Instance.LogDebug("Suppressing costs nested within MultiCost");
+                var partitionedCosts = mc.GroupBy(x => costMatcher?.Match(c) == true)
+                    .ToDictionary(g => g.Key);
+                suppressedCosts.AddRange(partitionedCosts[true]);
+                foreach(Cost cc in suppressedCosts)
                 {
-                    TheRealJournalRando.Instance.LogDebug($"Processing cost {i} (actual {idx}) of {mc.Costs.Count}");
-                    Cost? updated = ModifyCost(mc.Costs[i], path + $"{idx}/");
-                    if (updated == null)
-                    {
-                        mc.Costs.RemoveAt(i);
-                        i--;
-                    }
-                    else
-                    {
-                        mc.Costs[i] = updated;
-                    }
+                    TheRealJournalRando.Instance.LogDebug($"Matched cost {cc}, suppressing");
+                    c.Unload();
                 }
-                return mc;
+                return new MultiCost(partitionedCosts[false]);
             }
             else if (costMatcher?.Match(c) == true)
             {
-                TheRealJournalRando.Instance.LogDebug("Matched cost, suppressing");
+                TheRealJournalRando.Instance.LogDebug($"Matched cost {c}, suppressing");
                 c.Unload();
-                suppressedCosts.Add((path, c));
+                suppressedCosts.Add(c);
                 return null;
             }
             else
@@ -98,40 +89,32 @@ namespace TheRealJournalRando.IC
             }
         }
 
-        private Cost? RestoreCostPatch(Cost? c, string path, Cost patchedCost)
+        private Cost? RestoreCost(Cost? c)
         {
-            TheRealJournalRando.Instance.LogDebug($"Attempting to apply cost `{patchedCost}` to `{c}` at `{path}`");
-            // a multicost that may or may not have been modified
-            if (c is MultiCost mc)
+            TheRealJournalRando.Instance.LogDebug($"Attempting to restore cost");
+            if (c is MultiCost mc && suppressedCosts.Any())
             {
-                int splitter = path.IndexOf('/', 1);
-                int patchedIndex = int.Parse(path.Substring(1, splitter - 1));
-                string nestedPath = path.Substring(splitter);
-                if (nestedPath.IndexOf('/', 1) != -1)
+                TheRealJournalRando.Instance.LogDebug("Restoring suppressed costs into MultiCost");
+                foreach (Cost cc in suppressedCosts)
                 {
-                    // this is a deeply nested path pointing to another multicost
-                    mc.Costs[patchedIndex] = RestoreCostPatch(mc.Costs[patchedIndex], nestedPath, patchedCost);
+                    TheRealJournalRando.Instance.LogDebug($"Restoring suppressed cost {cc}");
+                    cc.Load();
                 }
-                else
-                {
-                    // this is trying to insert a removed cost back into this multicost
-                    mc.Costs.Insert(patchedIndex, RestoreCostPatch(null, nestedPath, patchedCost));
-                }
-                return mc;
+                return mc + new MultiCost(suppressedCosts);
+
             }
             // a cost that was removed
             else if (c == null)
             {
-                if (path == "/")
+                if (suppressedCosts.Any())
                 {
-                    TheRealJournalRando.Instance.LogDebug("Patch applied");
-                    patchedCost.Load();
-                    return patchedCost;
+                    Cost cc = suppressedCosts[0];
+                    TheRealJournalRando.Instance.LogDebug($"Restoring suppressed cost {cc}");
+                    return cc;
                 }
                 else
                 {
-                    // invalid patch path; we can only restore a root path to a removed cost
-                    TheRealJournalRando.Instance.LogError("Failed to restore cost: invalid patch");
+                    TheRealJournalRando.Instance.LogDebug("No cost to restore");
                     return null;
                 }
             }
