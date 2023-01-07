@@ -6,7 +6,7 @@
   },
   {
     "name": "Defeated_Any_Vengefly",
-    "logic": "Cliffs_01[right2] | (Cliffs_01 + TERMINALSHADESKIPS + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[left1] | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1] | Fungus1_20_v02 | Fungus1_28[left1] | Room_Colosseum_01[left1] + Defeated_Colosseum_1 | Ruins1_03 | Ruins1_04[right1] | Ruins1_04[bot1] | Ruins1_04[door1] | Ruins1_05c[top3] | Ruins1_05c[top2] | Ruins1_17 | Ruins2_07[left1] | Tutorial_01",
+    "logic": "Cliffs_01[right2] | (Cliffs_01 + $SHADESKIP[2HITS] + OBSCURESKIPS + ENEMYPOGOS) | Cliffs_02 | Cliffs_02[left1] | Cliffs_02[bot1] + (ANYCLAW | WINGS) | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | (Crossroads_50[left1] + (RIGHTSUPERDASH | SWIM)) | (Crossroads_50[right1] + (LEFTSUPERDASH | SWIM)) | Crossroads_ShamanTemple[left1] | Fungus1_20_v02 | Fungus1_28[left1] | Room_Colosseum_01[left1] + Defeated_Colosseum_1 | Ruins1_03 | Ruins1_04[right1] | Ruins1_04[bot1] | Ruins1_04[door1] | Ruins1_05c[top3] | Ruins1_05c[top2] | Ruins1_17 | Ruins2_07[left1] | Tutorial_01",
     "Stateless": true
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "name": "Defeated_Any_Aspid_Hunter",
-    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + 2HITS) + LEFTDASH)) | Crossroads_03 | Crossroads_08 | Crossroads_19 | Crossroads_22[bot1]",
+    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + $TAKEDAMAGE[2]) + LEFTDASH)) | Crossroads_03 | Crossroads_08 | Crossroads_19 | Crossroads_22[bot1]",
     "Stateless": true
   },
   {
@@ -91,17 +91,17 @@
   },
   {
     "name": "Defeated_Any_Menderbug",
-    "logic": "Crossroads_01[top1] + OBSCURESKIPS + LEFTSLASH | (Crossroads_01[left1] + RIGHTFIREBALL) | (Crossroads_01[right1] + LEFTFIREBALL)",
+    "logic": "Crossroads_01[top1] + OBSCURESKIPS + LEFTSLASH | (Crossroads_01[left1] + RIGHTFIREBALL + $CASTSPELL) | (Crossroads_01[right1] + LEFTFIREBALL + $CASTSPELL)",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Lifeseed",
-    "logic": "*Lifeblood_Cocoon-King's_Pass | *Lifeblood_Cocoon-Ancestral_Mound | *Lifeblood_Cocoon-Greenpath | *Lifeblood_Cocoon-Fog_Canyon_West | *Lifeblood_Cocoon-Mantis_Village | *Lifeblood_Cocoon-Failed_Tramway | *Lifeblood_Cocoon-Galien | *Lifeblood_Cocoon-Kingdom's_Edge + (RIGHTCLAW | WINGS + (UPSLASH | SCREAM | GREATSLASH))",
+    "logic": "*Lifeblood_Cocoon-King's_Pass | *Lifeblood_Cocoon-Ancestral_Mound | *Lifeblood_Cocoon-Greenpath | *Lifeblood_Cocoon-Fog_Canyon_West | *Lifeblood_Cocoon-Mantis_Village | *Lifeblood_Cocoon-Failed_Tramway | *Lifeblood_Cocoon-Galien | *Lifeblood_Cocoon-Kingdom's_Edge + (RIGHTCLAW | WINGS + (UPSLASH | SCREAM + $CASTSPELL | GREATSLASH))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Baldur",
-    "logic": "Crossroads_ShamanTemple[left1] | Mines_35[left1] + QUAKE + (LEFTCLAW | (RIGHTCLAW + PRECISEMOVEMENT + (RIGHTDASH | AIRSTALL)) | WINGS)",
+    "logic": "Crossroads_ShamanTemple[left1] | Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (LEFTCLAW | (RIGHTCLAW + PRECISEMOVEMENT + (RIGHTDASH | AIRSTALL + $CASTSPELL)) | WINGS)",
     "Stateless": true
   },
   {
@@ -146,12 +146,12 @@
   },
   {
     "name": "Defeated_Any_Gulka",
-    "logic": "Fungus1_11 + (COMBAT[Right_Gulka] | COMBAT[Up_Gulka]) | Fungus1_12 + COMBAT[Any_Gulka] | Fungus1_29 + (COMBAT[Left_Gulka] | SCREAM | (UPSLASH + PROFICIENTCOMBAT))",
+    "logic": "Fungus1_11 + (COMBAT[Right_Gulka] | COMBAT[Up_Gulka]) | Fungus1_12 + COMBAT[Any_Gulka] | Fungus1_29 + (COMBAT[Left_Gulka] | SCREAM + $CASTSPELL | (UPSLASH + PROFICIENTCOMBAT))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Maskfly",
-    "logic": "Fungus1_01 + (COMBAT[Right_Maskfly] | UPSLASH | SCREAM) | Fungus1_01[right1] + COMBAT[Left_Maskfly] | Fungus1_01b | Fungus1_03 + (COMBAT[Right_Maskfly] | SCREAM | LEFTDASHSLASH | LEFTFIREBALL | RIGHTCLAW | WINGS) | (Fungus1_12[left1] + (COMBAT[Right_Maskfly] | RIGHTSLASH)) | (Fungus1_12[right1] + (COMBAT[Left_Maskfly] | LEFTSLASH)) | (Fungus1_23[left1] + COMBAT[Right_Maskfly]) | (Fungus1_23[right1] + COMBAT[Left_Maskfly]) | (*Queen's_Gardens_Map + COMBAT[Left_Maskfly]) | (Fungus1_24[left1] + (UPSLASH | SCREAM)) | (Fungus1_26[door_SlugShrine] + COMBAT[Right_Maskfly]) | (Fungus1_26[right1] + COMBAT[Left_Maskfly]) | (Fungus1_36[left1] + COMBAT[Right_Maskfly])",
+    "logic": "Fungus1_01 + (COMBAT[Right_Maskfly] | UPSLASH | SCREAM + $CASTSPELL) | Fungus1_01[right1] + COMBAT[Left_Maskfly] | Fungus1_01b | Fungus1_03 + (COMBAT[Right_Maskfly] | SCREAM + $CASTSPELL | LEFTDASHSLASH | LEFTFIREBALL + $CASTSPELL | RIGHTCLAW | WINGS) | (Fungus1_12[left1] + (COMBAT[Right_Maskfly] | RIGHTSLASH)) | (Fungus1_12[right1] + (COMBAT[Left_Maskfly] | LEFTSLASH)) | (Fungus1_23[left1] + COMBAT[Right_Maskfly]) | (Fungus1_23[right1] + COMBAT[Left_Maskfly]) | (*Queen's_Gardens_Map + COMBAT[Left_Maskfly]) | (Fungus1_24[left1] + (UPSLASH | SCREAM + $CASTSPELL)) | (Fungus1_26[door_SlugShrine] + COMBAT[Right_Maskfly]) | (Fungus1_26[right1] + COMBAT[Left_Maskfly]) | (Fungus1_36[left1] + COMBAT[Right_Maskfly])",
     "Stateless": true
   },
   {
@@ -176,12 +176,12 @@
   },
   {
     "name": "Defeated_Any_Duranda",
-    "logic": "Fungus1_09[right1] + COMBAT[Duranda] | Fungus1_09[left1] + (SCREAM | RIGHTFIREBALL | (3HITS + (RIGHTDASHSLASH | GREATSLASH)) | (1HIT + CYCLONE))",
+    "logic": "Fungus1_09[right1] + (SIDESLASH | FIREBALL + $CASTSPELL[2] | SCREAM + $CASTSPELL) | Fungus1_09[left1] + ($TAKEDAMAGE[5] + RIGHTSLASH | SCREAM + $CASTSPELL | RIGHTFIREBALL + $CASTSPELL[2] | $TAKEDAMAGE[3] + (RIGHTDASHSLASH | GREATSLASH) | ($TAKEDAMAGE + CYCLONE))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Aluba",
-    "logic": "Fungus1_26[door_SlugShrine] + (WINGS | Shaman_Stone + LEFTFIREBALL | (LEFTSUPERDASH + SCREAM>1 | LEFTDASH + PRECISEMOVEMENT + (SCREAM | UPSLASH)) + (ACID | 1HIT)) | Fungus3_48[right1] + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH | FIREBALL + Shaman_Stone | WINGS) | *Grub-Queen's_Gardens_Marmu + (Spore_Shroom | FIREBALL>1)",
+    "logic": "Fungus1_26[door_SlugShrine] + (WINGS | Shaman_Stone + LEFTFIREBALL + $CASTSPELL | (LEFTSUPERDASH + SCREAM>1 + $CASTSPELL | LEFTDASH + PRECISEMOVEMENT + (SCREAM + $CASTSPELL | UPSLASH)) + (ACID | $TAKEDAMAGE)) | Fungus3_48[right1] + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH | FIREBALL + Shaman_Stone + $CASTSPELL | WINGS) | *Grub-Queen's_Gardens_Marmu + (Spore_Shroom | FIREBALL>1 + $CASTSPELL)",
     "Stateless": true
   },
   {
@@ -206,17 +206,17 @@
   },
   {
     "name": "Defeated_Any_Fungling",
-    "logic": "Fungus2_03 | Fungus2_17 | Fungus2_18[bot1] + (WINGS | ANYCLAW | UPSLASH | SCREAM) | Fungus2_18[right1] | Fungus2_19[left1] | Fungus2_19[top1] | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] | Fungus2_33 | Room_GG_Shortcut[top1] | Room_GG_Shortcut[left1] + (RIGHTCLAW + (LEFTSUPERDASH | SWIM) | WINGS + (LEFTCLAW + SWIM | RIGHTCLAW + LEFTDASH))",
+    "logic": "Fungus2_03 | Fungus2_17 | Fungus2_18[bot1] + (WINGS | ANYCLAW | UPSLASH | SCREAM + $CASTSPELL) | Fungus2_18[right1] | Fungus2_19[left1] | Fungus2_19[top1] | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] | Fungus2_33 | Room_GG_Shortcut[top1] | Room_GG_Shortcut[left1] + (RIGHTCLAW + (LEFTSUPERDASH | SWIM) | WINGS + (LEFTCLAW + SWIM | RIGHTCLAW + LEFTDASH))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Fungoon",
-    "logic": "Fungus2_03 | Fungus2_06[top1] | Fungus2_08 | Fungus2_11 | Fungus2_18[bot1] + (WINGS | ANYCLAW | UPSLASH | SCREAM) | Fungus2_29 | Fungus2_29[bot1] + (ANYCLAW | WINGS) | Fungus2_30[top1] | Fungus2_33",
+    "logic": "Fungus2_03 | Fungus2_06[top1] | Fungus2_08 | Fungus2_11 | Fungus2_18[bot1] + (WINGS | ANYCLAW | UPSLASH | SCREAM + $CASTSPELL) | Fungus2_29 | Fungus2_29[bot1] + (ANYCLAW | WINGS) | Fungus2_30[top1] | Fungus2_33",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Sporg",
-    "logic": "Fungus2_03 | Fungus2_04 | Fungus2_08 | Fungus2_11 | Fungus2_20 + (UPSLASH | SCREAM | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH) | Defeated_Bretta_Sporg | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] + (UPSLASH | SIDESLASH | Great_Slash | Cyclone_Slash | ANYDASHSLASH | SCREAM | FIREBALL)",
+    "logic": "Fungus2_03 | Fungus2_04 | Fungus2_08 | Fungus2_11 | Fungus2_20 + (UPSLASH | SCREAM + $CASTSPELL | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH) | Defeated_Bretta_Sporg | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] + (UPSLASH | SIDESLASH | Great_Slash | Cyclone_Slash | ANYDASHSLASH | SCREAM + $CASTSPELL | FIREBALL + $CASTSPELL[2])",
     "Stateless": true
   },
   {
@@ -226,7 +226,7 @@
   },
   {
     "name": "Defeated_Any_Shrumeling",
-    "logic": "Fungus2_05 | Fungus2_07[left1] | Fungus2_07[right1] + SCREAM | Fungus2_23 | Fungus2_28 | Fungus2_29 | Fungus2_30[top1]",
+    "logic": "Fungus2_05 | Fungus2_07[left1] | Fungus2_07[right1] + SCREAM + $CASTSPELL | Fungus2_23 | Fungus2_28 | Fungus2_29 | Fungus2_30[top1]",
     "Stateless": true
   },
   {
@@ -256,7 +256,7 @@
   },
   {
     "name": "Defeated_Any_Husk_Sentry",
-    "logic": "Abyss_02 | Ruins1_01[left1] | Ruins1_02[top1] | Ruins1_03 | Ruins1_04[right1] | Ruins1_05c | *Simple_Key-City | Ruins2_05[left1] | Ruins2_05[bot1] + (SCREAM | UPSLASH | GREATSLASH) | *Lore_Tablet-Dung_Defender | Waterways_07[top1] | Waterways_07[door1]",
+    "logic": "Abyss_02 | Ruins1_01[left1] | Ruins1_02[top1] | Ruins1_03 | Ruins1_04[right1] | Ruins1_05c | *Simple_Key-City | Ruins2_05[left1] | Ruins2_05[bot1] + (SCREAM + $CASTSPELL | UPSLASH | GREATSLASH) | *Lore_Tablet-Dung_Defender | Waterways_07[top1] | Waterways_07[door1]",
     "Stateless": true
   },
   {
@@ -336,17 +336,17 @@
   },
   {
     "name": "Defeated_Any_Belfly",
-    "logic": "*Pale_Ore-Basin | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_09[left1] | RestingGrounds_10 + UPWALLBREAK | Room_Colosseum_01[left1] + Defeated_Colosseum_2 | Ruins1_01[left1] | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c | Ruins2_07[right1] | Waterways_01 | Waterways_02[top1] | Waterways_02[top2] | (Waterways_02[bot2] | Waterways_02[top3] + QUAKE) + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | *Rancid_Egg-Waterways_West_Pickup | Waterways_07 | *Soul_Totem-Waterways_Flukemarm | Waterways_08[left2] | Waterways_13[left1]",
+    "logic": "*Pale_Ore-Basin | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_09[left1] | RestingGrounds_10 + UPWALLBREAK | Room_Colosseum_01[left1] + Defeated_Colosseum_2 | Ruins1_01[left1] | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c | Ruins2_07[right1] | Waterways_01 | Waterways_02[top1] | Waterways_02[top2] | (Waterways_02[bot2] | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3) + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | *Rancid_Egg-Waterways_West_Pickup | Waterways_07 | *Soul_Totem-Waterways_Flukemarm | Waterways_08[left2] | Waterways_13[left1]",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Pilflip",
-    "logic": "Waterways_01 | Waterways_02[bot2] | Waterways_02[top2] | Waterways_02[top1] | Waterways_02[top3] + QUAKE + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_06[right1] + (LEFTSUPERDASH | ACID) | Waterways_06[top1] | *Soul_Totem-Waterways_East",
+    "logic": "Waterways_01 | Waterways_02[bot2] | Waterways_02[top2] | Waterways_02[top1] | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3 + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_06[right1] + (LEFTSUPERDASH | ACID) | Waterways_06[top1] | *Soul_Totem-Waterways_East",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Hwurmp",
-    "logic": "Waterways_01 | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[left1] | Waterways_04b[right2] + WINGS + (LEFTCLAW | ENEMYPOGOS | SCREAM) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW)) | Waterways_07 | Waterways_09[left1] | Waterways_09[right1] | *Isma's_Tear | Waterways_14[bot1] + ANYCLAW + (ACID | RIGHTSUPERDASH + WINGS) | Waterways_14[bot2] + (LEFTCLAW + WINGS | RIGHTCLAW) + (ACID | LEFTSUPERDASH + WINGS)",
+    "logic": "Waterways_01 | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[left1] | Waterways_04b[right2] + WINGS + (LEFTCLAW | ENEMYPOGOS | SCREAM + $CASTSPELL) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW)) | Waterways_07 | Waterways_09[left1] | Waterways_09[right1] | *Isma's_Tear | Waterways_14[bot1] + ANYCLAW + (ACID | RIGHTSUPERDASH + WINGS) | Waterways_14[bot2] + (LEFTCLAW + WINGS | RIGHTCLAW) + (ACID | LEFTSUPERDASH + WINGS)",
     "Stateless": true
   },
   {
@@ -366,12 +366,12 @@
   },
   {
     "name": "Defeated_Any_Flukefey",
-    "logic": "GG_Pipeway[right1] + (LEFTCLAW | WINGS | FIREBALL>1) | GG_Pipeway[left1] + (ANYCLAW | WINGS) + (SWIM | LEFTCLAW + RIGHTSUPERDASH | RIGHTDASH | WINGS + (PRECISEMOVEMENT | AIRSTALL)) | Waterways_02 | Waterways_04b[left1] | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[right2] + (SWIM | LEFTSUPERDASH + SCREAM) | Waterways_06[right1] + (LEFTSUPERDASH | ACID) | Waterways_06[top1] | Waterways_08",
+    "logic": "GG_Pipeway[right1] + (LEFTCLAW | WINGS | FIREBALL>1 + $CASTSPELL) | GG_Pipeway[left1] + (ANYCLAW | WINGS) + (SWIM | LEFTCLAW + RIGHTSUPERDASH | RIGHTDASH | WINGS + (PRECISEMOVEMENT | AIRSTALL + $CASTSPELL)) | Waterways_02 | Waterways_04b[left1] | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[right2] + (SWIM | LEFTSUPERDASH + SCREAM + $CASTSPELL) | Waterways_06[right1] + (LEFTSUPERDASH | ACID) | Waterways_06[top1] | Waterways_08",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Flukemon",
-    "logic": "GG_Pipeway[right1] | Waterways_02[top1] | Waterways_02[top3] + QUAKE | Waterways_02[top2] + (ANYCLAW | WINGS) | Waterways_02[bot1] | Waterways_02[bot2] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[left1] | Waterways_04[right1] + (RIGHTCLAW + LEFTSUPERDASH | ANYCLAW + LEFTDASH | WINGS | ENEMYPOGOS) | *Rancid_Egg-Waterways_West_Pickup | Waterways_08",
+    "logic": "GG_Pipeway[right1] | Waterways_02[top1] | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3 | Waterways_02[top2] + (ANYCLAW | WINGS) | Waterways_02[bot1] | Waterways_02[bot2] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[left1] | Waterways_04[right1] + (RIGHTCLAW + LEFTSUPERDASH | ANYCLAW + LEFTDASH | WINGS | ENEMYPOGOS) | *Rancid_Egg-Waterways_West_Pickup | Waterways_08",
     "Stateless": true
   },
   {
@@ -386,27 +386,27 @@
   },
   {
     "name": "Defeated_Any_Shardmite",
-    "logic": "Mines_11 | Mines_11[bot1] + (UPSLASH | SCREAM) | Mines_20 | Mines_24[left1] + (WINGS + FIREBALL | RIGHTDASH + SPELLS) | Mines_25[top1] | Mines_25[left1] + (WINGS + ENEMYPOGOS | SCREAM | RIGHTCLAW) | Mines_34[bot1] | Mines_34[left1] + QUAKE + (LEFTCLAW | WINGS | RIGHTCLAW + PRECISEMOVEMENT | SCREAM) | Mines_37[top1]",
+    "logic": "Mines_11 | Mines_11[bot1] + (UPSLASH | SCREAM + $CASTSPELL) | Mines_20 | Mines_24[left1] + (WINGS + FIREBALL + $CASTSPELL | RIGHTDASH + SPELLS + $CASTSPELL) | Mines_25[top1] | Mines_25[left1] + (WINGS + ENEMYPOGOS | SCREAM + $CASTSPELL | RIGHTCLAW) | Mines_34[bot1] | Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (LEFTCLAW | WINGS | RIGHTCLAW + PRECISEMOVEMENT | SCREAM + $CASTSPELL) | Mines_37[top1]",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Glimback",
-    "logic": "COMBAT[Glimback] + (Mines_02 | Mines_03[top1] | Mines_03[right1] | Mines_03[bot1] + (ANYCLAW | WINGS | UPSLASH | SCREAM | Great_Slash) | (Mines_07[left1] | Mines_07[right1]) + (LANTERN | DARKROOMS) | Mines_11[top1] | Mines_20[left3] | *King's_Idol-Crystal_Peak | Mines_30[right1] + SCREAM | (Mines_33[left1] | Mines_33[right1]) + LANTERN | Mines_34[bot1] + (ANYCLAW | WINGS | ENEMYPOGOS))",
+    "logic": "COMBAT[Glimback] + (Mines_02 | Mines_03[top1] | Mines_03[right1] | Mines_03[bot1] + (ANYCLAW | WINGS | UPSLASH | SCREAM + $CASTSPELL | Great_Slash) | (Mines_07[left1] | Mines_07[right1]) + (LANTERN | DARKROOMS) | Mines_11[top1] | Mines_20[left3] | *King's_Idol-Crystal_Peak | Mines_30[right1] + SCREAM + $CASTSPELL | (Mines_33[left1] | Mines_33[right1]) + LANTERN | Mines_34[bot1] + (ANYCLAW | WINGS | ENEMYPOGOS))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Crystal_Hunter",
-    "logic": "Mines_04 | Mines_04[left3] | (Mines_07[left1] | Mines_07[right1]) + (LANTERN | DARKROOMS) | Mines_16[top1] + (ANYCLAW | WINGS | SCREAM) | Mines_20 | Mines_20[left2] | Mines_23[left1] + (RIGHTDASH | RIGHTSUPERDASH | WINGS) | Mines_23[right1] | Mines_23[right2] + (LEFTDASH | WINGS) | Mines_25[top1] | Mines_25[left1] + LEFTCLAW + (WINGS + ENEMYPOGOS | RIGHTCLAW) | Mines_34[bot1] + (ANYCLAW | WINGS | ENEMYPOGOS) | Mines_35[left1] + QUAKE",
+    "logic": "Mines_04 | Mines_04[left3] | (Mines_07[left1] | Mines_07[right1]) + (LANTERN | DARKROOMS) | Mines_16[top1] + (ANYCLAW | WINGS | SCREAM + $CASTSPELL) | Mines_20 | Mines_20[left2] | Mines_23[left1] + (RIGHTDASH | RIGHTSUPERDASH | WINGS) | Mines_23[right1] | Mines_23[right2] + (LEFTDASH | WINGS) | Mines_25[top1] | Mines_25[left1] + LEFTCLAW + (WINGS + ENEMYPOGOS | RIGHTCLAW) | Mines_34[bot1] + (ANYCLAW | WINGS | ENEMYPOGOS) | Mines_35[left1] + QUAKE",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Crystal_Crawler",
-    "logic": "SPELLS + (Mines_05 | Mines_11 | Mines_11[bot1] + SCREAM | Mines_20 + (SCREAM | FIREBALL | ANYCLAW | WINGS) | Mines_37[top1] + ANYCLAW)",
+    "logic": "SPELLS + (Mines_05 | Mines_11 | Mines_11[bot1] + SCREAM + $CASTSPELL | Mines_20 + ((SCREAM | FIREBALL) + $CASTSPELL | ANYCLAW | WINGS) | Mines_37[top1] + ANYCLAW)",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Husk_Miner",
-    "logic": "Mines_02 | Mines_03[top1] | Mines_03[right1] | Mines_03[bot1] + (ANYCLAW | WINGS) | Mines_04 | Mines_11 | Mines_11[bot1] | Mines_17 | Mines_20 | Mines_24[left1] + (RIGHTDASH | WINGS | FIREBALL) | Mines_37[top1] + ANYCLAW",
+    "logic": "Mines_02 | Mines_03[top1] | Mines_03[right1] | Mines_03[bot1] + (ANYCLAW | WINGS) | Mines_04 | Mines_11 | Mines_11[bot1] | Mines_17 | Mines_20 | Mines_24[left1] + (RIGHTDASH | WINGS | FIREBALL + $CASTSPELL[3]) | Mines_37[top1] + ANYCLAW",
     "Stateless": true
   },
   {
@@ -456,12 +456,12 @@
   },
   {
     "name": "Defeated_Any_Deepling",
-    "logic": "(Deepnest_39[top1] | Deepnest_39[left1] | Deepnest_39[door1] | Deepnest_41[left2]) + (LANTERN | DARKROOMS) | (Deepnest_39 + (ANYCLAW | WINGS | (AIRSTALL + ROOMSOUL + ENEMYPOGOS))) | Deepnest_42[bot1] | Deepnest_Spider_Town[left1]",
+    "logic": "(Deepnest_39[top1] | Deepnest_39[left1] | Deepnest_39[door1] | Deepnest_41[left2]) + (LANTERN | DARKROOMS) | (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1]) + (LANTERN | DARKROOMS) | Deepnest_39[right1] + (LANTERN | DARKROOMS) + (ANYCLAW | ENEMYPOGOS) | Deepnest_42[bot1] | Deepnest_Spider_Town[left1]",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Deephunter",
-    "logic": "Deepnest_02 | Deepnest_03 | Deepnest_16[bot1] + (LEFTCLAW | (RIGHTCLAW + WINGS)) | Deepnest_33[bot1] | Deepnest_34 | Deepnest_35 | (Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | Deepnest_41 | Deepnest_42[bot1] | Deepnest_45_v02[left1] | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS + (RIGHTCLAW | SHADESKIPS))",
+    "logic": "Deepnest_02 | Deepnest_03 | Deepnest_16[bot1] + (LEFTCLAW | (RIGHTCLAW + WINGS)) | Deepnest_33[bot1] | Deepnest_34 | Deepnest_35 | (Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | Deepnest_41 | Deepnest_42[bot1] | Deepnest_45_v02[left1] | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS + COMBAT[Left_Devout] + (RIGHTCLAW | $SHADESKIP))",
     "Stateless": true
   },
   {
@@ -481,7 +481,7 @@
   },
   {
     "name": "Defeated_Any_Shadow_Creeper",
-    "logic": "Abyss_04 | Abyss_06_Core[top1] | Abyss_06_Core[left1] | ((Abyss_06_Core[left3] | Abyss_06_Core[bot1] | Abyss_06_Core[right2]) + (ANYCLAW | WINGS | SCREAM | ENEMYPOGOS)) | Abyss_12[right1] | Abyss_19 | Abyss_20[top1] | Abyss_20[top2]",
+    "logic": "Abyss_04 | Abyss_06_Core[top1] | Abyss_06_Core[left1] | ((Abyss_06_Core[left3] | Abyss_06_Core[bot1] | Abyss_06_Core[right2]) + (ANYCLAW | WINGS | SCREAM + $CASTSPELL | ENEMYPOGOS)) | Abyss_12[right1] | Abyss_19 | Abyss_20[top1] | Abyss_20[top2]",
     "Stateless": true
   },
   {
@@ -521,12 +521,12 @@
   },
   {
     "name": "Defeated_Any_Primal_Aspid",
-    "logic": "Deepnest_East_04 | Deepnest_East_06[left1] | (Deepnest_East_06[top1] | Deepnest_East_06[bot1]) + (WINGS | RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_06[door1] + (WINGS | LEFTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_07 | Deepnest_East_11 | Deepnest_East_14[top2] + QUAKE + ROOMSOUL | Deepnest_East_14b[right1] | Room_Colosseum_01[left1] + Defeated_Colosseum_1",
+    "logic": "Deepnest_East_04 | Deepnest_East_06[left1] | (Deepnest_East_06[top1] | Deepnest_East_06[bot1]) + (WINGS | RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_06[door1] + (WINGS | LEFTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_07 | Deepnest_East_11 | Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 | Deepnest_East_14b[right1] | Room_Colosseum_01[left1] + Defeated_Colosseum_1",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Hopper",
-    "logic": "Deepnest_East_06[left1] | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_11 | Deepnest_East_14[top2] + QUAKE + ROOMSOUL | Deepnest_East_14[door1] | Deepnest_East_14b[right1] | Deepnest_East_17[left1] + QUAKE + ROOMSOUL | Deepnest_East_18 | Room_Colosseum_01[left1] + Defeated_Colosseum_2",
+    "logic": "Deepnest_East_06[left1] | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_11 | Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 | Deepnest_East_14[door1] | Deepnest_East_14b[right1] | Deepnest_East_17[left1] + Broke_420_Rock_Quake_Floor_2 | Deepnest_East_18 | Room_Colosseum_01[left1] + Defeated_Colosseum_2",
     "Stateless": true
   },
   {
@@ -576,7 +576,7 @@
   },
   {
     "name": "Defeated_Any_Mantis_Petra",
-    "logic": "Deepnest_43[left1] | Fungus3_04 | Fungus3_05[left1] | Fungus3_05[right1] | Fungus3_05[right2] + (WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH) + (RIGHTDASH | RIGHTSUPERDASH) + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | FIREBALL | SCREAM)) | Fungus3_08 | Fungus3_22[right1] | Fungus3_40[top1] | Fungus3_48[right2] | Fungus3_48[bot1] | Room_Colosseum_01[left1] + Defeated_Colosseum_3",
+    "logic": "Deepnest_43[left1] | Fungus3_04 | Fungus3_05[left1] | Fungus3_05[right1] | Fungus3_05[right2] + (Switch-Petra_Arena ? NONE) + (WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH) + (RIGHTDASH | RIGHTSUPERDASH) + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | FIREBALL + $CASTSPELL[3] | SCREAM + $CASTSPELL)) | Fungus3_08 | Fungus3_22[right1] | Fungus3_40[top1] | Fungus3_48[right2] | Fungus3_48[bot1] | Room_Colosseum_01[left1] + Defeated_Colosseum_3",
     "Stateless": true
   },
   {
@@ -756,7 +756,7 @@
   },
   {
     "name": "Defeated_Any_Wingmould",
-    "logic": "White_Palace_01[left1] + (RIGHTDASH | FULLCLAW | WINGS | ANYCLAW + RIGHTSUPERDASH) | White_Palace_01[right1] + (LEFTDASH | LEFTSUPERDASH | WINGS) | White_Palace_01[top1] + Palace_Entrance_Lantern_Lit | White_Palace_06[bot1] + (SCREAM | WINGS + UPSLASH | RIGHTCLAW) | White_Palace_06[top1] | White_Palace_13[right1] | White_Palace_13[left1] + RIGHTCLAW + FULLSUPERDASH | White_Palace_13[left2] + (WINGS + RIGHTDASH | RIGHTSUPERDASH) | White_Palace_13[left3] | White_Palace_18[top1] | White_Palace_18[right1] + WINGS + RIGHTCLAW | *Soul_Totem-Path_of_Pain_Hidden + LEFTSUPERDASH | White_Palace_19[top1]",
+    "logic": "White_Palace_01[left1] + (RIGHTDASH | FULLCLAW | WINGS | ANYCLAW + RIGHTSUPERDASH) | White_Palace_01[right1] + (LEFTDASH | LEFTSUPERDASH | WINGS) | White_Palace_01[top1] + Palace_Entrance_Lantern_Lit | White_Palace_06[bot1] + (SCREAM + $CASTSPELL | WINGS + UPSLASH | RIGHTCLAW) | White_Palace_06[top1] | White_Palace_13[right1] | White_Palace_13[left1] + RIGHTCLAW + FULLSUPERDASH | White_Palace_13[left2] + (WINGS + RIGHTDASH | RIGHTSUPERDASH) | White_Palace_13[left3] | White_Palace_18[top1] | White_Palace_18[right1] + WINGS + RIGHTCLAW | *Soul_Totem-Path_of_Pain_Hidden + LEFTSUPERDASH | White_Palace_19[top1]",
     "Stateless": true
   },
   {
@@ -837,7 +837,7 @@
   {
     "name": "GG_Atrium_Roof",
     "logic": "GG_Atrium + Hit_Pantheon_5_Unlock_Orb + LEFTCLAW",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Defeated_Pantheon_5",
@@ -846,234 +846,234 @@
   },
   {
     "name": "Defeated_Bretta_Sporg",
-    "logic": "Fungus2_23 + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | (AIRSTALL + TERMINALSOUL + TERMINALSHADESKIPS))) | ((LEFTCLAW | (RIGHTCLAW + ENEMYPOGOS)) + WINGS))",
+    "logic": "Fungus2_23 + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | (AIRSTALL + $CASTSPELL + $SHADESKIP))) | ((LEFTCLAW | (RIGHTCLAW + ENEMYPOGOS)) + WINGS))",
     "Stateless": true
   },
   // manually generated room waypoints
   {
     "name": "Abyss_02",
     "logic": "Abyss_02[right1] | (Abyss_02[bot1] + (LEFTCLAW | WINGS))",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Deepnest_East_01",
     "logic": "Deepnest_East_01[right1] | Deepnest_East_01[top1] | Deepnest_East_01[bot1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_02",
     "logic": "Fungus1_02[left1] | Fungus1_02[right1] | Fungus1_02[right2]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_28",
     "logic": "Fungus1_28[left1] | Fungus1_28[left2]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_31",
     "logic": "Fungus1_31[right1] | Fungus1_31[top1] | (Fungus1_31[bot1] + Can_Replenish_Geo)",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus2_05",
     "logic": "Fungus2_05[bot1] | Fungus2_05[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus2_29",
     "logic": "(Fungus2_29[right1] + ANYCLAW + WINGS) | (Fungus2_29[bot1] + (LEFTCLAW | WINGS + ENEMYPOGOS))",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus3_08",
     "logic": "Fungus3_08[left1] | Fungus3_08[right1] | Fungus3_08[top1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus3_10",
     "logic": "Fungus3_10[top1] + (WINGS | RIGHTDASH) | Fungus3_10[bot1] + Defeated_West_Queen's_Gardens_Arena",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Hive_04",
     "logic": "Hive_04[left1] | Hive_04[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Waterways_08",
     "logic": "Waterways_08[top1] | Waterways_08[left1] | Waterways_08[left2]",
-    "Stateless": true
+    "Stateless": false
   },
   // auto-generated safe waypoint logic
   {
     "name": "Crossroads_01",
     "logic": "Crossroads_01[right1] | Crossroads_01[top1] | Crossroads_01[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Crossroads_05",
     "logic": "Crossroads_05[right1] | Crossroads_05[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Crossroads_13",
     "logic": "Crossroads_13[right1] | Crossroads_13[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Crossroads_15",
     "logic": "Crossroads_15[right1] | Crossroads_15[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Crossroads_16",
     "logic": "Crossroads_16[bot1] | Crossroads_16[left1] | Crossroads_16[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Crossroads_25",
     "logic": "Crossroads_25[left1] | Crossroads_25[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Crossroads_39",
     "logic": "Crossroads_39[left1] | Crossroads_39[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Crossroads_40",
     "logic": "Crossroads_40[left1] | Crossroads_40[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Crossroads_42",
     "logic": "Crossroads_42[right1] | Crossroads_42[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_01",
     "logic": "Fungus1_01[right1] | Fungus1_01[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_01b",
     "logic": "Fungus1_01b[right1] | Fungus1_01b[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_03",
     "logic": "Fungus1_03[bot1] | Fungus1_03[left1] | Fungus1_03[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_05",
     "logic": "Fungus1_05[top1] | Fungus1_05[right1] | Fungus1_05[bot1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_07",
     "logic": "Fungus1_07[right1] | Fungus1_07[top1] | Fungus1_07[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_10",
     "logic": "Fungus1_10[top1] | Fungus1_10[left1] | Fungus1_10[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_12",
     "logic": "Fungus1_12[right1] | Fungus1_12[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_17",
     "logic": "Fungus1_17[right1] | Fungus1_17[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_19",
     "logic": "Fungus1_19[bot1] | Fungus1_19[left1] | Fungus1_19[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_20_v02",
     "logic": "Fungus1_20_v02[right1] | Fungus1_20_v02[bot1] | Fungus1_20_v02[bot2]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_22",
     "logic": "Fungus1_22[left1] | Fungus1_22[top1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_23",
     "logic": "Fungus1_23[right1] | Fungus1_23[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_29",
     "logic": "Fungus1_29[right1] | Fungus1_29[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_32",
     "logic": "Fungus1_32[left1] | Fungus1_32[bot1] | Fungus1_32[top1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus1_34",
     "logic": "Fungus1_34[left1] | Fungus1_34[door1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus2_08",
     "logic": "Fungus2_08[right1] | Fungus2_08[left1] | Fungus2_08[left2]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus2_10",
     "logic": "Fungus2_10[bot1] | Fungus2_10[right1] | Fungus2_10[right2]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus2_28",
     "logic": "Fungus2_28[left2] | Fungus2_28[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus2_33",
     "logic": "Fungus2_33[left1] | Fungus2_33[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus3_25b",
     "logic": "Fungus3_25b[left1] | Fungus3_25b[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus3_27",
     "logic": "Fungus3_27[right1] | Fungus3_27[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Fungus3_39",
     "logic": "Fungus3_39[left1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Mines_17",
     "logic": "Mines_17[left1] | Mines_17[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "Ruins1_17",
     "logic": "Ruins1_17[top1] | Ruins1_17[right1]",
-    "Stateless": true
+    "Stateless": false
   },
   {
     "name": "White_Palace_15",
     "logic": "White_Palace_15[right1]",
-    "Stateless": true
+    "Stateless": false
   }
 ]
