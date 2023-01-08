@@ -90,8 +90,10 @@
     "Stateless": true
   },
   {
+    // from the top it can be done with only downslash, anything else is a convenience. It's not safe to include quake here since it's incredibly
+    // difficult to pause buffer fast enough to do it when you enter the room without diving through the transition (which is also unsafe because it takes soul)
     "name": "Defeated_Any_Menderbug",
-    "logic": "Crossroads_01[top1] + OBSCURESKIPS + LEFTSLASH | (Crossroads_01[left1] + RIGHTFIREBALL + $CASTSPELL) | (Crossroads_01[right1] + LEFTFIREBALL + $CASTSPELL)",
+    "logic": "Crossroads_01[top1] + OBSCURESKIPS | Crossroads_01[left1] + ((RIGHTFIREBALL | QUAKE>1 | SCREAM) + $CASTSPELL | OBSCURESKIPS + (RIGHTDASHSLASH | RIGHTSUPERDASH | RIGHTSHADOWDASH + $EQUIPPEDCHARM[Sharp_Shadow] + RIGHTSLASH)) | Crossroads_01[right1] + (LEFTFIREBALL + $CASTSPELL | OBSCURESKIPS + (LEFTDASHSLASH | LEFTSUPERDASH | LEFTSHADOWDASH + $EQUIPPEDCHARM[Sharp_Shadow] + LEFTSLASH))",
     "Stateless": true
   },
   {

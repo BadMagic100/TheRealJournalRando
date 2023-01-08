@@ -22,11 +22,11 @@
   },
   {
     "name": "Baldur_Shell_Left_Baldur",
-    "logic": "LEFTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | SHADESKIPS)))"
+    "logic": "LEFTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)))"
   },
   {
     "name": "Baldur_Shell_Right_Baldur",
-    "logic": "RIGHTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | SHADESKIPS)))"
+    "logic": "RIGHTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)))"
   },
   // location logic for special-case journal entries
   {
