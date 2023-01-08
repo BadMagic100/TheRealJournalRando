@@ -197,3 +197,7 @@ enemy is available in multiple map areas, its locations will be counted under "O
 This connection is fully integrated with RandoSettingsManager. It does not need to be configured manually
 after saving/sharing/loading settings and will disable itself if no settings are available.
 
+### ItemSync
+
+When playing with ItemSync, enemy kills are synced to count towards note costs.
+
