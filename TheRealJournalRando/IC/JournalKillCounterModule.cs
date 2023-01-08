@@ -17,7 +17,12 @@ using TheRealJournalRando.Fsm;
 
 namespace TheRealJournalRando.IC
 {
-    public delegate void EnemyKillCounterChangedHandler(string pdName);
+    public enum KillSourceType
+    {
+        Normal, Special
+    }
+
+    public delegate void EnemyKillCounterChangedHandler(string pdName, KillSourceType killSourceType);
 
     public class JournalKillCounterModule : ItemChanger.Modules.Module
     {
@@ -58,19 +63,19 @@ namespace TheRealJournalRando.IC
             return 0;
         }
 
-        public void Record(string playerDataName)
+        public void Record(string playerDataName, KillSourceType killSourceType = KillSourceType.Normal)
         {
-            if (playerDataName == EnemyData.Enemies[EnemyNames.Grub_Mimic].pdName)
-            {
-                TheRealJournalRando.Instance.LogDebug("Recording a mimic kill");
-            }
+            RecordSilently(playerDataName);
+            OnKillCountChanged?.Invoke(playerDataName, killSourceType);
+        }
 
+        public void RecordSilently(string playerDataName)
+        {
             if (!enemyKillCounts.ContainsKey(playerDataName))
             {
                 enemyKillCounts[playerDataName] = 0;
             }
             enemyKillCounts[playerDataName]++;
-            OnKillCountChanged?.Invoke(playerDataName);
         }
 
         private void OnJournalRecord(Action<EnemyDeathEffects> orig, EnemyDeathEffects self)
@@ -117,7 +122,6 @@ namespace TheRealJournalRando.IC
                 bool wasAlreadyKilled = PlayerData.instance.GetBool(killed);
                 if (!wasAlreadyKilled)
                 {
-                    TheRealJournalRando.Instance.LogDebug("Recording a vanilla mimic kill (first)");
                     PlayerData.instance.SetBool(newData, true);
                     PlayerData.instance.SetBool(killed, true);
                     PlayerData.instance.IncrementInt(nameof(PlayerData.journalEntriesCompleted));
@@ -125,7 +129,6 @@ namespace TheRealJournalRando.IC
                 int currentKills = PlayerData.instance.GetInt(kills);
                 if (currentKills > 0)
                 {
-                    TheRealJournalRando.Instance.LogDebug($"Recording a vanilla mimic kill ({currentKills - 1} remaining)");
                     PlayerData.instance.DecrementInt(kills);
                     if (currentKills == 1)
                     {
@@ -133,7 +136,7 @@ namespace TheRealJournalRando.IC
                     }
                 }
 
-                Record(pdName);
+                Record(pdName, KillSourceType.Special);
             }
         }
 

@@ -40,6 +40,10 @@ namespace TheRealJournalRando.Rando
             {
                 ItemChangerMod.Modules.GetOrAdd<GrimmQuestAfterBanishment>();
             }
+            if (ItemSyncInterop.IsItemSync)
+            {
+                ItemChangerMod.Modules.GetOrAdd<ItemsyncKillSyncModule>();
+            }
         }
 
         private static void AddJournalRandoSettings(LogArguments args, System.IO.TextWriter tw)

@@ -65,7 +65,7 @@ namespace TheRealJournalRando.IC
             }
         }
 
-        private void KillCountChanged(string pdName)
+        private void KillCountChanged(string pdName, KillSourceType sourceType)
         {
             if (playerDataName == pdName)
             {
