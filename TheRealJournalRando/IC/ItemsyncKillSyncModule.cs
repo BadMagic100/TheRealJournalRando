@@ -9,6 +9,11 @@ namespace TheRealJournalRando.IC
 
         private JournalKillCounterModule? killCounter;
 
+        public ItemsyncKillSyncModule()
+        {
+            ModuleHandlingProperties = ModuleHandlingFlags.AllowDeserializationFailure;
+        }
+
         public override void Initialize()
         {
             killCounter = ItemChangerMod.Modules.GetOrAdd<JournalKillCounterModule>();
