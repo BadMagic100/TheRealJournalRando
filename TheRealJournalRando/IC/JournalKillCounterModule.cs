@@ -5,10 +5,12 @@ using ItemChanger.Components;
 using ItemChanger.Extensions;
 using ItemChanger.FsmStateActions;
 using ItemChanger.Items;
-using ItemChanger.Modules;
 using Modding;
+using MonoMod.RuntimeDetour;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using TheRealJournalRando.Data;
 using TheRealJournalRando.Data.Generated;
 using TheRealJournalRando.Fsm;
@@ -17,16 +19,20 @@ namespace TheRealJournalRando.IC
 {
     public delegate void EnemyKillCounterChangedHandler(string pdName);
 
-    public class JournalKillCounterModule : Module
+    public class JournalKillCounterModule : ItemChanger.Modules.Module
     {
         public Dictionary<string, int> enemyKillCounts = new();
 
         public event EnemyKillCounterChangedHandler? OnKillCountChanged;
 
+        private Hook? RecordHook;
+
         public override void Initialize()
         {
+            RecordHook = new(typeof(EnemyDeathEffects).GetMethod($"orig_RecordKillForJournal",
+                BindingFlags.Instance | BindingFlags.NonPublic), OnJournalRecord);
+
             AbstractItem.AfterGiveGlobal += CountMimicKills;
-            ModHooks.RecordKillForJournalHook += OnJournalRecord;
             On.PlayMakerFSM.OnEnable += OnFsmEnable;
             On.ScuttlerControl.Hit += OnScuttlerKilled;
             On.HutongGames.PlayMaker.Actions.SetPlayerDataBool.OnEnter += OnSetPlayerDataBoolAction;
@@ -34,8 +40,10 @@ namespace TheRealJournalRando.IC
 
         public override void Unload()
         {
+            RecordHook?.Undo();
+            RecordHook = null;
+
             AbstractItem.AfterGiveGlobal -= CountMimicKills;
-            ModHooks.RecordKillForJournalHook -= OnJournalRecord;
             On.PlayMakerFSM.OnEnable -= OnFsmEnable;
             On.ScuttlerControl.Hit -= OnScuttlerKilled;
             On.HutongGames.PlayMaker.Actions.SetPlayerDataBool.OnEnter -= OnSetPlayerDataBoolAction;
@@ -52,14 +60,9 @@ namespace TheRealJournalRando.IC
 
         public void Record(string playerDataName)
         {
-            if (playerDataName == "Dummy")
+            if (playerDataName == EnemyData.Enemies[EnemyNames.Grub_Mimic].pdName)
             {
-                return;
-            }
-
-            if (playerDataName == EnemyPdNames.TraitorLord)
-            {
-                TheRealJournalRando.Instance.LogDebug("Record traitor lord");
+                TheRealJournalRando.Instance.LogDebug("Recording a mimic kill");
             }
 
             if (!enemyKillCounts.ContainsKey(playerDataName))
@@ -70,38 +73,67 @@ namespace TheRealJournalRando.IC
             OnKillCountChanged?.Invoke(playerDataName);
         }
 
-        private void OnJournalRecord(EnemyDeathEffects enemyDeathEffects, string playerDataName, string killedBoolPlayerDataLookupKey,
-            string killCountIntPlayerDataLookupKey, string newDataBoolPlayerDataLookupKey)
+        private void OnJournalRecord(Action<EnemyDeathEffects> orig, EnemyDeathEffects self)
         {
-            string goName = enemyDeathEffects.gameObject.name;
+            string playerDataName = ReflectionHelper.GetField<EnemyDeathEffects, string>(self, "playerDataName");
+            string goName = self.gameObject.name;
+
+            if (playerDataName == "Dummy")
+            {
+                return;
+            }
             // ignore waterways split/baby flukes
             if (goName.StartsWith("fluke_baby") || goName.StartsWith("Flukeman Top") || goName.StartsWith("Flukeman Bot"))
             {
-                playerDataName = "Dummy";
+                return;
             }
             // ignore lost kin - other dream variants already do this
             if (goName == "Lost Kin")
             {
-                playerDataName = "Dummy";
+                return;
             }
             // if killing a mimic from a container, eat the actual kill - the mimic item is responsible for the counting
             if (playerDataName == EnemyData.Enemies[EnemyNames.Grub_Mimic].pdName)
             {
-                ContainerInfoComponent? info = enemyDeathEffects.GetComponentInParent<ContainerInfoComponent>();
+                ContainerInfoComponent? info = self.GetComponentInParent<ContainerInfoComponent>();
                 if (info != null && info.info.containerType == Container.Mimic)
                 {
-                    playerDataName = "Dummy";
+                    return;
                 }
             }
 
             Record(playerDataName);
+            orig(self);
         }
 
         private void CountMimicKills(ReadOnlyGiveEventArgs obj)
         {
             if (obj.Item is MimicItem)
             {
-                Record(EnemyData.Enemies[EnemyNames.Grub_Mimic].pdName);
+                string pdName = EnemyData.Enemies[EnemyNames.Grub_Mimic].pdName;
+                string killed = "killed" + pdName;
+                string newData = "newData" + pdName;
+                string kills = "kills" + pdName;
+                bool wasAlreadyKilled = PlayerData.instance.GetBool(killed);
+                if (!wasAlreadyKilled)
+                {
+                    TheRealJournalRando.Instance.LogDebug("Recording a vanilla mimic kill (first)");
+                    PlayerData.instance.SetBool(newData, true);
+                    PlayerData.instance.SetBool(killed, true);
+                    PlayerData.instance.IncrementInt(nameof(PlayerData.journalEntriesCompleted));
+                }
+                int currentKills = PlayerData.instance.GetInt(kills);
+                if (currentKills > 0)
+                {
+                    TheRealJournalRando.Instance.LogDebug($"Recording a vanilla mimic kill ({currentKills - 1} remaining)");
+                    PlayerData.instance.DecrementInt(kills);
+                    if (currentKills == 1)
+                    {
+                        PlayerData.instance.IncrementInt(nameof(PlayerData.journalNotesCompleted));
+                    }
+                }
+
+                Record(pdName);
             }
         }
 
