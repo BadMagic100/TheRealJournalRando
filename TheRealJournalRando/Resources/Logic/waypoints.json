@@ -93,17 +93,17 @@
     // from the top it can be done with only downslash, anything else is a convenience. It's not safe to include quake here since it's incredibly
     // difficult to pause buffer fast enough to do it when you enter the room without diving through the transition (which is also unsafe because it takes soul)
     "name": "Defeated_Any_Menderbug",
-    "logic": "Crossroads_01[top1] + OBSCURESKIPS | Crossroads_01[left1] + ((RIGHTFIREBALL | QUAKE>1 | SCREAM) + $CASTSPELL | OBSCURESKIPS + (RIGHTDASHSLASH | RIGHTSUPERDASH | RIGHTSHADOWDASH + $EQUIPPEDCHARM[Sharp_Shadow] + RIGHTSLASH)) | Crossroads_01[right1] + (LEFTFIREBALL + $CASTSPELL | OBSCURESKIPS + (LEFTDASHSLASH | LEFTSUPERDASH | LEFTSHADOWDASH + $EQUIPPEDCHARM[Sharp_Shadow] + LEFTSLASH))",
+    "logic": "Crossroads_01[top1] + OBSCURESKIPS | Crossroads_01[left1] + ((RIGHTFIREBALL | QUAKE>1 | SCREAM) + $CASTSPELL[before:AREASOUL] | OBSCURESKIPS + (RIGHTDASHSLASH | RIGHTSUPERDASH | RIGHTSHADOWDASH + $EQUIPPEDCHARM[Sharp_Shadow] + RIGHTSLASH)) | Crossroads_01[right1] + (LEFTFIREBALL + $CASTSPELL[before:AREASOUL] | OBSCURESKIPS + (LEFTDASHSLASH | LEFTSUPERDASH | LEFTSHADOWDASH + $EQUIPPEDCHARM[Sharp_Shadow] + LEFTSLASH))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Lifeseed",
-    "logic": "*Lifeblood_Cocoon-King's_Pass | *Lifeblood_Cocoon-Ancestral_Mound | *Lifeblood_Cocoon-Greenpath | *Lifeblood_Cocoon-Fog_Canyon_West | *Lifeblood_Cocoon-Mantis_Village | *Lifeblood_Cocoon-Failed_Tramway | *Lifeblood_Cocoon-Galien | *Lifeblood_Cocoon-Kingdom's_Edge + (RIGHTCLAW | WINGS + (UPSLASH | SCREAM + $CASTSPELL | GREATSLASH))",
+    "logic": "*Lifeblood_Cocoon-King's_Pass | *Lifeblood_Cocoon-Ancestral_Mound | *Lifeblood_Cocoon-Greenpath | *Lifeblood_Cocoon-Fog_Canyon_West | *Lifeblood_Cocoon-Mantis_Village | *Lifeblood_Cocoon-Failed_Tramway | *Lifeblood_Cocoon-Galien | *Lifeblood_Cocoon-Kingdom's_Edge + (RIGHTCLAW | WINGS + (UPSLASH | SCREAM + $CASTSPELL[before:AREASOUL] | GREATSLASH))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Baldur",
-    "logic": "Crossroads_ShamanTemple[left1] | Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (LEFTCLAW | (RIGHTCLAW + PRECISEMOVEMENT + (RIGHTDASH | AIRSTALL + $CASTSPELL)) | WINGS)",
+    "logic": "Crossroads_ShamanTemple[left1] | Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (LEFTCLAW | (RIGHTCLAW + PRECISEMOVEMENT + (RIGHTDASH | AIRSTALL + $CASTSPELL[before:ROOMSOUL])) | WINGS)",
     "Stateless": true
   },
   {
@@ -133,7 +133,7 @@
   },
   {
     "name": "Defeated_Any_Fool_Eater",
-    "logic": "Fungus1_01 | Fungus1_03 | Fungus1_19 | Fungus1_22 | Fungus1_22[bot1] | Fungus1_34 | (Fungus3_05[left1] | Fungus3_05[right1] | Fungus3_05[right2]) + (WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH)) | (Fungus3_48[right2] | Fungus3_48[bot1]) + ANYCLAW",
+    "logic": "Fungus1_01 | Fungus1_03 | Fungus1_19 | Fungus1_22 | Fungus1_22[bot1] | Fungus1_34 | (Fungus3_05[left1] | Fungus3_05[right1] | Fungus3_05[right2] + (Switch-Petra_Arena ? NONE)) + (WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH)) | (Fungus3_48[right2] | Fungus3_48[bot1]) + ANYCLAW",
     "Stateless": true
   },
   {
@@ -148,12 +148,12 @@
   },
   {
     "name": "Defeated_Any_Gulka",
-    "logic": "Fungus1_11 + (COMBAT[Right_Gulka] | COMBAT[Up_Gulka]) | Fungus1_12 + COMBAT[Any_Gulka] | Fungus1_29 + (COMBAT[Left_Gulka] | SCREAM + $CASTSPELL | (UPSLASH + PROFICIENTCOMBAT))",
+    "logic": "Fungus1_11 + (COMBAT[Right_Gulka] | COMBAT[Up_Gulka]) | Fungus1_12 + COMBAT[Any_Gulka] | Fungus1_29 + (COMBAT[Left_Gulka] | SCREAM + $CASTSPELL[before:AREASOUL] | (UPSLASH + PROFICIENTCOMBAT))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Maskfly",
-    "logic": "Fungus1_01 + (COMBAT[Right_Maskfly] | UPSLASH | SCREAM + $CASTSPELL) | Fungus1_01[right1] + COMBAT[Left_Maskfly] | Fungus1_01b | Fungus1_03 + (COMBAT[Right_Maskfly] | SCREAM + $CASTSPELL | LEFTDASHSLASH | LEFTFIREBALL + $CASTSPELL | RIGHTCLAW | WINGS) | (Fungus1_12[left1] + (COMBAT[Right_Maskfly] | RIGHTSLASH)) | (Fungus1_12[right1] + (COMBAT[Left_Maskfly] | LEFTSLASH)) | (Fungus1_23[left1] + COMBAT[Right_Maskfly]) | (Fungus1_23[right1] + COMBAT[Left_Maskfly]) | (*Queen's_Gardens_Map + COMBAT[Left_Maskfly]) | (Fungus1_24[left1] + (UPSLASH | SCREAM + $CASTSPELL)) | (Fungus1_26[door_SlugShrine] + COMBAT[Right_Maskfly]) | (Fungus1_26[right1] + COMBAT[Left_Maskfly]) | (Fungus1_36[left1] + COMBAT[Right_Maskfly])",
+    "logic": "Fungus1_01 + (COMBAT[Right_Maskfly] | UPSLASH | SCREAM + $CASTSPELL[before:AREASOUL]) | Fungus1_01[right1] + COMBAT[Left_Maskfly] | Fungus1_01b | Fungus1_03 + (COMBAT[Right_Maskfly] | (SCREAM | LEFTFIREBALL) + $CASTSPELL[before:ROOMSOUL] | LEFTDASHSLASH | RIGHTCLAW | WINGS) | (Fungus1_12[left1] + (COMBAT[Right_Maskfly] | RIGHTSLASH)) | (Fungus1_12[right1] + (COMBAT[Left_Maskfly] | LEFTSLASH)) | (Fungus1_23[left1] + COMBAT[Right_Maskfly]) | (Fungus1_23[right1] + COMBAT[Left_Maskfly]) | (*Queen's_Gardens_Map + COMBAT[Left_Maskfly]) | (Fungus1_24[left1] + (UPSLASH | SCREAM + $CASTSPELL[before:AREASOUL])) | (Fungus1_26[door_SlugShrine] + COMBAT[Right_Maskfly]) | (Fungus1_26[right1] + COMBAT[Left_Maskfly]) | (Fungus1_36[left1] + COMBAT[Right_Maskfly])",
     "Stateless": true
   },
   {
@@ -178,12 +178,12 @@
   },
   {
     "name": "Defeated_Any_Duranda",
-    "logic": "Fungus1_09[right1] + (SIDESLASH | FIREBALL + $CASTSPELL[2] | SCREAM + $CASTSPELL) | Fungus1_09[left1] + (5DAMAGE + RIGHTSLASH | SCREAM + $CASTSPELL | RIGHTFIREBALL + $CASTSPELL[2] | 3DAMAGE + (RIGHTDASHSLASH | GREATSLASH) | ($TAKEDAMAGE + CYCLONE))",
+    "logic": "Fungus1_09[right1] + (SIDESLASH | FIREBALL + $CASTSPELL[2,before:AREASOUL] | SCREAM + $CASTSPELL[before:AREASOUL]) | Fungus1_09[left1] + (5DAMAGE + RIGHTSLASH | SCREAM + $CASTSPELL | RIGHTFIREBALL + $CASTSPELL[2] | 3DAMAGE + (RIGHTDASHSLASH | GREATSLASH) | ($TAKEDAMAGE + CYCLONE))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Aluba",
-    "logic": "Fungus1_26[door_SlugShrine] + (WINGS | Shaman_Stone + LEFTFIREBALL + $CASTSPELL | (LEFTSUPERDASH + SCREAM>1 + $CASTSPELL | LEFTDASH + PRECISEMOVEMENT + (SCREAM + $CASTSPELL | UPSLASH)) + (ACID | $TAKEDAMAGE)) | Fungus3_48[right1] + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH | FIREBALL + Shaman_Stone + $CASTSPELL | WINGS) | *Grub-Queen's_Gardens_Marmu + ($EQUIPPEDCHARM[Spore_Shroom] + $SPENDSOUL[33] | FIREBALL>1 + $CASTSPELL)",
+    "logic": "Fungus1_26[door_SlugShrine] + (WINGS | Shaman_Stone + LEFTFIREBALL + $CASTSPELL[before:MAPAREASOUL] | (LEFTSUPERDASH + SCREAM>1 + $CASTSPELL[before:MAPAREASOUL] | LEFTDASH + PRECISEMOVEMENT + (SCREAM + $CASTSPELL[before:MAPAREASOUL] | UPSLASH)) + (ACID | $TAKEDAMAGE)) | Fungus3_48[right1] + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH | (FIREBALL + Shaman_Stone | SCREAM) + $CASTSPELL[before:AREASOUL] | WINGS) | *Grub-Queen's_Gardens_Marmu + $REGAINSOUL[200] + ($EQUIPPEDCHARM[Spore_Shroom] + $SPENDSOUL[33] | FIREBALL>1 + $CASTSPELL)",
     "Stateless": true
   },
   {
@@ -208,17 +208,17 @@
   },
   {
     "name": "Defeated_Any_Fungling",
-    "logic": "Fungus2_03 | Fungus2_17 | Fungus2_18[bot1] + (WINGS | ANYCLAW | UPSLASH | SCREAM + $CASTSPELL) | Fungus2_18[right1] | Fungus2_19[left1] | Fungus2_19[top1] | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] | Fungus2_33 | Room_GG_Shortcut[top1] | Room_GG_Shortcut[left1] + (RIGHTCLAW + (LEFTSUPERDASH | SWIM) | WINGS + (LEFTCLAW + SWIM | RIGHTCLAW + LEFTDASH))",
+    "logic": "Fungus2_03 | Fungus2_17 | Fungus2_18[bot1] + (WINGS | ANYCLAW | UPSLASH | SCREAM + $CASTSPELL[before:ROOMSOUL]) | Fungus2_18[right1] | Fungus2_19[left1] | Fungus2_19[top1] | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] | Fungus2_33 | Room_GG_Shortcut[top1] | Room_GG_Shortcut[left1] + (RIGHTCLAW + (LEFTSUPERDASH | SWIM) | WINGS + (LEFTCLAW + SWIM | RIGHTCLAW + LEFTDASH))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Fungoon",
-    "logic": "Fungus2_03 | Fungus2_06[top1] | Fungus2_08 | Fungus2_11 | Fungus2_18[bot1] + (WINGS | ANYCLAW | UPSLASH | SCREAM + $CASTSPELL) | Fungus2_29 | Fungus2_29[bot1] + (ANYCLAW | WINGS) | Fungus2_30[top1] | Fungus2_33",
+    "logic": "Fungus2_03 | Fungus2_06[top1] | Fungus2_08 | Fungus2_11 | Fungus2_18[bot1] + (WINGS | ANYCLAW | UPSLASH | SCREAM + $CASTSPELL[before:ROOMSOUL]) | Fungus2_29 | Fungus2_29[bot1] + (ANYCLAW | WINGS) | Fungus2_30[top1] | Fungus2_33",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Sporg",
-    "logic": "Fungus2_03 | Fungus2_04 | Fungus2_08 | Fungus2_11 | Fungus2_20 + (UPSLASH | SCREAM + $CASTSPELL | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH) | Defeated_Bretta_Sporg | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] + (UPSLASH | SIDESLASH | Great_Slash | Cyclone_Slash | ANYDASHSLASH | SCREAM + $CASTSPELL | FIREBALL + $CASTSPELL[2])",
+    "logic": "Fungus2_03 | Fungus2_04 | Fungus2_08 | Fungus2_11 | Fungus2_20 + (UPSLASH | SCREAM + $CASTSPELL[before:AREASOUL] | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH) | Defeated_Bretta_Sporg | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] + (UPSLASH | SIDESLASH | Great_Slash | Cyclone_Slash | ANYDASHSLASH | SCREAM + $CASTSPELL[before:ROOMSOUL] | FIREBALL + $CASTSPELL[2,before:ROOMSOUL])",
     "Stateless": true
   },
   {
@@ -228,7 +228,7 @@
   },
   {
     "name": "Defeated_Any_Shrumeling",
-    "logic": "Fungus2_05 | Fungus2_07[left1] | Fungus2_07[right1] + SCREAM + $CASTSPELL | Fungus2_23 | Fungus2_28 | Fungus2_29 | Fungus2_30[top1]",
+    "logic": "Fungus2_05 | Fungus2_07[left1] | Fungus2_07[right1] + SCREAM + $CASTSPELL[before:AREASOUL] | Fungus2_23 | Fungus2_28 | Fungus2_29 | Fungus2_30[top1]",
     "Stateless": true
   },
   {
@@ -258,7 +258,7 @@
   },
   {
     "name": "Defeated_Any_Husk_Sentry",
-    "logic": "Abyss_02 | Ruins1_01[left1] | Ruins1_02[top1] | Ruins1_03 | Ruins1_04[right1] | Ruins1_05c | *Simple_Key-City | Ruins2_05[left1] | Ruins2_05[bot1] + (SCREAM + $CASTSPELL | UPSLASH | GREATSLASH) | *Lore_Tablet-Dung_Defender | Waterways_07[top1] | Waterways_07[door1]",
+    "logic": "Abyss_02 | Ruins1_01[left1] | Ruins1_02[top1] | Ruins1_03 | Ruins1_04[right1] | Ruins1_05c | *Simple_Key-City | Ruins2_05[left1] | Ruins2_05[bot1] + (SCREAM + $CASTSPELL[before:ROOMSOUL] | UPSLASH | GREATSLASH) | *Lore_Tablet-Dung_Defender | Waterways_07[top1] | Waterways_07[door1]",
     "Stateless": true
   },
   {
@@ -348,7 +348,7 @@
   },
   {
     "name": "Defeated_Any_Hwurmp",
-    "logic": "Waterways_01 | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[left1] | Waterways_04b[right2] + WINGS + (LEFTCLAW | ENEMYPOGOS | SCREAM + $CASTSPELL) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW)) | Waterways_07 | Waterways_09[left1] | Waterways_09[right1] | *Isma's_Tear | Waterways_14[bot1] + ANYCLAW + (ACID | RIGHTSUPERDASH + WINGS) | Waterways_14[bot2] + (LEFTCLAW + WINGS | RIGHTCLAW) + (ACID | LEFTSUPERDASH + WINGS)",
+    "logic": "Waterways_01 | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[left1] | Waterways_04b[right2] + WINGS + (LEFTCLAW | ENEMYPOGOS | SCREAM + $CASTSPELL[before:AREASOUL]) + (SWIM | (LEFTSUPERDASH + RIGHTCLAW)) | Waterways_07 | Waterways_09[left1] | Waterways_09[right1] | *Isma's_Tear | Waterways_14[bot1] + ANYCLAW + (ACID | RIGHTSUPERDASH + WINGS) | Waterways_14[bot2] + (LEFTCLAW + WINGS | RIGHTCLAW) + (ACID | LEFTSUPERDASH + WINGS)",
     "Stateless": true
   },
   {
@@ -368,7 +368,7 @@
   },
   {
     "name": "Defeated_Any_Flukefey",
-    "logic": "GG_Pipeway[right1] + (LEFTCLAW | WINGS | FIREBALL>1 + $CASTSPELL) | GG_Pipeway[left1] + (ANYCLAW | WINGS) + (SWIM | LEFTCLAW + RIGHTSUPERDASH | RIGHTDASH | WINGS + (PRECISEMOVEMENT | AIRSTALL + $CASTSPELL)) | Waterways_02 | Waterways_04b[left1] | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[right2] + (SWIM | LEFTSUPERDASH + SCREAM + $CASTSPELL) | Waterways_06[right1] + (LEFTSUPERDASH | ACID) | Waterways_06[top1] | Waterways_08",
+    "logic": "GG_Pipeway[right1] + (LEFTCLAW | WINGS | FIREBALL>1 + $CASTSPELL[before:ROOMSOUL]) | GG_Pipeway[left1] + (ANYCLAW | WINGS) + (SWIM | LEFTCLAW + RIGHTSUPERDASH | RIGHTDASH | WINGS + (PRECISEMOVEMENT | AIRSTALL + $CASTSPELL[before:ROOMSOUL])) | Waterways_02 | Waterways_04b[left1] | Waterways_04b[right1] + (WINGS | LEFTDASH | SWIM | RIGHTCLAW + RIGHTDASH + LEFTSUPERDASH) | Waterways_04b[right2] + (SWIM | LEFTSUPERDASH + SCREAM + $CASTSPELL[before:AREASOUL]) | Waterways_06[right1] + (LEFTSUPERDASH | ACID) | Waterways_06[top1] | Waterways_08",
     "Stateless": true
   },
   {
@@ -388,12 +388,12 @@
   },
   {
     "name": "Defeated_Any_Shardmite",
-    "logic": "Mines_11 | Mines_11[bot1] + (UPSLASH | SCREAM + $CASTSPELL) | Mines_20 | Mines_24[left1] + (WINGS + FIREBALL + $CASTSPELL | RIGHTDASH + SPELLS + $CASTSPELL) | Mines_25[top1] | Mines_25[left1] + (WINGS + ENEMYPOGOS | SCREAM + $CASTSPELL | RIGHTCLAW) | Mines_34[bot1] | Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (LEFTCLAW | WINGS | RIGHTCLAW + PRECISEMOVEMENT | SCREAM + $CASTSPELL) | Mines_37[top1]",
+    "logic": "Mines_11 | Mines_11[bot1] + (UPSLASH | SCREAM + $CASTSPELL[before:ROOMSOUL]) | Mines_20 | Mines_24[left1] + (WINGS + FIREBALL + $CASTSPELL | RIGHTDASH + SPELLS + $CASTSPELL[before:AREASOUL]) | Mines_25[top1] | Mines_25[left1] + (WINGS + ENEMYPOGOS | SCREAM + $CASTSPELL | RIGHTCLAW) | Mines_34[bot1] | Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (LEFTCLAW | WINGS | RIGHTCLAW + PRECISEMOVEMENT | SCREAM + $CASTSPELL) | Mines_37[top1]",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Glimback",
-    "logic": "COMBAT[Glimback] + (Mines_02 | Mines_03[top1] | Mines_03[right1] | Mines_03[bot1] + (ANYCLAW | WINGS | UPSLASH | SCREAM + $CASTSPELL | Great_Slash) | (Mines_07[left1] | Mines_07[right1]) + (LANTERN | DARKROOMS) | Mines_11[top1] | Mines_20[left3] | *King's_Idol-Crystal_Peak | Mines_30[right1] + SCREAM + $CASTSPELL | (Mines_33[left1] | Mines_33[right1]) + LANTERN | Mines_34[bot1] + (ANYCLAW | WINGS | ENEMYPOGOS))",
+    "logic": "COMBAT[Glimback] + (Mines_02 | Mines_03[top1] | Mines_03[right1] | Mines_03[bot1] + (ANYCLAW | WINGS | UPSLASH | SCREAM + $CASTSPELL[before:AREASOUL] | Great_Slash) | (Mines_07[left1] | Mines_07[right1]) + (LANTERN | DARKROOMS) | Mines_11[top1] | Mines_20[left3] | *King's_Idol-Crystal_Peak | Mines_30[right1] + SCREAM + $CASTSPELL[before:AREASOUL] | (Mines_33[left1] | Mines_33[right1]) + LANTERN | Mines_34[bot1] + (ANYCLAW | WINGS | ENEMYPOGOS))",
     "Stateless": true
   },
   {
@@ -403,7 +403,7 @@
   },
   {
     "name": "Defeated_Any_Crystal_Crawler",
-    "logic": "SPELLS + (Mines_05 | Mines_11 | Mines_11[bot1] + SCREAM + $CASTSPELL | Mines_20 + ((SCREAM | FIREBALL) + $CASTSPELL | ANYCLAW | WINGS) | Mines_37[top1] + ANYCLAW)",
+    "logic": "SPELLS + $CASTSPELL + (Mines_05 | Mines_11 | Mines_11[bot1] + SCREAM | (Mines_20[left1] | Mines_20[right1] | Mines_20[right2] + (LEFTCLAW | WINGS + ANYCLAW)) + ((SCREAM | FIREBALL) | ANYCLAW | WINGS | ENEMYPOGOS) | Mines_37[top1] + ANYCLAW)",
     "Stateless": true
   },
   {
@@ -483,7 +483,7 @@
   },
   {
     "name": "Defeated_Any_Shadow_Creeper",
-    "logic": "Abyss_04 | Abyss_06_Core[top1] | Abyss_06_Core[left1] | ((Abyss_06_Core[left3] | Abyss_06_Core[bot1] | Abyss_06_Core[right2]) + (ANYCLAW | WINGS | SCREAM + $CASTSPELL | ENEMYPOGOS)) | Abyss_12[right1] | Abyss_19 | Abyss_20[top1] | Abyss_20[top2]",
+    "logic": "Abyss_04 | Abyss_06_Core[top1] | Abyss_06_Core[left1] | ((Abyss_06_Core[left3] | Abyss_06_Core[bot1] | Abyss_06_Core[right2]) + (ANYCLAW | WINGS | SCREAM + $CASTSPELL[before:AREASOUL] | ENEMYPOGOS)) | Abyss_12[right1] | Abyss_19 | Abyss_20[top1] | Abyss_20[top2]",
     "Stateless": true
   },
   {
@@ -578,7 +578,7 @@
   },
   {
     "name": "Defeated_Any_Mantis_Petra",
-    "logic": "Deepnest_43[left1] | Fungus3_04 | Fungus3_05[left1] | Fungus3_05[right1] | Fungus3_05[right2] + (Switch-Petra_Arena ? NONE) + (WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH) + (RIGHTDASH | RIGHTSUPERDASH) + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | FIREBALL + $CASTSPELL[3] | SCREAM + $CASTSPELL)) | Fungus3_08 | Fungus3_22[right1] | Fungus3_40[top1] | Fungus3_48[right2] | Fungus3_48[bot1] | Room_Colosseum_01[left1] + Defeated_Colosseum_3",
+    "logic": "Deepnest_43[left1] | Fungus3_04 | Fungus3_05[left1] | Fungus3_05[right1] | Fungus3_05[right2] + (Switch-Petra_Arena ? NONE) + (WINGS | (LEFTDASH | RIGHTCLAW + LEFTSUPERDASH) + (RIGHTDASH | RIGHTSUPERDASH) + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | FIREBALL + $CASTSPELL[3,before:ROOMSOUL] | SCREAM + $CASTSPELL[before:ROOMSOUL])) | Fungus3_08 | Fungus3_22[right1] | Fungus3_40[top1] | Fungus3_48[right2] | Fungus3_48[bot1] | Room_Colosseum_01[left1] + Defeated_Colosseum_3",
     "Stateless": true
   },
   {
@@ -758,7 +758,7 @@
   },
   {
     "name": "Defeated_Any_Wingmould",
-    "logic": "White_Palace_01[left1] + (RIGHTDASH | FULLCLAW | WINGS | ANYCLAW + RIGHTSUPERDASH) | White_Palace_01[right1] + (LEFTDASH | LEFTSUPERDASH | WINGS) | White_Palace_01[top1] + Palace_Entrance_Lantern_Lit | White_Palace_06[bot1] + (SCREAM + $CASTSPELL | WINGS + UPSLASH | RIGHTCLAW) | White_Palace_06[top1] | White_Palace_13[right1] | White_Palace_13[left1] + RIGHTCLAW + FULLSUPERDASH | White_Palace_13[left2] + (WINGS + RIGHTDASH | RIGHTSUPERDASH) | White_Palace_13[left3] | White_Palace_18[top1] | White_Palace_18[right1] + WINGS + RIGHTCLAW | *Soul_Totem-Path_of_Pain_Hidden + LEFTSUPERDASH | White_Palace_19[top1]",
+    "logic": "White_Palace_01[left1] + (RIGHTDASH | FULLCLAW | WINGS | ANYCLAW + RIGHTSUPERDASH) | White_Palace_01[right1] + (LEFTDASH | LEFTSUPERDASH | WINGS) | White_Palace_01[top1] + Palace_Entrance_Lantern_Lit | White_Palace_06[bot1] + (SCREAM + $CASTSPELL[before:AREASOUL] | WINGS + UPSLASH | RIGHTCLAW) | White_Palace_06[top1] | White_Palace_13[right1] | White_Palace_13[left1] + RIGHTCLAW + FULLSUPERDASH | White_Palace_13[left2] + (WINGS + RIGHTDASH | RIGHTSUPERDASH) | White_Palace_13[left3] | White_Palace_18[top1] | White_Palace_18[right1] + WINGS + RIGHTCLAW | *Soul_Totem-Path_of_Pain_Hidden + LEFTSUPERDASH | White_Palace_19[top1]",
     "Stateless": true
   },
   {
@@ -848,7 +848,7 @@
   },
   {
     "name": "Defeated_Bretta_Sporg",
-    "logic": "Fungus2_23 + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | (AIRSTALL + $CASTSPELL + $SHADESKIP))) | ((LEFTCLAW | (RIGHTCLAW + ENEMYPOGOS)) + WINGS))",
+    "logic": "Fungus2_23 + ((FULLCLAW + (FULLDASH | FULLSUPERDASH | WINGS | (AIRSTALL + $CASTSPELL[before:ROOMSOUL] + $SHADESKIP))) | ((LEFTCLAW | (RIGHTCLAW + ENEMYPOGOS)) + WINGS))",
     "Stateless": true
   },
   // manually generated room waypoints
