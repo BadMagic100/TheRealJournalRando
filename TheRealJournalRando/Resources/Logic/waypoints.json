@@ -31,7 +31,7 @@
   },
   {
     "name": "Defeated_Any_Aspid_Hunter",
-    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + $TAKEDAMAGE[2]) + LEFTDASH)) | Crossroads_03 | Crossroads_08 | Crossroads_19 | Crossroads_22[bot1]",
+    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + $TAKEDAMAGE) + LEFTDASH)) | Crossroads_03 | Crossroads_08 | Crossroads_19 | Crossroads_22[bot1]",
     "Stateless": true
   },
   {
@@ -178,12 +178,12 @@
   },
   {
     "name": "Defeated_Any_Duranda",
-    "logic": "Fungus1_09[right1] + (SIDESLASH | FIREBALL + $CASTSPELL[2] | SCREAM + $CASTSPELL) | Fungus1_09[left1] + ($TAKEDAMAGE[5] + RIGHTSLASH | SCREAM + $CASTSPELL | RIGHTFIREBALL + $CASTSPELL[2] | $TAKEDAMAGE[3] + (RIGHTDASHSLASH | GREATSLASH) | ($TAKEDAMAGE + CYCLONE))",
+    "logic": "Fungus1_09[right1] + (SIDESLASH | FIREBALL + $CASTSPELL[2] | SCREAM + $CASTSPELL) | Fungus1_09[left1] + (5DAMAGE + RIGHTSLASH | SCREAM + $CASTSPELL | RIGHTFIREBALL + $CASTSPELL[2] | 3DAMAGE + (RIGHTDASHSLASH | GREATSLASH) | ($TAKEDAMAGE + CYCLONE))",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Aluba",
-    "logic": "Fungus1_26[door_SlugShrine] + (WINGS | Shaman_Stone + LEFTFIREBALL + $CASTSPELL | (LEFTSUPERDASH + SCREAM>1 + $CASTSPELL | LEFTDASH + PRECISEMOVEMENT + (SCREAM + $CASTSPELL | UPSLASH)) + (ACID | $TAKEDAMAGE)) | Fungus3_48[right1] + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH | FIREBALL + Shaman_Stone + $CASTSPELL | WINGS) | *Grub-Queen's_Gardens_Marmu + (Spore_Shroom | FIREBALL>1 + $CASTSPELL)",
+    "logic": "Fungus1_26[door_SlugShrine] + (WINGS | Shaman_Stone + LEFTFIREBALL + $CASTSPELL | (LEFTSUPERDASH + SCREAM>1 + $CASTSPELL | LEFTDASH + PRECISEMOVEMENT + (SCREAM + $CASTSPELL | UPSLASH)) + (ACID | $TAKEDAMAGE)) | Fungus3_48[right1] + (UPSLASH | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH | FIREBALL + Shaman_Stone + $CASTSPELL | WINGS) | *Grub-Queen's_Gardens_Marmu + ($EQUIPPEDCHARM[Spore_Shroom] + $SPENDSOUL[33] | FIREBALL>1 + $CASTSPELL)",
     "Stateless": true
   },
   {
