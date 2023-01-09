@@ -1,7 +1,7 @@
-ItemChanger from https://files.catbox.moe/ttoagz.zip
+ItemChanger
 MenuChanger
-Randomizer 4 from https://cdn.discordapp.com/attachments/880316066256019496/1061545784589439007/RandomizerMod.zip
-RandomizerCore from https://cdn.discordapp.com/attachments/880316066256019496/1061545784283250749/RandomizerCore.zip
+Randomizer 4
+RandomizerCore
 RandoSettingsManager
 ItemSync
 MultiWorldLib
