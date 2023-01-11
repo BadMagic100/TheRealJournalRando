@@ -26,7 +26,7 @@ namespace TheRealJournalRando.IC
             foreach (string scene in new[] { SceneNames.Fungus2_30, SceneNames.Abyss_02, SceneNames.Hive_03 })
             {
                 Events.AddFsmEdit(scene, new("Flamebearer Spawn", "Spawn Control"), SpawnNightmaresWithCarefreeMelody);
-                Events.AddFsmEdit(scene, new("Flamebearer Large", "Control"), ControlNightmaresWithCarefreeMelody);
+                Events.AddFsmEdit(scene, new("Control"), ControlNightmaresWithCarefreeMelody);
             }
         }
 
@@ -42,7 +42,7 @@ namespace TheRealJournalRando.IC
             foreach (string scene in new[] {SceneNames.Fungus2_30, SceneNames.Abyss_02, SceneNames.Hive_03})
             {
                 Events.RemoveFsmEdit(scene, new("Flamebearer Spawn", "Spawn Control"), SpawnNightmaresWithCarefreeMelody);
-                Events.RemoveFsmEdit(scene, new("Flamebearer Large", "Control"), ControlNightmaresWithCarefreeMelody);
+                Events.RemoveFsmEdit(scene, new("Control"), ControlNightmaresWithCarefreeMelody);
             }
         }
 
@@ -85,6 +85,11 @@ namespace TheRealJournalRando.IC
 
         private void ControlNightmaresWithCarefreeMelody(PlayMakerFSM fsm)
         {
+            if (!fsm.gameObject.name.StartsWith("Flamebearer"))
+            {
+                return;
+            }
+
             FsmState init = fsm.GetState("Init");
             FsmInt? storeValue = init.Actions[2] is GetPlayerDataInt gdpi ? gdpi.storeValue : (init.Actions[2] as SetIntValue)?.intVariable;
             if (storeValue != null)
