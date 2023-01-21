@@ -101,7 +101,7 @@ namespace TheRealJournalRando
                 return;
             }
 
-            switch (args.Item.name)
+            switch (args.Item?.name)
             {
                 case ItemNames.Journal_Entry_Goam:
                 case ItemNames.Journal_Entry_Garpede:
@@ -111,7 +111,7 @@ namespace TheRealJournalRando
                     if (args.Item is JournalEntryItem jei && jei.UIDef is MsgUIDef)
                     {
                         AbstractItem copy = jei.Clone();
-                        MsgUIDef uiDef = (MsgUIDef)copy.UIDef;
+                        MsgUIDef uiDef = (MsgUIDef)copy.UIDef!;
                         uiDef.sprite = new JournalBadgeSprite(jei.playerDataName);
                         args.Item = copy;
                     }

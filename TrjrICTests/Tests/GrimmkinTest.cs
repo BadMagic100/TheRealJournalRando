@@ -20,13 +20,13 @@ namespace TrjrICTests.Tests
             base.Start(args);
             ItemChangerMod.Modules.Add<GrimmQuestAfterBanishment>();
             AbstractPlacement start = ItemChanger.Internal.Ref.Settings.Placements["Start"];
-            start.Add(Finder.GetItem(ItemNames.Grimmchild1));
+            start.Add(Finder.GetItem(ItemNames.Grimmchild1)!);
         }
 
         public override IEnumerable<AbstractPlacement> GetPlacements(TestArgs args)
         {
-            AbstractPlacement p = Finder.GetLocation(EnemyNames.Grimmkin_Nightmare.AsEntryName()).Wrap();
-            p.Add(Finder.GetItem(ItemNames.Baldur_Shell));
+            AbstractPlacement p = Finder.GetLocation(EnemyNames.Grimmkin_Nightmare.AsEntryName())!.Wrap();
+            p.Add(Finder.GetItem(ItemNames.Baldur_Shell)!);
             yield return p;
         }
     }

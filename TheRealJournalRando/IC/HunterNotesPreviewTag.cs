@@ -24,7 +24,7 @@ namespace TheRealJournalRando.IC
             AbstractLocation? loc = parent as AbstractLocation;
             if (loc != null && pdName != null)
             {
-                ItemChangerMod.Modules.Get<JournalControlModule>().DeregisterNotesPreviewHandler(pdName, loc.Placement);
+                ItemChangerMod.Modules.Get<JournalControlModule>()?.DeregisterNotesPreviewHandler(pdName, loc.Placement);
             }
         }
     }

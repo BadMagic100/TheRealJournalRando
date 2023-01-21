@@ -336,7 +336,7 @@ namespace TheRealJournalRando.Rando
                 {
                     info.onRandoLocationCreation += (factory, rl) =>
                     {
-                        foreach (LogicCost c in rl.costs)
+                        foreach (LogicCost c in rl.costs ?? Enumerable.Empty<LogicCost>())
                         {
                             if (c is SimpleCost sc && icNameByTermName.ContainsKey(sc.term.Name))
                             {
@@ -607,7 +607,7 @@ namespace TheRealJournalRando.Rando
                         else
                         {
                             TheRealJournalRando.Instance.LogError($"Failed to force {loc} as a Bluggsac; unexpected data on sheet 0");
-                            pmt = Finder.GetLocation(loc).Wrap();
+                            pmt = Finder.GetLocation(loc)!.Wrap();
                         }
                         factory.AddPlacement(pmt);
                         return pmt;

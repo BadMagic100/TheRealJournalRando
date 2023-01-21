@@ -793,7 +793,7 @@
   },
   {
     "name": "Defeated_Any_Radiance",
-    "logic": "Room_temple[left1] + Opened_Black_Egg_Temple + COMBAT[Hollow_Knight] + VOIDHEART + DREAMNAIL + (WINGS | FULLCLAW) + COMBAT[Radiance]",
+    "logic": "Room_temple[left1] + Opened_Black_Egg_Temple + Defeated_Any_Hollow_Knight + VOIDHEART + DREAMNAIL + (WINGS | FULLCLAW) + COMBAT[Radiance]",
     "Stateless": true
   },
   {

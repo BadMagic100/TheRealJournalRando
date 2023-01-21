@@ -15,7 +15,12 @@ namespace TheRealJournalRando.IC
             GetContainer(out GameObject obj, out string containerType);
             PlaceContainer(obj, containerType);
 
-            GameObject hunterEntry = to.FindGameObject("Hunter Entry");
+            GameObject? hunterEntry = to.FindGameObject("Hunter Entry");
+            if (hunterEntry == null)
+            {
+                TheRealJournalRando.Instance.LogError("Could not find Hunter's Mark GO");
+                return;
+            }
             PlayMakerFSM control = hunterEntry.LocateMyFSM("Control");
             control.GetState("Init").Actions[7] = new SetGameObject()
             {

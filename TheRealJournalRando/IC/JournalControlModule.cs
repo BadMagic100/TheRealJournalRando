@@ -87,14 +87,14 @@ namespace TheRealJournalRando.IC
             ModHooks.GetPlayerBoolHook -= JournalDataGetOverride;
 
             Events.RemoveFsmEdit(new("Enemy List", "Item List Control"), EditJournalUI);
-            Events.RemoveFsmEdit(new("False Knight New", "FalseyControl"), journalBlockers?["FalseKnight"]);
-            Events.RemoveFsmEdit(new("Mantis Battle", "Battle Control"), journalBlockers?["MantisLord"]);
-            Events.RemoveFsmEdit(SceneNames.Ruins2_03_boss, new("Battle Control", "Battle Control"), journalBlockers?["BlackKnight"]);
-            Events.RemoveFsmEdit(new("Jar Collector", "Death"), journalBlockers?["JarCollector"]);
-            Events.RemoveFsmEdit(SceneNames.GG_Nailmasters, new("Brothers", "Combo Control"), journalBlockers?["NailBros"]);
-            Events.RemoveFsmEdit(new("Sly Boss", "Control"), journalBlockers?["Nailsage"]);
-            Events.RemoveFsmEdit(new("Control"), multiJournalBlockers?["Sibling"]);
-            Events.RemoveFsmEdit(new("Control"), multiJournalBlockers?["PalaceFly"]);
+            Events.RemoveFsmEdit(new("False Knight New", "FalseyControl"), journalBlockers!["FalseKnight"]);
+            Events.RemoveFsmEdit(new("Mantis Battle", "Battle Control"), journalBlockers!["MantisLord"]);
+            Events.RemoveFsmEdit(SceneNames.Ruins2_03_boss, new("Battle Control", "Battle Control"), journalBlockers!["BlackKnight"]);
+            Events.RemoveFsmEdit(new("Jar Collector", "Death"), journalBlockers!["JarCollector"]);
+            Events.RemoveFsmEdit(SceneNames.GG_Nailmasters, new("Brothers", "Combo Control"), journalBlockers!["NailBros"]);
+            Events.RemoveFsmEdit(new("Sly Boss", "Control"), journalBlockers!["Nailsage"]);
+            Events.RemoveFsmEdit(new("Control"), multiJournalBlockers!["Sibling"]);
+            Events.RemoveFsmEdit(new("Control"), multiJournalBlockers!["PalaceFly"]);
 
             ilOrigRecordKillForJournal?.Dispose();
         }

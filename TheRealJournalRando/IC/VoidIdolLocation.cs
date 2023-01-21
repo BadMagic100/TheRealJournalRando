@@ -31,7 +31,7 @@ namespace TheRealJournalRando.IC
             for (int i = 0; i < 3; i++)
             {
                 string goFullPath = $"/GG_Statue_Knight/Base/Statue/Knight_v0{i + 1}/Interact";
-                Events.RemoveFsmEdit(SceneNames.GG_Workshop, new(goFullPath, "Conversation Control"), statueEditBuilder?[i]);
+                Events.RemoveFsmEdit(SceneNames.GG_Workshop, new(goFullPath, "Conversation Control"), statueEditBuilder![i]);
             }
         }
 
@@ -117,7 +117,7 @@ namespace TheRealJournalRando.IC
 
         protected override void OnUnload()
         {
-            VoidIdolAggregatorModule module = ItemChangerMod.Modules.Get<VoidIdolAggregatorModule>();
+            VoidIdolAggregatorModule module = ItemChangerMod.Modules.Get<VoidIdolAggregatorModule>()!;
             for (int i = tier; i < 3; i++)
             {
                 module.RemoveItemsFromStatue(i, this);
