@@ -34,12 +34,8 @@ namespace TheRealJournalRando.Rando
             }
 
             ItemChangerMod.Modules.GetOrAdd<FixSiblingSpawnerModule>();
+            ItemChangerMod.Modules.GetOrAdd<GrimmQuestAfterBanishment>();
 
-            // if GK nightmares or NKG will be randomized
-            if (Settings.Pools.BonusEntries)
-            {
-                ItemChangerMod.Modules.GetOrAdd<GrimmQuestAfterBanishment>();
-            }
             if (ItemSyncInterop.IsItemSync)
             {
                 ItemChangerMod.Modules.GetOrAdd<ItemsyncKillSyncModule>();
