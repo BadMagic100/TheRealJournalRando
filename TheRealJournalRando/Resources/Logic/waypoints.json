@@ -803,7 +803,7 @@
   },
   {
     "name": "Defeated_Colosseum_3",
-    "logic": "Room_Colosseum_01[left1] + Can_Replenish_Geo + (ANYCLAW | (SPICYCOMBATSKIPS + WINGS)) + COMBAT[Colosseum_3]",
+    "logic": "Room_Colosseum_01[left1] + Can_Replenish_Geo + (ANYCLAW | (SPICYCOMBATSKIPS + WINGS)) + COMBAT[Colosseum_3] + (READ ? ANY)",
     "Stateless": true
   },
   {
