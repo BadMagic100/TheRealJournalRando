@@ -31,7 +31,7 @@
   },
   {
     "name": "Defeated_Any_Aspid_Hunter",
-    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + $TAKEDAMAGE) + LEFTDASH)) | Crossroads_03 | Crossroads_08 | Crossroads_19 | Crossroads_22[bot1]",
+    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + $TAKEDAMAGE) + LEFTDASH)) | Crossroads_03 + (BREAKABLE_Crossroads03_SceneryBreakWall2 ? TRUE | FIREBALL>1 + OBSCURESKIPS) | Crossroads_08 | Crossroads_19 | Crossroads_22[bot1]",
     "Stateless": true
   },
   {
@@ -86,7 +86,7 @@
   },
   {
     "name": "Defeated_Any_Maggot",
-    "logic": "(Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + (ANYCLAW | WINGS + INFECTED)",
+    "logic": "(Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + (ANYCLAW | WINGS + INFECTED) + (BREAKABLE_Crossroads10_BreakableWall ? TRUE | FIREBALL>1 + OBSCURESKIPS)",
     "Stateless": true
   },
   {
@@ -458,7 +458,7 @@
   },
   {
     "name": "Defeated_Any_Deepling",
-    "logic": "(Deepnest_39[top1] | Deepnest_39[left1] | Deepnest_39[door1] | Deepnest_41[left2]) + (LANTERN | DARKROOMS) | (Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1]) + (LANTERN | DARKROOMS) | Deepnest_39[right1] + (LANTERN | DARKROOMS) + (ANYCLAW | ENEMYPOGOS) | Deepnest_42[bot1] | Deepnest_Spider_Town[left1]",
+    "logic": "(Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + (BREAKABLE_Deepnest39_BreakableWall ? TRUE)) + (LANTERN | DARKROOMS) | Deepnest_39[right1] + (LANTERN | DARKROOMS) + (ANYCLAW | ENEMYPOGOS) | (Deepnest_41[left1] + (BREAKABLE_Deepnest41_OneWayWall ? TRUE) | Deepnest_41[left2]) + (LANTERN | DARKROOMS) | Deepnest_42[bot1] | Deepnest_Spider_Town[left1]",
     "Stateless": true
   },
   {
@@ -473,7 +473,7 @@
   },
   {
     "name": "Defeated_Any_Stalking_Devout",
-    "logic": "(Deepnest_34 | (Deepnest_39[top1] | Deepnest_39[door1] | Deepnest_39[left1] | Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | *Rancid_Egg-Dark_Deepnest) + COMBAT[Any_Devout] | (Deepnest_39 | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS)) + COMBAT[Left_Devout]",
+    "logic": "(Deepnest_34 | (Deepnest_39[top1] | Deepnest_39[door1] + (BREAKABLE_Deepnest39_BreakableWall ? TRUE) | Deepnest_39[left1] | Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | *Rancid_Egg-Dark_Deepnest) + COMBAT[Any_Devout] | (Deepnest_39 | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS)) + COMBAT[Left_Devout]",
     "Stateless": true
   },
   {
