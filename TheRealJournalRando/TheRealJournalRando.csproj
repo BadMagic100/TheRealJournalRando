@@ -93,6 +93,9 @@
     <Reference Include="MonoMod.Utils">
       <HintPath>$(HollowKnightRefs)/MonoMod.Utils.dll</HintPath>
     </Reference>
+    <Reference Include="MoreLocations">
+      <HintPath>$(HollowKnightRefs)/Mods/MoreLocations/MoreLocations.dll</HintPath>
+    </Reference>
     <Reference Include="MultiWorldLib">
       <HintPath>$(HollowKnightRefs)/Mods/MultiWorldLib/MultiWorldLib.dll</HintPath>
     </Reference>

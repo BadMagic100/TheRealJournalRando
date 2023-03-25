@@ -5,3 +5,4 @@ RandomizerCore
 RandoSettingsManager
 ItemSync
 MultiWorldLib
+MoreLocations

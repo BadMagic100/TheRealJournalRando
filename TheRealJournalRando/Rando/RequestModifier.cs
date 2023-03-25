@@ -53,6 +53,30 @@ namespace TheRealJournalRando.Rando
             RequestBuilder.OnUpdate.Subscribe(100f, DerangeJournals);
         }
 
+        public static bool IsEnemyEnabled(EnemyDef enemy)
+        {
+            bool isNormalEntry = (!enemy.isBoss && !enemy.ignoredForHunterMark);
+            // doing some implication here - if the enemy is a boss, BossEntries must be true to randomize,
+            // otherwise we don't care about the setting. (and similar for others)
+            bool normalRandomization = !isNormalEntry || RandoInterop.Settings.Pools.RegularEntries;
+            bool bossRandomization = !enemy.isBoss || RandoInterop.Settings.Pools.BossEntries;
+            bool bonusRandomization = !enemy.ignoredForHunterMark || RandoInterop.Settings.Pools.BonusEntries;
+            return normalRandomization && bossRandomization && bonusRandomization;
+        }
+
+        public static LogicCost BuildCostForEnemy(EnemyDef enemy, LogicManager lm, int amount)
+        {
+            if (termNameByIcName.ContainsKey(enemy.icName))
+            {
+                Term t = lm.GetTerm(termNameByIcName[enemy.icName])!;
+                return new SimpleCost(t, amount);
+            }
+            else
+            {
+                return new LogicEnemyKillCost(lm, enemy.icName, enemy.respawns, amount);
+            }
+        }
+
         private static void CreateInitialProgression(LogicManager lm, RandomizerMod.Settings.GenerationSettings gs, ProgressionInitializer pi)
         {
             if (!RandoInterop.Settings.Enabled)
@@ -156,15 +180,8 @@ namespace TheRealJournalRando.Rando
             void ApplyCost(RandoFactory factory, RandoModLocation rl)
             {
                 int cost = isNotes ? enemy.notesCost : 1;
-                if (termNameByIcName.ContainsKey(enemy.icName))
-                {
-                    Term t = factory.lm.GetTerm(termNameByIcName[enemy.icName])!;
-                    rl.AddCost(new SimpleCost(t, cost));
-                }
-                else
-                {
-                    rl.AddCost(new LogicEnemyKillCost(factory.lm, enemy.icName, enemy.respawns, cost));
-                }
+                LogicCost lc = BuildCostForEnemy(enemy, factory.lm, cost);
+                rl.AddCost(lc);
             }
             return ApplyCost;
         }
@@ -180,13 +197,7 @@ namespace TheRealJournalRando.Rando
             {
                 string entryName = enemy.icName.AsEntryName();
                 string notesName = enemy.icName.AsNotesName();
-                bool isNormalEntry = (!enemy.isBoss && !enemy.ignoredForHunterMark);
-                // doing some implication here - if the enemy is a boss, BossEntries must be true to randomize,
-                // otherwise we don't care about the setting. (and similar for others)
-                bool normalRandomization = !isNormalEntry || RandoInterop.Settings.Pools.RegularEntries;
-                bool bossRandomization = !enemy.isBoss || RandoInterop.Settings.Pools.BossEntries;
-                bool bonusRandomization = !enemy.ignoredForHunterMark || RandoInterop.Settings.Pools.BonusEntries;
-                if (normalRandomization && bossRandomization && bonusRandomization)
+                if (IsEnemyEnabled(enemy))
                 {
                     if (RandoInterop.Settings.JournalRandomizationType.HasFlag(JournalRandomizationType.EntriesOnly))
                     {
@@ -320,7 +331,7 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            double fixedWeight = ComputeWeight(rb.rng);
+            double fixedWeight = ComputeCostWeight(rb.rng);
 
             foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.requestDefineIgnore))
             {
@@ -328,7 +339,7 @@ namespace TheRealJournalRando.Rando
                 double weight = RandoInterop.Settings.Costs.CostRandomizationType switch
                 {
                     CostRandomizationType.RandomFixedWeight => fixedWeight,
-                    CostRandomizationType.RandomPerEntry => ComputeWeight(rb.rng),
+                    CostRandomizationType.RandomPerEntry => ComputeCostWeight(rb.rng),
                     _ => throw new NotImplementedException("Invalid cost randomization type!")
                 };
 
@@ -368,7 +379,7 @@ namespace TheRealJournalRando.Rando
             return false;
         }
 
-        private static float ComputeWeight(Random rng)
+        public static float ComputeCostWeight(Random rng)
         {
             double result = Math.Min(RandoInterop.Settings.Costs.MinimumCostWeight, RandoInterop.Settings.Costs.MaximumCostWeight)
                 + rng.NextDouble() * Math.Abs(RandoInterop.Settings.Costs.MaximumCostWeight - RandoInterop.Settings.Costs.MinimumCostWeight);

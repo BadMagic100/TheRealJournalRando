@@ -21,6 +21,10 @@ namespace TheRealJournalRando.Rando
             {
                 SettingsManagement.Hook();
             }
+            if (ModHooks.GetMod("MoreLocations") is Mod)
+            {
+                MoreLocationsInterop.Hook();
+            }
 
             SettingsLog.AfterLogSettings += AddJournalRandoSettings;
             RandoController.OnExportCompleted += OnExportCompleted;
