@@ -5,4 +5,4 @@ RandomizerCore
 RandoSettingsManager
 ItemSync
 MultiWorldLib
-MoreLocations
+MoreLocations from https://github.com/BadMagic100/MoreLocations/releases/download/v1.0.8506.37715/MoreLocations.zip
