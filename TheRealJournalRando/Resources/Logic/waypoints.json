@@ -808,32 +808,32 @@
   },
   {
     "name": "Defeated_Pantheon_1",
-    "logic": "GG_Atrium + ((Defeated_Gruz_Mother + Defeated_False_Knight + *Boss_Geo-Massive_Moss_Charger + Defeated_Hornet_1 + Defeated_Gorb + Defeated_Dung_Defender + Defeated_Any_Soul_Warrior + Defeated_Brooding_Mawlek) | (PANTHEON_KEY_1 ? FALSE) + SPELLS>2 + FULLDASH + WINGS)",
+    "logic": "GG_Atrium + ((Defeated_Gruz_Mother + Defeated_False_Knight + *Boss_Geo-Massive_Moss_Charger + Defeated_Hornet_1 + Defeated_Gorb + Defeated_Dung_Defender + Defeated_Any_Soul_Warrior + Defeated_Brooding_Mawlek) | (PANTHEON_KEY_1 ? FALSE) COMBAT[Pantheon_1])",
     "Stateless": true
   },
   {
     "name": "Defeated_Pantheon_2",
-    "logic": "GG_Atrium + ((Defeated_Xero + Defeated_Crystal_Guardian + Defeated_Soul_Master + Defeated_Colosseum_2 + Defeated_Mantis_Lords + Defeated_Marmu + Defeated_Nosk + Defeated_Flukemarm + Defeated_Broken_Vessel) | (PANTHEON_KEY_2 ? FALSE) + SPELLS>2 + FULLDASH + WINGS)",
+    "logic": "GG_Atrium + ((Defeated_Xero + Defeated_Crystal_Guardian + Defeated_Soul_Master + Defeated_Colosseum_2 + Defeated_Mantis_Lords + Defeated_Marmu + Defeated_Nosk + Defeated_Flukemarm + Defeated_Broken_Vessel) | (PANTHEON_KEY_2 ? FALSE) + COMBAT[Pantheon_2])",
     "Stateless": true
   },
   {
     "name": "Defeated_Pantheon_3",
-    "logic": "GG_Atrium + ((Defeated_Hive_Knight + Defeated_Elder_Hu + Defeated_Collector + Defeated_Colosseum_2 + Defeated_Grimm + Defeated_Galien + Defeated_Uumuu + Defeated_Hornet_2) + | (PANTHEON_KEY_3 ? FALSE) + SPELLS>2 + FULLDASH + WINGS))",
+    "logic": "GG_Atrium + ((Defeated_Hive_Knight + Defeated_Elder_Hu + Defeated_Collector + Defeated_Colosseum_2 + Defeated_Grimm + Defeated_Galien + Defeated_Uumuu + Defeated_Hornet_2) + | (PANTHEON_KEY_3 ? FALSE) + COMBAT[Pantheon_3]))",
     "Stateless": true
   },
   {
     "name": "Opened_Pantheon_4",
-    "logic": "Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 | GG_Atrium + (PANTHEON_KEY_4 ? FALSE) + SPELLS>2 + FULLDASH + WINGS",
+    "logic": "GG_Atrium + (Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 | (PANTHEON_KEY_4 ? FALSE))",
     "Stateless": true
   },
   {
     "name": "Defeated_Pantheon_4",
-    "logic": "GG_Atrium + Opened_Pantheon_4 + Defeated_Enraged_Guardian + Defeated_Broken_Vessel + Defeated_No_Eyes + Defeated_Traitor_Lord + Defeated_Dung_Defender + Defeated_False_Knight + Defeated_Markoth + Defeated_Watcher_Knights + Defeated_Soul_Master",
+    "logic": "GG_Atrium + Opened_Pantheon_4 + ((Defeated_Enraged_Guardian + Defeated_Broken_Vessel + Defeated_No_Eyes + Defeated_Traitor_Lord + Defeated_Dung_Defender + Defeated_False_Knight + Defeated_Markoth + Defeated_Watcher_Knights + Defeated_Soul_Master) | (PANTHEON_KEY_4 ? FALSE) + COMBAT[Pantheon_4])",
     "Stateless": true
   },
   {
     "name": "Hit_Pantheon_5_Unlock_Orb",
-    "logic": "GG_Atrium + WINGS + ANYCLAW + ((VOIDHEART + Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 + Defeated_Pantheon_4) | (PANTHEON_KEY_5 ? FALSE) + SPELLS>2 + FULLDASH + WINGS)",
+    "logic": "GG_Atrium + WINGS + ANYCLAW + ((VOIDHEART + Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 + Defeated_Pantheon_4) | (PANTHEON_KEY_5 ? FALSE))",
     "Stateless": true
   },
   {
@@ -843,7 +843,7 @@
   },
   {
     "name": "Defeated_Pantheon_5",
-    "logic": "GG_Atrium_Roof + WINGS + ANYCLAW + ((Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 + Defeated_Pantheon_4) | (PANTHEON_KEY_5 ? FALSE) + SPELLS>2 + FULLDASH + WINGS)",
+    "logic": "GG_Atrium_Roof + WINGS + ANYCLAW + ((Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 + Defeated_Pantheon_4 + COMBAT[Radiance]) | (PANTHEON_KEY_5 ? FALSE) + COMBAT[Pantheon_5])",
     "Stateless": true
   },
   {
