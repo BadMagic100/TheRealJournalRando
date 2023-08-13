@@ -808,7 +808,7 @@
   },
   {
     "name": "Defeated_Pantheon_1",
-    "logic": "GG_Atrium + ((Defeated_Gruz_Mother + Defeated_False_Knight + *Boss_Geo-Massive_Moss_Charger + Defeated_Hornet_1 + Defeated_Gorb + Defeated_Dung_Defender + Defeated_Any_Soul_Warrior + Defeated_Brooding_Mawlek) | (PANTHEON_KEY_1 ? FALSE) COMBAT[Pantheon_1])",
+    "logic": "GG_Atrium + ((Defeated_Gruz_Mother + Defeated_False_Knight + *Boss_Geo-Massive_Moss_Charger + Defeated_Hornet_1 + Defeated_Gorb + Defeated_Dung_Defender + Defeated_Any_Soul_Warrior + Defeated_Brooding_Mawlek) | (PANTHEON_KEY_1 ? FALSE) + COMBAT[Pantheon_1])",
     "Stateless": true
   },
   {
