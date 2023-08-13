@@ -818,7 +818,7 @@
   },
   {
     "name": "Defeated_Pantheon_3",
-    "logic": "GG_Atrium + ((Defeated_Hive_Knight + Defeated_Elder_Hu + Defeated_Collector + Defeated_Colosseum_2 + Defeated_Grimm + Defeated_Galien + Defeated_Uumuu + Defeated_Hornet_2) + | (PANTHEON_KEY_3 ? FALSE) + COMBAT[Pantheon_3]))",
+    "logic": "GG_Atrium + ((Defeated_Hive_Knight + Defeated_Elder_Hu + Defeated_Collector + Defeated_Colosseum_2 + Defeated_Grimm + Defeated_Galien + Defeated_Uumuu + Defeated_Hornet_2) | (PANTHEON_KEY_3 ? FALSE) + COMBAT[Pantheon_3]))",
     "Stateless": true
   },
   {
