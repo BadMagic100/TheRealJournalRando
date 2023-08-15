@@ -797,6 +797,11 @@
     "Stateless": true
   },
   {
+    "name": "Can_Damage_Crystal_Guardian",
+    "logic": "UPSLASH | LEFTSLASH | RIGHTSLASH | MILDCOMBATSKIPS + (CYCLONE | GREATSLASH) | SPICYCOMBATSKIPS + (CYCLONE | GREATSLASH) + (DREAMNAIL + (SPELLS | FOCUS + SPORESHROOM | GLOWINGWOMB) | WEAVERSONG)",
+    "Stateless": true
+  },
+  {
     "name": "Defeated_Any_Mossy_Vagabond",
     "logic": "Fungus3_39[left1] | Fungus3_39[right1]",
     "Stateless": true
