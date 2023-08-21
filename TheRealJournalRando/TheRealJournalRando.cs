@@ -345,7 +345,7 @@ namespace TheRealJournalRando
 
         private void DefineWeatheredMaskLocation()
         {
-            Finder.DefineCustomLocation(new ObjectLocation()
+            Finder.DefineCustomLocation(new WeatheredMaskLocation()
             {
                 name = EnemyNames.Weathered_Mask.AsEntryName(),
                 sceneName = SceneNames.GG_Land_of_Storms,
