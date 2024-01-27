@@ -22,11 +22,11 @@
   },
   {
     "name": "Baldur_Shell_Left_Baldur",
-    "logic": "LEFTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)))"
+    "logic": "(Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP))) + LEFTBALDURS"
   },
   {
     "name": "Baldur_Shell_Right_Baldur",
-    "logic": "RIGHTBALDURS + (Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP)))"
+    "logic": "(Fungus1_28[left1] | (Fungus1_28[left2] + (FULLCLAW | WINGS | RIGHTDASH | RIGHTSUPERDASH | $SHADESKIP))) + RIGHTBALDURS"
   },
   // location logic for special-case journal entries
   {
@@ -55,6 +55,6 @@
   },
   {
     "name": "Hunter's_Notes-Mossy_Vagabond",
-    "logic": "(Fungus3_39[left1] | Fungus3_39[right1]) + (Can_Bench | DREAMER)"
+    "logic": "(Fungus3_39[left1] | Fungus3_39[right1]) + (Can_Bench/ | DREAMER)"
   }
 ]

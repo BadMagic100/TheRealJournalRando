@@ -652,7 +652,7 @@ namespace TheRealJournalRando.Rando
             {
                 if (gb.strategy is DefaultGroupPlacementStrategy ps)
                 {
-                    ps.Constraints += NoVanillaJournalLocation;
+                    ps.ConstraintList.Add(new DefaultGroupPlacementStrategy.Constraint(NoVanillaJournalLocation, Label: "Deranged Journal Locations"));
                 }
             }
         }

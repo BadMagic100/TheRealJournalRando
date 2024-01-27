@@ -218,7 +218,7 @@
   },
   {
     "name": "Defeated_Any_Sporg",
-    "logic": "Fungus2_03 | Fungus2_04 | Fungus2_08 | Fungus2_11 | Fungus2_20 + (UPSLASH | SCREAM + $CASTSPELL[before:AREASOUL] | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH) | Defeated_Bretta_Sporg | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] + (UPSLASH | SIDESLASH | Great_Slash | Cyclone_Slash | ANYDASHSLASH | SCREAM + $CASTSPELL[before:ROOMSOUL] | FIREBALL + $CASTSPELL[2,before:ROOMSOUL])",
+    "logic": "Fungus2_03 | Fungus2_04 | Fungus2_08 | Fungus2_11 | Fungus2_20 + (UPSLASH | SCREAM + $CASTSPELL[before:AREASOUL] | SIDESLASH | Cyclone_Slash | Great_Slash | ANYDASHSLASH) | $ANY + Defeated_Bretta_Sporg | Fungus2_29 | Fungus2_29[bot1] | Fungus2_30[top1] + (UPSLASH | SIDESLASH | Great_Slash | Cyclone_Slash | ANYDASHSLASH | SCREAM + $CASTSPELL[before:ROOMSOUL] | FIREBALL + $CASTSPELL[2,before:ROOMSOUL])",
     "Stateless": true
   },
   {
@@ -238,7 +238,7 @@
   },
   {
     "name": "Defeated_Any_Shrumal_Ogre",
-    "logic": "COMBAT[Shrumal_Ogre] + (Fungus2_05 | Fungus2_29 | Fungus2_30[top1])",
+    "logic": "(Fungus2_05 | Fungus2_29 | Fungus2_30[top1]) + COMBAT[Shrumal_Ogre]",
     "Stateless": true
   },
   {
@@ -293,7 +293,7 @@
   },
   {
     "name": "Defeated_Any_Soul_Warrior",
-    "logic": "Defeated_Sanctum_Warrior | Defeated_Elegant_Warrior | Room_Colosseum_01[left1] + Defeated_Colosseum_3",
+    "logic": "Defeated_Sanctum_Warrior | Defeated_Elegant_Warrior | Room_Colosseum_01[left1]/ + Defeated_Colosseum_3",
     "Stateless": true
   },
   {
@@ -378,7 +378,7 @@
   },
   {
     "name": "Defeated_Any_Flukemunga",
-    "logic": "COMBAT[Flukemunga] + (GG_Pipeway[right1] | GG_Pipeway[left1]) + (ANYCLAW | WINGS)",
+    "logic": "(GG_Pipeway[right1] | GG_Pipeway[left1]) + (ANYCLAW | WINGS) + COMBAT[Flukemunga]",
     "Stateless": true
   },
   {
@@ -403,7 +403,7 @@
   },
   {
     "name": "Defeated_Any_Crystal_Crawler",
-    "logic": "SPELLS + $CASTSPELL + (Mines_05 | Mines_11 | Mines_11[bot1] + SCREAM | (Mines_20[left1] | Mines_20[right1] | Mines_20[right2] + (LEFTCLAW | WINGS + ANYCLAW)) + ((SCREAM | FIREBALL) | ANYCLAW | WINGS | ENEMYPOGOS) | Mines_37[top1] + ANYCLAW)",
+    "logic": "(Mines_05 | Mines_11 | Mines_11[bot1] + SCREAM | (Mines_20[left1] | Mines_20[right1] | Mines_20[right2] + (LEFTCLAW | WINGS + ANYCLAW)) + ((SCREAM | FIREBALL) | ANYCLAW | WINGS | ENEMYPOGOS) | Mines_37[top1] + ANYCLAW) + SPELLS + $CASTSPELL",
     "Stateless": true
   },
   {
@@ -498,7 +498,7 @@
   },
   {
     "name": "Defeated_Any_Brooding_Mawlek",
-    "logic": "Defeated_Brooding_Mawlek | Room_Colosseum_01[left1] + Defeated_Colosseum_3",
+    "logic": "Defeated_Brooding_Mawlek | Room_Colosseum_01[left1]/ + Defeated_Colosseum_3",
     "Stateless": true
   },
   {
@@ -738,7 +738,7 @@
   },
   {
     "name": "Troupe_Banishment",
-    "logic": "6FLAMES + Defeated_Grimm + Room_spider_small[left1] + Cliffs_06[left1]",
+    "logic": "6FLAMES + Defeated_Grimm + Room_spider_small[left1]/ + Cliffs_06[left1]/",
     "Stateless": true
   },
   {
@@ -797,11 +797,6 @@
     "Stateless": true
   },
   {
-    "name": "Can_Damage_Crystal_Guardian",
-    "logic": "UPSLASH | LEFTSLASH | RIGHTSLASH | MILDCOMBATSKIPS + (CYCLONE | GREATSLASH) | SPICYCOMBATSKIPS + (CYCLONE | GREATSLASH) + (DREAMNAIL + (SPELLS | FOCUS + SPORESHROOM | GLOWINGWOMB) | WEAVERSONG)",
-    "Stateless": true
-  },
-  {
     "name": "Defeated_Any_Mossy_Vagabond",
     "logic": "Fungus3_39[left1] | Fungus3_39[right1]",
     "Stateless": true
@@ -813,7 +808,7 @@
   },
   {
     "name": "Defeated_Pantheon_1",
-    "logic": "GG_Atrium + ((Defeated_Gruz_Mother + Defeated_False_Knight + *Boss_Geo-Massive_Moss_Charger + Defeated_Hornet_1 + Defeated_Gorb + Defeated_Dung_Defender + Defeated_Any_Soul_Warrior + Defeated_Brooding_Mawlek) | (PANTHEON_KEY_1 ? FALSE) + COMBAT[Pantheon_1])",
+    "logic": "GG_Atrium + ((Defeated_Gruz_Mother + Defeated_False_Knight + *Boss_Geo-Massive_Moss_Charger/ + Defeated_Hornet_1 + Defeated_Gorb + Defeated_Dung_Defender + Defeated_Any_Soul_Warrior + Defeated_Brooding_Mawlek) | (PANTHEON_KEY_1 ? FALSE) + COMBAT[Pantheon_1])",
     "Stateless": true
   },
   {

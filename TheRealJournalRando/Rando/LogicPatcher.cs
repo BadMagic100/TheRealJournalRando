@@ -1,8 +1,9 @@
 ﻿using ItemChanger;
 using RandomizerCore;
+using RandomizerCore.Json;
 using RandomizerCore.Logic;
 using RandomizerCore.LogicItems;
-using RandomizerCore.LogicItems.Templates;
+using RandomizerCore.StringItems;
 using RandomizerMod.RC;
 using RandomizerMod.Settings;
 using System.IO;
@@ -27,16 +28,17 @@ namespace TheRealJournalRando.Rando
                 return;
             }
 
-            AddTermsAndItems(lmb);
+            JsonLogicFormat fmt = new();
+            AddTermsAndItems(lmb, fmt);
             OverrideBaseRandoJournalItems(lmb);
-            AddMacrosAndWaypoints(lmb);
-            AddLocationLogic(lmb);
+            AddMacrosAndWaypoints(lmb, fmt);
+            AddLocationLogic(lmb, fmt);
         }
 
-        private static void AddTermsAndItems(LogicManagerBuilder lmb)
+        private static void AddTermsAndItems(LogicManagerBuilder lmb, JsonLogicFormat fmt)
         {
             using Stream t = typeof(LogicPatcher).Assembly.GetManifestResourceStream("TheRealJournalRando.Resources.Logic.terms.json");
-            lmb.DeserializeJson(LogicManagerBuilder.JsonType.Terms, t);
+            lmb.DeserializeFile(LogicFileType.Terms, fmt, t);
 
             Term hunterNotes = lmb.GetTerm(Terms.HUNTERNOTES);
             foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.logicItemIgnore))
@@ -51,24 +53,20 @@ namespace TheRealJournalRando.Rando
                 else
                 {
                     Term progressiveEntry = lmb.GetOrAddTerm($"PARTIALENTRY[{enemy.icName}]", TermType.SignedByte);
-                    // entry: if notes are progressive and you have one of the things already, gives the entry part and notes
-                    //        else, give an entry part
-                    // notes: if you already have one of the entry parts, give the notes and entry part
-                    //           (regardless whether notes are progressive you should definitely get it)
-                    //        else (if you don't have one of the things)
-                    //          if notes are progressive, you only get one of the entry parts (you have to earn the notes!)
-                    //          else get the entry part and the notes
-                    lmb.AddTemplateItem(new BranchedItemTemplate(journalEntryItemName, $"{Terms.PROGRESSIVENOTES} + {progressiveEntry.Name}",
-                        new MultiItem(journalEntryItemName, new TermValue[] { new(progressiveEntry, 1), new(hunterNotes, 1) }),
-                        new SingleItem(journalEntryItemName, new(progressiveEntry, 1))));
+                    // entry: always give the entry part, if notes are progressive also give notes.
+                    // notes: always get at least the partial entry. generally, you can also have notes too, except for when
+                    //        notes are progressive and you don't already have the entry
+                    string entryEffect = $"""
+                        `{Terms.PROGRESSIVENOTES} + {progressiveEntry.Name}` => {hunterNotes.Name}++
+                            >> {progressiveEntry.Name}++
+                        """;
+                    lmb.AddItem(new StringItemTemplate(journalEntryItemName, entryEffect));
 
-                    MultiItemTemplate notesAndEntryPart = new(hunterNotesItemName, new[] { (progressiveEntry.Name, 1), (hunterNotes.Name, 1) });
-                    lmb.AddTemplateItem(new BranchedItemTemplate(hunterNotesItemName, progressiveEntry.Name,
-                        notesAndEntryPart,
-                        new BranchedItemTemplate(hunterNotesItemName, Terms.PROGRESSIVENOTES,
-                            new SingleItem(hunterNotesItemName, new(progressiveEntry, 1)),
-                            notesAndEntryPart)
-                    ));
+                    string notesEffect = $"""
+                        !`{Terms.PROGRESSIVENOTES} + {progressiveEntry.Name}=0` => {hunterNotes.Name}++
+                            >> {progressiveEntry.Name}++
+                        """;
+                    lmb.AddItem(new StringItemTemplate(hunterNotesItemName, notesEffect));
                 }
             }
             lmb.AddItem(new EmptyItem(EnemyNames.Weathered_Mask.AsEntryName()));
@@ -126,19 +124,19 @@ namespace TheRealJournalRando.Rando
             }
         }
 
-        private static void AddMacrosAndWaypoints(LogicManagerBuilder lmb)
+        private static void AddMacrosAndWaypoints(LogicManagerBuilder lmb, JsonLogicFormat fmt)
         {
             using Stream s = typeof(LogicPatcher).Assembly.GetManifestResourceStream("TheRealJournalRando.Resources.Logic.macros.json");
-            lmb.DeserializeJson(LogicManagerBuilder.JsonType.Macros, s);
+            lmb.DeserializeFile(LogicFileType.Macros, fmt, s);
 
             using Stream r = typeof(LogicPatcher).Assembly.GetManifestResourceStream("TheRealJournalRando.Resources.Logic.waypoints.json");
-            lmb.DeserializeJson(LogicManagerBuilder.JsonType.Waypoints, r);
+            lmb.DeserializeFile(LogicFileType.Waypoints, fmt, r);
         }
 
-        private static void AddLocationLogic(LogicManagerBuilder lmb)
+        private static void AddLocationLogic(LogicManagerBuilder lmb, JsonLogicFormat fmt)
         {
             using Stream s = typeof(LogicPatcher).Assembly.GetManifestResourceStream("TheRealJournalRando.Resources.Logic.enemyLocations.json");
-            lmb.DeserializeJson(LogicManagerBuilder.JsonType.Locations, s);
+            lmb.DeserializeFile(LogicFileType.Locations, fmt, s);
 
             foreach (EnemyDef enemy in EnemyData.Enemies.Values.Where(x => !x.logicLocationIgnore))
             {
