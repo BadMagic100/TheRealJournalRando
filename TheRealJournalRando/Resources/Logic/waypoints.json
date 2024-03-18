@@ -46,7 +46,7 @@
   },
   {
     "name": "Defeated_Any_Wandering_Husk",
-    "logic": "Crossroads_01 | Crossroads_21 | Crossroads_37[right1] | Crossroads_40 | Crossroads_ShamanTemple[left1] | Deepnest_03 | Deepnest_33[top2] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS) | Fungus1_03 | Fungus1_34 | Ruins1_04[door1] | Ruins1_04[bot1] | Ruins1_04[right1] + (ENEMYPOGOS | LEFTDASH | WINGS | LEFTCLAW | PRECISEMOVEMENT) | Ruins1_28 | Ruins1_28[left1]",
+    "logic": "Crossroads_01 | Crossroads_37[right1] | Crossroads_40 | Crossroads_ShamanTemple[left1] | Deepnest_03 | Deepnest_33[top2] | Deepnest_34 + LEFTCLAW | (Deepnest_34[top1] | Deepnest_35[top1] | Deepnest_35 + ANYCLAW) + (LANTERN | DARKROOMS) | Fungus1_03 | Fungus1_34 | Ruins1_04[door1] | Ruins1_04[bot1] | Ruins1_04[right1] + (ENEMYPOGOS | LEFTDASH | WINGS | LEFTCLAW | PRECISEMOVEMENT) | Ruins1_28 | Ruins1_28[left1]",
     "Stateless": true
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "name": "Defeated_Any_Husk_Bully",
-    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_37[right1] | Fungus1_03 | Ruins1_01[left1] | Ruins1_04[right1] | Ruins1_05c | Ruins1_28 | Ruins1_28[left1]",
+    "logic": "Abyss_02 | Cliffs_02 | ((Cliffs_04[left1] | Cliffs_04[right1]) + (LANTERN | DARKROOMS)) | Crossroads_21 | Crossroads_37[right1] | Fungus1_03 | Ruins1_01[left1] | Ruins1_04[right1] | Ruins1_05c | Ruins1_28 | Ruins1_28[left1]",
     "Stateless": true
   },
   {
@@ -113,7 +113,7 @@
   },
   {
     "name": "Defeated_Any_Mosscreep",
-    "logic": "Deepnest_43[left1] + (ANYCLAW | WINGS) | Deepnest_43[bot1] + (FULLCLAW | (ANYCLAW + WINGS)) | Fungus1_01 | Fungus1_03 | Fungus1_05 | Fungus1_07 | Fungus1_10 | Fungus1_11 | Fungus1_19 | Fungus1_21 | Fungus1_22 | Fungus1_31 | Fungus1_31[bot1] | Fungus1_32 | Fungus1_34 | Fungus3_40[top1]",
+    "logic": "Deepnest_43[left1] + (ANYCLAW | WINGS) | Deepnest_43[bot1] + (FULLCLAW | (ANYCLAW + WINGS)) | Fungus1_01 | Fungus1_03 | Fungus1_05 | Fungus1_07 | Fungus1_10 | Fungus1_11 | Fungus1_13[right1] + (LEFTCLAW | WINGS) | Fungus1_19 | Fungus1_21 | Fungus1_22 | Fungus1_31 | Fungus1_31[bot1] | Fungus1_32 | Fungus1_34 | Fungus3_40[top1]",
     "Stateless": true
   },
   {
@@ -123,7 +123,7 @@
   },
   {
     "name": "Defeated_Any_Mosskin",
-    "logic": "Fungus1_01 | Fungus1_05 | Fungus1_06[bot1] | Fungus1_07 | Fungus1_13[right1] + (LEFTCLAW | WINGS) | Fungus1_31",
+    "logic": "Fungus1_01 | Fungus1_05 | Fungus1_06[bot1] | Fungus1_07 | Fungus1_31",
     "Stateless": true
   },
   {
