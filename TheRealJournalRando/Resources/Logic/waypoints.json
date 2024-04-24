@@ -338,7 +338,7 @@
   },
   {
     "name": "Defeated_Any_Belfly",
-    "logic": "*Pale_Ore-Basin | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_09[left1] | RestingGrounds_10 + UPWALLBREAK | Room_Colosseum_01[left1] + Defeated_Colosseum_2 | Ruins1_01[left1] | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c | Ruins2_07[right1] | Waterways_01 | Waterways_02[top1] | Waterways_02[top2] | (Waterways_02[bot2] | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3) + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | *Rancid_Egg-Waterways_West_Pickup | Waterways_07 | *Soul_Totem-Waterways_Flukemarm | Waterways_08[left2] | Waterways_13[left1]",
+    "logic": "*Pale_Ore-Basin | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_09[left1] | RestingGrounds_10 + UPWALLBREAK | Room_Colosseum_01[left1] + (Defeated_Colosseum_2 | Defeated_Colosseum_3) | Ruins1_01[left1] | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c | Ruins2_07[right1] | Waterways_01 | Waterways_02[top1] | Waterways_02[top2] | (Waterways_02[bot2] | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3) + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | *Rancid_Egg-Waterways_West_Pickup | Waterways_07 | *Soul_Totem-Waterways_Flukemarm | Waterways_08[left2] | Waterways_13[left1]",
     "Stateless": true
   },
   {
@@ -428,7 +428,7 @@
   },
   {
     "name": "Defeated_Any_Volatile_Gruzzer",
-    "logic": "DREAMER + (Crossroads_07 | Crossroads_25) | Room_Colosseum_01[left1] + Defeated_Colosseum_1",
+    "logic": "DREAMER + (Crossroads_07 | Crossroads_25) | Room_Colosseum_01[left1] + (Defeated_Colosseum_1 | Defeated_Colosseum_2)",
     "Stateless": true
   },
   {
@@ -523,7 +523,7 @@
   },
   {
     "name": "Defeated_Any_Primal_Aspid",
-    "logic": "Deepnest_East_04 | Deepnest_East_06[left1] | (Deepnest_East_06[top1] | Deepnest_East_06[bot1]) + (WINGS | RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_06[door1] + (WINGS | LEFTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_07 | Deepnest_East_11 | Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 | Deepnest_East_14b[right1] | Room_Colosseum_01[left1] + Defeated_Colosseum_1",
+    "logic": "Deepnest_East_04 | Deepnest_East_06[left1] | (Deepnest_East_06[top1] | Deepnest_East_06[bot1]) + (WINGS | RIGHTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_06[door1] + (WINGS | LEFTCLAW | ENEMYPOGOS + DANGEROUSSKIPS) | Deepnest_East_07 | Deepnest_East_11 | Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 | Deepnest_East_14b[right1] | Room_Colosseum_01[left1] + (Defeated_Colosseum_1 | Defeated_Colosseum_2 | Defeated_Colosseum_3)",
     "Stateless": true
   },
   {
@@ -593,17 +593,17 @@
   },
   {
     "name": "Defeated_Any_Sharp_Baldur",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_1",
+    "logic": "Room_Colosseum_01[left1] + (Defeated_Colosseum_1 | Defeated_Colosseum_3)",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Armoured_Squit",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_2",
+    "logic": "Room_Colosseum_01[left1] + (Defeated_Colosseum_2 | Defeated_Colosseum_3)",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Battle_Obble",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_2",
+    "logic": "Room_Colosseum_01[left1] + (Defeated_Colosseum_2 | Defeated_Colosseum_3)",
     "Stateless": true
   },
   {
@@ -613,22 +613,22 @@
   },
   {
     "name": "Defeated_Any_Shielded_Fool",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_1",
+    "logic": "Room_Colosseum_01[left1] + (Defeated_Colosseum_1 | Defeated_Colosseum_2 | Defeated_Colosseum_3)",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Sturdy_Fool",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_1",
+    "logic": "Room_Colosseum_01[left1] + (Defeated_Colosseum_1 | Defeated_Colosseum_3)",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Winged_Fool",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_2",
+    "logic": "Room_Colosseum_01[left1] + (Defeated_Colosseum_2 | Defeated_Colosseum_3)",
     "Stateless": true
   },
   {
     "name": "Defeated_Any_Heavy_Fool",
-    "logic": "Room_Colosseum_01[left1] + Defeated_Colosseum_2",
+    "logic": "Room_Colosseum_01[left1] + (Defeated_Colosseum_2 | Defeated_Colosseum_3)",
     "Stateless": true
   },
   {
