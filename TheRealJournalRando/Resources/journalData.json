@@ -205,7 +205,6 @@
     "convoName": "ZOM_RUNNER",
     "allScenes": [
       "Crossroads_01",
-      "Crossroads_21",
       "Crossroads_37",
       "Crossroads_40",
       "Crossroads_ShamanTemple",
@@ -315,6 +314,7 @@
       "Abyss_02",
       "Cliffs_02",
       "Cliffs_04",
+      "Crossroads_21",
       "Crossroads_37",
       "Fungus1_03",
       "Ruins1_01",
@@ -468,6 +468,7 @@
       "Fungus1_07",
       "Fungus1_10",
       "Fungus1_11",
+      "Fungus1_13",
       "Fungus1_19",
       "Fungus1_21",
       "Fungus1_22",
@@ -526,7 +527,6 @@
       "Fungus1_05",
       "Fungus1_06",
       "Fungus1_07",
-      "Fungus1_13",
       "Fungus1_31"
     ],
     "notesCost": 25
