@@ -35,7 +35,7 @@
   },
   {
     "name": "Journal_Entry-Void_Idol_1",
-    "logic": "Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 + Defeated_Pantheon_4 + Defeated_Pantheon_5 + (9FLAMES | Troupe_Banishment) + Defeated_Grey_Prince_Zote"
+    "logic": "GG_Workshop + Defeated_Pantheon_1 + Defeated_Pantheon_2 + Defeated_Pantheon_3 + Defeated_Pantheon_4 + Defeated_Pantheon_5 + (9FLAMES | Troupe_Banishment) + Defeated_Grey_Prince_Zote"
   },
   {
     "name": "Journal_Entry-Void_Idol_2",
