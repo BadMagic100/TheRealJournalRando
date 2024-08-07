@@ -31,7 +31,7 @@
   },
   {
     "name": "Defeated_Any_Aspid_Hunter",
-    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + $TAKEDAMAGE) + LEFTDASH)) | Crossroads_03 + (BREAKABLE_Crossroads03_SceneryBreakWall2 ? TRUE | FIREBALL>1 + OBSCURESKIPS) | Crossroads_08 | Crossroads_19 | Crossroads_22[bot1]",
+    "logic": "Abyss_17[top1] + (WINGS | ((ANYCLAW | DAMAGEBOOSTS + $TAKEDAMAGE) + LEFTDASH)) | Crossroads_03 + (Wall-Crossroads_Grub ? TRUE | FIREBALL>1 + OBSCURESKIPS) | Crossroads_08 | Crossroads_19 | Crossroads_22[bot1]",
     "Stateless": true
   },
   {
@@ -86,7 +86,7 @@
   },
   {
     "name": "Defeated_Any_Maggot",
-    "logic": "(Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + (ANYCLAW | WINGS + INFECTED) + (BREAKABLE_Crossroads10_BreakableWall ? TRUE | FIREBALL>1 + OBSCURESKIPS)",
+    "logic": "(Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + (ANYCLAW | WINGS + INFECTED) + (Wall-Maggot_Room ? TRUE | FIREBALL>1 + OBSCURESKIPS)",
     "Stateless": true
   },
   {
@@ -338,7 +338,7 @@
   },
   {
     "name": "Defeated_Any_Belfly",
-    "logic": "*Pale_Ore-Basin | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_09[left1] | RestingGrounds_10 + UPWALLBREAK | Room_Colosseum_01[left1] + (Defeated_Colosseum_2 | Defeated_Colosseum_3) | Ruins1_01[left1] | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c | Ruins2_07[right1] | Waterways_01 | Waterways_02[top1] | Waterways_02[top2] | (Waterways_02[bot2] | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3) + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | *Rancid_Egg-Waterways_West_Pickup | Waterways_07 | *Soul_Totem-Waterways_Flukemarm | Waterways_08[left2] | Waterways_13[left1]",
+    "logic": "*Pale_Ore-Basin | Deepnest_East_07 | Deepnest_East_08[right1] | Deepnest_East_09[left1] | RestingGrounds_10 + (Wall-Catacombs_Left_1?UPWALLBREAK | Wall-Catacombs_Right_1?FALSE + Wall-Catacombs_Grub?FALSE) | Room_Colosseum_01[left1] + (Defeated_Colosseum_2 | Defeated_Colosseum_3) | Ruins1_01[left1] | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c | Ruins2_07[right1] | Waterways_01 | Waterways_02[top1] | Waterways_02[top2] | (Waterways_02[bot2] | Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3) + (ANYCLAW | WINGS | ENEMYPOGOS) | Waterways_02[bot1] + (ANYCLAW | WINGS) | Waterways_04[left2] + (SWIM | RIGHTSKIPACID) | Waterways_04[right1] | Waterways_04[left1] + (RIGHTCLAW | WINGS | ENEMYPOGOS) | *Rancid_Egg-Waterways_West_Pickup | Waterways_07 | *Soul_Totem-Waterways_Flukemarm | Waterways_08[left2] | Waterways_13[left1]",
     "Stateless": true
   },
   {
@@ -458,7 +458,7 @@
   },
   {
     "name": "Defeated_Any_Deepling",
-    "logic": "(Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + (BREAKABLE_Deepnest39_BreakableWall ? TRUE)) + (LANTERN | DARKROOMS) | Deepnest_39[right1] + (LANTERN | DARKROOMS) + (ANYCLAW | ENEMYPOGOS) | (Deepnest_41[left1] + (BREAKABLE_Deepnest41_OneWayWall ? TRUE) | Deepnest_41[left2]) + (LANTERN | DARKROOMS) | Deepnest_42[bot1] | Deepnest_Spider_Town[left1]",
+    "logic": "(Deepnest_39[left1] | Deepnest_39[top1] | Deepnest_39[door1] + (Wall-Weaver's_Den_Entrance ? TRUE)) + (LANTERN | DARKROOMS) | Deepnest_39[right1] + (LANTERN | DARKROOMS) + (ANYCLAW | ENEMYPOGOS) | (Deepnest_41[left1] + (Plank-Village_Middle ? TRUE) | Deepnest_41[left2]) + (LANTERN | DARKROOMS) | Deepnest_42[bot1] | Deepnest_Spider_Town[left1]",
     "Stateless": true
   },
   {
@@ -473,7 +473,7 @@
   },
   {
     "name": "Defeated_Any_Stalking_Devout",
-    "logic": "(Deepnest_34 | (Deepnest_39[top1] | Deepnest_39[door1] + (BREAKABLE_Deepnest39_BreakableWall ? TRUE) | Deepnest_39[left1] | Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | *Rancid_Egg-Dark_Deepnest) + COMBAT[Any_Devout] | (Deepnest_39 | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS)) + COMBAT[Left_Devout]",
+    "logic": "(Deepnest_34 | (Deepnest_39[top1] | Deepnest_39[door1] + (Wall-Weaver's_Den_Entrance ? TRUE) | Deepnest_39[left1] | Deepnest_41[left2] + (LEFTCLAW | (WINGS + RIGHTCLAW))) + (LANTERN | DARKROOMS) | *Rancid_Egg-Dark_Deepnest) + COMBAT[Any_Devout] | (Deepnest_39 | Deepnest_Spider_Town[left1] + (LEFTCLAW | WINGS)) + COMBAT[Left_Devout]",
     "Stateless": true
   },
   {
