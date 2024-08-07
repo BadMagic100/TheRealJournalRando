@@ -51,10 +51,10 @@
   },
   {
     "name": "Journal_Entry-Mossy_Vagabond",
-    "logic": "Fungus3_39[left1] | Fungus3_39[right1]"
+    "logic": "Fungus3_39[left1] + Plank-Moss_Prophet?TRUE | Fungus3_39[right1]"
   },
   {
     "name": "Hunter's_Notes-Mossy_Vagabond",
-    "logic": "(Fungus3_39[left1] | Fungus3_39[right1]) + (Can_Bench/ | DREAMER)"
+    "logic": "(Fungus3_39[left1] + Plank-Moss_Prophet?TRUE | Fungus3_39[right1]) + (Can_Bench/ | DREAMER)"
   }
 ]
