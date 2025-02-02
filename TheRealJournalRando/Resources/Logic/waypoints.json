@@ -273,7 +273,7 @@
   },
   {
     "name": "Defeated_Any_Lance_Sentry",
-    "logic": "Abyss_02 | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c[top1] | Ruins1_05c + (ANYCLAW | WINGS + ENEMYPOGOS) | Ruins1_17 | Ruins2_01[left2] | Ruins2_01[top1] | Ruins2_01[bot1] + (ANYCLAW | WINGS | ENEMYPOGOS) | Ruins2_03[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)) | Ruins2_06[right2]",
+    "logic": "Abyss_02 | Ruins1_05[bot1] + (LEFTCLAW | WINGS + (RIGHTCLAW | ENEMYPOGOS)) | Ruins1_05c[top1] | Ruins1_05c + (ANYCLAW | WINGS + ENEMYPOGOS) | Ruins1_17 | Ruins2_01[left2] | Ruins2_01[top1] + (Lever-City_Spire_Sentry_Upper ? TRUE) | Ruins2_01[bot1] + (ANYCLAW | WINGS | ENEMYPOGOS) | Ruins2_03[bot2] + (RIGHTCLAW | (WINGS + LEFTCLAW)) | Ruins2_06[right2]",
     "Stateless": true
   },
   {
