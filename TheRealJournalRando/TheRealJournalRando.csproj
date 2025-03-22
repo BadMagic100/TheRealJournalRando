@@ -10,7 +10,7 @@
     <Copyright>Copyright © BadMagic100 2022</Copyright>
     <Authors>BadMagic100</Authors>
     <NoWarn>7035</NoWarn>
-    <AssemblyVersion>2.4.*</AssemblyVersion>
+    <AssemblyVersion>2.5.*</AssemblyVersion>
     <Deterministic>false</Deterministic>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <LangVersion>latest</LangVersion>
@@ -34,10 +34,6 @@
     <Copy SourceFiles="$(SolutionDir)/README.md;@(OutputFiles)" DestinationFolder="$(ExportDir)/zip/" />
     <ZipDirectory SourceDirectory="$(ExportDir)/zip/" DestinationFile="$(ExportDir)/$(TargetName).zip" />
     <RemoveDir Directories="$(ExportDir)/zip/" />
-    <GetFileHash Files="$(ExportDir)/$(TargetName).zip" Algorithm="SHA256">
-      <Output TaskParameter="Items" ItemName="FilesWithHashes" />
-    </GetFileHash>
-    <WriteLinesToFile File="$(ExportDir)/SHA.txt" Lines="@(FilesWithHashes->'%(FileHash)')" Overwrite="true" Encoding="UTF-8" />
     <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
       <Output TaskParameter="Assemblies" ItemName="Targets" />
     </GetAssemblyIdentity>

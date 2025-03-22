@@ -84,7 +84,6 @@ jobs:
           fail_on_unmatched_files: true
           tag_name: v${{ steps.details.outputs.buildVersion }}
           body: |
-            SHA256: ${{ steps.details.outputs.archiveHash }}
             Build attested at ${{ needs.build.outputs.attestation-url }}
           files: |
             artifacts/Publish/TheRealJournalRando.zip
