@@ -21,7 +21,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     outputs:
       attestation-url: ${{ steps.attest.outputs.attestation-url }}
 
@@ -59,7 +59,7 @@ jobs:
   release:
     needs:
       - build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     # only make a release if we manually request the build - other builds will be handled automatically with a push
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == 'true'
     steps:
@@ -71,9 +71,7 @@ jobs:
         id: details
         # this assumes that an MSBuild task writes the mod version (usually the same as the assembly version) 
         # to version.txt. The contents of this file is read to step outputs for use in release
-        run: |
-          $ver = Get-Content artifacts/Publish/VERSION.txt
-          echo "::set-output name=buildVersion::$ver"
+        run: echo "::set-output name=buildVersion::$(cat artifacts/Publish/VERSION.txt)"
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
