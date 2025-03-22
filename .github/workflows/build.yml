@@ -1,5 +1,10 @@
 name: Build
 
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
@@ -42,6 +47,12 @@ jobs:
         with:
           name: Publish
           path: TheRealJournalRando/bin/Publish
+
+      - name: Generate attestation
+        # if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == 'true'
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: TheRealJournalRando/bin/Publish/TheRealJournalRando.zip
   release:
     needs:
       - build
