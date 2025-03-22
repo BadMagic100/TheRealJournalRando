@@ -22,6 +22,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    outputs:
+      attestation-url: ${{ steps.attest.outputs.attestation-url }}
 
     steps:
       - name: Checkout
@@ -49,7 +51,8 @@ jobs:
           path: TheRealJournalRando/bin/Publish
 
       - name: Generate attestation
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == 'true'
+        id: attest
+        # if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == 'true'
         uses: actions/attest-build-provenance@v2
         with:
           subject-path: TheRealJournalRando/bin/Publish/TheRealJournalRando.zip
@@ -82,5 +85,6 @@ jobs:
           tag_name: v${{ steps.details.outputs.buildVersion }}
           body: |
             SHA256: ${{ steps.details.outputs.archiveHash }}
+            Build attested at ${{ needs.build.outputs.attestation-url }}
           files: |
             artifacts/Publish/TheRealJournalRando.zip
