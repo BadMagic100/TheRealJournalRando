@@ -69,12 +69,10 @@ jobs:
           path: artifacts
       - name: Get build details
         id: details
-        # this assumes that an MSBuild task that writes the SHA256 of the zip file to SHA.txt, and the mod version (usually
-        # the same as the assembly version) to version.txt. The contents of these files are read to step outputs for use in release
+        # this assumes that an MSBuild task writes the mod version (usually the same as the assembly version) 
+        # to version.txt. The contents of this file is read to step outputs for use in release
         run: |
-          $sha = Get-Content artifacts/Publish/SHA.txt
           $ver = Get-Content artifacts/Publish/VERSION.txt
-          echo "::set-output name=archiveHash::$sha"
           echo "::set-output name=buildVersion::$ver"
       - name: Release
         uses: softprops/action-gh-release@v2
