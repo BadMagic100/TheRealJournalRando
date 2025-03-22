@@ -52,7 +52,7 @@ jobs:
 
       - name: Generate attestation
         id: attest
-        # if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == 'true'
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == 'true'
         uses: actions/attest-build-provenance@v2
         with:
           subject-path: TheRealJournalRando/bin/Publish/TheRealJournalRando.zip
