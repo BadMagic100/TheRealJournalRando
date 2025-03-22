@@ -72,7 +72,7 @@ jobs:
         # this assumes that an MSBuild task writes the mod version (usually the same as the assembly version) 
         # to version.txt. The contents of this file is read to step outputs for use in release
         run: |
-          $ver = sed '1s/\xEF\xBB\xBF//' < artifacts/Publish/VERSION.txt
+          ver = sed '1s/\xEF\xBB\xBF//' < artifacts/Publish/VERSION.txt
           echo "buildVersion=$ver" >> $GITHUB_OUTPUT
       - name: Release
         uses: softprops/action-gh-release@v2
