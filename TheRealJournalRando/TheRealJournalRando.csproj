@@ -17,10 +17,12 @@
     <Nullable>enable</Nullable>
     <HollowKnightRefs>..\API</HollowKnightRefs>
     <ExportDir>bin\Publish</ExportDir>
-    <AdditionalFileItemNames>EmbeddedResource</AdditionalFileItemNames>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
   <Import Project="LocalOverrides.targets" Condition="Exists('LocalOverrides.targets')" />
+  <ItemGroup>
+    <AdditionalFiles Include="Resources/**/*.json"/>
+  </ItemGroup>
   <Target Name="CopyMod" AfterTargets="PostBuildEvent">
     <ItemGroup>
       <OutputFiles Include="$(TargetPath)"/>
@@ -360,5 +362,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="RandoConstantGenerators" Version="1.2.0" />
+    <PackageReference Include="DataDrivenConstants" Version="1.0.0"/>
   </ItemGroup>
 </Project>
