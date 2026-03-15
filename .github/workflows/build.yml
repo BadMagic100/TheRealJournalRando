@@ -66,7 +66,8 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v8
         with:
-          path: artifacts
+          name: Publish
+          path: artifacts/Publish
       - name: Get build details
         id: details
         # this assumes that an MSBuild task writes the mod version (usually the same as the assembly version) 
