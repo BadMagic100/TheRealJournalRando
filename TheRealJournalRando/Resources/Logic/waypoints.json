@@ -733,7 +733,7 @@
   },
   {
     "name": "Defeated_Any_Nightmare_King",
-    "logic": "Grimm_Main_Tent[left1] + Grimmchild + 9FLAMES + DREAMNAIL + COMBAT[Nightmare_King]",
+    "logic": "Defeated_Any_Grimm + Grimm_Main_Tent[left1] + Grimmchild + 9FLAMES + DREAMNAIL + COMBAT[Nightmare_King]",
     "Stateless": true
   },
   {
